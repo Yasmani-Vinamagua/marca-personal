@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="banners/banner-github.png" alt="Yasmani Viñamagua · Automatización de procesos con tecnología" width="100%">
+</p>
+
 # Marca personal · Yasmani Viñamagua
 
 Identidad visual de la marca personal de Yasmani Viñamagua, ingeniero especializado en innovación y automatización de procesos mediante tecnología. Este repositorio reúne el logotipo, el manual de identidad, la paleta, las aplicaciones y los vídeos de animación del logo.
@@ -32,16 +36,17 @@ El nombre se compone en **Nunito SemiBold**. Los tintes de apoyo y las reglas de
 | [`paleta/`](paleta/) | Colores con HEX, RGB, CMYK y Pantone de referencia, y tabla de contrastes. |
 | [`aplicaciones/`](aplicaciones/) | Maqueta de las aplicaciones de la marca y sus recursos gráficos. |
 | [`videos/`](videos/) | Animaciones del logo (horizontal y vertical) como proyectos [HyperFrames](https://github.com/heygen-com/hyperframes). |
-| [`web/`](web/) | Sitio web personal en HTML, CSS y JS planos: inicio, proyectos y ficha de proyecto. Tema claro y oscuro, fuentes Nunito y Manrope en `woff2`, y formulario que abre WhatsApp. Abre `web/index.html` para verlo. |
+| [`banners/`](banners/) | Banners para GitHub (`banner-github.png`, 3168 × 792), LinkedIn (`banner-linkedin.png`, 1584 × 396, con el contenido desplazado para no quedar bajo la foto de perfil) y Figma Community (`banner-figma.png`, 1920 × 640), exportados desde `banner.html` con el lockup negativo, la línea de apoyo y el recurso de flujo. |
+| [`web/`](web/) | Sitio web personal en HTML, CSS y JS planos: inicio, proyectos y ficha de proyecto. Tema claro y oscuro, fuentes Nunito y Manrope en `woff2`, menú hamburguesa en móvil, tooltips accesibles, animaciones al entrar en cada sección y formulario que abre WhatsApp. Abre `web/index.html` para verlo. |
 | [`PRODUCT.md`](PRODUCT.md) · [`DESIGN.md`](DESIGN.md) | Contexto de producto y sistema de diseño de la web. |
 | [`docs/`](docs/) | Estructura y flujo de usuario del sitio (`user-flow.md`). |
-| [`marca-spec.md`](marca-spec.md)(marca-spec.md) | Especificación de la marca: brief, decisiones y fases aprobadas. |
+| [`marca-spec.md`](marca-spec.md) | Especificación de la marca: brief, decisiones y fases aprobadas. |
 | [`.yas/`](.yas/) | Informes de auditoría y configuración de Yas Design. |
 | [`.agents/`](.agents/) · [`.claude/`](.claude/) | Skills de Yas Design usadas para crear y auditar la marca. |
 
 ## Pendiente
 
-En la web, el contenido de los proyectos, guías y vídeos es provisional y falta sustituirlo por casos reales. Las pruebas físicas de tamaño mínimo de impresión y la validación legal siguen abiertas. Los valores CMYK y Pantone son de referencia y deben confirmarse con una prueba impresa.
+En la web, el contenido de los proyectos, guías, vídeos y recomendados es provisional (incluidos los elementos de ejemplo que prueban el carrusel móvil) y falta sustituirlo por casos reales. Las pruebas físicas de tamaño mínimo de impresión y la validación legal siguen abiertas. Los valores CMYK y Pantone son de referencia y deben confirmarse con una prueba impresa.
 
 ## Licencia
 
