@@ -19,6 +19,8 @@
     initFlow();
     initFilters();
     initTabs();
+    initTitles();
+    initProcess();
     initReveal();
     initForm();
   });
@@ -153,6 +155,27 @@
   }
 
   /* Entrada de las partes de cada sección, una vez */
+  /* Resaltado de los títulos (inicio y secciones): se activa al entrar y se reinicia al salir */
+  function initTitles() {
+    var els = [].slice.call(document.querySelectorAll(".hl, .hl-t"));
+    if (!els.length) return;
+    if (reduce || !("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("is-on"); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle("is-on", en.isIntersecting); });
+    }, { rootMargin: "-8% 0px -30% 0px", threshold: 0 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  /* Cómo trabajo: el proceso se construye paso a paso cada vez que entra en pantalla */
+  function initProcess() {
+    var el = document.querySelector(".process");
+    if (!el) return;
+    if (reduce || !("IntersectionObserver" in window)) { el.classList.add("is-run"); return; }
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle("is-run", en.isIntersecting); });
+    }, { rootMargin: "0px 0px -20% 0px", threshold: 0 }).observe(el);
+  }
+
   function initReveal() {
     var els = [].slice.call(document.querySelectorAll("[data-reveal]"));
     if (!els.length) return;

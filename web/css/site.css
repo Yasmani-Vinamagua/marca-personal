@@ -134,7 +134,12 @@ main > section { position: relative; overflow: hidden; padding-block: var(--sect
 .hero .lead { margin: 1.5rem 0 2rem; max-width: 40ch; font-size: var(--t-sub); line-height: 1.4; }
 .hero h1 { font-size: clamp(1.85rem, 3.95vw, 3.6rem); }
 .hl { position: relative; z-index: 0; white-space: nowrap; }
-.hl::after { content: ""; position: absolute; z-index: -1; left: -.05em; right: -.05em; bottom: .04em; height: .36em; background: var(--hl); border-radius: 4px; transform-origin: left; animation: hl-in .9s .35s var(--ease) both; }
+.hl::after { content: ""; position: absolute; z-index: -1; left: -.05em; right: -.05em; bottom: .04em; height: .36em; background: var(--hl); border-radius: 4px; transform-origin: left; }
+.js .hl::after { transform: scaleX(0); }
+.js .hl.is-on::after { animation: hl-in .9s .35s var(--ease) both; }
+/* Resaltado de los títulos de sección: se dibuja cada vez que el título entra en pantalla */
+.hl-t { background: linear-gradient(var(--rosa), var(--rosa)) no-repeat 0 100% / 0% 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-bottom: .12em; transition: background-size .8s var(--ease); }
+.hl-t.is-on { background-size: 90% 3px; }
 @keyframes hl-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 /* ---------- Cover flow ---------- */
@@ -254,8 +259,8 @@ main > section { position: relative; overflow: hidden; padding-block: var(--sect
 .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
 .shots img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); }
 .ia-box { background: var(--bg-alt); border-radius: var(--radius); padding: clamp(1.5rem, 4vw, 3rem); }
-.stack-row { display: grid; grid-template-columns: 12rem 1fr; gap: 1rem; padding: 1.1rem 0; align-items: baseline; }
-.stack-row:nth-child(even) { background: var(--bg-alt); padding-inline: 1rem; border-radius: 10px; }
+.stack-row { display: grid; grid-template-columns: 12rem 1fr; gap: 1rem; padding: 1.1rem 1rem; margin-inline: -1rem; align-items: baseline; }
+.stack-row:nth-child(even) { background: var(--bg-alt); border-radius: 10px; }
 .stack-row b { font-family: var(--font-display); font-weight: 800; color: var(--head); }
 
 /* ---------- Entradas ---------- */
@@ -290,6 +295,8 @@ main > section { position: relative; overflow: hidden; padding-block: var(--sect
   .fgroup > b { min-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .hl-t { background-size: 90% 3px; transition: none; }
+  .js .hl::after { transform: none; animation: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
   .ambient i { animation: none !important; }
@@ -306,6 +313,18 @@ main > section { position: relative; overflow: hidden; padding-block: var(--sect
 .process li { position: relative; padding-top: 4.5rem; counter-increment: step; }
 .process li::before { content: counter(step); position: absolute; top: 0; left: 0; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font: 800 var(--t-sub)/1 var(--font-display); background: var(--action-bg); color: var(--action-fg); }
 .process li:not(:last-child)::after { content: ""; position: absolute; top: 22px; left: 60px; width: calc(100% + 2rem - 72px); height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--flow-ink) 38%, transparent); }
+/* El proceso se construye paso a paso: círculo, tramo de línea hacia el siguiente y texto, en orden; se repite cada vez que entra en pantalla */
+.js .process li { opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.js .process li::before { transform: scale(0); transition: transform .5s cubic-bezier(.3, 1.5, .5, 1); }
+.js .process li:not(:last-child)::after { transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease); }
+.js .process.is-run li { opacity: 1; transform: none; transition-delay: calc(var(--d) * .7s); }
+.js .process.is-run li::before { transform: none; transition-delay: calc(var(--d) * .7s); }
+.js .process.is-run li:not(:last-child)::after { transform: none; transition-delay: calc(var(--d) * .7s + .3s); }
+.js .process.is-run li:last-child::before { animation: step-pulse 1.6s calc(3 * .7s + .5s) ease-out 2; }
+@media (prefers-reduced-motion: reduce) {
+  .js .process li, .js .process li::before, .js .process li::after { opacity: 1; transform: none !important; transition: none; animation: none; }
+}
+@keyframes step-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--action-bg) 45%, transparent); } 100% { box-shadow: 0 0 0 18px transparent; } }
 .process h3 { margin-bottom: .5rem; }
 .process p { margin: 0; }
 .process-note { margin-top: 2.5rem; }
@@ -313,6 +332,7 @@ main > section { position: relative; overflow: hidden; padding-block: var(--sect
   .process { grid-template-columns: 1fr; gap: 2rem; }
   .process li { padding: 0 0 0 4.5rem; min-height: 48px; }
   .process li:not(:last-child)::after { top: 56px; left: 22px; width: 4px; height: calc(100% + 2rem - 64px); }
+  .js .process li:not(:last-child)::after { transform: scaleY(0); transform-origin: top; }
 }
 
 /* ---------- Pie minimalista ---------- */
