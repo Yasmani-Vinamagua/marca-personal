@@ -11,7 +11,7 @@
       "source": "Yasmani-Vinamagua/yas-design-system",
       "sourceType": "github",
       "skillPath": ".claude/skills/yas-core/SKILL.md",
-      "computedHash": "832e6ae7d8101b44d789c4acebb971a2b52501db5e207cbc01a7707bb778b315"
+      "computedHash": "669a4eb71c8ca4c80807331a595352688ae79967d95580164fe2c5a31cf7dd1a"
     },
     "yas-design": {
       "source": "Yasmani-Vinamagua/yas-design-system",
@@ -23,7 +23,7 @@
       "source": "Yasmani-Vinamagua/yas-design-system",
       "sourceType": "github",
       "skillPath": ".claude/skills/yas-figma/SKILL.md",
-      "computedHash": "d2f618f730039471eb7cc106975ee8362c1d0a1d38d4b8c96e5e484e07fdd728"
+      "computedHash": "d3f965089b4c06a7e4aeea11a318e77bb0b031d57e4099d35380f85195806bd1"
     }
   }
 }
