@@ -21,7 +21,7 @@ Convierte procesos manuales y lentos en herramientas que funcionan solas: la aut
 ## Operating Context
 
 - Landing de una página con scroll (`web/index.html`: Inicio, Proyectos, Sobre mí, Recursos, Contacto) más `proyectos.html` (cuadrícula con filtros) y `proyecto.html` (detalle). Estructura y reglas en `docs/user-flow.md`.
-- Sin servidor: el formulario abre WhatsApp (`wa.me`) con el mensaje escrito. El número se configura en `data-wa` del formulario y hoy está vacío.
+- Sin servidor: el formulario abre WhatsApp (`wa.me`) con el mensaje escrito. El número está configurado en `data-wa` del formulario.
 - HTML, CSS y JS planos, sin dependencias; tema claro y oscuro con interruptor.
 - Idioma de la web: español.
 
@@ -31,7 +31,8 @@ Convierte procesos manuales y lentos en herramientas que funcionan solas: la aut
 - Servicios: UX/UI (prototipo y sistema de diseño en Figma), Front (HTML y CSS accesibles), Backend (automatizaciones, bases de datos y servicios en Python, Java y SQL).
 - Cada proyecto declara su uso de IA (Sin IA, Asistido por IA, Generado con IA); el filtro de IA se activa con 8 o más proyectos.
 - Uso de Claude Code para acelerar el desarrollo, con revisión humana de cada entrega.
-- Pendientes de producto: número de WhatsApp, enlaces de redes, descargas y vídeos reales.
+- Ya resueltos: número de WhatsApp y enlaces de redes (LinkedIn, GitHub, Figma, Instagram).
+- Pendientes de producto: descargas y vídeos reales, y retirar o marcar como provisional el contenido de ejemplo (resultados, clientes y plantillas) antes de publicar. Cada tarjeta del carrusel debe abrir su propio caso.
 
 ## Brand Commitments
 

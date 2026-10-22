@@ -1,0 +1,2612 @@
+{
+ "url": "web/index.html",
+ "at": "2026-10-22T04:44:11.108Z",
+ "allow": [
+  "glass",
+  "headline-lines",
+  "shadow",
+  "button-fx",
+  "few-pictures",
+  "focal-point"
+ ],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 8,
+   "filled": [
+    0.12,
+    0.99,
+    0.48,
+    0.23,
+    0.8,
+    0.77,
+    0.55,
+    0.52
+   ],
+   "motion": {
+    "elements": 44,
+    "css": 4,
+    "transitions": 40,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 6894,
+     "screens": 7.7,
+     "words": 423,
+     "img": 12,
+     "video": 0,
+     "canvas": 0,
+     "svg": 14,
+     "sections": 5,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Diseño y desarrollo productos digitales de principio a fin.",
+     "words": 9,
+     "chars": 59,
+     "lines": 2,
+     "size": 56.9,
+     "vw": 4,
+     "font": "Nunito",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1.08,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.78,
+     "top": 363,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Diseño y desarrollo productos digitales de principio a fin.",
+     "words": 9,
+     "lines": 2,
+     "size": 56.9,
+     "font": "Nunito"
+    },
+    "headings": [
+     {
+      "text": "Diseño y desarrollo productos digitales de principio a fin.",
+      "words": 9,
+      "chars": 59,
+      "lines": 2,
+      "size": 56.9,
+      "vw": 4,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 363,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Proyectos destacados",
+      "words": 2,
+      "chars": 20,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 1044,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Proyecto C · Automatización",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.42,
+      "top": 1145,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Hola, soy Yasmani.",
+      "words": 3,
+      "chars": 18,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.53,
+      "top": 2230,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Servicios",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 2715,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "UX/UI",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.23,
+      "top": 2784,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Front",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.23,
+      "top": 2784,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Backend",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.23,
+      "top": 2784,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Cómo trabajo",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 3148,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Conversamos",
+      "words": 1,
+      "chars": 11,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.18,
+      "top": 3288,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Diseño",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.18,
+      "top": 3288,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Desarrollo",
+      "words": 1,
+      "chars": 10,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.18,
+      "top": 3288,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Entrego",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.18,
+      "top": 3288,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Recursos",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 3754,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mis guías",
+      "words": 2,
+      "chars": 9,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 3985,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Mis videos",
+      "words": 2,
+      "chars": 10,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 4664,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Recomendados",
+      "words": 1,
+      "chars": 12,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 5099,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Tienes un proyecto en mente?",
+      "words": 5,
+      "chars": 29,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 5799,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 18,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Manrope",
+       "share": 0.76,
+       "mono": false
+      },
+      {
+       "family": "Nunito",
+       "share": 0.24,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      20,
+      28,
+      40,
+      57
+     ],
+     "sizeCount": 6,
+     "notLoaded": [],
+     "body": {
+      "font": "Manrope",
+      "size": 16,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.9
+     },
+     "measureChars": 44,
+     "max": {
+      "size": 56.9,
+      "vw": 4,
+      "font": "Nunito",
+      "text": "Diseño y desarrollo productos digitales"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.02,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#223367",
+       "top": -260,
+       "hsl": {
+        "h": 225,
+        "s": 0.5,
+        "l": 0.27
+       }
+      },
+      {
+       "color": "#2a3e7e",
+       "top": 237,
+       "hsl": {
+        "h": 226,
+        "s": 0.5,
+        "l": 0.33
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#0d1530",
+       "share": 0.58
+      },
+      {
+       "color": "#223367",
+       "share": 0.23
+      },
+      {
+       "color": "#5b6478",
+       "share": 0.17
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      },
+      {
+       "color": "#ff1563",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#e3e7f0",
+      "hsl": {
+       "h": 222,
+       "s": 0.3,
+       "l": 0.92
+      },
+      "fg": "#223367"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 10,
+     "inHero": 3,
+     "radius": "pill",
+     "height": 52,
+     "withShadow": 9,
+     "withGradient": 3,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Saltar al contenido",
+      "Ver proyectos",
+      "Contacto"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 16,
+     "shadowOverlay": 4,
+     "shadowSamples": [
+      "button.theme-btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn.secondary → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px"
+     ],
+     "gradients": 0,
+     "scrims": 1,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 24,
+     "roundedBoxes": 12,
+     "boxRadius": 14,
+     "squareMedia": 0,
+     "roundedMedia": 8,
+     "mediaRadius": 14,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 4065
+      },
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 5179
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": true,
+     "height": 195,
+     "floatingPill": true,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "nunito",
+     "manrope"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 6894,
+    "margins": {
+     "left": 160,
+     "right": 160
+    },
+    "sections": [
+     {
+      "sel": "section#inicio.hero-sec",
+      "tag": "section",
+      "top": 0,
+      "height": 900,
+      "words": 31,
+      "media": 0,
+      "middle": 442,
+      "heading": {
+       "text": "Diseño y desarrollo productos digitales",
+       "size": 57,
+       "tag": "h1"
+      },
+      "left": 160,
+      "right": 20,
+      "textLeft": 160,
+      "textRight": 510,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#proyectos.alt",
+      "tag": "section",
+      "top": 900,
+      "height": 1186,
+      "words": 38,
+      "media": 5,
+      "middle": 0,
+      "heading": {
+       "text": "Proyectos destacados",
+       "size": 40,
+       "tag": "h2"
+      },
+      "left": 160,
+      "right": 234,
+      "textLeft": 160,
+      "textRight": 633,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#sobre-mi",
+      "tag": "section",
+      "top": 2086,
+      "height": 1525,
+      "words": 214,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Hola, soy Yasmani.",
+       "size": 40,
+       "tag": "h2"
+      },
+      "left": 160,
+      "right": 161,
+      "textLeft": 160,
+      "textRight": 161,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#recursos.alt",
+      "tag": "section",
+      "top": 3610,
+      "height": 2045,
+      "words": 92,
+      "media": 6,
+      "middle": 24,
+      "heading": {
+       "text": "Recursos",
+       "size": 40,
+       "tag": "h2"
+      },
+      "left": 160,
+      "right": 160,
+      "textLeft": 160,
+      "textRight": 180,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#contacto.contact",
+      "tag": "section",
+      "top": 5655,
+      "height": 1107,
+      "words": 34,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "¿Tienes un proyecto en mente?",
+       "size": 40,
+       "tag": "h2"
+      },
+      "left": 160,
+      "right": 430,
+      "textLeft": 160,
+      "textRight": 430,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.foot",
+      "tag": "footer",
+      "top": 6762,
+      "height": 132,
+      "words": 7,
+      "media": 0,
+      "middle": 845,
+      "heading": null,
+      "left": 160,
+      "right": 160,
+      "textLeft": 160,
+      "textRight": 160,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 664,
+      "height": 372
+     },
+     {
+      "top": 1928,
+      "height": 296
+     },
+     {
+      "top": 3452,
+      "height": 296
+     },
+     {
+      "top": 5488,
+      "height": 304
+     },
+     {
+      "top": 6520,
+      "height": 292
+     }
+    ],
+    "h1s": [
+     {
+      "text": "Diseño y desarrollo productos digitales de principio a fin.",
+      "size": 57,
+      "top": 363,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 160,
+      "n": 18
+     },
+     {
+      "x": 394,
+      "n": 4
+     },
+     {
+      "x": 348,
+      "n": 3
+     },
+     {
+      "x": 512,
+      "n": 3
+     },
+     {
+      "x": 553,
+      "n": 3
+     },
+     {
+      "x": 945,
+      "n": 3
+     },
+     {
+      "x": 834,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 35,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.29,
+    "voidBox": {
+     "x": 960,
+     "y": 120,
+     "w": 480,
+     "h": 780
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 10,
+   "filled": [
+    0.12,
+    0.81,
+    0.19,
+    0.29,
+    0.82,
+    0.69,
+    0.99,
+    0.75,
+    0.73,
+    0.73
+   ],
+   "motion": {
+    "elements": 44,
+    "css": 4,
+    "transitions": 40,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 9724,
+     "screens": 9.5,
+     "words": 423,
+     "img": 12,
+     "video": 0,
+     "canvas": 0,
+     "svg": 14,
+     "sections": 5,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Diseño y desarrollo productos digitales de principio a fin.",
+     "words": 9,
+     "chars": 59,
+     "lines": 2,
+     "size": 33.8,
+     "vw": 4.4,
+     "font": "Nunito",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1.08,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.92,
+     "top": 453,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Diseño y desarrollo productos digitales de principio a fin.",
+     "words": 9,
+     "lines": 2,
+     "size": 33.8,
+     "font": "Nunito"
+    },
+    "headings": [
+     {
+      "text": "Diseño y desarrollo productos digitales de principio a fin.",
+      "words": 9,
+      "chars": 59,
+      "lines": 2,
+      "size": 33.8,
+      "vw": 4.4,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 453,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Proyectos destacados",
+      "words": 2,
+      "chars": 20,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1108,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Proyecto C · Automatización",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 1172,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Hola, soy Yasmani.",
+      "words": 3,
+      "chars": 18,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2313,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Servicios",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2668,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "UX/UI",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2737,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Front",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2927,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Backend",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 3118,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Cómo trabajo",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 3340,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Conversamos",
+      "words": 1,
+      "chars": 11,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.83,
+      "top": 3408,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Diseño",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.83,
+      "top": 3511,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Desarrollo",
+      "words": 1,
+      "chars": 10,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.83,
+      "top": 3613,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Entrego",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.83,
+      "top": 3716,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Recursos",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 4037,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mis guías",
+      "words": 2,
+      "chars": 9,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 4214,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Mis videos",
+      "words": 2,
+      "chars": 10,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 6189,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Recomendados",
+      "words": 1,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 7788,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Tienes un proyecto en mente?",
+      "words": 5,
+      "chars": 29,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 8574,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 18,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Manrope",
+       "share": 0.76,
+       "mono": false
+      },
+      {
+       "family": "Nunito",
+       "share": 0.24,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      20,
+      28,
+      34
+     ],
+     "sizeCount": 5,
+     "notLoaded": [],
+     "body": {
+      "font": "Manrope",
+      "size": 16,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.9
+     },
+     "measureChars": 44,
+     "max": {
+      "size": 33.8,
+      "vw": 4.4,
+      "font": "Nunito",
+      "text": "Diseño y desarrollo productos digitales"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.02,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 4279,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#0d1530",
+       "share": 0.58
+      },
+      {
+       "color": "#223367",
+       "share": 0.23
+      },
+      {
+       "color": "#5b6478",
+       "share": 0.17
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      },
+      {
+       "color": "#ff1563",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#e3e7f0",
+      "hsl": {
+       "h": 222,
+       "s": 0.3,
+       "l": 0.92
+      },
+      "fg": "#223367"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 10,
+     "inHero": 3,
+     "radius": "pill",
+     "height": 52,
+     "withShadow": 9,
+     "withGradient": 3,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Saltar al contenido",
+      "Ver proyectos",
+      "Contacto"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 16,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.theme-btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn.secondary → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px"
+     ],
+     "gradients": 0,
+     "scrims": 1,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 20,
+     "roundedBoxes": 12,
+     "boxRadius": 14,
+     "squareMedia": 0,
+     "roundedMedia": 9,
+     "mediaRadius": 14,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 5,
+     "fixed": true,
+     "height": 33,
+     "floatingPill": true,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "nunito",
+     "manrope"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 9724,
+    "margins": {
+     "left": 31,
+     "right": 31
+    },
+    "sections": [
+     {
+      "sel": "section#inicio.hero-sec",
+      "tag": "section",
+      "top": 0,
+      "height": 1024,
+      "words": 31,
+      "media": 0,
+      "middle": 200,
+      "heading": {
+       "text": "Diseño y desarrollo productos digitales",
+       "size": 34,
+       "tag": "h1"
+      },
+      "left": 31,
+      "right": 16,
+      "textLeft": 31,
+      "textRight": 264,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#proyectos.alt",
+      "tag": "section",
+      "top": 1024,
+      "height": 846,
+      "words": 38,
+      "media": 3,
+      "middle": 0,
+      "heading": {
+       "text": "Proyectos destacados",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 0,
+      "right": 0,
+      "textLeft": 31,
+      "textRight": 153,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#sobre-mi",
+      "tag": "section",
+      "top": 1870,
+      "height": 2082,
+      "words": 214,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Hola, soy Yasmani.",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 31,
+      "right": 0,
+      "textLeft": 31,
+      "textRight": 164,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#recursos.alt",
+      "tag": "section",
+      "top": 3952,
+      "height": 4538,
+      "words": 92,
+      "media": 6,
+      "middle": 0,
+      "heading": {
+       "text": "Recursos",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 31,
+      "right": 31,
+      "textLeft": 31,
+      "textRight": 265,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#contacto.contact",
+      "tag": "section",
+      "top": 8490,
+      "height": 1102,
+      "words": 34,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "¿Tienes un proyecto en mente?",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 31,
+      "right": 0,
+      "textLeft": 31,
+      "textRight": 264,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.foot",
+      "tag": "footer",
+      "top": 9592,
+      "height": 132,
+      "words": 7,
+      "media": 0,
+      "middle": 432,
+      "heading": null,
+      "left": 31,
+      "right": 31,
+      "textLeft": 31,
+      "textRight": 31,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 704,
+      "height": 400
+     }
+    ],
+    "h1s": [
+     {
+      "text": "Diseño y desarrollo productos digitales de principio a fin.",
+      "size": 34,
+      "top": 453,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 31,
+      "n": 27
+     },
+     {
+      "x": 47,
+      "n": 6
+     },
+     {
+      "x": 61,
+      "n": 1
+     },
+     {
+      "x": 170,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 35,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 11,
+   "filled": [
+    0.34,
+    1,
+    0.6,
+    0.46,
+    0.46,
+    0.87,
+    0.79,
+    1,
+    0.53,
+    0.86,
+    0.68
+   ],
+   "motion": {
+    "elements": 40,
+    "css": 4,
+    "transitions": 36,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 8663,
+     "screens": 10.3,
+     "words": 423,
+     "img": 12,
+     "video": 0,
+     "canvas": 0,
+     "svg": 14,
+     "sections": 5,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Diseño y desarrollo productos digitales de principio a fin.",
+     "words": 9,
+     "chars": 59,
+     "lines": 3,
+     "size": 29.6,
+     "vw": 7.6,
+     "font": "Nunito",
+     "weight": 800,
+     "tracking": -0.025,
+     "leading": 1.08,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.9,
+     "top": 340,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Diseño y desarrollo productos digitales de principio a fin.",
+     "words": 9,
+     "lines": 3,
+     "size": 29.6,
+     "font": "Nunito"
+    },
+    "headings": [
+     {
+      "text": "Diseño y desarrollo productos digitales de principio a fin.",
+      "words": 9,
+      "chars": 59,
+      "lines": 3,
+      "size": 29.6,
+      "vw": 7.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.025,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 340,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Proyectos destacados",
+      "words": 2,
+      "chars": 20,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 924,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Proyecto C · Automatización",
+      "words": 4,
+      "chars": 27,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 987,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Hola, soy Yasmani.",
+      "words": 3,
+      "chars": 18,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2209,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Servicios",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2564,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "UX/UI",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2633,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Front",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2875,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Backend",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 3117,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Cómo trabajo",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 3392,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Conversamos",
+      "words": 1,
+      "chars": 11,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.71,
+      "top": 3460,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Diseño",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.71,
+      "top": 3589,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Desarrollo",
+      "words": 1,
+      "chars": 10,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.71,
+      "top": 3717,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Entrego",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.71,
+      "top": 3845,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Recursos",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 4210,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mis guías",
+      "words": 2,
+      "chars": 9,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 4413,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Mis videos",
+      "words": 2,
+      "chars": 10,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 5720,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Recomendados",
+      "words": 1,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 700,
+      "tracking": -0.02,
+      "leading": 1.3,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 6650,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Tienes un proyecto en mente?",
+      "words": 5,
+      "chars": 29,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 7427,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 18,
+     "maxLines": 3,
+     "over2Lines": 1,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Manrope",
+       "share": 0.76,
+       "mono": false
+      },
+      {
+       "family": "Nunito",
+       "share": 0.24,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      20,
+      28,
+      30
+     ],
+     "sizeCount": 5,
+     "notLoaded": [],
+     "body": {
+      "font": "Manrope",
+      "size": 16,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 5.9
+     },
+     "measureChars": 44,
+     "max": {
+      "size": 29.6,
+      "vw": 7.6,
+      "font": "Nunito",
+      "text": "Diseño y desarrollo productos digitales"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.02,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#ffffff",
+       "top": 4477,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#0d1530",
+       "share": 0.58
+      },
+      {
+       "color": "#223367",
+       "share": 0.23
+      },
+      {
+       "color": "#5b6478",
+       "share": 0.17
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      },
+      {
+       "color": "#ff1563",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#e3e7f0",
+      "hsl": {
+       "h": 222,
+       "s": 0.3,
+       "l": 0.92
+      },
+      "fg": "#223367"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 10,
+     "inHero": 3,
+     "radius": "pill",
+     "height": 52,
+     "withShadow": 9,
+     "withGradient": 3,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Saltar al contenido",
+      "Ver proyectos",
+      "Contacto"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 16,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.theme-btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn.secondary → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px"
+     ],
+     "gradients": 0,
+     "scrims": 3,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 20,
+     "roundedBoxes": 12,
+     "boxRadius": 14,
+     "squareMedia": 0,
+     "roundedMedia": 6,
+     "mediaRadius": 8,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 4477
+      },
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 6714
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 5,
+     "fixed": true,
+     "height": 33,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "nunito",
+     "manrope"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 8663,
+    "margins": {
+     "left": 20,
+     "right": 20
+    },
+    "sections": [
+     {
+      "sel": "section#inicio.hero-sec",
+      "tag": "section",
+      "top": 0,
+      "height": 844,
+      "words": 31,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Diseño y desarrollo productos digitales",
+       "size": 30,
+       "tag": "h1"
+      },
+      "left": 20,
+      "right": 16,
+      "textLeft": 20,
+      "textRight": 25,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#proyectos.alt",
+      "tag": "section",
+      "top": 844,
+      "height": 933,
+      "words": 38,
+      "media": 3,
+      "middle": 0,
+      "heading": {
+       "text": "Proyectos destacados",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 0,
+      "right": 0,
+      "textLeft": 20,
+      "textRight": 60,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#sobre-mi",
+      "tag": "section",
+      "top": 1777,
+      "height": 2353,
+      "words": 214,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Hola, soy Yasmani.",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 0,
+      "textLeft": 20,
+      "textRight": 21,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#recursos.alt",
+      "tag": "section",
+      "top": 4130,
+      "height": 3218,
+      "words": 92,
+      "media": 6,
+      "middle": 0,
+      "heading": {
+       "text": "Recursos",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 20,
+      "textLeft": 20,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#contacto.contact",
+      "tag": "section",
+      "top": 7347,
+      "height": 1145,
+      "words": 34,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "¿Tienes un proyecto en mente?",
+       "size": 28,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 0,
+      "textLeft": 20,
+      "textRight": 50,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.foot",
+      "tag": "footer",
+      "top": 8492,
+      "height": 171,
+      "words": 7,
+      "media": 0,
+      "middle": 75,
+      "heading": null,
+      "left": 20,
+      "right": 20,
+      "textLeft": 20,
+      "textRight": 20,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 644,
+      "height": 276
+     },
+     {
+      "top": 1684,
+      "height": 276
+     }
+    ],
+    "h1s": [
+     {
+      "text": "Diseño y desarrollo productos digitales de principio a fin.",
+      "size": 30,
+      "top": 340,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 20,
+      "n": 28
+     },
+     {
+      "x": 36,
+      "n": 6
+     },
+     {
+      "x": 48,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 35,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "card-rows",
+   "width": 1440,
+   "message": "2 rows of identical boxed cards.",
+   "fix": "Vary the composition; not every section is a card grid.",
+   "alsoAt": [
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "pill-nav",
+   "width": 1440,
+   "message": "Floating rounded pill navigation.",
+   "fix": "Use a plain bar: wordmark left, a few links, one action.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "grey-body",
+   "width": 1440,
+   "message": "The running text is a soft grey on its ground (5.9:1).",
+   "fix": "Set body copy in the full ink (7:1 or more). Keep the muted ink for secondary notes; pages read thin and unfinished when everything is grey.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "hero-void",
+   "width": 1440,
+   "message": "29% of the first screen is one empty block (480×780px at 960,120).",
+   "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\inspect\\desktop-fold.jpg",
+   "pages": [
+    "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\inspect\\desktop-page-01.jpg",
+    "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\inspect\\desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\inspect\\tablet-fold.jpg",
+   "pages": [
+    "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\inspect\\tablet-page-01.jpg",
+    "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\inspect\\tablet-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\inspect\\mobile-fold.jpg",
+   "pages": [
+    "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\inspect\\mobile-page-01.jpg",
+    "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\inspect\\mobile-page-02.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

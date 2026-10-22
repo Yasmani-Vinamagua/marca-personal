@@ -32,13 +32,16 @@ El nombre se compone en **Nunito SemiBold**. Los tintes de apoyo y las reglas de
 | [`paleta/`](paleta/) | Colores con HEX, RGB, CMYK y Pantone de referencia, y tabla de contrastes. |
 | [`aplicaciones/`](aplicaciones/) | Maqueta de las aplicaciones de la marca y sus recursos gráficos. |
 | [`videos/`](videos/) | Animaciones del logo (horizontal y vertical) como proyectos [HyperFrames](https://github.com/heygen-com/hyperframes). |
-| [`marca-spec.md`](marca-spec.md) | Especificación de la marca: brief, decisiones y fases aprobadas. |
+| [`web/`](web/) | Sitio web personal en HTML, CSS y JS planos: inicio, proyectos y ficha de proyecto. Tema claro y oscuro, fuentes Nunito y Manrope en `woff2`, y formulario que abre WhatsApp. Abre `web/index.html` para verlo. |
+| [`PRODUCT.md`](PRODUCT.md) · [`DESIGN.md`](DESIGN.md) | Contexto de producto y sistema de diseño de la web. |
+| [`docs/`](docs/) | Estructura y flujo de usuario del sitio (`user-flow.md`). |
+| [`marca-spec.md`](marca-spec.md)(marca-spec.md) | Especificación de la marca: brief, decisiones y fases aprobadas. |
 | [`.yas/`](.yas/) | Informes de auditoría y configuración de Yas Design. |
 | [`.agents/`](.agents/) · [`.claude/`](.claude/) | Skills de Yas Design usadas para crear y auditar la marca. |
 
 ## Pendiente
 
-Las pruebas físicas de tamaño mínimo de impresión y la validación legal siguen abiertas. Los valores CMYK y Pantone son de referencia y deben confirmarse con una prueba impresa.
+En la web, el contenido de los proyectos, guías y vídeos es provisional y falta sustituirlo por casos reales. Las pruebas físicas de tamaño mínimo de impresión y la validación legal siguen abiertas. Los valores CMYK y Pantone son de referencia y deben confirmarse con una prueba impresa.
 
 ## Licencia
 

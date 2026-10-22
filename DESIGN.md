@@ -13,6 +13,12 @@ colors:
   linea: "#E3E7F0"
   bruma: "#C9D0E6"
   negro: "#000000"
+  mancha-clara-borde: "#DDE2EE"
+  mancha-clara-borde-suave: "#E3E7F1"
+  mancha-nocturna-centro: "#3A3A3A"
+  mancha-nocturna-media: "#333333"
+  mancha-nocturna-borde: "#0B0B0B"
+  mancha-nocturna-negra: "#080808"
 typography:
   display:
     fontFamily: "Nunito, Segoe UI, system-ui, sans-serif"
@@ -20,6 +26,30 @@ typography:
     fontWeight: 800
     lineHeight: 1.08
     letterSpacing: "-0.025em"
+  display-tablet:
+    fontFamily: "Nunito, Segoe UI, system-ui, sans-serif"
+    fontSize: "clamp(1.85rem, 4.4vw, 3.3rem)"
+    fontWeight: 800
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
+  display-compact:
+    fontFamily: "Nunito, Segoe UI, system-ui, sans-serif"
+    fontSize: "1.55rem"
+    fontWeight: 800
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
+  page-title:
+    fontFamily: "Nunito, Segoe UI, system-ui, sans-serif"
+    fontSize: "clamp(3rem, 8vw, 7.5rem)"
+    fontWeight: 800
+    lineHeight: 0.95
+    letterSpacing: "-0.04em"
+  case-title:
+    fontFamily: "Nunito, Segoe UI, system-ui, sans-serif"
+    fontSize: "clamp(2.2rem, 5.4vw, 5rem)"
+    fontWeight: 800
+    lineHeight: 0.95
+    letterSpacing: "-0.04em"
   headline:
     fontFamily: "Nunito, Segoe UI, system-ui, sans-serif"
     fontSize: "clamp(1.75rem, 3vw, 2.5rem)"
@@ -47,11 +77,19 @@ typography:
     fontSize: "0.875rem"
     fontWeight: 500
     lineHeight: 1.4
+  nav-compact:
+    fontFamily: "Manrope, Segoe UI, system-ui, sans-serif"
+    fontSize: "0.78rem"
+    fontWeight: 500
+    lineHeight: 1.2
 rounded:
+  xs: "4px"
+  sm: "8px"
+  md: "10px"
   card: "14px"
   field: "16px"
-  nav: "30px"
   panel: "28px"
+  nav: "30px"
   pill: "999px"
 spacing:
   gutter: "clamp(1.25rem, 4vw, 2rem)"
@@ -69,7 +107,7 @@ components:
     backgroundColor: "{colors.azul-marino}"
     textColor: "{colors.blanco}"
   button-secondary:
-    backgroundColor: "#E4E6EC"
+    backgroundColor: "{colors.linea}"
     textColor: "{colors.azul-marino}"
     rounded: "{rounded.pill}"
     padding: "1rem 1.7rem"
@@ -93,6 +131,21 @@ components:
     textColor: "{colors.medianoche}"
     rounded: "{rounded.field}"
     padding: "0.85rem 1.1rem"
+  dropdown-button:
+    backgroundColor: "rgba(255,255,255,0.6)"
+    textColor: "{colors.medianoche}"
+    rounded: "{rounded.field}"
+    padding: "0.85rem 1.1rem"
+    height: "52px"
+  dropdown-option:
+    textColor: "{colors.medianoche}"
+    rounded: "{rounded.md}"
+    padding: "0.5rem 0.8rem"
+    height: "44px"
+  nav-link:
+    textColor: "{colors.medianoche}"
+    typography: "{typography.body}"
+    height: "44px"
 ---
 
 # Design System: Yasmani Viñamagua · Web personal
@@ -103,7 +156,7 @@ components:
 
 Superficies de vidrio translúcido sobre un fondo calmado de manchas suaves, con una sola voz de acento: el rosa de la marca. Es un sistema sobrio, confiable y tecnológico: el cristal da profundidad y modernidad, pero nunca compite con el contenido. La personalidad viene del manual de identidad (innovadora y tecnológica, confiable y sobria) y se expresa en detalles precisos, no en efectos.
 
-El tema claro y el nocturno comparten el mismo lenguaje: en claro, manchas de blanco a gris niebla sobre blanco; en nocturno, manchas de gris oscuro a casi negro sobre `#000`. El azul marino es el color de acción en claro; en nocturno la acción es rosa. El recurso de líneas de flujo del logo aparece como figura decorativa atenuada detrás del texto.
+El tema claro y el nocturno comparten el mismo lenguaje: en claro, manchas de blanco a gris niebla sobre blanco; en nocturno, manchas de gris oscuro a casi negro sobre `#000`. El azul marino es el color de acción en claro; en nocturno la acción es rosa. El recurso de líneas de flujo del logo aparece como figura decorativa atenuada detrás del texto, solo donde hay hueco libre.
 
 Se rechazan expresamente la plantilla SaaS genérica (degradados morados, tarjetas idénticas, iconos en círculo) y el portafolio recargado (animaciones por todas partes, efectos que compiten con el contenido).
 
@@ -131,57 +184,67 @@ Una paleta de azul marino y rosa sobre neutros fríos; el negro puro sustituye a
 - **Pizarra** (#5B6478): texto secundario en claro.
 - **Niebla** (#F2F4F8): fondo alterno claro y tinta del texto en nocturno.
 - **Blanco** (#FFFFFF): fondo claro y texto sobre acciones.
-- **Línea** (#E3E7F0) y **Bruma** (#C9D0E6): superficies de etiquetas y trazo de las líneas de flujo en nocturno.
+- **Línea** (#E3E7F0) y **Bruma** (#C9D0E6): superficies de etiquetas y botón secundario; Bruma, además, es el trazo de las líneas de flujo en nocturno.
 - **Negro** (#000000): fondo del tema nocturno; las superficies suben a blanco 6 % y 12 % sobre negro.
+
+### Fondo ambiente
+- **Manchas claras** (#FFFFFF a #DDE2EE y #E3E7F1): degradados radiales de blanco a gris niebla azulado, sobre blanco.
+- **Manchas nocturnas** (#3A3A3A y #333333 en el centro, #0B0B0B y #080808 en el borde): degradados radiales de gris oscuro a casi negro, sobre negro.
 
 ### Named Rules
 **The One Voice Rule.** El rosa es el único acento y se reserva para estados y foco, nunca para bloques grandes de texto.
 **The Dark Pink Rule.** Sobre fondo claro el rosa de texto es `#C20F4F`; `#FF1563` queda para rellenos y trazos.
+**The Neutral Glow Rule.** El fondo ambiente nunca introduce un tercer matiz: gris niebla en claro, gris carbón en nocturno.
 
 ## Typography
 
 **Display Font:** Nunito (con Segoe UI, system-ui)
 **Body Font:** Manrope (con Segoe UI, system-ui)
 
-**Character:** Nunito redondea y humaniza los titulares; Manrope aporta una lectura limpia y técnica en los párrafos. Los pesos 800 de los títulos con tracking negativo dan firmeza sin estridencia.
+**Character:** Nunito redondea y humaniza los titulares; Manrope aporta una lectura limpia y técnica en los párrafos. Los pesos 800 de los títulos con tracking negativo dan firmeza sin estridencia. Ambas se sirven en WOFF2 reducido al alfabeto latino, con `font-display: swap`.
 
 ### Hierarchy
-- **Display** (800, `clamp(1.85rem, 3.95vw, 3.6rem)`, 1.08): titular del hero, con un fragmento resaltado.
-- **Headline** (800, `clamp(1.75rem, 3vw, 2.5rem)`, 1.12): títulos de sección y de servicio.
+- **Display** (800, `clamp(1.85rem, 3.95vw, 3.6rem)`, 1.08): titular del hero, con un fragmento resaltado. En ≤ 900 px baja a `clamp(1.85rem, 4.4vw, 3.3rem)` y por debajo de 360 px a 1.55rem para que el fragmento resaltado no se recorte.
+- **Page title** (800, `clamp(3rem, 8vw, 7.5rem)`, 0.95): título de las subpáginas, a tamaño de pantalla. En el detalle de proyecto (case title) es `clamp(2.2rem, 5.4vw, 5rem)`.
+- **Headline** (800, `clamp(1.75rem, 3vw, 2.5rem)`, 1.12): títulos de sección y de servicio; también los títulos de las tarjetas de proyecto, en peso 700.
 - **Title** (700, 1.75rem, 1.3): bloques como "Servicios" y "Cómo trabajo".
-- **Subtitle** (600, 1.25rem, 1.4): subtítulo del hero y enlaces del menú.
-- **Body** (400, 1rem, 1.625): párrafos con ancho máximo de 60ch.
-- **Label** (500, 0.875rem): etiquetas, contadores y notas.
+- **Subtitle** (600, 1.25rem, 1.4): subtítulo del hero.
+- **Body** (400, 1rem, 1.625): párrafos con ancho máximo de 60ch; el menú usa Manrope 500.
+- **Label** (500, 0.875rem): etiquetas, contadores y notas; el menú móvil baja a 0.85rem y en ≤ 380 px a 0.78rem.
 
 ### Named Rules
-**The Balanced Headline Rule.** Todos los titulares usan `text-wrap: balance`; los títulos de subpágina llegan a tamaño de pantalla (`clamp(3rem, 8vw, 7.5rem)`).
+**The Balanced Headline Rule.** Todos los titulares usan `text-wrap: balance`.
 
 ## Layout
 
-Una columna de contenido con un carril lateral de 10rem en pantallas anchas que reserva el espacio del menú fijo; en móvil el carril desaparece y el menú pasa a una píldora superior. Las secciones respiran con `clamp(5rem, 11vw, 9rem)` de padding vertical y un ancho máximo de 1440px. Las rejillas de 2 o 3 columnas colapsan a una a 900px. La figura de flujo se coloca por sección: a la derecha del texto en el hero, a la derecha del bloque de presentación en Sobre mí y detrás del texto, a la izquierda del formulario, en Contacto.
+Una columna de contenido con un carril lateral de 10rem en pantallas anchas que reserva el espacio del menú fijo; en móvil el carril desaparece y el menú pasa a una píldora superior. Las secciones respiran con `clamp(5rem, 11vw, 9rem)` de padding vertical y un ancho máximo de 1440px. Las rejillas de 2 o 3 columnas colapsan a una a 900px.
+
+La figura de flujo se coloca por sección y solo aparece donde hay hueco libre: a la derecha del texto en el hero (desde 1100 px; nunca en móvil ni tablet), a la derecha del bloque de presentación en Sobre mí (oculta entre 901 y 1279 px, donde el texto ocupa todo el ancho) y detrás del texto, a la izquierda del formulario, en Contacto (más tenue en móvil, detrás del panel). Los puntos de corte son 380, 900, 1100 y 1280 px.
 
 ## Elevation & Depth
 
-Híbrido: el cristal está en reposo, no solo como respuesta a estados. Los controles y paneles son translúcidos con desenfoque y saturación, con un borde de luz interior (resalte arriba-izquierda, sombra clara abajo-derecha) y una sombra difusa. El menú vertical es la excepción: va sin fondo ni borde en escritorio.
+Híbrido: el cristal está en reposo, no solo como respuesta a estados. Los controles son translúcidos y los paneles de cristal añaden desenfoque y saturación (el desenfoque se reserva a los paneles y a la píldora del menú móvil por rendimiento), todos con un borde de luz interior (resalte arriba-izquierda, sombra clara abajo-derecha) y una sombra difusa. El menú vertical de escritorio va sin fondo ni borde. El desplegable abierto es opaco, con borde fino y sombra más profunda.
 
 ### Shadow Vocabulary
 - **Cristal en reposo** (`inset 2px 2px 1px -1px rim-hi, inset -2px -2px 1px -1px rim-lo, inset 0 0 0 1px rim-line, 0 12px 32px -8px glass-drop`): botones, chips, redes y paneles.
 - **Cristal pulsado** (`... inset 0 0 0 1px rim-hi, 0 6px 18px -8px glass-drop`): estado `:active`, con escala 0.95.
+- **Lista flotante** (`inset 0 0 0 1px rim-line, 0 0 0 1px ink 10 %, 0 18px 40px -12px glass-drop`): lista del desplegable.
 
 ### Named Rules
 **The Calm Glass Rule.** El cristal nunca reduce el contraste del texto; el relleno sólido manda en las acciones principales.
 
 ## Shapes
 
-Lenguaje de píldoras y esquinas generosas: píldora completa en botones y chips (999px), 14px en imágenes y tarjetas, 16px en campos, 28px en paneles de cristal y 30px en el menú. La figura de flujo usa trazos de extremos redondeados de 12 unidades sobre una malla de 200, con tres entradas paralelas, tallo y rama rosa.
+Lenguaje de píldoras y esquinas generosas: píldora completa en botones y chips (999px), 14px en imágenes y tarjetas, 16px en campos y en la lista del desplegable, 28px en paneles de cristal y 30px en el menú de escritorio. Los círculos (50 %) se reservan a botones de tema, redes y botones del carrusel. Las esquinas pequeñas (4px en el foco y el resaltado, 8px en miniaturas de guías, 10px en opciones del desplegable y filas alternas del stack) son de apoyo. La figura de flujo usa trazos de extremos redondeados de 12 unidades sobre una malla de 200, con tres entradas paralelas, tallo y rama rosa.
 
 ## Components
 
 ### Buttons
 - **Shape:** píldora (999px), 52 px de alto mínimo.
 - **Primary:** azul marino sólido con texto blanco en claro; rosa con texto blanco en nocturno. Padding `1rem 1.7rem`.
-- **Hover / Focus:** sube 2px y escala 1.02; foco con contorno rosa de 3px a 3px de separación.
-- **Secondary:** azul marino al 12 % sobre blanco, texto azul marino; se oscurece al pasar el cursor.
+- **Hover / Focus:** sube 2px y escala 1.02 (solo con puntero; en táctil no se queda pegado); foco con contorno rosa de 3px a 3px de separación.
+- **Secondary:** relleno `Línea` sólido con texto azul marino; al pasar el cursor pasa a azul marino al 22 % sobre blanco en claro y a cristal tenue en nocturno.
+- **Disabled:** 60 % de opacidad y cursor de progreso (envío en curso).
 
 ### Chips
 - **Style:** píldora de 44 px de alto, fondo `Línea`, texto de tinta.
@@ -193,11 +256,17 @@ Lenguaje de píldoras y esquinas generosas: píldora completa en botones y chips
 - **Internal Padding:** `clamp(1.75rem, 4vw, 3.5rem)` en paneles.
 
 ### Inputs / Fields
-- **Style:** 16px de radio, relleno translúcido (fondo al 60 %) con desenfoque y borde de luz interior.
-- **Focus:** contorno rosa de 3px; error con contorno rosa de 2px y mensaje con viñeta rosa debajo.
+- **Style:** 16px de radio, relleno translúcido (fondo al 60 %) con borde de luz interior, sin desenfoque. Etiqueta visible encima, a 0.4rem de distancia.
+- **Focus:** contorno rosa de 3px; error con contorno rosa de 2px y mensaje con viñeta rosa debajo, enlazado con `aria-describedby`.
+- **Mensaje:** el área de texto se rellena con una plantilla según el tipo de proyecto (máximo 1000 caracteres) y no se puede enviar sin completarla.
+
+### Desplegable (Tipo de proyecto)
+- **Botón:** mismo aspecto que un campo, con una flecha que gira 180° al abrir; 52 px de alto.
+- **Lista:** panel opaco de 16px de radio con opciones de 44 px; la activa en `Línea`, la elegida en negrita con una marca rosa. Se abre hacia arriba si abajo no hay espacio.
+- **Comportamiento:** patrón de lista desplegable accesible (flechas, Inicio/Fin, Enter, Esc, escribir para saltar); sin JavaScript queda el `select` nativo.
 
 ### Navigation
-- Menú vertical fijo a la izquierda, centrado en altura y sin fondo en escritorio; píldora horizontal translúcida arriba en móvil. Enlaces Manrope 500; el activo va en negrita y color de acento. Cada enlace mide al menos 44 px de alto.
+- Menú vertical fijo a la izquierda, centrado en altura y sin fondo en escritorio; píldora horizontal translúcida arriba en móvil, con desplazamiento horizontal como red de seguridad en pantallas muy estrechas. Enlaces Manrope 500; el activo va en negrita y color de acento. Cada enlace mide al menos 44 px de alto.
 
 ### Figura de flujo (componente firma)
 - Tres líneas paralelas atenuadas, un tallo y una rama rosa, derivadas del símbolo; opacidades 0.26, 0.15 y 0.09 en las líneas y 0.22 en la rama. Solo decoración, siempre detrás del texto.
@@ -207,8 +276,9 @@ Lenguaje de píldoras y esquinas generosas: píldora completa en botones y chips
 ### Do:
 - **Do** usar el azul marino sólido para la acción principal en claro y el rosa en nocturno.
 - **Do** mantener el contraste del texto en 4,5:1 o más, también sobre el cristal.
-- **Do** colocar la figura de flujo detrás del contenido y atenuada.
+- **Do** colocar la figura de flujo detrás del contenido, atenuada y solo donde hay hueco libre.
 - **Do** respetar `prefers-reduced-motion` en cada animación.
+- **Do** dejar el desenfoque para los paneles de cristal.
 
 ### Don't:
 - **Don't** usar degradados morados, tarjetas idénticas repetidas ni iconos dentro de círculos de color (plantilla SaaS genérica).

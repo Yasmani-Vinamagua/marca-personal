@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-22T05:16:33.015579+00:00",
+  "generatedAt": "2026-10-22T05:44:53.859128+00:00",
   "title": "Design System: Yasmani Viñamagua · Web personal",
   "extensions": {
     "colorMeta": {
@@ -168,6 +168,96 @@
           "#D5D5D5",
           "#F2F2F2"
         ]
+      },
+      "mancha-clara-borde": {
+        "role": "neutral",
+        "displayName": "Mancha clara · borde",
+        "canonical": "#DDE2EE",
+        "tonalRamp": [
+          "#1A2133",
+          "#2D3A5A",
+          "#405381",
+          "#546CA8",
+          "#798DBC",
+          "#A0AED0",
+          "#C7CFE3",
+          "#EEF0F6"
+        ]
+      },
+      "mancha-clara-borde-suave": {
+        "role": "neutral",
+        "displayName": "Mancha clara · borde suave",
+        "canonical": "#E3E7F1",
+        "tonalRamp": [
+          "#1A2133",
+          "#2D3A5A",
+          "#405381",
+          "#546CA8",
+          "#798DBC",
+          "#A0AED0",
+          "#C7CFE3",
+          "#EEF0F6"
+        ]
+      },
+      "mancha-nocturna-centro": {
+        "role": "neutral",
+        "displayName": "Mancha nocturna · centro",
+        "canonical": "#3A3A3A",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7E7E7E",
+          "#9B9B9B",
+          "#B8B8B8",
+          "#D5D5D5",
+          "#F2F2F2"
+        ]
+      },
+      "mancha-nocturna-media": {
+        "role": "neutral",
+        "displayName": "Mancha nocturna · media",
+        "canonical": "#333333",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7E7E7E",
+          "#9B9B9B",
+          "#B8B8B8",
+          "#D5D5D5",
+          "#F2F2F2"
+        ]
+      },
+      "mancha-nocturna-borde": {
+        "role": "neutral",
+        "displayName": "Mancha nocturna · borde",
+        "canonical": "#0B0B0B",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7E7E7E",
+          "#9B9B9B",
+          "#B8B8B8",
+          "#D5D5D5",
+          "#F2F2F2"
+        ]
+      },
+      "mancha-nocturna-negra": {
+        "role": "neutral",
+        "displayName": "Mancha nocturna · negra",
+        "canonical": "#080808",
+        "tonalRamp": [
+          "#262626",
+          "#434343",
+          "#616161",
+          "#7E7E7E",
+          "#9B9B9B",
+          "#B8B8B8",
+          "#D5D5D5",
+          "#F2F2F2"
+        ]
       }
     },
     "typographyMeta": {
@@ -194,6 +284,26 @@
       "label": {
         "displayName": "Label",
         "purpose": "Etiquetas y contadores."
+      },
+      "display-tablet": {
+        "displayName": "Display · tablet",
+        "purpose": "Titular del hero en 900 px o menos."
+      },
+      "display-compact": {
+        "displayName": "Display · compacto",
+        "purpose": "Titular del hero por debajo de 360 px."
+      },
+      "page-title": {
+        "displayName": "Page title",
+        "purpose": "Título de las subpáginas a tamaño de pantalla."
+      },
+      "case-title": {
+        "displayName": "Case title",
+        "purpose": "Título del detalle de proyecto."
+      },
+      "nav-compact": {
+        "displayName": "Menú compacto",
+        "purpose": "Enlaces del menú móvil en 380 px o menos."
       }
     },
     "shadows": [
@@ -227,12 +337,20 @@
     ],
     "breakpoints": [
       {
+        "name": "xs",
+        "value": "380px"
+      },
+      {
         "name": "mobile",
         "value": "900px"
       },
       {
-        "name": "xs",
-        "value": "380px"
+        "name": "hero-figure",
+        "value": "1100px"
+      },
+      {
+        "name": "about-figure",
+        "value": "1280px"
       }
     ]
   },
@@ -251,7 +369,7 @@
       "refersTo": "button-secondary",
       "description": "Acción de apoyo: Contacto, Ver todos los proyectos.",
       "html": "<button class=\"ds-btn-secondary\">Contacto</button>",
-      "css": ".ds-btn-secondary{font:700 16px/1 Nunito,sans-serif;padding:1rem 1.7rem;min-height:52px;border-radius:999px;border:0;background:#E4E6EC;color:#223367;cursor:pointer;box-shadow: inset 2px 2px 1px -1px rgba(255,255,255,.95), inset -2px -2px 1px -1px rgba(255,255,255,.55), inset 0 0 0 1px rgba(255,255,255,.35), 0 12px 32px -8px rgba(13,21,48,.14);transition:transform .35s cubic-bezier(.2,.7,.2,1)}.ds-btn-secondary:hover{background:#D3D7E1;transform:translateY(-2px) scale(1.02)}.ds-btn-secondary:focus-visible{outline:3px solid #FF1563;outline-offset:3px}"
+      "css": ".ds-btn-secondary{font:700 16px/1 Nunito,sans-serif;padding:1rem 1.7rem;min-height:52px;border-radius:999px;border:0;background:#E3E7F0;color:#223367;cursor:pointer;box-shadow: inset 2px 2px 1px -1px rgba(255,255,255,.95), inset -2px -2px 1px -1px rgba(255,255,255,.55), inset 0 0 0 1px rgba(255,255,255,.35), 0 12px 32px -8px rgba(13,21,48,.14);transition:transform .35s cubic-bezier(.2,.7,.2,1)}.ds-btn-secondary:hover{background:#CED2DE;transform:translateY(-2px) scale(1.02)}.ds-btn-secondary:focus-visible{outline:3px solid #FF1563;outline-offset:3px}"
     },
     {
       "name": "Chip de filtro",
@@ -273,9 +391,17 @@
       "name": "Campo de formulario",
       "kind": "input",
       "refersTo": "field",
-      "description": "Campo con etiqueta visible y relleno translúcido.",
-      "html": "<label class=\"ds-label\">Tu WhatsApp<input class=\"ds-input\" placeholder=\"+52 55 1234 5678\"></label>",
+      "description": "Área de mensaje con etiqueta visible y relleno translúcido; carga una plantilla según el tipo de proyecto.",
+      "html": "<label class=\"ds-label\">Mensaje<textarea class=\"ds-input\" rows=\"3\">Hola Yasmani, necesito diseño UX/UI para mi proyecto.</textarea></label>",
       "css": ".ds-label{display:grid;gap:.4rem;font:700 16px/1.3 Nunito,sans-serif;color:#223367}.ds-input{font:400 16px Manrope,sans-serif;padding:.85rem 1.1rem;border:0;border-radius:16px;background:rgba(255,255,255,.6);color:#0D1530;width:100%;box-shadow: inset 2px 2px 1px -1px rgba(255,255,255,.95), inset -2px -2px 1px -1px rgba(255,255,255,.55), inset 0 0 0 1px rgba(255,255,255,.35), 0 12px 32px -8px rgba(13,21,48,.14);}.ds-input:focus-visible{outline:3px solid #FF1563;outline-offset:2px}"
+    },
+    {
+      "name": "Desplegable",
+      "kind": "input",
+      "refersTo": "dropdown-button",
+      "description": "Tipo de proyecto: botón tipo campo y lista abierta con opción activa y elegida.",
+      "html": "<div class=\"ds-dd\"><button class=\"ds-dd-btn\" type=\"button\">Front <span aria-hidden=\"true\">&#8964;</span></button><ul class=\"ds-dd-list\"><li class=\"ds-opt\">UX/UI</li><li class=\"ds-opt is-active\" aria-selected=\"true\">Front</li><li class=\"ds-opt\">Backend</li></ul></div>",
+      "css": ".ds-dd{position:relative;width:260px;padding-bottom:9rem}.ds-dd-btn{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:52px;padding:.85rem 1.1rem;border:0;border-radius:16px;background:rgba(255,255,255,.6);color:#0D1530;font:400 16px Manrope,sans-serif;cursor:pointer;box-shadow: inset 2px 2px 1px -1px rgba(255,255,255,.95), inset -2px -2px 1px -1px rgba(255,255,255,.55), inset 0 0 0 1px rgba(255,255,255,.35), 0 12px 32px -8px rgba(13,21,48,.14);}.ds-dd-btn:focus-visible{outline:3px solid #FF1563;outline-offset:2px}.ds-dd-list{position:absolute;left:0;right:0;top:calc(100% - 8.6rem);margin:0;padding:.4rem;list-style:none;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 0 0 1px rgba(13,21,48,.1),0 18px 40px -12px rgba(13,21,48,.14)}.ds-opt{display:flex;justify-content:space-between;align-items:center;min-height:44px;padding:.5rem .8rem;border-radius:10px;font:500 16px Manrope,sans-serif;color:#0D1530;cursor:pointer}.ds-opt.is-active{background:#E3E7F0}.ds-opt[aria-selected=true]{font-weight:700;color:#223367}"
     },
     {
       "name": "Menú de navegación",
@@ -321,6 +447,11 @@
         "section": "typography"
       },
       {
+        "name": "The Neutral Glow Rule",
+        "body": "El fondo ambiente nunca introduce un tercer matiz: gris niebla en claro, gris carbón en nocturno.",
+        "section": "colors"
+      },
+      {
         "name": "The Calm Glass Rule",
         "body": "El cristal nunca reduce el contraste del texto; el relleno sólido manda en las acciones principales.",
         "section": "elevation"
@@ -329,8 +460,9 @@
     "dos": [
       "Do usar el azul marino sólido para la acción principal en claro y el rosa en nocturno.",
       "Do mantener el contraste del texto en 4,5:1 o más, también sobre el cristal.",
-      "Do colocar la figura de flujo detrás del contenido y atenuada.",
-      "Do respetar prefers-reduced-motion en cada animación."
+      "Do colocar la figura de flujo detrás del contenido, atenuada y solo donde hay hueco libre.",
+      "Do respetar prefers-reduced-motion en cada animación.",
+      "Do dejar el desenfoque para los paneles de cristal."
     ],
     "donts": [
       "Don't usar degradados morados, tarjetas idénticas repetidas ni iconos dentro de círculos de color (plantilla SaaS genérica).",

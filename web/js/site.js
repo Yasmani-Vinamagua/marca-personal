@@ -6,9 +6,6 @@
     get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   };
-  // La refracción de bordes (backdrop-filter con filtro SVG) sólo existe en Chromium
-  var uad = navigator.userAgentData;
-  if (uad && uad.brands && uad.brands.some(function (b) { return /Chromium/.test(b.brand); })) root.classList.add("lg-refract");
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Tema: la elección guardada; si no hay, la del sistema.
@@ -166,43 +163,211 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
-  /* Formulario: sin servidor, abre WhatsApp (wa.me) con lo escrito */
+  /* Desplegable propio sobre un <select> (patrón "select-only combobox"). Sin JS queda el select nativo. */
+  function initSelect(sel) {
+    var label = document.querySelector('label[for="' + sel.id + '"]');
+    var wrap = document.createElement("div");
+    wrap.className = "dd";
+    sel.parentNode.insertBefore(wrap, sel);
+    wrap.appendChild(sel);
+    sel.classList.add("dd-native");
+    sel.tabIndex = -1;
+    sel.setAttribute("aria-hidden", "true");
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "dd-btn";
+    btn.id = sel.id + "-btn";
+    btn.setAttribute("role", "combobox");
+    btn.setAttribute("aria-haspopup", "listbox");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-controls", sel.id + "-list");
+    var txt = document.createElement("span");
+    txt.className = "dd-text";
+    var chev = document.createElement("span");
+    chev.className = "dd-chev";
+    chev.setAttribute("aria-hidden", "true");
+    chev.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';
+    btn.appendChild(txt);
+    btn.appendChild(chev);
+
+    var list = document.createElement("ul");
+    list.className = "dd-list";
+    list.id = sel.id + "-list";
+    list.setAttribute("role", "listbox");
+    list.hidden = true;
+
+    if (label) {
+      label.id = label.id || sel.id + "-label";
+      label.removeAttribute("for");
+      label.addEventListener("click", function () { btn.focus(); });
+      btn.setAttribute("aria-labelledby", label.id + " " + btn.id);
+      list.setAttribute("aria-labelledby", label.id);
+    }
+
+    var opts = [].map.call(sel.options, function (o, i) {
+      var li = document.createElement("li");
+      li.id = sel.id + "-opt-" + i;
+      li.className = "dd-opt";
+      li.setAttribute("role", "option");
+      li.textContent = o.text;
+      list.appendChild(li);
+      return li;
+    });
+    wrap.appendChild(btn);
+    wrap.appendChild(list);
+
+    var open = false, active = sel.selectedIndex, typed = "", typedTimer = null;
+
+    function paint() {
+      txt.textContent = opts[sel.selectedIndex].textContent;
+      opts.forEach(function (li, n) { li.setAttribute("aria-selected", String(n === sel.selectedIndex)); });
+    }
+    function setActive(i) {
+      active = Math.max(0, Math.min(opts.length - 1, i));
+      opts.forEach(function (li, n) { li.classList.toggle("is-active", n === active); });
+      btn.setAttribute("aria-activedescendant", opts[active].id);
+      opts[active].scrollIntoView({ block: "nearest" });
+    }
+    function show() {
+      if (open) return;
+      open = true;
+      list.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+      var r = btn.getBoundingClientRect(), h = list.offsetHeight + 16;
+      wrap.classList.toggle("dd-up", window.innerHeight - r.bottom < h && r.top > h);
+      setActive(sel.selectedIndex);
+    }
+    function hide() {
+      if (!open) return;
+      open = false;
+      list.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+      btn.removeAttribute("aria-activedescendant");
+    }
+    function choose(i) {
+      if (i === sel.selectedIndex) return;
+      sel.selectedIndex = i;
+      paint();
+      sel.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
+    btn.addEventListener("click", function () { if (open) hide(); else show(); });
+    btn.addEventListener("blur", hide);
+    btn.addEventListener("keydown", function (e) {
+      var k = e.key;
+      if (!open) {
+        if (k === "ArrowDown" || k === "ArrowUp" || k === "Enter" || k === " ") { e.preventDefault(); show(); }
+        else if (k === "Home" || k === "End") { e.preventDefault(); show(); setActive(k === "Home" ? 0 : opts.length - 1); }
+        return;
+      }
+      if (k === "ArrowDown") { e.preventDefault(); setActive(active + 1); }
+      else if (k === "ArrowUp") { e.preventDefault(); setActive(active - 1); }
+      else if (k === "Home") { e.preventDefault(); setActive(0); }
+      else if (k === "End") { e.preventDefault(); setActive(opts.length - 1); }
+      else if (k === "Enter" || k === " ") { e.preventDefault(); choose(active); hide(); }
+      else if (k === "Escape") { e.preventDefault(); hide(); }
+      else if (k === "Tab") { choose(active); hide(); }
+      else if (k.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        typed += k.toLowerCase();
+        clearTimeout(typedTimer);
+        typedTimer = setTimeout(function () { typed = ""; }, 600);
+        for (var n = 0; n < opts.length; n++) {
+          var i = (active + n + (typed.length > 1 ? 0 : 1)) % opts.length;
+          if (opts[i].textContent.toLowerCase().indexOf(typed) === 0) { setActive(i); break; }
+        }
+      }
+    });
+    // el foco se queda en el botón mientras se elige con el ratón o con el dedo
+    list.addEventListener("mousedown", function (e) { e.preventDefault(); });
+    list.addEventListener("click", function (e) {
+      var i = opts.indexOf(e.target.closest(".dd-opt"));
+      if (i < 0) return;
+      choose(i);
+      hide();
+      btn.focus();
+    });
+    list.addEventListener("mousemove", function (e) {
+      var i = opts.indexOf(e.target.closest(".dd-opt"));
+      if (i >= 0 && i !== active) setActive(i);
+    });
+    document.addEventListener("pointerdown", function (e) { if (open && !wrap.contains(e.target)) hide(); });
+    paint();
+  }
+
+  /* Formulario: sin servidor. El tipo de proyecto carga una plantilla en el mensaje y se envía por WhatsApp (wa.me) */
   function initForm() {
     var form = document.querySelector(".form");
     if (!form) return;
     var status = form.querySelector(".form-status");
-    var msgs = { valueMissing: "Este campo es obligatorio.", patternMismatch: "Escribe un número válido, con código de país, como +52 55 1234 5678." };
-    function check(field) {
-      var input = field.querySelector("input, textarea, select");
-      var ok = input.checkValidity();
-      var err = field.querySelector(".field-error");
-      field.classList.toggle("has-error", !ok);
-      input.setAttribute("aria-invalid", String(!ok));
-      if (!ok) err.textContent = input.validity.valueMissing ? msgs.valueMissing : msgs.patternMismatch;
-      return ok;
+    var submitBtn = form.querySelector("[type=submit]");
+    var select = form.elements.tipo;
+    initSelect(select);
+    var area = form.elements.mensaje;
+    var field = area.closest(".field");
+    var err = field.querySelector(".field-error");
+
+    var templates = {
+      "UX/UI": "Hola Yasmani, necesito diseño UX/UI para mi proyecto.\n\nMi negocio o proyecto: \nQué quiero lograr: \nQuiénes lo van a usar: \nPantallas o flujos que imagino: \nPlazo que tengo en mente: \nPresupuesto aproximado: ",
+      "Front": "Hola Yasmani, necesito desarrollar la parte visual (front) de un sitio o aplicación.\n\nMi negocio o proyecto: \n¿Ya tengo diseño? (sí / no / en Figma): \nQué debe hacer el sitio: \nDispositivos principales (móvil, escritorio): \nPlazo que tengo en mente: \nPresupuesto aproximado: ",
+      "Backend": "Hola Yasmani, necesito automatizar un proceso o construir un servicio.\n\nQué proceso hago hoy a mano: \nCuánto tiempo me toma cada semana: \nHerramientas que uso ahora (Excel, correo, etc.): \nQué resultado espero: \nPlazo que tengo en mente: \nPresupuesto aproximado: ",
+      "Producto completo": "Hola Yasmani, quiero un producto digital completo, del diseño al backend.\n\nQué problema quiero resolver: \nQuiénes lo van a usar: \nFunciones imprescindibles: \nSi ya existe algo que lo reemplace o complemente: \nPlazo que tengo en mente: \nPresupuesto aproximado: ",
+      "Otro": "Hola Yasmani, tengo una consulta sobre un proyecto.\n\nQué necesito: \nPara qué lo necesito: \nPlazo que tengo en mente: "
+    };
+    var current = "";
+    function load() {
+      current = templates[select.value] || "";
+      area.value = current;
     }
-    [].forEach.call(form.querySelectorAll(".field"), function (f) {
-      var inp = f.querySelector("input, textarea, select"), er = f.querySelector(".field-error");
-      if (er) { er.id = "err-" + inp.name; inp.setAttribute("aria-describedby", er.id); }
-      f.querySelector("input, textarea, select").addEventListener("blur", function () { check(f); });
-      f.querySelector("input, textarea, select").addEventListener("input", function () { if (f.classList.contains("has-error")) check(f); });
+    load();
+    form.addEventListener("change", function (e) {
+      if (e.target.name !== "tipo") return;
+      var untouched = !area.value.trim() || area.value === current;
+      if (untouched) {
+        load();
+        status.textContent = ""; delete status.dataset.state;
+      } else {
+        status.dataset.state = "";
+        status.textContent = "Conservé lo que ya escribiste. Si quieres la plantilla del nuevo tipo, borra el mensaje y vuelve a elegirlo.";
+      }
     });
+
+    function clean(str) {
+      return Array.prototype.filter.call(str, function (c) { var n = c.charCodeAt(0); return n > 31 || n === 9 || n === 10 || n === 13; }).join("").trim();
+    }
+    // el mensaje debe aportar algo más que la plantilla tal cual
+    function check() {
+      var text = clean(area.value);
+      var msg = !text ? "Escribe tu mensaje." : text === clean(current) ? "Completa la plantilla con los datos de tu proyecto antes de enviarla." : "";
+      field.classList.toggle("has-error", !!msg);
+      area.setAttribute("aria-invalid", String(!!msg));
+      err.textContent = msg;
+      return !msg;
+    }
+    err.id = "err-mensaje";
+    area.setAttribute("aria-describedby", err.id);
+    area.addEventListener("blur", function () { if (clean(area.value) !== clean(current)) check(); });
+    area.addEventListener("input", function () { if (field.classList.contains("has-error")) check(); });
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var fields = [].slice.call(form.querySelectorAll(".field"));
-      var bad = fields.filter(function (f) { return !check(f); });
-      if (bad.length) { bad[0].querySelector("input, textarea, select").focus(); status.dataset.state = "error"; status.textContent = "Revisa los campos marcados."; return; }
-      var v = {};
-      fields.forEach(function (f) { var el = f.querySelector("input, textarea, select"); v[el.name] = el.value; });
+      if (submitBtn.disabled) return;
+      if (!check()) { area.focus(); status.dataset.state = "error"; status.textContent = "Revisa el mensaje."; return; }
       var number = (form.dataset.wa || "").replace(/\D/g, "");
       if (!number) { status.dataset.state = "error"; status.textContent = "Falta configurar el número de WhatsApp del sitio."; return; }
+      if (navigator.onLine === false) { status.dataset.state = "error"; status.textContent = "Parece que no tienes conexión. Tu mensaje sigue escrito: vuelve a intentarlo cuando se restablezca."; return; }
       status.dataset.state = "sending"; status.textContent = "Abriendo WhatsApp…";
-      var body = "Hola, me interesa un proyecto.\nProyecto: " + v.tipo + "\nMi WhatsApp: " + v.telefono + "\n\n" + v.mensaje;
-      var href = "https://wa.me/" + number + "?text=" + encodeURIComponent(body);
+      submitBtn.disabled = true;
+      setTimeout(function () { submitBtn.disabled = false; }, 3000);
+      var href = "https://wa.me/" + number + "?text=" + encodeURIComponent(clean(area.value));
       // Se abre en el mismo gesto del clic: con retardo, los navegadores lo bloquean como popup
-      window.open(href, "_blank", "noopener");
+      var win = window.open(href, "_blank");
+      if (win) win.opener = null;
       status.dataset.state = "sent";
-      status.textContent = "Listo: se abrió WhatsApp con tu mensaje. Envíalo desde ahí y te respondo con una propuesta clara.";
+      status.textContent = win ? "Listo: se abrió WhatsApp con tu mensaje. Envíalo desde ahí y te respondo con una propuesta clara. ¿No se abrió? " : "El navegador bloqueó la ventana. ";
+      var again = document.createElement("a");
+      again.href = href; again.target = "_blank"; again.rel = "noopener"; again.textContent = "Abrir WhatsApp";
+      status.appendChild(again);
     });
   }
 

@@ -1,0 +1,1596 @@
+{
+ "url": "web/proyecto.html",
+ "at": "2026-10-22T04:41:39.266Z",
+ "allow": [
+  "glass",
+  "headline-lines",
+  "shadow",
+  "button-fx",
+  "few-pictures",
+  "focal-point",
+  "name-only-title"
+ ],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.48,
+    0.39,
+    0.54,
+    0.4,
+    0.32
+   ],
+   "motion": {
+    "elements": 20,
+    "css": 3,
+    "transitions": 17,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 4043,
+     "screens": 4.5,
+     "words": 175,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 12,
+     "sections": 5,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Proyecto A · Cliente",
+     "words": 4,
+     "chars": 20,
+     "lines": 1,
+     "size": 77.8,
+     "vw": 5.4,
+     "font": "Nunito",
+     "weight": 800,
+     "tracking": -0.04,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.78,
+     "top": 144,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Proyecto A · Cliente",
+     "words": 4,
+     "lines": 1,
+     "size": 77.8,
+     "font": "Nunito"
+    },
+    "headings": [
+     {
+      "text": "Proyecto A · Cliente",
+      "words": 4,
+      "chars": 20,
+      "lines": 1,
+      "size": 77.8,
+      "vw": 5.4,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.04,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 144,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Problema",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 1376,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mi rol",
+      "words": 2,
+      "chars": 6,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.36,
+      "top": 1376,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Proceso",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 1595,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Resultado",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 2164,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Uso de IA",
+      "words": 3,
+      "chars": 9,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.26,
+      "top": 2781,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Stack",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 3054,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Tienes un proyecto parecido?",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.69,
+      "top": 3544,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Manrope",
+       "share": 0.77,
+       "mono": false
+      },
+      {
+       "family": "Nunito",
+       "share": 0.23,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      40,
+      78
+     ],
+     "sizeCount": 4,
+     "notLoaded": [],
+     "body": {
+      "font": "Manrope",
+      "size": 16,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 18
+     },
+     "measureChars": 73,
+     "max": {
+      "size": 77.8,
+      "vw": 5.4,
+      "font": "Nunito",
+      "text": "Proyecto A · Cliente"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#223367",
+       "top": -259,
+       "hsl": {
+        "h": 225,
+        "s": 0.5,
+        "l": 0.27
+       }
+      },
+      {
+       "color": "#2a3e7e",
+       "top": 236,
+       "hsl": {
+        "h": 226,
+        "s": 0.5,
+        "l": 0.33
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#0d1530",
+       "share": 0.71
+      },
+      {
+       "color": "#223367",
+       "share": 0.22
+      },
+      {
+       "color": "#5b6478",
+       "share": 0.05
+      },
+      {
+       "color": "#ff1563",
+       "share": 0.01
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#0d1530"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 1,
+     "radius": "pill",
+     "height": 52,
+     "withShadow": 2,
+     "withGradient": 1,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Saltar al contenido"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 4,
+     "shadowOverlay": 4,
+     "shadowSamples": [
+      "button.theme-btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "section.cta-box.is-in → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn.secondary → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px"
+     ],
+     "gradients": 0,
+     "scrims": 1,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 9,
+     "roundedBoxes": 6,
+     "boxRadius": 50,
+     "squareMedia": 0,
+     "roundedMedia": 5,
+     "mediaRadius": 14,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 1161
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.41
+     }
+    ],
+    "nav": {
+     "links": 0,
+     "fixed": true,
+     "height": 195,
+     "floatingPill": true,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "nunito",
+     "manrope"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 4043,
+    "margins": {
+     "left": 160,
+     "right": 160
+    },
+    "sections": [
+     {
+      "sel": "main#main",
+      "tag": "main",
+      "top": 0,
+      "height": 3911,
+      "words": 162,
+      "media": 5,
+      "middle": 0,
+      "heading": {
+       "text": "Proyecto A · Cliente",
+       "size": 78,
+       "tag": "h1"
+      },
+      "left": 160,
+      "right": 160,
+      "textLeft": 160,
+      "textRight": 241,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.foot",
+      "tag": "footer",
+      "top": 3911,
+      "height": 132,
+      "words": 7,
+      "media": 0,
+      "middle": 845,
+      "heading": null,
+      "left": 160,
+      "right": 160,
+      "textLeft": 160,
+      "textRight": 160,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 3688,
+      "height": 272
+     }
+    ],
+    "h1s": [
+     {
+      "text": "Proyecto A · Cliente",
+      "size": 78,
+      "top": 144,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 160,
+      "n": 7
+     },
+     {
+      "x": 756,
+      "n": 2
+     },
+     {
+      "x": 208,
+      "n": 1
+     },
+     {
+      "x": 224,
+      "n": 1
+     },
+     {
+      "x": 622,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 12,
+    "bodySize": 16,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.14,
+    "voidBox": {
+     "x": 840,
+     "y": 120,
+     "w": 600,
+     "h": 300
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.75,
+    0.67,
+    0.76,
+    0.61,
+    0.45
+   ],
+   "motion": {
+    "elements": 20,
+    "css": 3,
+    "transitions": 17,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 4741,
+     "screens": 4.6,
+     "words": 175,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 12,
+     "sections": 5,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Proyecto A · Cliente",
+     "words": 4,
+     "chars": 20,
+     "lines": 1,
+     "size": 41.5,
+     "vw": 5.4,
+     "font": "Nunito",
+     "weight": 800,
+     "tracking": -0.04,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.92,
+     "top": 104,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Proyecto A · Cliente",
+     "words": 4,
+     "lines": 1,
+     "size": 41.5,
+     "font": "Nunito"
+    },
+    "headings": [
+     {
+      "text": "Proyecto A · Cliente",
+      "words": 4,
+      "chars": 20,
+      "lines": 1,
+      "size": 41.5,
+      "vw": 5.4,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.04,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 104,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Problema",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1066,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mi rol",
+      "words": 2,
+      "chars": 6,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1198,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Proceso",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1355,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Resultado",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2427,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Uso de IA",
+      "words": 3,
+      "chars": 9,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.84,
+      "top": 3531,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Stack",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 3825,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Tienes un proyecto parecido?",
+      "words": 4,
+      "chars": 29,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.82,
+      "top": 4340,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Manrope",
+       "share": 0.77,
+       "mono": false
+      },
+      {
+       "family": "Nunito",
+       "share": 0.23,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      28,
+      42
+     ],
+     "sizeCount": 4,
+     "notLoaded": [],
+     "body": {
+      "font": "Manrope",
+      "size": 16,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 18
+     },
+     "measureChars": 73,
+     "max": {
+      "size": 41.5,
+      "vw": 5.4,
+      "font": "Nunito",
+      "text": "Proyecto A · Cliente"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#0d1530",
+       "share": 0.71
+      },
+      {
+       "color": "#223367",
+       "share": 0.22
+      },
+      {
+       "color": "#5b6478",
+       "share": 0.05
+      },
+      {
+       "color": "#ff1563",
+       "share": 0.01
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#0d1530"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 1,
+     "radius": "pill",
+     "height": 52,
+     "withShadow": 2,
+     "withGradient": 1,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Saltar al contenido"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 4,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.theme-btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "section.cta-box.is-in → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn.secondary → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px"
+     ],
+     "gradients": 0,
+     "scrims": 1,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 5,
+     "roundedBoxes": 8,
+     "boxRadius": 50,
+     "squareMedia": 0,
+     "roundedMedia": 5,
+     "mediaRadius": 14,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.4
+     }
+    ],
+    "nav": {
+     "links": 5,
+     "fixed": true,
+     "height": 33,
+     "floatingPill": true,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "nunito",
+     "manrope"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 4741,
+    "margins": {
+     "left": 31,
+     "right": 31
+    },
+    "sections": [
+     {
+      "sel": "main#main",
+      "tag": "main",
+      "top": 0,
+      "height": 4609,
+      "words": 162,
+      "media": 5,
+      "middle": 0,
+      "heading": {
+       "text": "Proyecto A · Cliente",
+       "size": 41,
+       "tag": "h1"
+      },
+      "left": 31,
+      "right": 31,
+      "textLeft": 31,
+      "textRight": 153,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.foot",
+      "tag": "footer",
+      "top": 4609,
+      "height": 132,
+      "words": 7,
+      "media": 0,
+      "middle": 432,
+      "heading": null,
+      "left": 31,
+      "right": 31,
+      "textLeft": 31,
+      "textRight": 31,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Proyecto A · Cliente",
+      "size": 41,
+      "top": 104,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 31,
+      "n": 9
+     },
+     {
+      "x": 61,
+      "n": 3
+     }
+    ],
+    "leftBlocks": 12,
+    "bodySize": 16,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.59,
+    0.6,
+    0.61,
+    0.59,
+    0.52
+   ],
+   "motion": {
+    "elements": 20,
+    "css": 3,
+    "transitions": 17,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 3868,
+     "screens": 4.6,
+     "words": 175,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 12,
+     "sections": 5,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Proyecto A · Cliente",
+     "words": 4,
+     "chars": 20,
+     "lines": 1,
+     "size": 35.2,
+     "vw": 9,
+     "font": "Nunito",
+     "weight": 800,
+     "tracking": -0.04,
+     "leading": 0.95,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.9,
+     "top": 104,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Proyecto A · Cliente",
+     "words": 4,
+     "lines": 1,
+     "size": 35.2,
+     "font": "Nunito"
+    },
+    "headings": [
+     {
+      "text": "Proyecto A · Cliente",
+      "words": 4,
+      "chars": 20,
+      "lines": 1,
+      "size": 35.2,
+      "vw": 9,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.04,
+      "leading": 0.95,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 104,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Problema",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 858,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mi rol",
+      "words": 2,
+      "chars": 6,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 1009,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Proceso",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 1193,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Resultado",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 1845,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Uso de IA",
+      "words": 3,
+      "chars": 9,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 2496,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Stack",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2836,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Tienes un proyecto parecido?",
+      "words": 4,
+      "chars": 29,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Nunito",
+      "weight": 800,
+      "tracking": -0.02,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.73,
+      "top": 3345,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Manrope",
+       "share": 0.77,
+       "mono": false
+      },
+      {
+       "family": "Nunito",
+       "share": 0.23,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      28,
+      35
+     ],
+     "sizeCount": 4,
+     "notLoaded": [],
+     "body": {
+      "font": "Manrope",
+      "size": 16,
+      "leading": 1.63,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 18
+     },
+     "measureChars": 38,
+     "max": {
+      "size": 35.2,
+      "vw": 9,
+      "font": "Nunito",
+      "text": "Proyecto A · Cliente"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f2f4f8",
+       "top": 2472,
+       "hsl": {
+        "h": 220,
+        "s": 0.3,
+        "l": 0.96
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#0d1530",
+       "share": 0.71
+      },
+      {
+       "color": "#223367",
+       "share": 0.22
+      },
+      {
+       "color": "#5b6478",
+       "share": 0.05
+      },
+      {
+       "color": "#ff1563",
+       "share": 0.01
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#0d1530"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 1,
+     "radius": "pill",
+     "height": 52,
+     "withShadow": 2,
+     "withGradient": 1,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Saltar al contenido"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 4,
+     "shadowOverlay": 0,
+     "shadowSamples": [
+      "button.theme-btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "section.cta-box.is-in → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px",
+      "a.btn.secondary → rgba(255, 255, 255, 0.95) 2px 2px 1px -1px inset, rgba(255, 255, 255, 0.55) -2px"
+     ],
+     "gradients": 0,
+     "scrims": 1,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 5,
+     "roundedBoxes": 8,
+     "boxRadius": 50,
+     "squareMedia": 0,
+     "roundedMedia": 5,
+     "mediaRadius": 14,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 600
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.23
+     }
+    ],
+    "nav": {
+     "links": 5,
+     "fixed": true,
+     "height": 33,
+     "floatingPill": false,
+     "blur": true
+    },
+    "fontsLoaded": [
+     "nunito",
+     "manrope"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 3868,
+    "margins": {
+     "left": 20,
+     "right": 20
+    },
+    "sections": [
+     {
+      "sel": "main#main",
+      "tag": "main",
+      "top": 0,
+      "height": 3698,
+      "words": 162,
+      "media": 5,
+      "middle": 0,
+      "heading": {
+       "text": "Proyecto A · Cliente",
+       "size": 35,
+       "tag": "h1"
+      },
+      "left": 20,
+      "right": 20,
+      "textLeft": 20,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.foot",
+      "tag": "footer",
+      "top": 3698,
+      "height": 171,
+      "words": 7,
+      "media": 0,
+      "middle": 75,
+      "heading": null,
+      "left": 20,
+      "right": 20,
+      "textLeft": 20,
+      "textRight": 20,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Proyecto A · Cliente",
+      "size": 35,
+      "top": 104,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 20,
+      "n": 9
+     },
+     {
+      "x": 44,
+      "n": 3
+     }
+    ],
+    "leftBlocks": 12,
+    "bodySize": 16,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "pill-nav",
+   "width": 1440,
+   "message": "Floating rounded pill navigation.",
+   "fix": "Use a plain bar: wordmark left, a few links, one action.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\proyecto\\desktop-fold.jpg",
+   "pages": [
+    "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\proyecto\\desktop-page-01.jpg",
+    "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\proyecto\\desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\proyecto\\tablet-fold.jpg",
+   "pages": [
+    "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\proyecto\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\proyecto\\mobile-fold.jpg",
+   "pages": [
+    "C:\\Users\\yasma\\OneDrive\\Escritorio\\ClaudeCode\\personal_profile\\.taste-skill\\proyecto\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}
