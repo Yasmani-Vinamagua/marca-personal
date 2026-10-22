@@ -25,6 +25,12 @@ html, body { margin: 0; background: var(--mid); }
 .li .chips li { font-size: 1.22cqw; padding: 1.6cqh 1.15cqw; }
 .chips .li-only { display: none; }
 .li .chips .li-only { display: block; }
+/* Notion: portada panorámica 5:1. Notion recorta arriba/abajo y la foto de perfil tapa abajo a la izquierda, así que el texto va en la franja central y los chips a la derecha */
+.nt .flow { right: 2cqw; top: -14cqh; height: 70cqh; }
+.nt .content { left: 6cqw; top: 40%; width: 44cqw; }
+.nt .claim { font-size: 1.75cqw; margin: 5cqh 0 0 1.4cqw; }
+.nt .chips { position: absolute; left: 60cqw; top: 44%; transform: translateY(-50%); width: 20cqw; margin: 0; gap: 2.5cqh .7cqw; }
+.nt .chips li { font-size: 1.1cqw; padding: 2.4cqh 1.1cqw; }
 </style>
 </head>
 <body>
@@ -38,6 +44,7 @@ html, body { margin: 0; background: var(--mid); }
     </ul>
   </div>
 </div>
-<script>if (location.hash === "#linkedin") document.body.classList.add("li");</script>
+<script>if (location.hash === "#linkedin") document.body.classList.add("li");
+if (location.hash === "#notion") document.body.classList.add("nt");</script>
 </body>
 </html>
