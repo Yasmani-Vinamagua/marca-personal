@@ -203,8 +203,8 @@ main > section { position: relative; overflow: hidden; padding-block: var(--sect
 .lcard:hover, .lcard:focus-visible { box-shadow: 0 0 0 1.5px var(--accent-text), 0 10px 26px rgba(0, 0, 0, .12); transform: translateY(-2px); }
 .lcard img { flex: none; align-self: stretch; height: auto; object-fit: cover; }
 .lcard--guide img { width: 7rem; }
-.lcard--video img { width: 42%; }
-.lcard.lcard--video h4 { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; }
+.lcard--video img { width: 52%; }
+.lcard.lcard--video h4, .lcard.lcard--guide h4 { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; }
 .lcard-body { display: flex; flex-direction: column; justify-content: center; gap: .35rem; min-width: 0; padding: 1rem 1.25rem; }
 .lcard-ic { width: 26px; height: 26px; flex: none; margin-bottom: .15rem; }
 .lcard h4 { margin: 0; font: 700 var(--t-body)/1.3 var(--font-display); color: var(--head); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -321,7 +321,8 @@ main > section { position: relative; overflow: hidden; padding-block: var(--sect
   .guides:has(> :nth-child(4))::-webkit-scrollbar, .videos:has(> :nth-child(4))::-webkit-scrollbar, .recs:has(> :nth-child(4))::-webkit-scrollbar { display: none; }
   .guides:has(> :nth-child(4)) > .lcard, .videos:has(> :nth-child(4)) > .lcard, .recs:has(> :nth-child(4)) > .rec { flex: 0 0 min(85%, 22rem); scroll-snap-align: start; }
   .lcard--guide img { width: 5.5rem; }
-  .lcard--video img { width: 38%; }
+  .lcard--video img { width: 40%; }
+  .lcard.lcard--video h4 { -webkit-line-clamp: 3; line-clamp: 3; }
   .lcard-body { padding: .85rem 1rem; }
   .rec { grid-template-columns: 1fr; gap: .5rem; }
   .rec--thumb { grid-template-columns: 6rem 1fr; gap: .85rem; }
