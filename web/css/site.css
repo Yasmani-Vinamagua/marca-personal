@@ -84,6 +84,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 .skip { position: absolute; left: -999px; top: 0; background: var(--bg); color: var(--ink); padding: .6rem 1rem; z-index: 100; }
 .skip:focus { left: .5rem; top: .5rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 
 /* ---------- Estructura ---------- */
 .wrap { max-width: 1440px; margin: 0 auto; padding-inline: var(--gutter); position: relative; z-index: 1; }
@@ -197,6 +198,8 @@ main > section { position: relative; overflow: hidden; padding-block: var(--sect
 .guides, .videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
 /* Tarjeta de enlace: imagen a todo el alto, icono de la plataforma, título, descripción y URL */
 .lcard { display: flex; min-height: 9.5rem; overflow: hidden; border-radius: 12px; background: var(--bg); box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 14%, transparent); color: inherit; text-decoration: none; transition: box-shadow .25s var(--ease), transform .25s var(--ease); }
+.lcard[aria-disabled="true"] { cursor: default; }
+.lcard[aria-disabled="true"]:hover { box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 14%, transparent); transform: none; }
 .lcard:hover, .lcard:focus-visible { box-shadow: 0 0 0 1.5px var(--accent-text), 0 10px 26px rgba(0, 0, 0, .12); transform: translateY(-2px); }
 .lcard img { flex: none; align-self: stretch; height: auto; object-fit: cover; }
 .lcard--guide img { width: 7rem; }
@@ -220,9 +223,10 @@ main > section { position: relative; overflow: hidden; padding-block: var(--sect
 .rec--thumb img { width: 100%; height: 100%; min-height: 6.5rem; object-fit: cover; border-radius: 8px; box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 14%, transparent); }
 .rec--thumb > div { display: flex; flex-direction: column; justify-content: flex-start; gap: .3rem; min-width: 0; }
 .rec--icon img { object-fit: contain; padding: 1rem; background: #fff; }
-.rec--thumb .tag { align-self: flex-start; margin: 0; font-size: .72rem; padding: .2rem .6rem; }
-.rec.rec--thumb h4 { font-size: .98rem; line-height: 1.25; margin: 0; }
-.rec.rec--thumb p { font-size: .84rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+:root[data-theme="dark"] .rec--icon img { background: var(--niebla); filter: brightness(.9); }
+.rec--thumb .tag { align-self: flex-start; margin: 0; padding: .15rem .65rem; }
+.rec.rec--thumb h4 { font-size: var(--t-body); line-height: 1.25; margin: 0; }
+.rec.rec--thumb p { font-size: var(--t-small); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
 /* ---------- Contacto ---------- */
 .form { display: grid; gap: 1.1rem; max-width: 600px; }

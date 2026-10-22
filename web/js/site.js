@@ -179,6 +179,10 @@
       items.forEach(function (it) {
         it.style.display = !chip.dataset.value || it.dataset.disc.split(" ").indexOf(chip.dataset.value) > -1 ? "" : "none";
       });
+      [].forEach.call(document.querySelectorAll("#recursos .res-block"), function (b) {
+        var any = [].some.call(b.querySelectorAll("[data-disc]"), function (it) { return it.style.display !== "none"; });
+        b.style.display = any ? "" : "none";
+      });
     });
   }
 
