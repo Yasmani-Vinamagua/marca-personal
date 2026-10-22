@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es" data-tema="claro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plantilla de índice · Manual</title>
+<!--
+  PLANTILLA DE ÍNDICE PARA MANUALES (A4)
+  1. Edita solo el bloque <section class="hoja"> (marcado con "EDITAR").
+     Capítulo: <li class="cap">; sección: <li class="sec">. Los números de página se escriben a mano.
+  2. Tema en <html data-tema="claro|oscuro"> (claro por defecto: es una página de lectura).
+  3. Exporta: Ctrl+P → "Guardar como PDF" → A4, márgenes "Ninguno", activar "Gráficos de fondo".
+  Si el índice supera una hoja, duplica la <section class="hoja"> y continúa la lista.
+-->
+<style>
+@font-face { font-family: "Nunito"; font-weight: 700; src: url("../web/fonts/nunito-700.woff2") format("woff2"); }
+@font-face { font-family: "Nunito"; font-weight: 800; src: url("../web/fonts/nunito-800.woff2") format("woff2"); }
+@font-face { font-family: "Manrope"; font-weight: 400; src: url("../web/fonts/manrope-400.woff2") format("woff2"); }
+@font-face { font-family: "Manrope"; font-weight: 500; src: url("../web/fonts/manrope-500.woff2") format("woff2"); }
+@font-face { font-family: "Manrope"; font-weight: 700; src: url("../web/fonts/manrope-700.woff2") format("woff2"); }
+
+:root {
+  --azul-marino: #223367;
+  --rosa: #FF1563;
+  --medianoche: #0D1530;
+  --pizarra: #5B6478;
+  --niebla: #F2F4F8;
+  --blanco: #FFFFFF;
+  --bruma: #C9D0E6;
+}
+:root, [data-tema="claro"] {
+  --fondo: var(--blanco);
+  --fondo-2: var(--niebla);
+  --texto: var(--medianoche);
+  --texto-2: var(--pizarra);
+  --acento: var(--azul-marino);
+  --linea: rgba(34, 51, 103, .22);
+}
+[data-tema="oscuro"] {
+  --fondo: var(--medianoche);
+  --fondo-2: var(--azul-marino);
+  --texto: var(--blanco);
+  --texto-2: var(--bruma);
+  --acento: var(--blanco);
+  --linea: rgba(201, 208, 230, .28);
+}
+
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #7d869c; }
+body {
+  font-family: "Manrope", system-ui, sans-serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Hoja A4 exacta */
+.hoja {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  margin: 12mm auto;
+  padding: 20mm 18mm 16mm;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  color: var(--texto);
+  background: var(--fondo);
+  break-after: page;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
+}
+
+/* Cabecera de página */
+.cab {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 5mm;
+  border-bottom: .4mm solid var(--linea);
+}
+.cab img { height: 8mm; width: auto; display: block; }
+.cab span {
+  font-size: 8pt; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--texto-2);
+}
+
+/* Título */
+.cuerpo { padding-top: 16mm; }
+.tipo {
+  display: inline-flex; align-items: center; gap: 4mm;
+  font-size: 10pt; font-weight: 700;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: var(--rosa);
+  margin-bottom: 5mm;
+}
+.tipo::before { content: ""; width: 14mm; height: .8mm; background: var(--rosa); border-radius: 1mm; }
+h1 {
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 34pt;
+  line-height: 1.05;
+  letter-spacing: -.015em;
+  color: var(--acento);
+  margin-bottom: 14mm;
+}
+
+/* Índice */
+.indice { list-style: none; }
+.indice li {
+  display: flex; align-items: baseline; gap: 3mm;
+}
+.indice li > .t { flex: none; }
+.indice li > .p { flex: none; margin-left: auto; font-variant-numeric: tabular-nums; }
+/* Línea de puntos entre título y página */
+.indice li > .guia {
+  flex: 1; min-width: 8mm;
+  border-bottom: .4mm dotted var(--texto-2);
+  opacity: .6;
+  transform: translateY(-1mm);
+}
+
+.indice .cap {
+  margin-top: 6.5mm;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800; font-size: 13.5pt;
+  color: var(--acento);
+}
+.indice .cap:first-child { margin-top: 0; }
+.indice .cap .n {
+  flex: none; width: 11mm;
+  color: var(--rosa);
+}
+.indice .cap .p { font-family: "Manrope", sans-serif; font-weight: 700; font-size: 11pt; }
+
+.indice .sec {
+  margin-top: 2.4mm;
+  padding-left: 11mm;
+  font-size: 10.5pt; font-weight: 500;
+  color: var(--texto);
+}
+.indice .sec .n { flex: none; width: 10mm; color: var(--texto-2); font-weight: 400; }
+.indice .sec .p { color: var(--texto-2); }
+
+/* Pie de página */
+.pie {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 5mm;
+  border-top: .4mm solid var(--linea);
+  font-size: 8.5pt; color: var(--texto-2);
+}
+.pie b { color: var(--acento); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* Barra de herramientas (solo pantalla) */
+.barra {
+  position: fixed; top: 10px; right: 10px; z-index: 10;
+  display: flex; gap: 8px;
+  font: 500 13px "Manrope", sans-serif;
+}
+.barra button {
+  font: inherit; cursor: pointer;
+  padding: 9px 14px; border-radius: 8px; border: 0;
+  background: var(--rosa); color: #fff;
+}
+.barra button.sec { background: #fff; color: var(--azul-marino); }
+.barra button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+@media print {
+  html { background: none; }
+  .hoja { margin: 0; box-shadow: none; }
+  .barra { display: none; }
+}
+@media screen and (max-width: 230mm) {
+  .hoja { zoom: .6; }
+}
+</style>
+</head>
+<body>
+
+<div class="barra" role="toolbar" aria-label="Acciones">
+  <button class="sec" type="button" id="tema">Cambiar tema</button>
+  <button type="button" onclick="window.print()">Exportar a PDF</button>
+</div>
+
+<!-- ============ EDITAR: contenido del índice ============ -->
+<section class="hoja" aria-label="Índice del manual">
+
+  <header class="cab">
+    <img id="logo" src="../elementos-manual-identidad/logo/logo-horizontal-color.svg" alt="Yasmani Viñamagua">
+    <span>Título del manual</span>
+  </header>
+
+  <div class="cuerpo">
+    <h1>Índice</h1>
+
+    <ol class="indice">
+      <li class="cap"><span class="n">01</span><span class="t">Introducción</span><i class="guia"></i><span class="p">3</span></li>
+      <li class="sec"><span class="n">1.1</span><span class="t">Objetivo del manual</span><i class="guia"></i><span class="p">3</span></li>
+      <li class="sec"><span class="n">1.2</span><span class="t">A quién va dirigido</span><i class="guia"></i><span class="p">4</span></li>
+
+      <li class="cap"><span class="n">02</span><span class="t">Primeros pasos</span><i class="guia"></i><span class="p">5</span></li>
+      <li class="sec"><span class="n">2.1</span><span class="t">Requisitos</span><i class="guia"></i><span class="p">5</span></li>
+      <li class="sec"><span class="n">2.2</span><span class="t">Instalación</span><i class="guia"></i><span class="p">6</span></li>
+      <li class="sec"><span class="n">2.3</span><span class="t">Acceso y configuración inicial</span><i class="guia"></i><span class="p">8</span></li>
+
+      <li class="cap"><span class="n">03</span><span class="t">Uso del sistema</span><i class="guia"></i><span class="p">11</span></li>
+      <li class="sec"><span class="n">3.1</span><span class="t">Panel principal</span><i class="guia"></i><span class="p">11</span></li>
+      <li class="sec"><span class="n">3.2</span><span class="t">Flujos de trabajo</span><i class="guia"></i><span class="p">14</span></li>
+      <li class="sec"><span class="n">3.3</span><span class="t">Reportes y exportación</span><i class="guia"></i><span class="p">18</span></li>
+
+      <li class="cap"><span class="n">04</span><span class="t">Solución de problemas</span><i class="guia"></i><span class="p">21</span></li>
+      <li class="sec"><span class="n">4.1</span><span class="t">Errores frecuentes</span><i class="guia"></i><span class="p">21</span></li>
+      <li class="sec"><span class="n">4.2</span><span class="t">Preguntas frecuentes</span><i class="guia"></i><span class="p">23</span></li>
+
+      <li class="cap"><span class="n">A</span><span class="t">Anexos</span><i class="guia"></i><span class="p">25</span></li>
+      <li class="sec"><span class="n">A.1</span><span class="t">Glosario</span><i class="guia"></i><span class="p">25</span></li>
+      <li class="sec"><span class="n">A.2</span><span class="t">Contacto y soporte</span><i class="guia"></i><span class="p">27</span></li>
+    </ol>
+  </div>
+
+  <footer class="pie">
+    <span>Yasmani Viñamagua · Versión 1.0</span>
+    <b>2</b>
+  </footer>
+
+</section>
+<!-- ============ FIN EDITAR ============ -->
+
+<script>
+  // Alterna tema y logo; en PDF se exporta el tema activo.
+  const raiz = document.documentElement, logo = document.getElementById('logo');
+  const logos = { oscuro: '../elementos-manual-identidad/logo/logo-horizontal-1tinta-blanco.svg', claro: '../elementos-manual-identidad/logo/logo-horizontal-color.svg' };
+  document.getElementById('tema').addEventListener('click', () => {
+    const t = raiz.dataset.tema === 'oscuro' ? 'claro' : 'oscuro';
+    raiz.dataset.tema = t; logo.src = logos[t];
+  });
+</script>
+</body>
+</html>
