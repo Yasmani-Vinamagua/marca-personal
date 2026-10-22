@@ -5,5 +5,26 @@
   "specPath": "marca-spec.md",
   "palettePath": "paleta/paleta.md",
   "logoDir": "logo/",
-  "applicationsDir": "aplicaciones/"
+  "applicationsDir": "aplicaciones/",
+  "tokensPath": ".yas/tokens/tokens.json",
+  "figmaLocalDir": ".yas/figma-local/",
+  "dataStatus": {
+    "extracted": [
+      "paleta (8 colores)",
+      "familias y escala tipográfica",
+      "logos y versiones"
+    ],
+    "inferred": [
+      "espaciado base 4",
+      "radios",
+      "sombras",
+      "cuadrículas y breakpoints",
+      "roles semánticos de color",
+      "text.disabled, action.primary.{hover,pressed,disabled}, action.secondary.*, icon.*, feedback.* (propuesta aprobada 2026-10-21 por /yas-figma colors)"
+    ],
+    "missing": [
+      "set de iconos",
+      "tamaño de la línea de apoyo"
+    ]
+  }
 }

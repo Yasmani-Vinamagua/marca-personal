@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yasmani Viñamagua · Wireframe</title>
+<link rel="stylesheet" href="wire.css">
+<script src="wire.js"></script>
+</head>
+<body data-page="inicio">
+<main>
+
+  <!-- 1. Inicio / Hero -->
+  <section id="inicio" class="hero-sec" aria-labelledby="h-hero">
+    <div class="hero">
+      <p class="eyebrow">Yasmani Viñamagua</p>
+      <h1 id="h-hero">Diseño y desarrollo productos digitales <span class="hl">de principio a fin.</span></h1>
+      <p class="lead">Del diseño UX/UI al backend, construyo soluciones que automatizan procesos y funcionan en el mundo real.</p>
+      <div class="row">
+        <a class="btn" href="#proyectos">Ver proyectos</a>
+        <a class="btn secondary" href="#contacto">Contacto</a>
+      </div>
+      <p class="note">Resaltado de marcador en el final del titular. Arriba a la derecha, el interruptor sol/luna. A la derecha, las 4 redes que acompañan el scroll (en móvil van al pie). El menú vertical queda fijo a la izquierda.</p>
+    </div>
+  </section>
+
+  <!-- 2. Proyectos destacados (cover flow) -->
+  <section id="proyectos" aria-labelledby="h-flow">
+    <div class="wrap">
+      <h2 id="h-flow">Proyectos destacados</h2>
+      <p class="note">Se ven los 5 proyectos a la vez (comerciales primero) y arranca en el central; las flechas desplazan la selección. Sin autoplay. Flechas, teclado (← →) y deslizamiento. En móvil se ven el central y los dos vecinos. Las cards llevan a proyecto.html; "Ver todos" lleva a proyectos.html.</p>
+
+      <div role="group" aria-roledescription="carrusel" aria-label="Proyectos destacados">
+        <div class="flow-info" aria-live="polite">
+          <h3 data-f="title"></h3>
+          <p data-f="result" class="muted"></p>
+          <div class="tags" data-f="tags"></div>
+          <div><a class="btn" data-f="link" href="proyecto.html">Ver proyecto →</a></div>
+        </div>
+
+        <div class="flow-stage">
+          <button class="flow-card" aria-label="Proyecto A" data-title="Proyecto A · Cliente" data-result="Frase de resultado medible: qué mejoró para el cliente." data-tags="Comercial|Python|SQL|Asistido por IA" data-href="proyecto.html"><span class="ph r16x10" style="display:block"><span>Captura A</span></span></button>
+          <button class="flow-card" aria-label="Proyecto B" data-title="Proyecto B · Cliente" data-result="Frase de resultado medible: qué mejoró para el cliente." data-tags="Comercial|Figma|HTML|CSS|Sin IA" data-href="proyecto.html"><span class="ph r16x10" style="display:block"><span>Captura B</span></span></button>
+          <button class="flow-card" aria-label="Proyecto C" data-title="Proyecto C · Automatización" data-result="Frase de resultado medible: qué mejoró para el cliente." data-tags="Comercial|Python|Docker|Asistido por IA" data-href="proyecto.html"><span class="ph r16x10" style="display:block"><span>Captura C</span></span></button>
+          <button class="flow-card" aria-label="Proyecto D" data-title="Proyecto D · Personal" data-result="Qué problema resolvió y qué aprendí construyéndolo." data-tags="Personal|Java|SQL|Asistido por IA" data-href="proyecto.html"><span class="ph r16x10" style="display:block"><span>Captura D</span></span></button>
+          <button class="flow-card" aria-label="Proyecto E" data-title="Proyecto E · Personal" data-result="Qué problema resolvió y qué aprendí construyéndolo." data-tags="Personal|Figma|Sin IA" data-href="proyecto.html"><span class="ph r16x10" style="display:block"><span>Captura E</span></span></button>
+        </div>
+
+        <div class="flow-ctrl">
+          <button data-flow="prev" aria-label="Proyecto anterior">←</button>
+          <span class="flow-count" aria-hidden="true"></span>
+          <button data-flow="next" aria-label="Proyecto siguiente">→</button>
+        </div>
+      </div>
+      <p style="text-align:center;margin:1.5rem auto 0"><a class="btn secondary" href="proyectos.html">Ver todos los proyectos</a></p>
+    </div>
+  </section>
+
+  <!-- 3. Sobre mí (incluye servicios) -->
+  <section id="sobre-mi" aria-labelledby="h-about">
+    <!-- Patrón de líneas de flujo del logo (decorativo) -->
+    <svg class="flow-bg about-bg" viewBox="-40 0 520 440" aria-hidden="true" focusable="false">
+      <line class="l3" x1="50" y1="14" x2="230" y2="126"/>
+      <line class="l2" x1="5" y1="70" x2="185" y2="182"/>
+      <line class="l1" x1="-20" y1="150" x2="140" y2="246"/>
+      <line class="stem" x1="140" y1="246" x2="140" y2="420"/>
+      <line class="branch" x1="140" y1="246" x2="236" y2="150"/>
+    </svg>
+    <div class="wrap">
+      <div class="about">
+        <div class="ph r3x4"><span>Foto</span></div>
+        <div>
+          <p class="eyebrow">Sobre mí</p>
+          <h2 id="h-about">Hola, soy Yasmani.</h2>
+          <p>Ingeniero que diseña y desarrolla productos digitales. Dos o tres frases con quién eres, de dónde vienes y qué te mueve.</p>
+          <p>Valores: responsabilidad, honestidad y lealtad.</p>
+        </div>
+      </div>
+
+      <h3>Servicios</h3>
+      <div class="grid g3">
+        <article class="card"><h3>UX/UI</h3><p>Qué incluye, para quién es y qué obtienes.</p></article>
+        <article class="card"><h3>Front</h3><p>Qué incluye, para quién es y qué obtienes.</p></article>
+        <article class="card"><h3>Backend</h3><p>Qué incluye, para quién es y qué obtienes.</p></article>
+      </div>
+      <p class="note">Los servicios viven aquí; no hay página aparte. Si luego hay precios, paquetes o FAQ, se separa.</p>
+
+      <div class="split sub">
+        <div>
+          <h3>Cómo trabajo</h3>
+          <ol>
+            <li>Conversamos y defino el alcance.</li>
+            <li>Diseño y valido contigo.</li>
+            <li>Desarrollo con entregas parciales.</li>
+            <li>Entrego, documento y doy soporte.</li>
+          </ol>
+          <p>Uso Claude Code para acelerar el desarrollo y reviso cada entrega.</p>
+        </div>
+        <div>
+          <h3>En aprendizaje</h3>
+          <div class="tags"><span class="tag">Tecnología 1</span><span class="tag">Tecnología 2</span><span class="tag">Tecnología 3</span></div>
+          <p class="note">Lo que estudio ahora. No son filtros hasta que haya un proyecto que los respalde.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Recursos -->
+  <section id="recursos" aria-labelledby="h-rec">
+    <div class="wrap">
+      <h2 id="h-rec">Recursos</h2>
+      <p class="muted">Guías y videos propios, y herramientas de otros que recomiendo.</p>
+
+      <div class="tabs" role="group" aria-label="Filtrar por disciplina">
+        <button class="chip" data-value="" aria-pressed="true">Todo</button>
+        <button class="chip" data-value="ux" aria-pressed="false">UX/UI</button>
+        <button class="chip" data-value="front" aria-pressed="false">Front</button>
+        <button class="chip" data-value="back" aria-pressed="false">Backend</button>
+      </div>
+
+      <h3>Mis guías</h3>
+      <div class="grid g3">
+        <article class="card" data-disc="back"><div class="ph r16x10"><span>Portada PDF</span></div><h3 style="margin-top:.75rem">Guía 1</h3><p>Descripción de una línea.</p><a class="btn secondary" href="#" download>Descargar PDF</a></article>
+        <article class="card" data-disc="ux"><div class="ph r16x10"><span>Portada PDF</span></div><h3 style="margin-top:.75rem">Guía 2</h3><p>Descripción de una línea.</p><a class="btn secondary" href="#" download>Descargar PDF</a></article>
+        <article class="card" data-disc="front"><div class="ph r16x10"><span>Portada PDF</span></div><h3 style="margin-top:.75rem">Guía 3</h3><p>Descripción de una línea.</p><a class="btn secondary" href="#" download>Descargar PDF</a></article>
+      </div>
+      <p class="note">Descarga libre, sin pedir correo.</p>
+
+      <h3 class="sub">Mis videos</h3>
+      <div class="grid g3">
+        <article data-disc="back"><div class="ph r16x10"><span>Video (YouTube/Vimeo)</span></div><h3 style="margin-top:.75rem">Video 1</h3></article>
+        <article data-disc="front"><div class="ph r16x10"><span>Video (YouTube/Vimeo)</span></div><h3 style="margin-top:.75rem">Video 2</h3></article>
+        <article data-disc="ux"><div class="ph r16x10"><span>Video (YouTube/Vimeo)</span></div><h3 style="margin-top:.75rem">Video 3</h3></article>
+      </div>
+      <p class="note">Incrustados desde la plataforma, no alojados en la web.</p>
+
+      <h3 class="sub">Recomendados</h3>
+      <div class="grid g2">
+        <article class="card" data-disc="ux"><span class="tag">Extensión</span><h3 style="margin-top:.5rem">Nombre de la extensión</h3><p><em>Por qué me gusta:</em> una frase propia.</p><a href="#">Abrir →</a></article>
+        <article class="card" data-disc="front back"><span class="tag">Video</span><h3 style="margin-top:.5rem">Título del video</h3><p><em>Por qué me gusta:</em> una frase propia.</p><a href="#">Ver →</a></article>
+        <article class="card" data-disc="back"><span class="tag">Herramienta</span><h3 style="margin-top:.5rem">Nombre de la herramienta</h3><p><em>Por qué me gusta:</em> una frase propia.</p><a href="#">Abrir →</a></article>
+      </div>
+      <p class="note">Lo ajeno va separado de lo propio. Cada recomendación lleva una nota mía.</p>
+    </div>
+  </section>
+
+  <!-- 5. Contacto -->
+  <section id="contacto" aria-labelledby="h-cont">
+    <!-- Patrón de líneas de flujo del logo (decorativo) -->
+    <svg class="flow-bg contact-bg" viewBox="-40 0 520 440" aria-hidden="true" focusable="false">
+      <line class="l3" x1="50" y1="14" x2="230" y2="126"/>
+      <line class="l2" x1="5" y1="70" x2="185" y2="182"/>
+      <line class="l1" x1="-20" y1="150" x2="140" y2="246"/>
+      <line class="stem" x1="140" y1="246" x2="140" y2="420"/>
+      <line class="branch" x1="140" y1="246" x2="236" y2="150"/>
+    </svg>
+    <div class="wrap">
+      <h2 id="h-cont">¿Tienes un proyecto en mente?</h2>
+      <p class="muted">Cuéntame qué necesitas y te respondo con una propuesta clara.</p>
+      <div class="split">
+        <form class="form" onsubmit="return false">
+          <label>Nombre <input type="text" autocomplete="name" required></label>
+          <label>Correo <input type="email" autocomplete="email" required></label>
+          <label>Tipo de proyecto
+            <select><option>UX/UI</option><option>Front</option><option>Backend</option><option>Producto completo</option><option>Otro</option></select>
+          </label>
+          <label>Mensaje <textarea rows="5" required></textarea></label>
+          <div><button class="btn" type="submit">Enviar</button></div>
+          <p class="note">Formulario corto. Estados a diseñar: error por campo, enviando, enviado.</p>
+        </form>
+        <aside>
+          <h3>Otras vías</h3>
+          <p><b>Correo directo</b><br><a href="mailto:angelyas69@gmail.com">angelyas69@gmail.com</a></p>
+          <p><b>Agendar una llamada</b><br><a href="#">Elegir horario →</a></p>
+          <p class="note">El agendado es opcional.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>

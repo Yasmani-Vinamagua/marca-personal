@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proyectos · Wireframe</title>
+<link rel="stylesheet" href="wire.css">
+<script src="wire.js"></script>
+</head>
+<body data-page="proyectos">
+<main>
+  <div class="wrap">
+    <p><a href="index.html#proyectos">← Volver al inicio</a></p>
+    <h1>Proyectos</h1>
+    <p class="lead muted">Trabajo comercial y personal. Filtra por tipo, disciplina o tecnología.</p>
+
+    <section class="filters" aria-label="Filtros">
+      <div class="fgroup"><b>Tipo</b>
+        <button class="chip" data-group="tipo" data-value="" aria-pressed="true">Todos</button>
+        <button class="chip" data-group="tipo" data-value="comercial" aria-pressed="false">Comercial</button>
+        <button class="chip" data-group="tipo" data-value="personal" aria-pressed="false">Personal</button>
+      </div>
+      <div class="fgroup"><b>Disciplina</b>
+        <button class="chip" data-group="disc" data-value="" aria-pressed="true">Todas</button>
+        <button class="chip" data-group="disc" data-value="ux" aria-pressed="false">UX/UI</button>
+        <button class="chip" data-group="disc" data-value="front" aria-pressed="false">Front</button>
+        <button class="chip" data-group="disc" data-value="back" aria-pressed="false">Backend</button>
+      </div>
+      <div class="fgroup"><b>Tecnología</b>
+        <button class="chip" data-group="tech" data-value="" aria-pressed="true">Todas</button>
+        <button class="chip" data-group="tech" data-value="figma" aria-pressed="false">Figma</button>
+        <button class="chip" data-group="tech" data-value="html" aria-pressed="false">HTML</button>
+        <button class="chip" data-group="tech" data-value="css" aria-pressed="false">CSS</button>
+        <button class="chip" data-group="tech" data-value="python" aria-pressed="false">Python</button>
+        <button class="chip" data-group="tech" data-value="java" aria-pressed="false">Java</button>
+        <button class="chip" data-group="tech" data-value="sql" aria-pressed="false">SQL</button>
+        <button class="chip" data-group="tech" data-value="docker" aria-pressed="false">Docker</button>
+        <button class="chip" data-group="tech" data-value="claude" aria-pressed="false">Claude Code</button>
+      </div>
+      <div class="fgroup"><b>Uso de IA</b>
+        <button class="chip" disabled title="Se activa con 8 o más proyectos">Filtro inactivo</button>
+      </div>
+      <p class="note">El filtro de IA se activa con 8+ proyectos. Hasta entonces, solo la etiqueta en cada tarjeta. Las etiquetas usan una lista cerrada (ver docs/user-flow.md).</p>
+    </section>
+
+    <ul class="grid g3" style="list-style:none;padding:0;margin:0">
+      <li><a class="pcard" href="proyecto.html" data-tipo="comercial" data-disc="back" data-tech="python sql claude">
+        <div class="ph r16x10"><span>Captura</span></div>
+        <h3>Proyecto A · Cliente</h3>
+        <div class="tags"><span class="tag">Comercial</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag ia">Asistido por IA</span></div></a></li>
+      <li><a class="pcard" href="proyecto.html" data-tipo="comercial" data-disc="ux front" data-tech="figma html css">
+        <div class="ph r16x10"><span>Captura</span></div>
+        <h3>Proyecto B · Cliente</h3>
+        <div class="tags"><span class="tag">Comercial</span><span class="tag">Figma</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag ia">Sin IA</span></div></a></li>
+      <li><a class="pcard" href="proyecto.html" data-tipo="comercial" data-disc="back" data-tech="python docker claude">
+        <div class="ph r16x10"><span>Captura</span></div>
+        <h3>Proyecto C · Automatización</h3>
+        <div class="tags"><span class="tag">Comercial</span><span class="tag">Python</span><span class="tag">Docker</span><span class="tag ia">Asistido por IA</span></div></a></li>
+      <li><a class="pcard" href="proyecto.html" data-tipo="personal" data-disc="back" data-tech="java sql claude">
+        <div class="ph r16x10"><span>Captura</span></div>
+        <h3>Proyecto D · Personal</h3>
+        <div class="tags"><span class="tag">Personal</span><span class="tag">Java</span><span class="tag">SQL</span><span class="tag ia">Asistido por IA</span></div></a></li>
+      <li><a class="pcard" href="proyecto.html" data-tipo="personal" data-disc="ux" data-tech="figma">
+        <div class="ph r16x10"><span>Captura</span></div>
+        <h3>Proyecto E · Personal</h3>
+        <div class="tags"><span class="tag">Personal</span><span class="tag">Figma</span><span class="tag ia">Sin IA</span></div></a></li>
+      <li><a class="pcard" href="proyecto.html" data-tipo="personal" data-disc="front" data-tech="html css claude">
+        <div class="ph r16x10"><span>Captura</span></div>
+        <h3>Proyecto F · Personal</h3>
+        <div class="tags"><span class="tag">Personal</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag ia">Generado con IA</span></div></a></li>
+    </ul>
+    <p class="empty" role="status">Ningún proyecto coincide con esos filtros. Prueba a quitar alguno.</p>
+    <p class="note">Orden por defecto: comerciales primero. El estado vacío es parte del diseño.</p>
+  </div>
+</main>
+</body>
+</html>

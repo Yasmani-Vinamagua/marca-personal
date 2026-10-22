@@ -1,0 +1,76 @@
+{
+  "scope": "mini",
+  "generated": "2026-10-21",
+  "mode": "mcp (interrumpido por límite de uso)",
+  "pageLimit": "manual",
+  "fileKey": "zpziigqB80578XApqxL0U3",
+  "fileUrl": "https://www.figma.com/design/zpziigqB80578XApqxL0U3/Marca-Personal-V.2",
+  "pages": [
+    {
+      "name": "Cover",
+      "status": "pending (página creada por el usuario, sin contenido)",
+      "nodeId": "0:1",
+      "exists": true
+    },
+    {
+      "name": "Icons",
+      "status": "pending (página creada por el usuario, sin contenido)",
+      "nodeId": "5:2",
+      "exists": true
+    },
+    {
+      "name": "Brand assets",
+      "status": "pending (página creada por el usuario, sin contenido)",
+      "nodeId": "5:3",
+      "exists": true
+    },
+    {
+      "name": "Colors",
+      "status": "pending (página creada por el usuario, sin contenido)",
+      "nodeId": "5:4",
+      "exists": true
+    },
+    {
+      "name": "Type scale",
+      "status": "pending (página creada por el usuario, sin contenido)",
+      "nodeId": "5:5",
+      "exists": true
+    },
+    {
+      "name": "Spacing and layout",
+      "status": "pending (página creada por el usuario, sin contenido)",
+      "nodeId": "5:6",
+      "exists": true
+    },
+    {
+      "name": "Radios",
+      "status": "pending (página creada por el usuario, sin contenido)",
+      "nodeId": "5:7",
+      "exists": true
+    },
+    {
+      "name": "Shadows",
+      "status": "pending (página creada por el usuario, sin contenido)",
+      "nodeId": "5:8",
+      "exists": true
+    },
+    {
+      "name": "Grids",
+      "status": "pending (página creada por el usuario, sin contenido)",
+      "nodeId": "5:9",
+      "exists": true
+    }
+  ],
+  "items": {
+    "collection:Primitivas": "pending",
+    "collection:Semánticas": "pending",
+    "collection:Espaciado y forma": "pending",
+    "collection:Tipografía": "pending",
+    "styles:text": "pending",
+    "styles:effect": "pending",
+    "styles:grid": "pending"
+  },
+  "sessionId": "e831ab0b-35db-456d-8e06-eb22967d1e2b",
+  "lastError": "2026-10-21 (push): 'You've reached the Figma MCP tool call limit on the Starter plan.' en la primera lectura con use_figma. whoami: equipo 'yasmani08's team', plan starter, asiento View. No se creó ni leyó nada; el estado de las colecciones sigue sin verificar. El paquete local ya incluye los colores derivados (variables.json/md).",
+  "colorsInLocalPackage": "ampliado 2026-10-21 por /yas-figma colors (estados de acción, iconos, feedback)"
+}
