@@ -23,7 +23,7 @@ Estado: **Ajuste v1.1 **completado** (fases 0, 0b, 1, 5, 6, 8, 9, 10 y 10b aprob
 ## 0b. Evaluación inicial para el ajuste v1.1 (2026-10-21)
 
 - **Tipo de encargo:** rebranding con alcance **ajuste** (propuesto, pendiente de aprobación), partiendo de la auditoría [.yas/audits/2026-10-21-marca.md](.yas/audits/2026-10-21-marca.md) (12/16, Bueno). Copia de seguridad del spec anterior: `marca-spec.v1.0.bak.md`.
-- **Inventario revisado:** 15 SVG de `logo/` y 14 PNG; `aplicaciones/aplicaciones.html` (7 aplicaciones) y sus 2 recursos de flujo; `manual/` (MD y HTML); `videos/logo-animacion/`. No verificable: web y redes reales (no existen o no se aportaron), archivos originales `.ai` (en `D:\Users\yasma\YAS\Mi Marca\`, fuera del proyecto).
+- **Inventario revisado:** 15 SVG de `elementos-manual-identidad/logo/` y 14 PNG; `elementos-manual-identidad/aplicaciones/aplicaciones.html` (7 aplicaciones) y sus 2 recursos de flujo; `elementos-manual-identidad/manual/` (MD y HTML); `videos/logo-animacion/`. No verificable: web y redes reales (no existen o no se aportaron), archivos originales `.ai` (en `D:\Users\yasma\YAS\Mi Marca\`, fuera del proyecto).
 - **Activos reconocibles a conservar:** la Y (entrada 60°, tallo, rama 45° rosa por debajo), navy `#223367` + rosa `#FF1563`, Nunito en el nombre, el nombre sin título delante.
 - **Problemas de ejecución visual:** SVG poligonales sin maestro Bézier (P2); lockup horizontal sin equilibrio (P2); recurso de flujo que supera al logo y se solapa con texto en la portada del manual (P2); mínimos de impresión sin prueba (P2); neutros fuera de paleta, contrastes sin documentar y `alt` vacíos (P3).
 - **Problemas de posicionamiento:** falta una línea de apoyo aprobada; el banner, la tarjeta y la firma no dicen qué hace la marca (P1). No cambia el concepto ni la estrategia.
@@ -42,7 +42,7 @@ Estado: **Ajuste v1.1 **completado** (fases 0, 0b, 1, 5, 6, 8, 9, 10 y 10b aprob
   | Mínimos de impresión | Conservar como provisionales | Hasta una prueba física |
   | Descriptor «Ingeniería · Automatización» (§7) | Eliminar | Descartado en las fases 7 y 8 |
   | Aplicaciones, manual, vídeo | Actualizar | Reflejar el ajuste |
-- **Aprobación del alcance:** aprobada por el usuario el 2026-10-21. **Carpeta de salida:** se actualiza en su sitio (`logo/`, `aplicaciones/`, `manual/`), por decisión del usuario; antes se guardó una copia de v1.0 en `.yas/backup-v1.0/` y del spec en `marca-spec.v1.0.bak.md`.
+- **Aprobación del alcance:** aprobada por el usuario el 2026-10-21. **Carpeta de salida:** se actualiza en su sitio (`elementos-manual-identidad/logo/`, `elementos-manual-identidad/aplicaciones/`, `elementos-manual-identidad/manual/`), por decisión del usuario; antes se guardó una copia de v1.0 en `.yas/backup-v1.0/` y del spec en `marca-spec.v1.0.bak.md`.
 
 ## 1. Brief
 - **Qué hace:** ingeniero que se posiciona en **innovación y automatización de procesos mediante tecnología**; el material previo indica redes y telecomunicaciones (GPON/FTTH, CCNA). *(Sector exacto: supuesto, a confirmar.)*
@@ -166,7 +166,7 @@ Mantener **azul marino como ancla** y el **rosa como acento firma**; quedaría e
 
 ## 4. Bocetos
 
-**Archivos:** `logo/exploracion/bocetos.svg` (vectorial) y `bocetos.png` (vista rápida, renderizada con Chrome). Todos en **una tinta negra**, trazo monolínea con terminales redondeados (conserva la esencia del logo actual) y sin tipografía final.
+**Archivos:** `elementos-manual-identidad/logo/exploracion/bocetos.svg` (vectorial) y `bocetos.png` (vista rápida, renderizada con Chrome). Todos en **una tinta negra**, trazo monolínea con terminales redondeados (conserva la esencia del logo actual) y sin tipografía final.
 
 **Idea guía:** *una Y que contiene una V*: dos flujos (la V) que confluyen en uno (el tallo). La V es el vértice de la responsabilidad; el tallo es el proceso ya automatizado.
 
@@ -198,7 +198,7 @@ Mantener **azul marino como ancla** y el **rosa como acento firma**; quedaría e
 ### Revisión 2 (vigente) — vuelta al boceto 4: entrada + rama
 **Cambio pedido por el usuario:** abandonar la Y curva con nodo (C4) y construir el **boceto 4, "entrada + rama"**: líneas rectas, sin nodo.
 
-**Archivos:** `logo/exploracion/candidato-b1-1tinta.svg`, `candidato-b2-1tinta.svg`, sus versiones `-color.svg` y `pruebas-b1-vs-b2.png`.
+**Archivos:** `elementos-manual-identidad/logo/exploracion/candidato-b1-1tinta.svg`, `candidato-b2-1tinta.svg`, sus versiones `-color.svg` y `pruebas-b1-vs-b2.png`.
 
 **Construcción:** trazo de 12 (3u, u = 4) con terminales redondos, sobre un lienzo de 100 × 100. Tres capsulas rectas que se encuentran en el punto de unión **J = (46, 56)**:
 | Pieza | B1 | B2 |
@@ -225,14 +225,14 @@ Mantener **azul marino como ancla** y el **rosa como acento firma**; quedaría e
 
 **Recomendación:** **B2** por legibilidad (la Y se lee mejor y a tamaño pequeño es más clara); **B1** si se prefiere más dinamismo.
 
-**DECISIÓN (aprobada por el usuario): B2** (rama a 45°), con la **rama rosa por debajo de la azul**. Esto elimina el abultamiento en la unión que aparecía con la rama rosa por encima. Maestro: `logo/logo-1tinta-negro.svg`. Los candidatos C2, C4, B1 y la versión curva quedan en `logo/exploracion/` como histórico.
+**DECISIÓN (aprobada por el usuario): B2** (rama a 45°), con la **rama rosa por debajo de la azul**. Esto elimina el abultamiento en la unión que aparecía con la rama rosa por encima. Maestro: `elementos-manual-identidad/logo/logo-1tinta-negro.svg`. Los candidatos C2, C4, B1 y la versión curva quedan en `elementos-manual-identidad/logo/exploracion/` como histórico.
 
-**Prueba final (Chrome, `logo/exploracion/logo-final-previa.png`):** color, una tinta y negativo a 150, 64, 32 y 16 px. A 16 px la Y sigue legible en las tres versiones y la rama rosa es visible, aunque muy fina; para favicon conviene una variante con más grosor (fase 8).
+**Prueba final (Chrome, `elementos-manual-identidad/logo/exploracion/logo-final-previa.png`):** color, una tinta y negativo a 150, 64, 32 y 16 px. A 16 px la Y sigue legible en las tres versiones y la rama rosa es visible, aunque muy fina; para favicon conviene una variante con más grosor (fase 8).
 
 ---
 
 ### Revisión 1 (descartada por el usuario) — Y curva con nodo
-**Archivos:** `logo/logo-1tinta-negro.svg` (maestro propuesto, candidato C4) · `logo/exploracion/candidato-c2-simetrico.svg` · `candidato-c4-asimetrico.svg` · `pruebas-c2-vs-c4.png` (pruebas visuales).
+**Archivos:** `elementos-manual-identidad/logo/logo-1tinta-negro.svg` (maestro propuesto, candidato C4) · `elementos-manual-identidad/logo/exploracion/candidato-c2-simetrico.svg` · `candidato-c4-asimetrico.svg` · `pruebas-c2-vs-c4.png` (pruebas visuales).
 
 ### Qué cambió respecto al boceto
 - **Nodo separado descartado:** la Y con un punto debajo se leía como "Y!" (signo de exclamación). Se **une el nodo al tallo** como terminal de bola.
@@ -276,7 +276,7 @@ Mantener **azul marino como ancla** y el **rosa como acento firma**; quedaría e
 ### Fase 5 (v1.1): construcción en curvas (2026-10-21) — aprobada y aplicada
 - **Qué cambia:** solo la ejecución del archivo. Geometría idéntica a v1.0 (unidad u = 4, trazo 12 = 3u, J = (46, 56), entrada 60° L54, rama 45° L36, tallo L32). Entrada y tallo pasan a **un único contorno con arcos exactos** (3 arcos) y la rama, a otro (2 arcos); desaparecen las polilíneas superpuestas.
 - **Nombre:** «Yasmani Viñamagua» reconstruido con las curvas de **Nunito SemiBold 600 a 44 u** (fuente variable de Google Fonts, licencia SIL OFL; archivo descargado para la extracción, sin copiarlo al proyecto). Cada letra se coloca en la misma posición horizontal que en v1.0, por lo que el kerning manual se conserva; el texto sigue a trazados (sin `<text>`).
-- **Archivos:** las 14 versiones se regeneraron en [logo/](logo/) (sustituyen a v1.0, copia en `.yas/backup-v1.0/`), más el maestro `logo/logo-master.svg` y los 14 PNG de `logo/png/`. Vistas de apoyo en [logo/exploracion/v1.1/](logo/exploracion/v1.1/): `lockup-opciones.html` y `pruebas-minimos.png`.
+- **Archivos:** las 14 versiones se regeneraron en [logo/](elementos-manual-identidad/logo/) (sustituyen a v1.0, copia en `.yas/backup-v1.0/`), más el maestro `elementos-manual-identidad/logo/logo-master.svg` y los 14 PNG de `elementos-manual-identidad/logo/png/`. Vistas de apoyo en [logo/exploracion/v1.1/](elementos-manual-identidad/logo/exploracion/v1.1/): `lockup-opciones.html` y `pruebas-minimos.png`.
 - **Pruebas:**
   | Prueba | Estado | Cómo |
   |---|---|---|
@@ -291,7 +291,7 @@ Mantener **azul marino como ancla** y el **rosa como acento firma**; quedaría e
 
 ## 6. Color
 
-**Archivo:** `logo/exploracion/color-previa.png` (A: navy + nodo rosa · B: degradado · C: negativo).
+**Archivo:** `elementos-manual-identidad/logo/exploracion/color-previa.png` (A: navy + nodo rosa · B: degradado · C: negativo).
 
 ### Cambios respecto a la marca actual
 - **Se elimina el naranja** (decisión de la Fase 2): evita el naranja de la automatización de software y simplifica la paleta.
@@ -334,7 +334,7 @@ Mantener **azul marino como ancla** y el **rosa como acento firma**; quedaría e
 | Una tinta negra | `#000000` | `#000000` | Cualquiera claro |
 | Una tinta blanca | `#FFFFFF` | `#FFFFFF` | Cualquiera oscuro |
 
-**Archivos:** `logo/logo-color.svg`, `logo-negativo.svg`, `logo-1tinta-negro.svg`, `logo-1tinta-blanco.svg` · vista previa en `logo/exploracion/logo-final-previa.png`.
+**Archivos:** `elementos-manual-identidad/logo/logo-color.svg`, `logo-negativo.svg`, `logo-1tinta-negro.svg`, `logo-1tinta-blanco.svg` · vista previa en `elementos-manual-identidad/logo/exploracion/logo-final-previa.png`.
 
 *(La tabla siguiente, con el nodo rosa, corresponde a la revisión 1 y queda como histórico.)*
 
@@ -352,14 +352,14 @@ Mantener **azul marino como ancla** y el **rosa como acento firma**; quedaría e
 - **Prohibido:** añadir colores nuevos (naranja, amarillo, morado), aros o contornos de color, o usar el rosa sobre azul marino para texto.
 
 ### Fase 6 (v1.1): neutros y contraste (2026-10-21)  — aprobada (2026-10-21)
-- **Entregable:** [paleta/paleta.md](paleta/paleta.md) (contrato de `/yas-figma colors`) y [.yas/brand-source.json](.yas/brand-source.json) (ruta del manual y la paleta, porque la marca está en la raíz).
+- **Entregable:** [paleta/paleta.md](elementos-manual-identidad/paleta/paleta.md) (contrato de `/yas-figma colors`) y [.yas/brand-source.json](.yas/brand-source.json) (ruta del manual y la paleta, porque la marca está en la raíz).
 - **Los seis colores de v1.0 no cambian.** Se declaran dos tintes decorativos que ya se usaban: **Línea** `#E3E7F0` y **Bruma** `#C9D0E6` (solo pantalla, Pantone *pendiente de definir*). Se prohíben los demás grises sueltos de las maquetas y del vídeo.
 - **Contraste añadido (calculado, WCAG):** Pizarra sobre Medianoche 3,03 (no para texto normal), Rosa sobre Niebla 3,44 (solo gráficos y texto grande), Niebla sobre Medianoche 16,34 y los tintes sobre blanco/Niebla (1,12–1,54: solo decorativos).
 - **Pendiente:** aplicar la regla en aplicaciones, manual y vídeo (Fases 9 y 10).
 
 ## 7. Tipografía
 
-**Archivo:** `logo/exploracion/tipografias.png` (renderizado en Chrome con Google Fonts: "Yasmani Viñamagua", descriptor en versalitas y una muestra con mayúscula, descendente y ascendente: *Aygh*).
+**Archivo:** `elementos-manual-identidad/logo/exploracion/tipografias.png` (renderizado en Chrome con Google Fonts: "Yasmani Viñamagua", descriptor en versalitas y una muestra con mayúscula, descendente y ascendente: *Aygh*).
 
 ### Candidatas (todas con licencia abierta en Google Fonts; verificar la licencia OFL en cada ficha)
 | Fuente | Terminales | Carácter | Ancho | Lectura pequeña | Coherencia con el símbolo |
@@ -409,7 +409,7 @@ Mantener **azul marino como ancla** y el **rosa como acento firma**; quedaría e
 
 ## 8. Versiones
 
-**Vista previa:** `logo/exploracion/versiones-previa.png` (renderizado en Chrome). Todos los archivos están en `logo/`.
+**Vista previa:** `elementos-manual-identidad/logo/exploracion/versiones-previa.png` (renderizado en Chrome). Todos los archivos están en `elementos-manual-identidad/logo/`.
 
 ### Archivos generados (14)
 | Versión | Archivo | Uso |
@@ -463,9 +463,9 @@ Mantener **azul marino como ancla** y el **rosa como acento firma**; quedaría e
 - No se verificó que el conjunto **no se parezca a otras marcas** (conviene una búsqueda en propiedad intelectual antes de registrarla).
 
 ### Fase 8 (v1.1): versiones y mínimos (2026-10-21)  — aprobada (2026-10-21)
-- **Versiones:** las 14 de v1.0 regeneradas desde la nueva construcción (misma lista y mismos nombres) y el maestro [logo/logo-master.svg](logo/logo-master.svg) (lockup horizontal en color, con grupos `simbolo` y `nombre`). **Desviaciones de nombre respecto a `construccion-logo.md` §4**, mantenidas a propósito porque el manual, las aplicaciones y el vídeo las enlazan: `logo-horizontal-*.svg` y `logo-vertical-*.svg` en vez de `logo-horizontal.svg` y `logo-vertical.svg` (una por versión de color), `icono-avatar.svg` en vez de `icono-circulo.svg`, `icono-favicon.svg` en vez de `icono.svg`. **Omitidas:** `logo-con-tagline.svg` (la línea de apoyo va fuera del logo) y `logo-reducido.svg` (el favicon de trazo reforzado cubre el tamaño pequeño).
+- **Versiones:** las 14 de v1.0 regeneradas desde la nueva construcción (misma lista y mismos nombres) y el maestro [logo/logo-master.svg](elementos-manual-identidad/logo/logo-master.svg) (lockup horizontal en color, con grupos `simbolo` y `nombre`). **Desviaciones de nombre respecto a `construccion-logo.md` §4**, mantenidas a propósito porque el manual, las aplicaciones y el vídeo las enlazan: `logo-horizontal-*.svg` y `logo-vertical-*.svg` en vez de `logo-horizontal.svg` y `logo-vertical.svg` (una por versión de color), `icono-avatar.svg` en vez de `icono-circulo.svg`, `icono-favicon.svg` en vez de `icono.svg`. **Omitidas:** `logo-con-tagline.svg` (la línea de apoyo va fuera del logo) y `logo-reducido.svg` (el favicon de trazo reforzado cubre el tamaño pequeño).
 - **Área de respeto:** 25 % de la altura del símbolo tal como aparece en cada versión (en el lockup horizontal H5, el símbolo mide el 78 %, así que el margen es ≈ 17,7 u en vez de ≈ 22,7 u). Ya está incluida en el `viewBox`.
-- **Tamaños mínimos (pantalla, probados en [pruebas-minimos-v1.1.png](logo/exploracion/v1.1/pruebas-minimos-v1.1.png); render de Chrome a 1×):**
+- **Tamaños mínimos (pantalla, probados en [pruebas-minimos-v1.1.png](elementos-manual-identidad/logo/exploracion/v1.1/pruebas-minimos-v1.1.png); render de Chrome a 1×):**
   | Versión | Probado | Mínimo en pantalla | Impresión (provisional, sin prueba física) |
   |---|---|---|---|
   | Símbolo solo | 32, 24, 20, 16 y 12 px de alto | **24 px** (a 16 px se lee, la rama es muy fina; a 12 px no) | 6 mm de alto |
@@ -477,9 +477,9 @@ Mantener **azul marino como ancla** y el **rosa como acento firma**; quedaría e
 
 ## 9. Aplicaciones
 
-> **Nota sobre la Fase 8:** el usuario observó que en el lockup horizontal el símbolo pesaba hacia abajo. Se compararon cuatro alternativas (`logo/exploracion/horizontal-opciones.png`: símbolo al 100, 78 y 62 %, con el nombre centrado o apoyado en la base del tallo) y el usuario decidió **mantener el lockup original (H1)**. Se registra como observación: el tallo cuelga bajo la línea base del nombre; si más adelante molesta, la opción H4 (símbolo al 62 %) es la alternativa evaluada.
+> **Nota sobre la Fase 8:** el usuario observó que en el lockup horizontal el símbolo pesaba hacia abajo. Se compararon cuatro alternativas (`elementos-manual-identidad/logo/exploracion/horizontal-opciones.png`: símbolo al 100, 78 y 62 %, con el nombre centrado o apoyado en la base del tallo) y el usuario decidió **mantener el lockup original (H1)**. Se registra como observación: el tallo cuelga bajo la línea base del nombre; si más adelante molesta, la opción H4 (símbolo al 62 %) es la alternativa evaluada.
 
-**Archivos:** `aplicaciones/aplicaciones.html` (composiciones) · `aplicaciones/aplicaciones-previa.png` (vista rápida, renderizada con Chrome y Google Fonts) · `recurso-flujo.svg` y `recurso-flujo-oscuro.svg` (recurso gráfico).
+**Archivos:** `elementos-manual-identidad/aplicaciones/aplicaciones.html` (composiciones) · `elementos-manual-identidad/aplicaciones/aplicaciones-previa.png` (vista rápida, renderizada con Chrome y Google Fonts) · `recurso-flujo.svg` y `recurso-flujo-oscuro.svg` (recurso gráfico).
 
 ### Aplicaciones (7)
 | # | Aplicación | Qué muestra | Por qué se resuelve así |
@@ -506,7 +506,7 @@ Derivado de la geometría del símbolo: **líneas a 60° que convergen** (la ent
   - No se probaron impresiones reales (tarjeta ni portada).
 
 ### Fase 9 (v1.1): aplicaciones y recurso de flujo (2026-10-21)  — aprobada (2026-10-21)
-- **Archivos actualizados:** [aplicaciones/aplicaciones.html](aplicaciones/aplicaciones.html) y su vista [aplicaciones/aplicaciones-previa.png](aplicaciones/aplicaciones-previa.png) (copia de la vista v1.0 en `.yas/backup-v1.0/aplicaciones/`).
+- **Archivos actualizados:** [aplicaciones/aplicaciones.html](elementos-manual-identidad/aplicaciones/aplicaciones.html) y su vista [aplicaciones/aplicaciones-previa.png](elementos-manual-identidad/aplicaciones/aplicaciones-previa.png) (copia de la vista v1.0 en `.yas/backup-v1.0/aplicaciones/`).
 - **Línea de apoyo** «Automatización de procesos con tecnología»: añadida en el banner de LinkedIn (Manrope Medium, Niebla sobre Medianoche, 16,34) y en la portada web (Pizarra sobre Niebla, 5,39). El titular web pasa a «Procesos que funcionan mejor, con responsabilidad.» para no repetir la línea. Tarjeta y firma, sin cambios (decisión del usuario).
 - **Recurso de flujo, regla medible:** un solo recurso por pieza, anclado a una esquina, de como máximo el 60 % de la altura de la pieza, sin tocar texto ni el área de respeto del logotipo. Aplicado en banner, portada de memoria, portada de presentación y portada web.
 - **Lockup horizontal H5** aplicado en las piezas. En el documento interior la cabecera sube de 22 a 26 px de alto (ancho ≈ 124 px, por encima del mínimo de 120 px).
@@ -516,11 +516,11 @@ Derivado de la geometría del símbolo: **líneas a 60° que convergen** (la ent
 
 ## 10. Manual
 
-**Archivos:** `manual/manual-identidad.md` y `manual/manual-identidad.html` (autocontenido salvo las rutas relativas a `../logo/` y `../aplicaciones/`; usa Nunito y Manrope desde Google Fonts; se imprime a PDF con saltos de página por sección).
+**Archivos:** `elementos-manual-identidad/manual/manual-identidad.md` y `elementos-manual-identidad/manual/manual-identidad.html` (autocontenido salvo las rutas relativas a `../logo/` y `../aplicaciones/`; usa Nunito y Manrope desde Google Fonts; se imprime a PDF con saltos de página por sección).
 
 **Secciones (11):** Introducción · El logotipo · Construcción · Versiones · Área de respeto y tamaño mínimo · Usos incorrectos · Color · Tipografía · Aplicaciones · Estructura gráfica y recursos · Entregables y contacto.
 
-**Archivos añadidos en esta fase:** `logo/construccion.svg` (diagrama de construcción con retícula de 4 unidades, ejes a 60° y 45°, trazo de 12), `logo/png/` (14 PNG de 1600 px de ancho con fondo transparente, salvo los negativos con fondo Medianoche y el avatar y el favicon con su fondo).
+**Archivos añadidos en esta fase:** `elementos-manual-identidad/logo/construccion.svg` (diagrama de construcción con retícula de 4 unidades, ejes a 60° y 45°, trazo de 12), `elementos-manual-identidad/logo/png/` (14 PNG de 1600 px de ancho con fondo transparente, salvo los negativos con fondo Medianoche y el avatar y el favicon con su fondo).
 
 ### Lista de comprobación final
 | Comprobación | Estado |
@@ -546,13 +546,13 @@ Derivado de la geometría del símbolo: **líneas a 60° que convergen** (la ent
 7. **Observación abierta:** en el lockup horizontal el usuario percibió el símbolo con más peso hacia abajo; se mantuvo la versión original (H1) y la alternativa H4 queda documentada.
 
 ### Fase 10 (v1.1): manual (2026-10-21)  — aprobada (2026-10-21)
-- **Archivos:** [manual/manual-identidad.md](manual/manual-identidad.md) y [manual/manual-identidad.html](manual/manual-identidad.html), versión 1.1, más la vista [manual/manual-previa.png](manual/manual-previa.png). Copia de v1.0 en `.yas/backup-v1.0/manual/`.
+- **Archivos:** [manual/manual-identidad.md](elementos-manual-identidad/manual/manual-identidad.md) y [manual/manual-identidad.html](elementos-manual-identidad/manual/manual-identidad.html), versión 1.1, más la vista [manual/manual-previa.png](elementos-manual-identidad/manual/manual-previa.png). Copia de v1.0 en `.yas/backup-v1.0/manual/`.
 - **Cambios frente a v1.0:** línea de apoyo (§1, §8); símbolo y nombre en curvas, maestro y lockup H5 (§2–§4); mínimos y área de respeto reevaluados, impresión provisional (§5); usos incorrectos ampliados (§6); tintes Línea y Bruma y filas de contraste nuevas (§7); regla medible del recurso de flujo (§10); pendientes y registro de cambios actualizados (§11). Cubre los hallazgos P1 y P2 y los P3 (spec, neutros, tabla de contraste, `alt`).
 - **Validaciones ejecutadas:** todos los `src` y `href` locales del HTML y los enlaces del Markdown existen; los HEX del HTML están todos en la paleta; solo queda un `alt=""` (el recurso decorativo de la portada); la portada ya no solapa texto (vista renderizada en Chrome); HTML y Markdown coinciden en versión, mínimos, contrastes y reglas.
 - **Pendiente de validación humana o física:** impresión (mínimos y Pantone), anterioridades, plantillas de Word/PowerPoint y datos de contacto. La vista renderizada necesita conexión para cargar Nunito y Manrope.
 
 ## 10b. Plan de transición (v1.1, 2026-10-21)  — aprobada (2026-10-21)
-- **Archivo:** [manual/transicion.md](manual/transicion.md).
+- **Archivo:** [manual/transicion.md](elementos-manual-identidad/manual/transicion.md).
 - **Orden:** web y LinkedIn → firma y plantillas de documentos → tarjeta (tras la prueba física) → revisar el vídeo. Fechas: *pendiente de definir*.
 - **Coexistencia:** v1.0 y v1.1 pueden convivir (mismo símbolo, color y nombre); solo se evita mezclar los dos lockups horizontales en una pieza.
 - **Retirar o agotar:** agotar lo impreso con v1.0; los SVG y PNG antiguos quedan en `.yas/backup-v1.0/`.
@@ -578,6 +578,6 @@ Derivado de la geometría del símbolo: **líneas a 60° que convergen** (la ent
 | 10 | Manual en Markdown y HTML | — | Sí (v1.0 aprobada implícitamente; v1.1 aprobada el 2026-10-21) |
 | 0b (v1.1, 2026-10-21) | Rebranding con alcance **ajuste** a partir de la auditoría (P1, P2 y P3); fases 0, 0b, 1 (línea de apoyo), 5, 6, 8, 9, 10 y 10b | Los hallazgos son de ejecución y de mensaje; el concepto y el símbolo se conservan | Aprobado por el usuario (2026-10-21). Salida: se actualiza en su sitio; copia de v1.0 en `.yas/backup-v1.0/` |
 | 1 (v1.1, 2026-10-21) | Línea de apoyo «Automatización de procesos con tecnología», fuera del logotipo; solo en banner de LinkedIn y web | Cubre el posicionamiento (P1) sin romper «sin descriptor»; el usuario descartó tarjeta y firma | Aprobada por el usuario |
-| 5 (v1.1, 2026-10-21) | Símbolo y nombre en curvas (misma geometría); lockup horizontal **H5** (78 %); se sustituyen los SVG y PNG de `logo/` y se añade `logo-master.svg` | Resuelve los hallazgos de trazados poligonales y de equilibrio del lockup | Aprobada por el usuario |
+| 5 (v1.1, 2026-10-21) | Símbolo y nombre en curvas (misma geometría); lockup horizontal **H5** (78 %); se sustituyen los SVG y PNG de `elementos-manual-identidad/logo/` y se añade `logo-master.svg` | Resuelve los hallazgos de trazados poligonales y de equilibrio del lockup | Aprobada por el usuario |
 | 6, 8, 9 (v1.1, 2026-10-21) | Tintes Línea y Bruma (solo decorativos); mínimos: símbolo 24 px, favicon 16 px, horizontal 120 px, vertical 110 px (impresión provisional); aplicaciones con línea de apoyo, recurso ≤ 60 % de la altura y neutros en paleta | Cierran los hallazgos de color, mínimos y recurso de la auditoría | Aprobadas por el usuario |
-| 10, 10b (v1.1, 2026-10-21) | Manual v1.1 (MD y HTML) y plan de transición (`manual/transicion.md`); fechas pendientes de definir | Recoge el ajuste y los hallazgos de la auditoría | Aprobadas por el usuario |
+| 10, 10b (v1.1, 2026-10-21) | Manual v1.1 (MD y HTML) y plan de transición (`elementos-manual-identidad/manual/transicion.md`); fechas pendientes de definir | Recoge el ajuste y los hallazgos de la auditoría | Aprobadas por el usuario |

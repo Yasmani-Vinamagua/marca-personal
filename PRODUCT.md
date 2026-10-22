@@ -20,7 +20,7 @@ Convierte procesos manuales y lentos en herramientas que funcionan solas: la aut
 
 ## Operating Context
 
-- Landing de una página con scroll (`web/index.html`: Inicio, Proyectos, Sobre mí, Recursos, Contacto) más `proyectos.html` (cuadrícula con filtros) y `proyecto.html` (detalle). Estructura y reglas en `docs/user-flow.md`.
+- Landing de una página con scroll (`web/index.html`: Inicio, Proyectos, Sobre mí, Recursos, Contacto) más `proyectos.html` (cuadrícula con filtros) y `proyecto.html` (detalle). Estructura y reglas en `web/user-flow/user-flow.md`.
 - Sin servidor: el formulario abre WhatsApp (`wa.me`) con el mensaje escrito. El número está configurado en `data-wa` del formulario.
 - HTML, CSS y JS planos, sin dependencias; tema claro y oscuro con interruptor.
 - Idioma de la web: español.
@@ -36,7 +36,7 @@ Convierte procesos manuales y lentos en herramientas que funcionan solas: la aut
 
 ## Brand Commitments
 
-Marca personal v1.1 (manual en `manual/`, spec en `marca-spec.md`): monograma A + Y, valores responsabilidad, honestidad y lealtad; personalidad innovadora y tecnológica, confiable y sobria. Paleta: azul marino `#223367`, rosa `#FF1563`, medianoche `#0D1530`, pizarra `#5B6478`, niebla `#F2F4F8`, blanco. Tipografías Nunito (títulos) y Manrope (texto). Recurso gráfico de líneas de flujo según `aplicaciones/recurso-flujo.svg`.
+Marca personal v1.1 (manual en `elementos-manual-identidad/manual/`, spec en `marca-spec.md`): monograma A + Y, valores responsabilidad, honestidad y lealtad; personalidad innovadora y tecnológica, confiable y sobria. Paleta: azul marino `#223367`, rosa `#FF1563`, medianoche `#0D1530`, pizarra `#5B6478`, niebla `#F2F4F8`, blanco. Tipografías Nunito (títulos) y Manrope (texto). Recurso gráfico de líneas de flujo según `elementos-manual-identidad/aplicaciones/recurso-flujo.svg`.
 
 ## Evidence on Hand
 

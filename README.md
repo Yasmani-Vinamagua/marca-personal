@@ -25,21 +25,22 @@ Identidad visual de la marca personal de Yasmani Viñamagua, ingeniero especiali
 | Niebla | `#F2F4F8` | Fondos claros |
 | Blanco | `#FFFFFF` | Fondo y negativo |
 
-El nombre se compone en **Nunito SemiBold**. Los tintes de apoyo y las reglas de contraste están en [`paleta/paleta.md`](paleta/paleta.md).
+El nombre se compone en **Nunito SemiBold**. Los tintes de apoyo y las reglas de contraste están en [`elementos-manual-identidad/paleta/paleta.md`](elementos-manual-identidad/paleta/paleta.md).
 
 ## Estructura
 
 | Carpeta o archivo | Contenido |
 |---|---|
-| [`logo/`](logo/) | Logotipo en SVG y PNG: color, negativo, una tinta, horizontal, vertical e iconos. `logo-master.svg` es el maestro. `exploracion/` guarda el proceso de diseño. |
-| [`manual/`](manual/) | Manual de identidad en HTML y Markdown, y la nota de transición v1.0 → v1.1. |
-| [`paleta/`](paleta/) | Colores con HEX, RGB, CMYK y Pantone de referencia, y tabla de contrastes. |
-| [`aplicaciones/`](aplicaciones/) | Maqueta de las aplicaciones de la marca y sus recursos gráficos. |
+| [`elementos-manual-identidad/logo/`](elementos-manual-identidad/logo/) | Logotipo en SVG y PNG: color, negativo, una tinta, horizontal, vertical e iconos. `logo-master.svg` es el maestro. `exploracion/` guarda el proceso de diseño. |
+| [`elementos-manual-identidad/manual/`](elementos-manual-identidad/manual/) | Manual de identidad en HTML y Markdown, y la nota de transición v1.0 → v1.1. |
+| [`elementos-manual-identidad/paleta/`](elementos-manual-identidad/paleta/) | Colores con HEX, RGB, CMYK y Pantone de referencia, y tabla de contrastes. |
+| [`elementos-manual-identidad/aplicaciones/`](elementos-manual-identidad/aplicaciones/) | Maqueta de las aplicaciones de la marca y sus recursos gráficos. |
+| [`guias-manuales/`](guias-manuales/) | Plantillas HTML (A4) exportables a PDF para manuales; incluye la portada (`plantilla-portada.html`). |
 | [`videos/`](videos/) | Animaciones del logo (horizontal y vertical) como proyectos [HyperFrames](https://github.com/heygen-com/hyperframes). |
 | [`banners/`](banners/) | Banners para GitHub (`banner-github.png`, 3168 × 792), LinkedIn (`banner-linkedin.png`, 1584 × 396, con el contenido desplazado para no quedar bajo la foto de perfil) y Figma Community (`banner-figma.png`, 1920 × 640), exportados desde `banner.html` con el lockup negativo, la línea de apoyo y el recurso de flujo. |
 | [`web/`](web/) | Sitio web personal en HTML, CSS y JS planos: inicio, proyectos y ficha de proyecto. Tema claro y oscuro, fuentes Nunito y Manrope en `woff2`, menú hamburguesa en móvil, tooltips accesibles, animaciones al entrar en cada sección y formulario que abre WhatsApp. Abre `web/index.html` para verlo. |
 | [`PRODUCT.md`](PRODUCT.md) · [`DESIGN.md`](DESIGN.md) | Contexto de producto y sistema de diseño de la web. |
-| [`docs/`](docs/) | Estructura y flujo de usuario del sitio (`user-flow.md`). |
+| [`web/user-flow/`](web/user-flow/) | Estructura y flujo de usuario del sitio (`user-flow.md`). |
 | [`marca-spec.md`](marca-spec.md) | Especificación de la marca: brief, decisiones y fases aprobadas. |
 | [`.yas/`](.yas/) | Informes de auditoría y configuración de Yas Design. |
 | [`.agents/`](.agents/) · [`.claude/`](.claude/) | Skills de Yas Design usadas para crear y auditar la marca. |

@@ -1,11 +1,11 @@
 {
   "_nota": "Creado por /yas-design (ajuste v1.1, 2026-10-21). La marca vive en la raíz del proyecto, no en .yas/brand/.",
-  "manualPath": "manual/manual-identidad.md",
-  "manualHtmlPath": "manual/manual-identidad.html",
+  "manualPath": "elementos-manual-identidad/manual/manual-identidad.md",
+  "manualHtmlPath": "elementos-manual-identidad/manual/manual-identidad.html",
   "specPath": "marca-spec.md",
-  "palettePath": "paleta/paleta.md",
-  "logoDir": "logo/",
-  "applicationsDir": "aplicaciones/",
+  "palettePath": "elementos-manual-identidad/paleta/paleta.md",
+  "logoDir": "elementos-manual-identidad/logo/",
+  "applicationsDir": "elementos-manual-identidad/aplicaciones/",
   "tokensPath": ".yas/tokens/tokens.json",
   "figmaLocalDir": ".yas/figma-local/",
   "dataStatus": {

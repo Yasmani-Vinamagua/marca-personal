@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plantilla de portada · Manual</title>
+<!--
+  PLANTILLA DE PORTADA PARA MANUALES (A4)
+  1. Edita solo el bloque <section class="portada"> (marcado con "EDITAR").
+  2. Cambia el tema en <html data-tema="oscuro|claro">.
+  3. Exporta: abre en Chrome/Edge → Ctrl+P → Destino "Guardar como PDF"
+     → Tamaño A4, Márgenes "Ninguno", activar "Gráficos de fondo".
+     (También funciona el botón "Exportar a PDF" de la vista previa.)
+-->
+<style>
+@font-face { font-family: "Nunito"; font-weight: 700; src: url("../web/fonts/nunito-700.woff2") format("woff2"); }
+@font-face { font-family: "Nunito"; font-weight: 800; src: url("../web/fonts/nunito-800.woff2") format("woff2"); }
+@font-face { font-family: "Manrope"; font-weight: 400; src: url("../web/fonts/manrope-400.woff2") format("woff2"); }
+@font-face { font-family: "Manrope"; font-weight: 500; src: url("../web/fonts/manrope-500.woff2") format("woff2"); }
+@font-face { font-family: "Manrope"; font-weight: 700; src: url("../web/fonts/manrope-700.woff2") format("woff2"); }
+
+:root {
+  --azul-marino: #223367;
+  --rosa: #FF1563;
+  --medianoche: #0D1530;
+  --pizarra: #5B6478;
+  --niebla: #F2F4F8;
+  --blanco: #FFFFFF;
+  --bruma: #C9D0E6;
+}
+/* Tema oscuro (por defecto) */
+:root, [data-tema="oscuro"] {
+  --fondo: var(--medianoche);
+  --fondo-2: var(--azul-marino);
+  --texto: var(--blanco);
+  --texto-2: var(--bruma);
+  --linea: rgba(201, 208, 230, .28);
+  --flujo: var(--blanco);
+}
+[data-tema="claro"] {
+  --fondo: var(--blanco);
+  --fondo-2: var(--niebla);
+  --texto: var(--medianoche);
+  --texto-2: var(--pizarra);
+  --linea: rgba(34, 51, 103, .22);
+  --flujo: var(--azul-marino);
+}
+
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #7d869c; }
+body {
+  font-family: "Manrope", system-ui, sans-serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Hoja A4 exacta */
+.portada {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  margin: 12mm auto;
+  padding: 20mm 18mm 16mm;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  color: var(--texto);
+  background:
+    radial-gradient(120% 70% at 100% 0%, color-mix(in srgb, var(--fondo-2) 85%, transparent), transparent 62%),
+    var(--fondo);
+  break-after: page;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
+}
+
+/* Recurso gráfico del manual (§10): uno por pieza, anclado a la esquina inferior derecha, ≤ 60 % de la altura */
+.recurso {
+  position: absolute; z-index: 0;
+  bottom: -1.6mm; right: -13.6mm; /* el dibujo termina en x=166, y=196 de 200: así toca los bordes derecho e inferior de la hoja */
+  width: 80mm; height: 80mm;
+  pointer-events: none;
+}
+
+/* Cabecera */
+.cabecera {
+  position: relative; z-index: 1;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.cabecera img { height: 15mm; width: auto; display: block; }
+.etiqueta {
+  font-size: 8.5pt; font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--texto-2);
+  text-align: right; line-height: 1.6;
+}
+.etiqueta b { color: var(--rosa); font-weight: 700; }
+
+/* Título */
+.centro {
+  position: relative; z-index: 1;
+  align-self: center;
+  max-width: 150mm;
+}
+.tipo {
+  display: inline-flex; align-items: center; gap: 4mm;
+  font-size: 10pt; font-weight: 700;
+  letter-spacing: .24em; text-transform: uppercase;
+  color: var(--rosa);
+  margin-bottom: 9mm;
+}
+.tipo::before { content: ""; width: 14mm; height: .8mm; background: var(--rosa); border-radius: 1mm; }
+h1 {
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 50pt;
+  line-height: 1.04;
+  letter-spacing: -.015em;
+  text-wrap: balance;
+}
+.subtitulo {
+  margin-top: 8mm;
+  font-size: 14pt; line-height: 1.5;
+  color: var(--texto-2);
+  max-width: 120mm;
+  text-wrap: pretty;
+}
+
+/* Pie: metadatos */
+.pie {
+  position: relative; z-index: 1;
+  display: grid;
+  max-width: 80mm;
+  padding-top: 7mm;
+  border-top: .4mm solid var(--linea);
+}
+.dato dt {
+  font-size: 7.5pt; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--texto-2);
+  margin-bottom: 1.6mm;
+}
+.dato dd { font-size: 10.5pt; font-weight: 500; line-height: 1.35; }
+
+/* Barra de herramientas (solo pantalla) */
+.barra {
+  position: fixed; top: 10px; right: 10px; z-index: 10;
+  display: flex; gap: 8px;
+  font: 500 13px "Manrope", sans-serif;
+}
+.barra button {
+  font: inherit; cursor: pointer;
+  padding: 9px 14px; border-radius: 8px; border: 0;
+  background: var(--rosa); color: #fff;
+}
+.barra button.sec { background: #fff; color: var(--azul-marino); }
+.barra button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+@media print {
+  html { background: none; }
+  .portada { margin: 0; box-shadow: none; }
+  .barra { display: none; }
+}
+@media screen and (max-width: 230mm) {
+  .portada { transform-origin: top center; zoom: .6; }
+}
+</style>
+</head>
+<body>
+
+<div class="barra" role="toolbar" aria-label="Acciones">
+  <button class="sec" type="button" id="tema">Cambiar tema</button>
+  <button type="button" onclick="window.print()">Exportar a PDF</button>
+</div>
+
+<!-- ============ EDITAR: contenido de la portada ============ -->
+<section class="portada" aria-label="Portada del manual">
+
+  <!-- Recurso de flujo (manual §10), en línea para poder atenuar el rosa; mismas coordenadas que aplicaciones/recurso-flujo*.svg -->
+  <svg class="recurso" viewBox="0 0 200 200" aria-hidden="true">
+    <g fill="none" stroke-linecap="round" stroke-width="12">
+      <path d="M30 10 L96 110" stroke="var(--flujo)" opacity=".30"/>
+      <path d="M62 10 L128 110" stroke="var(--flujo)" opacity=".18"/>
+      <path d="M94 10 L160 110" stroke="var(--flujo)" opacity=".10"/>
+      <path d="M96 110 L150 56" stroke="var(--rosa)" opacity=".55"/>
+      <path d="M96 110 L96 190" stroke="var(--flujo)" opacity=".30"/>
+    </g>
+  </svg>
+
+  <header class="cabecera">
+    <!-- Logo: usa logo-horizontal-1tinta-blanco.svg (tema oscuro) o logo-horizontal-color.svg (tema claro); ambos sin fondo -->
+    <img id="logo" src="../elementos-manual-identidad/logo/logo-horizontal-1tinta-blanco.svg" alt="Yasmani Viñamagua">
+    <p class="etiqueta">Versión <b>1.0</b><br>Octubre 2026</p>
+  </header>
+
+  <div class="centro">
+    <p class="tipo">Manual de usuario</p>
+    <h1>Título del manual en una o dos líneas</h1>
+    <p class="subtitulo">Subtítulo breve que explica a quién va dirigido el manual y qué permite hacer.</p>
+  </div>
+
+  <footer>
+    <dl class="pie">
+      <div class="dato"><dt>Autor</dt><dd>Yasmani Viñamagua</dd></div>
+    </dl>
+  </footer>
+
+</section>
+<!-- ============ FIN EDITAR ============ -->
+
+<script>
+  // Alterna tema y logo; en PDF se exporta el tema activo.
+  const raiz = document.documentElement, logo = document.getElementById('logo');
+  const logos = { oscuro: '../elementos-manual-identidad/logo/logo-horizontal-1tinta-blanco.svg', claro: '../elementos-manual-identidad/logo/logo-horizontal-color.svg' };
+  document.getElementById('tema').addEventListener('click', () => {
+    const t = raiz.dataset.tema === 'oscuro' ? 'claro' : 'oscuro';
+    raiz.dataset.tema = t; logo.src = logos[t];
+  });
+</script>
+</body>
+</html>
