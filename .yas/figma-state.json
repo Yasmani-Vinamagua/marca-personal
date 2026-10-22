@@ -1,76 +1,43 @@
 {
   "scope": "mini",
   "generated": "2026-10-21",
-  "mode": "mcp (interrumpido por límite de uso)",
-  "pageLimit": "manual",
-  "fileKey": "zpziigqB80578XApqxL0U3",
-  "fileUrl": "https://www.figma.com/design/zpziigqB80578XApqxL0U3/Marca-Personal-V.2",
+  "mode": "mcp",
+  "pageLimit": "none (la cuenta admite las 9 páginas)",
+  "fileKey": "KV1waknetb64DYBMJ190rO",
+  "fileUrl": "https://www.figma.com/design/KV1waknetb64DYBMJ190rO/Marca-personal",
+  "sessionId": "ff68ffe0-8521-472f-8e34-11cfa890ac7f",
+  "previousFile": {
+    "fileKey": "zpziigqB80578XApqxL0U3",
+    "note": "Archivo anterior (Marca-Personal-V.2) abandonado: solo lectura con la cuenta del MCP. Nada se creó allí."
+  },
   "pages": [
-    {
-      "name": "Cover",
-      "status": "pending (página creada por el usuario, sin contenido)",
-      "nodeId": "0:1",
-      "exists": true
-    },
-    {
-      "name": "Icons",
-      "status": "pending (página creada por el usuario, sin contenido)",
-      "nodeId": "5:2",
-      "exists": true
-    },
-    {
-      "name": "Brand assets",
-      "status": "pending (página creada por el usuario, sin contenido)",
-      "nodeId": "5:3",
-      "exists": true
-    },
-    {
-      "name": "Colors",
-      "status": "pending (página creada por el usuario, sin contenido)",
-      "nodeId": "5:4",
-      "exists": true
-    },
-    {
-      "name": "Type scale",
-      "status": "pending (página creada por el usuario, sin contenido)",
-      "nodeId": "5:5",
-      "exists": true
-    },
-    {
-      "name": "Spacing and layout",
-      "status": "pending (página creada por el usuario, sin contenido)",
-      "nodeId": "5:6",
-      "exists": true
-    },
-    {
-      "name": "Radios",
-      "status": "pending (página creada por el usuario, sin contenido)",
-      "nodeId": "5:7",
-      "exists": true
-    },
-    {
-      "name": "Shadows",
-      "status": "pending (página creada por el usuario, sin contenido)",
-      "nodeId": "5:8",
-      "exists": true
-    },
-    {
-      "name": "Grids",
-      "status": "pending (página creada por el usuario, sin contenido)",
-      "nodeId": "5:9",
-      "exists": true
-    }
+    { "name": "Cover", "nodeId": "0:1", "status": "done", "frame": "2:142" },
+    { "name": "Icons", "nodeId": "2:134", "status": "done", "frame": "2:647", "note": "solo especificación derivada (propuesta); sin dibujos de iconos" },
+    { "name": "Brand assets", "nodeId": "2:135", "status": "done", "frame": "2:612", "note": "símbolo en 4 versiones + horizontal y vertical en color, negativo y una tinta negra y blanca (cargados 2026-10-22); zona de seguridad y tamaño mínimo no constan en el manual" },
+    { "name": "Colors", "nodeId": "2:136", "status": "done", "frame": "2:147", "note": "incluye sección Contraste (12 pares por modo, 4:19)" },
+    { "name": "Type scale", "nodeId": "2:137", "status": "done", "frame": "2:513" },
+    { "name": "Spacing and layout", "nodeId": "2:138", "status": "done", "frame": "2:537" },
+    { "name": "Radios", "nodeId": "2:139", "status": "done", "frame": "2:567" },
+    { "name": "Shadows", "nodeId": "2:140", "status": "done", "frame": "2:586" },
+    { "name": "Grids", "nodeId": "2:141", "status": "done", "frame": "2:599" }
   ],
   "items": {
-    "collection:Primitivas": "pending",
-    "collection:Semánticas": "pending",
-    "collection:Espaciado y forma": "pending",
-    "collection:Tipografía": "pending",
-    "styles:text": "pending",
-    "styles:effect": "pending",
-    "styles:grid": "pending"
+    "collection:Primitivas": { "status": "done", "id": "VariableCollectionId:2:2", "variables": 38 },
+    "collection:Semánticas": { "status": "done", "id": "VariableCollectionId:2:74", "variables": 40, "modes": ["Light", "Dark"] },
+    "collection:Espaciado y forma": { "status": "done", "id": "VariableCollectionId:2:41", "variables": 15 },
+    "collection:Tipografía": { "status": "done", "id": "VariableCollectionId:2:57", "variables": 16 },
+    "styles:text": { "status": "done", "count": 7, "note": "tamaño, interlineado y familia enlazados a variables; el color del estilo no se pudo enlazar (paints no editable en el entorno) y se aplica en cada texto; Etiqueta usa mayúsculas en vez de versalitas (Manrope no las admite)" },
+    "styles:effect": { "status": "done", "count": 3 },
+    "styles:grid": { "status": "done", "count": 3 }
   },
-  "sessionId": "e831ab0b-35db-456d-8e06-eb22967d1e2b",
-  "lastError": "2026-10-21 (push): 'You've reached the Figma MCP tool call limit on the Starter plan.' en la primera lectura con use_figma. whoami: equipo 'yasmani08's team', plan starter, asiento View. No se creó ni leyó nada; el estado de las colecciones sigue sin verificar. El paquete local ya incluye los colores derivados (variables.json/md).",
-  "colorsInLocalPackage": "ampliado 2026-10-21 por /yas-figma colors (estados de acción, iconos, feedback)"
+  "extraPages": [
+    { "name": "pages", "status": "done", "frame": "9:2", "note": "captura de web/index.html (1920 x 6824) con generate_figma_design, 2026-10-22; capas editables, fuentes Nunito y Manrope; no es parte del mini" },
+    { "name": "pages (Proyectos)", "status": "done", "frame": "12:2", "note": "captura de web/proyectos.html (1920 x 2394)" },
+    { "name": "pages (Proyecto A)", "status": "done", "frame": "11:2", "note": "captura de web/proyecto.html (1920 x 4029); las tres capturas van en la página pages" }
+  ],
+  "pending": [
+    "Enlazar el color de los estilos de texto a variables",
+    "Actualizar .yas/figma-local/design-system.html con el estado real"
+  ],
+  "lastPush": "2026-10-22 (push 3): archivo Marca-personal. 4 colecciones con 109 variables, 7 estilos de texto, 3 de efecto, 3 de cuadrícula y las 9 páginas con contenido."
 }
