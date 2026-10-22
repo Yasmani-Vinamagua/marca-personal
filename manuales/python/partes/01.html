@@ -1,0 +1,229 @@
+<h1>Introducción</h1>
+
+<h2>Convenciones del documento</h2>
+<ul class="lista">
+  <li>El contenido procede de apuntes personales de estudio basados en un curso en línea de Python (Escuela Directa, s. f.), ordenados según su dependencia conceptual y complementados con información verificada en la documentación oficial del lenguaje.</li>
+  <li>Los fragmentos de código se presentan en bloques con fuente monoespaciada. Los resultados que imprime el programa se indican con el prefijo <code>&gt;&gt;</code>.</li>
+  <li>Los procedimientos se redactan en infinitivo o en forma impersonal con «se».</li>
+  <li>Los recuadros identifican información de apoyo: <b>Nota</b> (aclaración), <b>Importante</b> (advertencia), <b>Consejo</b> (recomendación práctica) y <b>Para ampliar</b> (información complementaria verificada, ajena a los apuntes originales).</li>
+  <li>Los ejemplos se probaron con Python 3 y se ejecutan desde una terminal. En Windows se emplea el comando <code>python</code>; en algunas instalaciones el lanzador equivalente es <code>py</code>.</li>
+</ul>
+
+<div class="foco">
+  <span class="et">Nota</span>
+  <p>Los proyectos del capítulo 12 requieren instalar bibliotecas externas (<code>pygame</code>, <code>pyttsx3</code>, <code>opencv-python</code>, <code>django</code>, entre otras) con <code>pip</code>, preferiblemente dentro de un entorno virtual (capítulo 11).</p>
+</div>
+
+<h1>Fundamentos del lenguaje</h1>
+
+<h2>Estructura básica de un programa</h2>
+<p>Un programa en Python es un archivo de texto con extensión <code>.py</code> cuyas instrucciones se ejecutan de arriba hacia abajo. Es recomendable encapsular la lógica principal en una función y ejecutarla únicamente cuando el archivo se lanza de forma directa, no cuando se importa desde otro:</p>
+<pre><code>def run():
+    palabra = input("Escribe una palabra: ")
+    print(palabra)
+
+
+if __name__ == "__main__":
+    run()</code></pre>
+<p>Python delimita los bloques mediante la <b>indentación</b>, que es obligatoria. La guía de estilo oficial recomienda cuatro espacios por nivel, líneas de un máximo de 79 caracteres, nombres de funciones y variables en minúscula con guiones bajos, nombres de clases en formato <i>CapWords</i> y constantes en mayúsculas (van Rossum et al., 2001). Por esa razón, un valor que no cambia se nombra en mayúsculas:</p>
+<pre><code>LIMITE = 1000</code></pre>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>La guía de estilo se denomina PEP 8 (<i>Python Enhancement Proposal</i> 8) y la documentación oficial del lenguaje se encuentra en <code>docs.python.org/3</code> (Python Software Foundation, s. f.-c). Al ejecutar <code>import this</code> en la consola se muestra el «Zen de Python», un conjunto de principios de diseño del lenguaje.</p>
+</div>
+
+<h2>Entrada de datos con input</h2>
+<p>La función <code>input()</code> permite que el programa reciba datos del usuario durante su ejecución. Muestra un mensaje y devuelve lo escrito.</p>
+<pre><code>nombre = input("Dime tu nombre: ")
+print("Tu nombre es " + nombre)
+&gt;&gt; Dime tu nombre: Yasmani
+&gt;&gt; Tu nombre es Yasmani</code></pre>
+<p>Todo valor devuelto por <code>input()</code> es una <b>cadena de texto</b>, incluso si el usuario escribe números. Cuando se requiere un número, el dato debe convertirse:</p>
+<pre><code>edad = int(input("¿Cuántos años tienes? "))
+altura = float(input("¿Cuál es tu altura en metros? "))</code></pre>
+<p>Para recibir varios valores en una misma línea se combina <code>input()</code> con el método <code>split()</code>:</p>
+<pre><code>x, y = input("Introduce dos números separados por espacio: ").split()
+x = int(x)
+y = int(y)
+print("La suma es:", x + y)</code></pre>
+
+<h2>Salida de datos con print</h2>
+<p>La función <code>print()</code> muestra información en la consola. Las cadenas pueden concatenarse con el operador <code>+</code> e incluir secuencias de escape, que son combinaciones que comienzan con una barra invertida.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 1</b><i>Secuencias de Escape de Uso Frecuente</i></p>
+  <table>
+    <thead><tr><th>Secuencia</th><th>Efecto</th></tr></thead>
+    <tbody>
+      <tr><td><code>\"</code></td><td>Imprime comillas dobles.</td></tr>
+      <tr><td><code>\n</code></td><td>Inserta un salto de línea.</td></tr>
+      <tr><td><code>\t</code></td><td>Inserta un tabulador.</td></tr>
+      <tr><td><code>\\</code></td><td>Imprime una barra invertida.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<p>Existen tres formas de combinar texto y variables. La concatenación simple une cadenas; el método <code>format()</code> sustituye marcadores <code>{}</code>; y las cadenas literales formateadas (<i>f-strings</i>), precedidas por la letra <code>f</code>, incorporan expresiones directamente entre llaves.</p>
+<pre><code>print("hola" + " " + "mundo")
+&gt;&gt; hola mundo
+
+print("Mi auto es {} y de matrícula {}".format(color_auto, matricula))
+
+print(f"Mi auto es {color_auto} y de matrícula {matricula}")</code></pre>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>Las <i>f-strings</i> admiten además un especificador de formato después de dos puntos; por ejemplo, <code>f"{math.pi:.3f}"</code> muestra el número pi con tres decimales (Python Software Foundation, s. f.-b).</p>
+</div>
+
+<h2>Tipos de datos y conversión</h2>
+<p>La función <code>type()</code> devuelve el tipo del valor almacenado en una variable:</p>
+<pre><code>num1 = 7
+print(type(num1))
+&gt;&gt; &lt;class 'int'&gt;</code></pre>
+<p>La conversión entre tipos se realiza con las funciones propias de cada tipo. En los ejemplos de la tabla, la variable <code>pesos</code> almacena una cantidad de dinero.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 2</b><i>Funciones de Conversión de Tipos</i></p>
+  <table>
+    <thead><tr><th>Expresión</th><th>Resultado</th></tr></thead>
+    <tbody>
+      <tr><td><code>pesos = float(pesos)</code></td><td>Convierte a número decimal.</td></tr>
+      <tr><td><code>pesos = int(pesos)</code></td><td>Convierte a número entero.</td></tr>
+      <tr><td><code>pesos = str(pesos)</code></td><td>Convierte a cadena de caracteres.</td></tr>
+      <tr><td><code>dolares = round(dolares, 2)</code></td><td>Redondea a un número de decimales determinado.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<h2>Operadores matemáticos</h2>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 3</b><i>Operadores y Funciones Aritméticas</i></p>
+  <table>
+    <thead><tr><th>Operación</th><th>Símbolo o función</th></tr></thead>
+    <tbody>
+      <tr><td>Suma</td><td><code>+</code></td></tr>
+      <tr><td>Resta</td><td><code>-</code></td></tr>
+      <tr><td>Multiplicación</td><td><code>*</code></td></tr>
+      <tr><td>División</td><td><code>/</code></td></tr>
+      <tr><td>Cociente (división entera)</td><td><code>//</code></td></tr>
+      <tr><td>Módulo (residuo)</td><td><code>%</code></td></tr>
+      <tr><td>Potencia</td><td><code>**</code></td></tr>
+      <tr><td>Raíz cuadrada</td><td><code>**0.5</code></td></tr>
+      <tr><td>Valor absoluto</td><td><code>abs()</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Un programa se organiza en funciones, y <code>if __name__ == "__main__"</code> controla su ejecución directa.</li>
+  <li><code>input()</code> siempre devuelve texto; debe convertirse con <code>int()</code> o <code>float()</code> si se necesita un número.</li>
+  <li>Las <i>f-strings</i> son la forma más legible de combinar texto y variables.</li>
+  <li>La indentación delimita los bloques de código y es obligatoria.</li>
+</ul>
+
+<h1>Cadenas de texto</h1>
+
+<h2>Indexado, búsqueda y porciones</h2>
+<p>Una cadena (<i>string</i>) es una secuencia de caracteres. Cada carácter ocupa una posición numerada a partir de cero, y también puede numerarse desde el final con números negativos. Las cadenas son <b>inmutables</b>: los métodos que las «modifican» devuelven una cadena nueva.</p>
+<pre><code>nombre = "Yasmani"
+print(nombre[0])       # primer carácter
+print(len(nombre))     # número de caracteres</code></pre>
+<p>El método <code>index()</code> localiza un carácter o fragmento y devuelve su posición; admite posiciones de inicio y fin de búsqueda. El método <code>rindex()</code> busca de derecha a izquierda.</p>
+<pre><code>mi_texto = "Esta es una prueba"
+print(mi_texto.index("n"))         # 9
+print(mi_texto.index("a", 5))      # 10
+print(mi_texto.index("a", 5, 16))  # 10
+print(mi_texto.rindex("a"))        # 17</code></pre>
+<p>El corte (<i>slicing</i>) extrae porciones mediante la sintaxis <code>cadena[inicio:fin:paso]</code>. El índice final no se incluye, y un paso negativo recorre la cadena en sentido inverso.</p>
+
+<div class="figura">
+  <p class="rotulo"><b>Figura 1</b><i>Porciones de una Cadena Mediante Slicing</i></p>
+  <img src="img/slicing.png" alt="Cadena Hola_Mundo con sus índices positivos y negativos y tres ejemplos de corte: [2:6] devuelve la_M, [3::3] devuelve auo y [::-1] devuelve odnuM_aloH">
+  <p class="nota"><i>Nota.</i> Imagen de las notas del autor.</p>
+</div>
+
+<h2>Métodos de análisis</h2>
+<p>Los métodos de análisis consultan propiedades de una cadena sin alterarla.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 4</b><i>Métodos de Búsqueda y Conteo en Cadenas</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>count()</code></td><td>Cuenta las veces que aparece un fragmento.</td><td><code>"Hola mundo".count("Hola")</code> → <code>1</code></td></tr>
+      <tr><td><code>find()</code></td><td>Devuelve la posición del fragmento, o <code>-1</code> si no existe.</td><td><code>"Hola mundo".find("world")</code> → <code>-1</code></td></tr>
+      <tr><td><code>index()</code></td><td>Como <code>find()</code>, pero lanza <code>ValueError</code> si no lo encuentra.</td><td><code>"Hola".index("l")</code> → <code>2</code></td></tr>
+      <tr><td><code>rfind()</code>, <code>rindex()</code></td><td>Buscan desde el final de la cadena.</td><td><code>"C:/python36/python.exe".rfind("/")</code> → <code>11</code></td></tr>
+      <tr><td><code>startswith()</code>, <code>endswith()</code></td><td>Indican si la cadena empieza o termina con el fragmento dado.</td><td><code>"Hola mundo".startswith("Hola")</code> → <code>True</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de una hoja de referencia del curso (Escuela Directa, s. f.).</p>
+</div>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 5</b><i>Métodos de Verificación de Contenido</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Devuelve <code>True</code> si todos los caracteres son…</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>isdigit()</code></td><td>dígitos</td><td><code>"abc123".isdigit()</code> → <code>False</code></td></tr>
+      <tr><td><code>isnumeric()</code></td><td>numéricos (incluye, por ejemplo, fracciones)</td><td><code>"1234".isnumeric()</code> → <code>True</code></td></tr>
+      <tr><td><code>isdecimal()</code></td><td>dígitos decimales del 0 al 9</td><td><code>"1234".isdecimal()</code> → <code>True</code></td></tr>
+      <tr><td><code>isalnum()</code></td><td>alfanuméricos</td><td><code>"abc123".isalnum()</code> → <code>True</code></td></tr>
+      <tr><td><code>isalpha()</code></td><td>alfabéticos</td><td><code>"abc123".isalpha()</code> → <code>False</code></td></tr>
+      <tr><td><code>islower()</code></td><td>minúsculas</td><td><code>"abcdef".islower()</code> → <code>True</code></td></tr>
+      <tr><td><code>isupper()</code></td><td>mayúsculas</td><td><code>"ABCDEF".isupper()</code> → <code>True</code></td></tr>
+      <tr><td><code>isprintable()</code></td><td>imprimibles (no son caracteres especiales)</td><td><code>"Hola \t mundo!".isprintable()</code> → <code>False</code></td></tr>
+      <tr><td><code>isspace()</code></td><td>espacios</td><td><code>"Hola mundo".isspace()</code> → <code>False</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de una hoja de referencia del curso (Escuela Directa, s. f.).</p>
+</div>
+
+<h2>Métodos de transformación</h2>
+<p>Dado que las cadenas son inmutables, los métodos de transformación no actúan sobre el objeto original, sino que devuelven uno nuevo.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 6</b><i>Métodos de Transformación de Cadenas</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>capitalize()</code></td><td>Primera letra en mayúscula.</td><td><code>"hola mundo".capitalize()</code> → <code>'Hola mundo'</code></td></tr>
+      <tr><td><code>upper()</code>, <code>lower()</code></td><td>Todo en mayúsculas o en minúsculas.</td><td><code>"Hola Mundo!".upper()</code> → <code>'HOLA MUNDO!'</code></td></tr>
+      <tr><td><code>swapcase()</code></td><td>Invierte mayúsculas y minúsculas.</td><td><code>"Hola Mundo!".swapcase()</code> → <code>'hOLA mUNDO!'</code></td></tr>
+      <tr><td><code>replace()</code></td><td>Reemplaza un fragmento por otro.</td><td><code>"Hola mundo".replace("mundo", "world")</code> → <code>'Hola world'</code></td></tr>
+      <tr><td><code>strip()</code>, <code>lstrip()</code>, <code>rstrip()</code></td><td>Eliminan espacios al inicio y al final, solo al inicio o solo al final.</td><td><code>" Hola mundo! ".strip()</code> → <code>'Hola mundo!'</code></td></tr>
+      <tr><td><code>center()</code>, <code>ljust()</code>, <code>rjust()</code></td><td>Alinean la cadena al centro, a la izquierda o a la derecha; el segundo argumento indica el carácter de relleno.</td><td><code>"Hola".center(10, "*")</code> → <code>'***Hola***'</code></td></tr>
+      <tr><td><code>encode()</code></td><td>Codifica la cadena y devuelve un objeto de tipo <code>bytes</code>.</td><td><code>"Hola mundo".encode("utf-8")</code> → <code>b'Hola mundo'</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de una hoja de referencia del curso (Escuela Directa, s. f.).</p>
+</div>
+
+<h2>Separación y unión</h2>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 7</b><i>Métodos de Separación y Unión de Cadenas</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>split()</code></td><td>Divide la cadena por un separador (por defecto, espacios); un segundo argumento limita las divisiones.</td><td><code>"Hola mundo!\nHello world!".split()</code> → <code>['Hola', 'mundo!', 'Hello', 'world!']</code></td></tr>
+      <tr><td><code>splitlines()</code></td><td>Divide la cadena en cada salto de línea.</td><td><code>"Hola mundo!\nHello world!".splitlines()</code> → <code>['Hola mundo!', 'Hello world!']</code></td></tr>
+      <tr><td><code>partition()</code></td><td>Devuelve una tupla con lo anterior a la primera aparición del separador, el separador y lo posterior.</td><td><code>"Hola mundo. Hello world!".partition(" ")</code> → <code>('Hola', ' ', 'mundo. Hello world!')</code></td></tr>
+      <tr><td><code>rpartition()</code></td><td>Igual que <code>partition()</code>, pero desde el final.</td><td><code>"Hola mundo. Hello world!".rpartition(" ")</code> → <code>('Hola mundo. Hello', ' ', 'world!')</code></td></tr>
+      <tr><td><code>join()</code></td><td>Une los elementos de una lista usando la cadena como separador.</td><td><code>", ".join(["C", "C++", "Python", "Java"])</code> → <code>'C, C++, Python, Java'</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de una hoja de referencia del curso (Escuela Directa, s. f.).</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Las cadenas se indexan desde cero (o desde el final con números negativos) y se cortan con <code>[inicio:fin:paso]</code>.</li>
+  <li>Son inmutables: cada método de transformación devuelve una cadena nueva.</li>
+  <li><code>find()</code> devuelve <code>-1</code> si no encuentra el fragmento, mientras que <code>index()</code> lanza un error.</li>
+</ul>

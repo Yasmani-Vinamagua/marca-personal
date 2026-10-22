@@ -1,0 +1,356 @@
+Git & GitHub C H E A T S H E E T
+
+Los comandos y trucos esenciales para el día a día — desde tu primer commit hasta colaborar con Pull Requests en GitHub.
+EN ESTA HOJA 01 · Git 02 · GitHub 03 · Markdown
+EMPIEZA EN 4 PASOS
+
+ 1 git init                       2 git add .                         3 git commit -m                   4 git push
+cCarerpaeetal .repositorio en tu  → Prepara los cambios (stage). → Gmueanrsdaajeu.na versión con
+                                                                                                  → Súbelo a GitHub.
+
+PARTE 1 Git — el control de versiones
+
+    CONFIGURACIÓN INICIAL · una sola vez                                  HISTORIAL Y DIFERENCIAS
+
+ $ git config --global user.name "Tu Nombre"                           $ git log --oneline
+
+Nombre que aparecerá en tus commits.                                  Historial compacto: una línea por commit.
+
+ $ git config --global user.email "tu@correo.com"                      $ git log --oneline --graph --all
+
+Correo asociado a tus commits.                                        Historial visual con todas las ramas.
+
+ $ git config --global init.defaultBranch main                         $ git diff
+
+Usa "main" como rama por defecto.                                     Cambios que aún NO están en el stage.
+
+ $ git config --list                                                   $ git diff --staged
+
+Muestra toda tu configuración actual.                                 Cambios que ya están en el stage.
+
+    CREAR Y OBTENER REPOSITORIOS                                          DESHACER COSAS · los salvavidas
+
+ $ git init                                                            $ git restore <archivo>
+
+Inicializa un repositorio en la carpeta actual.                       Descarta cambios del archivo (vuelve al último commit).
+
+ $ git clone <url>                                                     $ git restore --staged <archivo>
+
+Descarga un repo remoto con todo su historial.                        Saca el archivo del stage sin perder los cambios.
+
+ $ git clone --depth 1 <url>                                           $ git restore .
+
+Clon superficial: solo el último commit, mucho más rápido para repos  Descarta TODOS los cambios sin guardar y vuelve al último commit —
+grandes.                                                              útil para desechar todo de golpe.
+
+ $ git clone <url> <carpeta>                                           $ git commit --amend -m "nuevo mensaje"
+
+Clona dentro de una carpeta con el nombre que tú elijas.              Corrige el mensaje del último commit.
+
+    EL DÍA A DÍA: CAMBIOS Y COMMITS                                       RESET, REVERT Y REFLOG
+
+ $ git status                                                          $ git reset --soft HEAD~1
+
+Estado de los archivos (modificados, en stage, sin seguimiento).      Deshace el último commit, conserva cambios en stage.
+
+ $ git add <archivo>                                                   $ git reset --mixed HEAD~1
+
+Añade un archivo específico al stage.                                 Deshace el commit, cambios quedan sin stage (default).
+
+ $ git add .                                                            $ git reset --hard <commit>
+
+Añade todos los cambios al stage.                                        Cuidado: regresa a un commit descartando TODO lo posterior.
+
+ $ git commit -m "mensaje"                                             $ git revert <commit>
+
+Crea un commit con lo que está en el stage.                           Crea un commit que revierte otro (seguro para remotos).
+
+ $ git commit -am "mensaje"                                            $ git reflog
+
+Add + commit en un paso (archivos ya rastreados).                     Historial de TODO: tu máquina del tiempo para recuperar commits
+                                                                      "perdidos".
+Git & GitHub C H E A T S H E E T                                          REBASE · reescribir historia
+
+      RAMAS                                                            $ git rebase main
+
+    $ git branch                                                      Pone tus commits encima de main.
+
+ Lista las ramas (el * indica dónde estás).                            $ git rebase -i HEAD~3
+
+    $ git switch -c <rama>                                            Rebase interactivo: squash, reword, edit.
+                                                                         Regla de oro: nunca hagas rebase de commits que ya subiste a
+ Crea una rama nueva y se mueve a ella.
+                                                                       un remoto compartido.
+    $ git switch <rama>
+                                                                          TAGS · etiquetas de versión
+ Cambia a otra rama.
+                                                                       $ git tag
+    $ git merge <rama>
+                                                                      Lista todas las etiquetas.
+ Une la rama indicada con la rama actual.
+                                                                       $ git tag -a v1.0.0 -m "Versión 1.0.0"
+    $ git branch -d <rama>
+                                                                      Crea una etiqueta anotada (la recomendada).
+ Elimina una rama ya fusionada.
+                                                                       $ git tag -d v1.0.0
+    $ git branch -m <nuevo-nombre>
+                                                                      Elimina una etiqueta local.
+ Renombra la rama actual.
+                                                                          REMOTOS · trabajar con GitHub
+      RESOLVER CONFLICTOS DE MERGE
+                                                                       $ git remote add origin <url>
+ Cuando dos ramas cambian la misma línea, Git marca el conflicto así
+ en el archivo:                                                       Conecta tu repo local con uno remoto.
+
+     <<<<<<< HEAD                                                      $ git remote -v
+     tu versión
+     =======                                                          Muestra los remotos configurados.
+     la versión entrante
+     >>>>>>> otra-rama                                                 $ git push -u origin main
+
+  1. Edita el archivo y deja el código final (borra los marcadores).  Sube la rama y la vincula (solo la primera vez).
+  2. git add <archivo> marca el conflicto resuelto.
+  3. git commit cierra el merge.                                       $ git push
+
+    $ git merge --abort                                               Sube tus commits al remoto.
+
+ Cancela el merge y vuelve todo a como estaba.                         $ git push --tags
+
+      STASH · trabajo a medias                                        Sube también las etiquetas.
+
+    $ git stash                                                           TRAER CAMBIOS DEL REMOTO
+
+ Guarda los cambios en curso y limpia el directorio.                   $ git pull
+
+    $ git stash list                                                  Descarga y fusiona los cambios del remoto.
+
+ Muestra todos los stashes guardados.                                  $ git pull --rebase
+
+    $ git stash pop                                                   Descarga y pone tus commits encima (historial limpio).
+
+ Recupera el último stash y lo elimina de la lista.                    $ git fetch
+
+    $ git stash apply                                                 Descarga los cambios del remoto SIN fusionarlos.
+
+ Recupera el último stash pero lo conserva.
+
+    $ git stash drop
+
+ Elimina el último stash sin aplicarlo.
+Git & GitHub C H E A T S H E E T                                   MOVER, BORRAR Y LIMPIAR
+
+      EL ARCHIVO .GITIGNORE                                     $ git mv <viejo> <nuevo>
+
+    node_modules/                                              Renombra o mueve un archivo conservando su historial.
+
+ Ignora una carpeta completa.                                   $ git rm <archivo>
+
+    *.log                                                      Borra el archivo y lo saca del seguimiento.
+
+ Todos los archivos con esa extensión.                          $ git rm --cached <archivo>
+
+    dist/                                                      Deja de rastrear un archivo sin borrarlo del disco (ideal tras editar
+                                                               .gitignore).
+ Carpetas de build.
+                                                                 $ git clean -fd
+    .env
+                                                                  Cuidado: elimina archivos y carpetas sin seguimiento de forma
+ Variables de entorno — ¡nunca subas secretos!                  permanente.
+
+      INSPECCIONAR EL HISTORIAL                                    WORKTREES · varias ramas a la vez
+
+    $ git blame <archivo>                                       $ git worktree add ../hotfix rama
+
+ Muestra quién y en qué commit cambió cada línea.              Abre esa rama en otra carpeta, sin tocar tu trabajo actual.
+
+    $ git log -p                                                $ git worktree add -b nueva ../dir
+
+ Historial con el diff completo de cada commit.                Crea una rama nueva directamente en su propia carpeta.
+
+    $ git log --author="nombre"                                 $ git worktree list
+
+ Filtra los commits por autor.                                 Muestra todas las carpetas de trabajo activas.
+
+    $ git log -- <archivo>                                      $ git worktree remove ../hotfix
+
+ Solo los commits que tocaron ese archivo.                     Elimina el worktree cuando terminas (la rama se conserva).
+                                                               Alternativa a git stash: revisa un PR o arregla un bug sin cambiar de
+    $ git shortlog -sn                                         rama.
+
+ Ranking de commits por persona (útil para créditos).              ALIAS · escribe menos
+
+    $ git bisect start                                          $ git config --global alias.st status
+
+ Búsqueda binaria para hallar el commit que introdujo un bug.  Ahora git st equivale a git status.
+
+      BUSCAR EN EL HISTORIAL                                    $ git config --global alias.lg "log --oneline --graph --
+                                                                all"
+    $ git log --grep="texto"
+                                                               git lg: historial gráfico de todas las ramas en una línea.
+ Busca commits cuyo mensaje contenga ese texto.
+                                                                $ git config --global --list
+    $ git log -S "función"
+                                                               Revisa todos tus alias y ajustes globales.
+ Encuentra cuándo se agregó o quitó un fragmento de código.    Los alias más comunes: co → checkout, br → branch, ci → commit.
+
+    $ git diff rama1..rama2                                        COLABORAR EN PROYECTOS AJENOS · Fork
+                                                               1. Fork copia el repo a tu cuenta.
+ Compara dos ramas entre sí.
+                                                               2. git clone <url-de-tu-fork> clónalo.
+    $ git show <commit>:archivo                                3. Crea rama, haz cambios, push a TU fork.
+                                                               4. Abre un Pull Request al repo original.
+ Ver un archivo tal como estaba en ese commit.                 5. Mantén tu fork al día con Sync fork.
+
+ PARTE 2 GitHub — colaboración
+
+      FLUJO DE TRABAJO · Feature Branch
+
+  1. git switch -c mi-feature crea tu rama.
+  2. Trabaja y haz commits.
+  3. git push -u origin mi-feature sube la rama.
+  4. Abre un Pull Request en GitHub.
+  5. Revisión → correcciones → aprobación.
+  6. Merge del PR y elimina la rama.
+Git & GitHub C H E A T S H E E T                          URLS Y TRUCOS ÚTILES
+
+      SINCRONIZAR UN FORK · upstream                   /usuario/repo/compare
+
+    $ git remote add upstream <url-original>          Compara ramas o commits visualmente.
+
+ Conecta tu fork con el repositorio original.          añade .patch o .diff a la URL
+
+    $ git fetch upstream                              Ver un commit en texto plano.
+                                                      README.md en un repo con tu mismo usuario se vuelve la portada de
+ Descarga los cambios nuevos del original.            tu perfil.
+                                                      CODEOWNERS asigna revisores automáticos a los PRs.
+    $ git merge upstream/main
+                                                          COMMITS PROFESIONALES · Conventional Commits
+ Intégralos en tu rama local.
+                                                       feat:
+    $ git push origin main
+                                                      Una funcionalidad nueva.
+ Sube tu fork ya actualizado a GitHub.
+                                                       fix:
+      TRUCOS CON ISSUES Y COMMITS
+                                                      Corrección de un bug.
+    fixes #12 · closes #12
+                                                       docs:
+ Cierra el issue #12 al hacer merge.
+                                                      Cambios en documentación.
+    #12
+                                                       refactor:
+ Enlaza el commit con el issue (sin cerrarlo).
+                                                      Cambio que no agrega función ni corrige bug.
+    @usuario
+                                                       test:
+ Menciona y notifica a alguien.
+                                                      Añadir o corregir pruebas.
+      GITHUB CLI · gh
+                                                       chore:
+    $ gh auth login
+                                                      Mantenimiento (dependencias, config).
+ Inicia sesión en GitHub desde la terminal.
+                                                       Ejemplo:
+    $ gh repo create
+                                                        feat: agregar validación de correo en el formulario
+ Crea un repo sin abrir el navegador.
+                                                          GLOSARIO ESENCIAL
+    $ gh repo clone usuario/repo
+                                                      Commit · foto guardada de tus cambios en un momento dado.
+ Clona un repositorio.                                Repositorio · el proyecto completo con todo su historial.
+                                                      Rama (branch) · línea de trabajo paralela e independiente.
+      GITHUB CLI · PRs e issues                       Remoto · copia del repo en un servidor (p. ej. GitHub).
+                                                      Origin · nombre por defecto de tu remoto principal.
+    $ gh pr create                                    HEAD · apuntador a tu commit/rama actual.
+                                                      Stage · sala de espera de lo que irá al próximo commit.
+ Abre un Pull Request desde la terminal.              Pull Request · propuesta para fusionar tu rama, con revisión.
+                                                      Fork · copia de un repo ajeno en tu propia cuenta.
+    $ gh pr list
+                                                      BUENAS PRÁCTICAS
+ Lista los PRs abiertos.
+                                                        Commits pequeños y frecuentes, con mensajes claros
+    $ gh pr checkout 12                                 en imperativo.
+                                                        Una rama por funcionalidad o bug; nunca trabajes directo
+ Descarga el PR #12 para probarlo localmente.           en main.
+                                                        Haz git pull antes de empezar para evitar conflictos.
+    $ gh issue create                                   Revisa el git diff antes de cada commit.
+                                                        Cuida un buen README y un .gitignore desde el inicio.
+ Crea un issue.
+
+      ATAJOS DE TECLADO · github.com
+
+  t Buscador rápido de archivos del repo.
+  . Abre el repo en VS Code web (github.dev).
+  l Salta a una línea específica de un archivo.
+  b Ver blame (quién cambió cada línea).
+  y Convierte la URL en enlace permanente al commit.
+  ? Muestra todos los atajos disponibles.
+Git & GitHub C H E A T S H E E T
+
+ PARTE 3 Markdown — el lenguaje de los README, Issues y PRs
+
+Markdown es texto plano con símbolos sencillos que GitHub convierte en formato. Escribe a la izquierda, así se ve a la derecha.
+
+    TÍTULOS                                                            BLOQUES DE CÓDIGO
+
+ # Título 1                                                        Tres comillas invertidas y el lenguaje activan el resaltado de sintaxis:
+
+De # a ######: seis niveles de encabezado, mayor a menor.            ```js
+                                                                     const suma = (a, b) => a + b;
+    ÉNFASIS EN EL TEXTO                                              console.log(suma(2, 3));
+                                                                     ```
+
+ **negrita**                                                           TABLAS
+
+Texto en negrita.                                                    | Comando | Qué hace |
+                                                                     | ------- | -------- |
+ *cursiva*                                                           | add | agrega |
+                                                                     | commit | guarda |
+Texto en cursiva.
+                                                                   La fila de guiones separa el encabezado. Usa :---, :--: o ---: para
+ ~~tachado~~                                                       alinear.
+
+Texto tachado.                                                         AVISOS · alerts de GitHub
+
+ `código`                                                            > [!NOTE]
+                                                                     > Información útil para el lector.
+Código en línea dentro de una frase.                                 > [!WARNING]
+                                                                     > Algo que requiere atención.
+    LISTAS
+                                                                   También existen [!TIP], [!IMPORTANT] y ; [!CAUTION] GitHub los pinta
+ - item · * item                                                   con color e icono.
+
+Lista con viñetas. Indenta dos espacios para anidar.                   CONSEJOS DE MARKDOWN
+
+ 1. item                                                             Deja una línea en blanco entre párrafos; si no, se unen en
+                                                                     uno solo.
+Lista numerada (GitHub renumera solo).                               Termina una línea con dos espacios para forzar un salto sin
+                                                                     párrafo nuevo.
+ - [ ] tarea · - [x] hecha                                           Escapa un símbolo especial con \\ delante (p. ej. \\*).
+                                                                     Previsualiza con la pestaña Preview antes de guardar.
+Casillas de tarea; se marcan con un clic en Issues y PRs.
+                                                                       APRENDE MÁS · devtalles
+    ENLACES E IMÁGENES
+                                                                   ¿Quieres dominar Git & GitHub de verdad y seguir con desarrollo web,
+ [texto](https://url)                                              backend y más? Encuentra cursos completos en español en
+                                                                   cursos.devtalles.com.
+Un enlace con el texto que quieras.
+
+ ![alt](imagen.png)
+
+Inserta una imagen. Arrástrala al editor y GitHub la sube por ti.
+
+    CITAS, LÍNEAS Y EMOJIS
+
+ > texto citado
+
+Cita en bloque, con barra lateral.
+
+ ---
+
+Línea horizontal separadora.
+
+ :rocket: @usuario #12
+
+Emoji por código, mención a persona y enlace a un issue/PR.
+

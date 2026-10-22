@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plantilla de página final · Manual</title>
+<!--
+  PLANTILLA DE PÁGINA FINAL (A4): hoja en blanco con una sola frase centrada.
+  Edita el texto dentro de <p class="fin">. Para cambiar el fondo, usa data-tema="oscuro".
+  Exportar: Ctrl+P → "Guardar como PDF" → A4, márgenes "Ninguno", activar "Gráficos de fondo".
+-->
+<style>
+@font-face { font-family: "Nunito"; font-weight: 800; src: url("../web/fonts/nunito-800.woff2") format("woff2"); }
+
+:root {
+  --azul-marino: #223367;
+  --rosa: #FF1563;
+  --medianoche: #0D1530;
+  --blanco: #FFFFFF;
+  --fondo: var(--blanco);
+  --texto: var(--azul-marino);
+}
+[data-tema="oscuro"] { --fondo: var(--medianoche); --texto: var(--blanco); }
+
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #7d869c; }
+body {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.hoja {
+  width: 210mm;
+  height: 297mm;
+  margin: 12mm auto;
+  display: grid;
+  place-items: center;
+  background: var(--fondo);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
+}
+.fin {
+  font-family: "Nunito", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 28pt;
+  letter-spacing: -.01em;
+  color: var(--texto);
+}
+
+.barra {
+  position: fixed; top: 10px; right: 10px; z-index: 10;
+  font: 500 13px system-ui, sans-serif;
+}
+.barra button {
+  font: inherit; cursor: pointer;
+  padding: 9px 14px; border-radius: 8px; border: 0;
+  background: var(--rosa); color: #fff;
+}
+.barra button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+@media print {
+  html { background: none; }
+  .hoja { margin: 0; box-shadow: none; }
+  .barra { display: none; }
+}
+@media screen and (max-width: 230mm) {
+  .hoja { zoom: .6; }
+}
+</style>
+</head>
+<body>
+
+<div class="barra"><button type="button" onclick="window.print()">Exportar a PDF</button></div>
+
+<!-- ============ EDITAR ============ -->
+<section class="hoja" aria-label="Página final">
+  <p class="fin">end?</p>
+</section>
+<!-- ============ FIN EDITAR ============ -->
+
+</body>
+</html>

@@ -1,0 +1,2661 @@
+<h1>Introducción</h1>
+
+<h2>Convenciones del documento</h2>
+<ul class="lista">
+  <li>El contenido procede de apuntes personales de estudio basados en un curso en línea de Python (Escuela Directa, s. f.), ordenados según su dependencia conceptual y complementados con información verificada en la documentación oficial del lenguaje.</li>
+  <li>Los fragmentos de código se presentan en bloques con fuente monoespaciada. Los resultados que imprime el programa se indican con el prefijo <code>&gt;&gt;</code>.</li>
+  <li>Los procedimientos se redactan en infinitivo o en forma impersonal con «se».</li>
+  <li>Los recuadros identifican información de apoyo: <b>Nota</b> (aclaración), <b>Importante</b> (advertencia), <b>Consejo</b> (recomendación práctica) y <b>Para ampliar</b> (información complementaria verificada, ajena a los apuntes originales).</li>
+  <li>Los ejemplos se probaron con Python 3 y se ejecutan desde una terminal. En Windows se emplea el comando <code>python</code>; en algunas instalaciones el lanzador equivalente es <code>py</code>.</li>
+</ul>
+
+<div class="foco">
+  <span class="et">Nota</span>
+  <p>Los proyectos del capítulo 12 requieren instalar bibliotecas externas (<code>pygame</code>, <code>pyttsx3</code>, <code>opencv-python</code>, <code>django</code>, entre otras) con <code>pip</code>, preferiblemente dentro de un entorno virtual (capítulo 11).</p>
+</div>
+
+<h1>Fundamentos del lenguaje</h1>
+
+<h2>Estructura básica de un programa</h2>
+<p>Un programa en Python es un archivo de texto con extensión <code>.py</code> cuyas instrucciones se ejecutan de arriba hacia abajo. Es recomendable encapsular la lógica principal en una función y ejecutarla únicamente cuando el archivo se lanza de forma directa, no cuando se importa desde otro:</p>
+<pre><code>def run():
+    palabra = input("Escribe una palabra: ")
+    print(palabra)
+
+
+if __name__ == "__main__":
+    run()</code></pre>
+<p>Python delimita los bloques mediante la <b>indentación</b>, que es obligatoria. La guía de estilo oficial recomienda cuatro espacios por nivel, líneas de un máximo de 79 caracteres, nombres de funciones y variables en minúscula con guiones bajos, nombres de clases en formato <i>CapWords</i> y constantes en mayúsculas (van Rossum et al., 2001). Por esa razón, un valor que no cambia se nombra en mayúsculas:</p>
+<pre><code>LIMITE = 1000</code></pre>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>La guía de estilo se denomina PEP 8 (<i>Python Enhancement Proposal</i> 8) y la documentación oficial del lenguaje se encuentra en <code>docs.python.org/3</code> (Python Software Foundation, s. f.-c). Al ejecutar <code>import this</code> en la consola se muestra el «Zen de Python», un conjunto de principios de diseño del lenguaje.</p>
+</div>
+
+<h2>Entrada de datos con input</h2>
+<p>La función <code>input()</code> permite que el programa reciba datos del usuario durante su ejecución. Muestra un mensaje y devuelve lo escrito.</p>
+<pre><code>nombre = input("Dime tu nombre: ")
+print("Tu nombre es " + nombre)
+&gt;&gt; Dime tu nombre: Yasmani
+&gt;&gt; Tu nombre es Yasmani</code></pre>
+<p>Todo valor devuelto por <code>input()</code> es una <b>cadena de texto</b>, incluso si el usuario escribe números. Cuando se requiere un número, el dato debe convertirse:</p>
+<pre><code>edad = int(input("¿Cuántos años tienes? "))
+altura = float(input("¿Cuál es tu altura en metros? "))</code></pre>
+<p>Para recibir varios valores en una misma línea se combina <code>input()</code> con el método <code>split()</code>:</p>
+<pre><code>x, y = input("Introduce dos números separados por espacio: ").split()
+x = int(x)
+y = int(y)
+print("La suma es:", x + y)</code></pre>
+
+<h2>Salida de datos con print</h2>
+<p>La función <code>print()</code> muestra información en la consola. Las cadenas pueden concatenarse con el operador <code>+</code> e incluir secuencias de escape, que son combinaciones que comienzan con una barra invertida.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 1</b><i>Secuencias de Escape de Uso Frecuente</i></p>
+  <table>
+    <thead><tr><th>Secuencia</th><th>Efecto</th></tr></thead>
+    <tbody>
+      <tr><td><code>\"</code></td><td>Imprime comillas dobles.</td></tr>
+      <tr><td><code>\n</code></td><td>Inserta un salto de línea.</td></tr>
+      <tr><td><code>\t</code></td><td>Inserta un tabulador.</td></tr>
+      <tr><td><code>\\</code></td><td>Imprime una barra invertida.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<p>Existen tres formas de combinar texto y variables. La concatenación simple une cadenas; el método <code>format()</code> sustituye marcadores <code>{}</code>; y las cadenas literales formateadas (<i>f-strings</i>), precedidas por la letra <code>f</code>, incorporan expresiones directamente entre llaves.</p>
+<pre><code>print("hola" + " " + "mundo")
+&gt;&gt; hola mundo
+
+print("Mi auto es {} y de matrícula {}".format(color_auto, matricula))
+
+print(f"Mi auto es {color_auto} y de matrícula {matricula}")</code></pre>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>Las <i>f-strings</i> admiten además un especificador de formato después de dos puntos; por ejemplo, <code>f"{math.pi:.3f}"</code> muestra el número pi con tres decimales (Python Software Foundation, s. f.-b).</p>
+</div>
+
+<h2>Tipos de datos y conversión</h2>
+<p>La función <code>type()</code> devuelve el tipo del valor almacenado en una variable:</p>
+<pre><code>num1 = 7
+print(type(num1))
+&gt;&gt; &lt;class 'int'&gt;</code></pre>
+<p>La conversión entre tipos se realiza con las funciones propias de cada tipo. En los ejemplos de la tabla, la variable <code>pesos</code> almacena una cantidad de dinero.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 2</b><i>Funciones de Conversión de Tipos</i></p>
+  <table>
+    <thead><tr><th>Expresión</th><th>Resultado</th></tr></thead>
+    <tbody>
+      <tr><td><code>pesos = float(pesos)</code></td><td>Convierte a número decimal.</td></tr>
+      <tr><td><code>pesos = int(pesos)</code></td><td>Convierte a número entero.</td></tr>
+      <tr><td><code>pesos = str(pesos)</code></td><td>Convierte a cadena de caracteres.</td></tr>
+      <tr><td><code>dolares = round(dolares, 2)</code></td><td>Redondea a un número de decimales determinado.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<h2>Operadores matemáticos</h2>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 3</b><i>Operadores y Funciones Aritméticas</i></p>
+  <table>
+    <thead><tr><th>Operación</th><th>Símbolo o función</th></tr></thead>
+    <tbody>
+      <tr><td>Suma</td><td><code>+</code></td></tr>
+      <tr><td>Resta</td><td><code>-</code></td></tr>
+      <tr><td>Multiplicación</td><td><code>*</code></td></tr>
+      <tr><td>División</td><td><code>/</code></td></tr>
+      <tr><td>Cociente (división entera)</td><td><code>//</code></td></tr>
+      <tr><td>Módulo (residuo)</td><td><code>%</code></td></tr>
+      <tr><td>Potencia</td><td><code>**</code></td></tr>
+      <tr><td>Raíz cuadrada</td><td><code>**0.5</code></td></tr>
+      <tr><td>Valor absoluto</td><td><code>abs()</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Un programa se organiza en funciones, y <code>if __name__ == "__main__"</code> controla su ejecución directa.</li>
+  <li><code>input()</code> siempre devuelve texto; debe convertirse con <code>int()</code> o <code>float()</code> si se necesita un número.</li>
+  <li>Las <i>f-strings</i> son la forma más legible de combinar texto y variables.</li>
+  <li>La indentación delimita los bloques de código y es obligatoria.</li>
+</ul>
+
+<h1>Cadenas de texto</h1>
+
+<h2>Indexado, búsqueda y porciones</h2>
+<p>Una cadena (<i>string</i>) es una secuencia de caracteres. Cada carácter ocupa una posición numerada a partir de cero, y también puede numerarse desde el final con números negativos. Las cadenas son <b>inmutables</b>: los métodos que las «modifican» devuelven una cadena nueva.</p>
+<pre><code>nombre = "Yasmani"
+print(nombre[0])       # primer carácter
+print(len(nombre))     # número de caracteres</code></pre>
+<p>El método <code>index()</code> localiza un carácter o fragmento y devuelve su posición; admite posiciones de inicio y fin de búsqueda. El método <code>rindex()</code> busca de derecha a izquierda.</p>
+<pre><code>mi_texto = "Esta es una prueba"
+print(mi_texto.index("n"))         # 9
+print(mi_texto.index("a", 5))      # 10
+print(mi_texto.index("a", 5, 16))  # 10
+print(mi_texto.rindex("a"))        # 17</code></pre>
+<p>El corte (<i>slicing</i>) extrae porciones mediante la sintaxis <code>cadena[inicio:fin:paso]</code>. El índice final no se incluye, y un paso negativo recorre la cadena en sentido inverso.</p>
+
+<div class="figura">
+  <p class="rotulo"><b>Figura 1</b><i>Porciones de una Cadena Mediante Slicing</i></p>
+  <img src="img/slicing.png" alt="Cadena Hola_Mundo con sus índices positivos y negativos y tres ejemplos de corte: [2:6] devuelve la_M, [3::3] devuelve auo y [::-1] devuelve odnuM_aloH">
+  <p class="nota"><i>Nota.</i> Imagen de las notas del autor.</p>
+</div>
+
+<h2>Métodos de análisis</h2>
+<p>Los métodos de análisis consultan propiedades de una cadena sin alterarla.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 4</b><i>Métodos de Búsqueda y Conteo en Cadenas</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>count()</code></td><td>Cuenta las veces que aparece un fragmento.</td><td><code>"Hola mundo".count("Hola")</code> → <code>1</code></td></tr>
+      <tr><td><code>find()</code></td><td>Devuelve la posición del fragmento, o <code>-1</code> si no existe.</td><td><code>"Hola mundo".find("world")</code> → <code>-1</code></td></tr>
+      <tr><td><code>index()</code></td><td>Como <code>find()</code>, pero lanza <code>ValueError</code> si no lo encuentra.</td><td><code>"Hola".index("l")</code> → <code>2</code></td></tr>
+      <tr><td><code>rfind()</code>, <code>rindex()</code></td><td>Buscan desde el final de la cadena.</td><td><code>"C:/python36/python.exe".rfind("/")</code> → <code>11</code></td></tr>
+      <tr><td><code>startswith()</code>, <code>endswith()</code></td><td>Indican si la cadena empieza o termina con el fragmento dado.</td><td><code>"Hola mundo".startswith("Hola")</code> → <code>True</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de una hoja de referencia del curso (Escuela Directa, s. f.).</p>
+</div>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 5</b><i>Métodos de Verificación de Contenido</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Devuelve <code>True</code> si todos los caracteres son…</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>isdigit()</code></td><td>dígitos</td><td><code>"abc123".isdigit()</code> → <code>False</code></td></tr>
+      <tr><td><code>isnumeric()</code></td><td>numéricos (incluye, por ejemplo, fracciones)</td><td><code>"1234".isnumeric()</code> → <code>True</code></td></tr>
+      <tr><td><code>isdecimal()</code></td><td>dígitos decimales del 0 al 9</td><td><code>"1234".isdecimal()</code> → <code>True</code></td></tr>
+      <tr><td><code>isalnum()</code></td><td>alfanuméricos</td><td><code>"abc123".isalnum()</code> → <code>True</code></td></tr>
+      <tr><td><code>isalpha()</code></td><td>alfabéticos</td><td><code>"abc123".isalpha()</code> → <code>False</code></td></tr>
+      <tr><td><code>islower()</code></td><td>minúsculas</td><td><code>"abcdef".islower()</code> → <code>True</code></td></tr>
+      <tr><td><code>isupper()</code></td><td>mayúsculas</td><td><code>"ABCDEF".isupper()</code> → <code>True</code></td></tr>
+      <tr><td><code>isprintable()</code></td><td>imprimibles (no son caracteres especiales)</td><td><code>"Hola \t mundo!".isprintable()</code> → <code>False</code></td></tr>
+      <tr><td><code>isspace()</code></td><td>espacios</td><td><code>"Hola mundo".isspace()</code> → <code>False</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de una hoja de referencia del curso (Escuela Directa, s. f.).</p>
+</div>
+
+<h2>Métodos de transformación</h2>
+<p>Dado que las cadenas son inmutables, los métodos de transformación no actúan sobre el objeto original, sino que devuelven uno nuevo.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 6</b><i>Métodos de Transformación de Cadenas</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>capitalize()</code></td><td>Primera letra en mayúscula.</td><td><code>"hola mundo".capitalize()</code> → <code>'Hola mundo'</code></td></tr>
+      <tr><td><code>upper()</code>, <code>lower()</code></td><td>Todo en mayúsculas o en minúsculas.</td><td><code>"Hola Mundo!".upper()</code> → <code>'HOLA MUNDO!'</code></td></tr>
+      <tr><td><code>swapcase()</code></td><td>Invierte mayúsculas y minúsculas.</td><td><code>"Hola Mundo!".swapcase()</code> → <code>'hOLA mUNDO!'</code></td></tr>
+      <tr><td><code>replace()</code></td><td>Reemplaza un fragmento por otro.</td><td><code>"Hola mundo".replace("mundo", "world")</code> → <code>'Hola world'</code></td></tr>
+      <tr><td><code>strip()</code>, <code>lstrip()</code>, <code>rstrip()</code></td><td>Eliminan espacios al inicio y al final, solo al inicio o solo al final.</td><td><code>" Hola mundo! ".strip()</code> → <code>'Hola mundo!'</code></td></tr>
+      <tr><td><code>center()</code>, <code>ljust()</code>, <code>rjust()</code></td><td>Alinean la cadena al centro, a la izquierda o a la derecha; el segundo argumento indica el carácter de relleno.</td><td><code>"Hola".center(10, "*")</code> → <code>'***Hola***'</code></td></tr>
+      <tr><td><code>encode()</code></td><td>Codifica la cadena y devuelve un objeto de tipo <code>bytes</code>.</td><td><code>"Hola mundo".encode("utf-8")</code> → <code>b'Hola mundo'</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de una hoja de referencia del curso (Escuela Directa, s. f.).</p>
+</div>
+
+<h2>Separación y unión</h2>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 7</b><i>Métodos de Separación y Unión de Cadenas</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>split()</code></td><td>Divide la cadena por un separador (por defecto, espacios); un segundo argumento limita las divisiones.</td><td><code>"Hola mundo!\nHello world!".split()</code> → <code>['Hola', 'mundo!', 'Hello', 'world!']</code></td></tr>
+      <tr><td><code>splitlines()</code></td><td>Divide la cadena en cada salto de línea.</td><td><code>"Hola mundo!\nHello world!".splitlines()</code> → <code>['Hola mundo!', 'Hello world!']</code></td></tr>
+      <tr><td><code>partition()</code></td><td>Devuelve una tupla con lo anterior a la primera aparición del separador, el separador y lo posterior.</td><td><code>"Hola mundo. Hello world!".partition(" ")</code> → <code>('Hola', ' ', 'mundo. Hello world!')</code></td></tr>
+      <tr><td><code>rpartition()</code></td><td>Igual que <code>partition()</code>, pero desde el final.</td><td><code>"Hola mundo. Hello world!".rpartition(" ")</code> → <code>('Hola mundo. Hello', ' ', 'world!')</code></td></tr>
+      <tr><td><code>join()</code></td><td>Une los elementos de una lista usando la cadena como separador.</td><td><code>", ".join(["C", "C++", "Python", "Java"])</code> → <code>'C, C++, Python, Java'</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de una hoja de referencia del curso (Escuela Directa, s. f.).</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Las cadenas se indexan desde cero (o desde el final con números negativos) y se cortan con <code>[inicio:fin:paso]</code>.</li>
+  <li>Son inmutables: cada método de transformación devuelve una cadena nueva.</li>
+  <li><code>find()</code> devuelve <code>-1</code> si no encuentra el fragmento, mientras que <code>index()</code> lanza un error.</li>
+</ul>
+<h1>Estructuras de datos</h1>
+
+<h2>Panorama de las colecciones</h2>
+<p>Python ofrece cuatro colecciones integradas que almacenan varios valores en una sola variable: listas, tuplas, diccionarios y conjuntos. Se diferencian por tres propiedades: si pueden modificarse después de crearse (<i>mutabilidad</i>), si conservan un orden y si admiten elementos repetidos.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 8</b><i>Comparación de las Colecciones Integradas</i></p>
+  <table>
+    <thead><tr><th>Colección</th><th>Sintaxis</th><th>Mutable</th><th>Ordenada</th><th>Admite duplicados</th></tr></thead>
+    <tbody>
+      <tr><td>Lista</td><td><code>[1, 2, 3]</code></td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+      <tr><td>Tupla</td><td><code>(1, 2, 3)</code></td><td>No</td><td>Sí</td><td>Sí</td></tr>
+      <tr><td>Diccionario</td><td><code>{"a": 1}</code></td><td>Sí</td><td>Sí, por orden de inserción</td><td>Claves únicas; valores repetibles</td></tr>
+      <tr><td>Conjunto (<i>set</i>)</td><td><code>{1, 2, 3}</code></td><td>Sí</td><td>No</td><td>No</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Elaboración propia a partir de las notas del autor y de Python Software Foundation (s. f.-a).</p>
+</div>
+
+<h2>Listas</h2>
+<p>Una lista es una secuencia ordenada y mutable de objetos de cualquier tipo: cadenas, números, booleanos o incluso otras listas.</p>
+<pre><code>lista_1 = ["C", "C++", "Python", "Java"]
+
+print(lista_1[1:3])      # indexado con [inicio:fin:paso]
+&gt;&gt; ['C++', 'Python']
+
+print(len(lista_1))      # número de elementos
+&gt;&gt; 4
+
+print(lista_1 + lista_2) # concatenación
+&gt;&gt; ['C', 'C++', 'Python', 'Java', 'PHP', 'SQL', 'Visual Basic']</code></pre>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 9</b><i>Métodos Básicos de las Listas</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Función</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>append(x)</code></td><td>Agrega un elemento al final.</td><td><code>lista_1.append("R")</code></td></tr>
+      <tr><td><code>pop(i)</code></td><td>Elimina y devuelve el elemento de la posición <code>i</code> (por defecto, el último).</td><td><code>lista_1.pop(4)</code> → <code>'R'</code></td></tr>
+      <tr><td><code>sort()</code></td><td>Ordena la lista en el mismo objeto.</td><td><code>lista_3.sort()</code></td></tr>
+      <tr><td><code>reverse()</code></td><td>Invierte el orden de los elementos.</td><td><code>lista_4.reverse()</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>Los métodos que modifican la lista en su lugar, como <code>sort()</code>, <code>insert()</code> o <code>remove()</code>, devuelven <code>None</code>; por eso la expresión <code>lista = lista.sort()</code> es un error frecuente (Python Software Foundation, s. f.-a).</p>
+</div>
+
+<h3>Comprensión de listas</h3>
+<p>La comprensión de listas es una sintaxis breve para crear una lista nueva a partir de los valores de otra secuencia. Consiste en una expresión, una cláusula <code>for</code> y, de forma opcional, una condición <code>if</code>. La brevedad se logra a costa de una menor legibilidad cuando la expresión es compleja.</p>
+<pre><code>nueva_lista = [expresion for item in iterable if condicion]
+
+# Caso con else: la condición se coloca antes del for
+nueva_lista = [expresion if condicion else otra_expresion for item in iterable]
+
+nueva_lista = [num**2 for num in range(10) if num &lt; 5]
+print(nueva_lista)
+&gt;&gt; [0, 1, 4, 9, 16]</code></pre>
+
+<h2>Tuplas</h2>
+<p>Una tupla almacena varios elementos en una sola variable. Es ordenada, admite duplicados y es <b>inmutable</b>: sus elementos no pueden reasignarse una vez creada. Esa característica la hace más eficiente en memoria y la protege de modificaciones accidentales.</p>
+<pre><code>mi_tupla = (1, "dos", [3.33, "cuatro"], (5.0, 6))
+
+print(mi_tupla[3][0])    # indexado
+&gt;&gt; 5.0
+
+lista_1 = list(mi_tupla) # conversión (casting): ahora es mutable
+
+a, b, c, d = mi_tupla    # desempaquetado
+print(c)
+&gt;&gt; [3.33, 'cuatro']</code></pre>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>La inmutabilidad se refiere a la tupla, no a los objetos que contiene: una tupla puede incluir una lista, y esa lista sí puede modificarse (Python Software Foundation, s. f.-a).</p>
+</div>
+
+<h2>Diccionarios</h2>
+<p>Un diccionario almacena información en pares <i>clave: valor</i>. Se accede a cada valor por el nombre de su clave, no por un índice numérico. Es mutable, no admite claves repetidas y, a partir de Python 3.7, conserva el orden de inserción.</p>
+<pre><code>persona = {
+    "nombre": "Ana",
+    "edad": 25,
+    "ciudad": "Quito"
+}
+
+print(persona["nombre"])
+&gt;&gt; Ana
+
+print(persona.get("correo", "No definido"))   # evita errores si la clave no existe
+&gt;&gt; No definido</code></pre>
+<p>Las operaciones habituales son las siguientes:</p>
+<pre><code>persona["edad"] = 26                  # modificar
+persona["profesión"] = "Ingeniera"    # agregar
+del persona["ciudad"]                 # eliminar una clave
+persona.pop("edad")                   # eliminar y devolver el valor
+
+datos = {}                            # diccionario vacío
+persona = dict(nombre="Luis", edad=30)
+
+print(persona.keys())                 # dict_keys(['nombre', 'edad'])
+print(persona.values())               # dict_values(['Luis', 30])</code></pre>
+
+<h3>Recorrido de un diccionario</h3>
+<p>El método <code>items()</code> devuelve pares <code>(clave, valor)</code>, por lo que es la forma recomendada de recorrer un diccionario. Cuando el valor es una tupla, puede desempaquetarse en el mismo <code>for</code>.</p>
+<pre><code>for clave, valor in persona.items():
+    print(clave, ":", valor)
+
+usuarios = {
+    "yasmani": ("yasmani@gmail.com", "123456"),
+    "juan": ("juan@gmail.com", "123456"),
+}
+
+for usuario, (correo, clave) in usuarios.items():
+    print(usuario, correo, clave)
+&gt;&gt; yasmani yasmani@gmail.com 123456
+&gt;&gt; juan juan@gmail.com 123456</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>Los ejemplos con contraseñas en un diccionario son únicamente didácticos. En una aplicación real las contraseñas no se almacenan en texto plano.</p>
+</div>
+
+<h3>Comprensión de diccionarios y unión</h3>
+<pre><code>{clave: valor for valor in iterable if condicion}   # comprensión de diccionario
+
+dic_a | dic_b                                        # el símbolo | une un diccionario con otro</code></pre>
+<p>Los diccionarios son adecuados cuando se necesita acceso rápido por clave, estructuras del tipo «nombre → valor» o registros con campos nombrados, por ejemplo un alumno con nombre, edad y nota.</p>
+
+<h2>Conjuntos (sets)</h2>
+<p>Un conjunto es una colección mutable de elementos inmutables, sin orden y sin elementos repetidos (Python Software Foundation, s. f.-a). Se usa para eliminar duplicados y para operaciones de teoría de conjuntos. Un conjunto vacío se crea con <code>set()</code>, porque <code>{}</code> crea un diccionario.</p>
+<pre><code>mi_set_a = {1, 2, "tres"}
+mi_set_b = {3, "tres"}</code></pre>
+<p>Las tablas siguientes usan estos dos conjuntos como ejemplo.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 10</b><i>Métodos para Modificar un Conjunto</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Descripción</th><th>Ejemplo y resultado</th></tr></thead>
+    <tbody>
+      <tr><td><code>add(item)</code></td><td>Agrega un elemento.</td><td><code>mi_set_a.add(5)</code> → <code>{1, 2, 'tres', 5}</code></td></tr>
+      <tr><td><code>update(set)</code></td><td>Inserta los elementos de otro conjunto.</td><td><code>mi_set_a.update(mi_set_b)</code> → <code>{1, 2, 3, 'tres'}</code></td></tr>
+      <tr><td><code>discard(item)</code></td><td>Elimina un elemento; no falla si no existe.</td><td><code>mi_set_a.discard("tres")</code> → <code>{1, 2}</code></td></tr>
+      <tr><td><code>remove(item)</code></td><td>Elimina un elemento; lanza error si no existe.</td><td><code>mi_set_a.remove("tres")</code> → <code>{1, 2}</code></td></tr>
+      <tr><td><code>pop()</code></td><td>Elimina y devuelve un elemento arbitrario.</td><td><code>mi_set_a.pop()</code> → un elemento, por ejemplo <code>2</code></td></tr>
+      <tr><td><code>clear()</code></td><td>Elimina todos los elementos.</td><td><code>mi_set_a.clear()</code> → <code>set()</code></td></tr>
+      <tr><td><code>copy()</code></td><td>Devuelve una copia del conjunto.</td><td><code>mi_set_a.copy()</code> → <code>{1, 2, 'tres'}</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de una hoja de referencia del curso (Escuela Directa, s. f.).</p>
+</div>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 11</b><i>Operaciones entre Conjuntos</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Operador</th><th>Descripción</th><th>Resultado (A y B)</th></tr></thead>
+    <tbody>
+      <tr><td><code>union(B)</code></td><td><code>|</code></td><td>Combina A y B sin duplicados.</td><td><code>{1, 2, 3, 'tres'}</code></td></tr>
+      <tr><td><code>intersection(B)</code></td><td><code>&amp;</code></td><td>Elementos presentes en A y en B.</td><td><code>{'tres'}</code></td></tr>
+      <tr><td><code>difference(B)</code></td><td><code>-</code></td><td>Elementos que solo están en A.</td><td><code>{1, 2}</code></td></tr>
+      <tr><td><code>symmetric_difference(B)</code></td><td><code>^</code></td><td>Elementos de A y B, excepto los comunes.</td><td><code>{1, 2, 3}</code></td></tr>
+      <tr><td><code>isdisjoint(B)</code></td><td>—</td><td><code>True</code> si A y B no tienen elementos comunes.</td><td><code>False</code></td></tr>
+      <tr><td><code>issubset(B)</code></td><td>—</td><td><code>True</code> si todos los elementos de A están en B.</td><td><code>False</code></td></tr>
+      <tr><td><code>issuperset(B)</code></td><td>—</td><td><code>True</code> si A contiene todos los elementos de B.</td><td><code>False</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Las variantes <code>difference_update()</code>, <code>intersection_update()</code> y <code>symmetric_difference_update()</code> aplican la operación y actualizan el conjunto original. Adaptado de Escuela Directa (s. f.) y Python Software Foundation (s. f.-a).</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Las listas son ordenadas y mutables; las tuplas, ordenadas e inmutables.</li>
+  <li>Los diccionarios asocian claves únicas con valores y se recorren con <code>items()</code>.</li>
+  <li>Los conjuntos no tienen orden ni duplicados y admiten operaciones de unión, intersección y diferencia.</li>
+  <li>La comprensión de listas y de diccionarios crea colecciones nuevas con una sintaxis compacta.</li>
+</ul>
+
+<h1>Control de flujo</h1>
+
+<h2>El bucle for</h2>
+<p>A diferencia de otros lenguajes, el bucle <code>for</code> de Python recorre los elementos de cualquier secuencia (cadenas, listas, tuplas, diccionarios, conjuntos, rangos) en el orden en que aparecen. La sintaxis es:</p>
+<pre><code>for item in iterable:
+    # bloque de código (la indentación es obligatoria)</code></pre>
+<p>En cada iteración, la variable <code>item</code> toma el valor de un elemento del iterable y puede usarse dentro del bloque.</p>
+<pre><code>frutas = ["manzana", "pera", "uva"]
+for fruta in frutas:
+    print(fruta)
+
+for i in range(5):            # del 0 al 4
+    print(i)
+
+for i in range(1, 10, 2):     # range(inicio, fin, paso): 1, 3, 5, 7, 9
+    print(i)
+
+colores = ["rojo", "verde", "azul"]
+for i, color in enumerate(colores):   # recorre con el índice
+    print(i, color)
+
+nombres = ["Ana", "Luis"]
+edades = [20, 25]
+for nombre, edad in zip(nombres, edades):   # recorre varias listas a la vez
+    print(f"{nombre} tiene {edad} años")
+
+for letra in "python":                # recorre una cadena
+    print(letra)</code></pre>
+
+<h2>El bucle while</h2>
+<p>El bucle <code>while</code> se parece más a un condicional <code>if</code> que a un <code>for</code>: repite un bloque mientras la condición sea verdadera y se detiene cuando se vuelve <code>False</code>. La condición se evalúa antes de cada iteración. Admite una cláusula <code>else</code>, que se ejecuta cuando la condición pasa a ser falsa.</p>
+<pre><code>contador = 1
+while contador &lt;= 5:
+    print("Repetición", contador)
+    contador += 1
+&gt;&gt; Repetición 1
+&gt;&gt; ...
+&gt;&gt; Repetición 5</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>Si la condición nunca se vuelve falsa, el bucle es infinito. Debe verificarse que alguna instrucción del bloque modifique las variables de la condición, como <code>contador += 1</code> en el ejemplo.</p>
+</div>
+
+<h2>Control de bucles: break, continue, pass y else</h2>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 12</b><i>Palabras Clave de Control de Flujo</i></p>
+  <table>
+    <thead><tr><th>Palabra clave</th><th>Efecto</th></tr></thead>
+    <tbody>
+      <tr><td><code>break</code></td><td>Sale del bucle antes de que termine de forma natural.</td></tr>
+      <tr><td><code>continue</code></td><td>Omite el resto de la iteración actual y pasa a la siguiente.</td></tr>
+      <tr><td><code>pass</code></td><td>No hace nada; sirve de relleno donde la sintaxis exige un bloque.</td></tr>
+      <tr><td><code>else</code></td><td>En un bucle, se ejecuta solo si el bucle terminó sin <code>break</code>.</td></tr>
+      <tr><td><code>return</code></td><td>Sale de una función y puede devolver un valor.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<pre><code># break: detiene el bucle
+while True:
+    texto = input("Escribe algo (salir para terminar): ")
+    if texto == "salir":
+        break
+    print("Dijiste:", texto)
+
+# continue: salta el valor 2
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)
+&gt;&gt; 0  1  3  4
+
+# pass: marcador de posición
+def funcion():
+    pass  # pendiente de implementar
+
+# else en un bucle: se ejecuta porque no hubo break
+for i in range(3):
+    print(i)
+else:
+    print("Todo bien, sin break")</code></pre>
+<p>El siguiente ejemplo combina varias de estas palabras clave:</p>
+<pre><code>while True:
+    dato = input("Escribe un número positivo: ")
+    if dato == "salir":
+        break
+    if not dato.isdigit():
+        print("Entrada no válida.")
+        continue
+    numero = int(dato)
+    if numero == 0:
+        pass  # aquí podría añadirse lógica en el futuro
+    print("Número recibido:", numero)</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li><code>for</code> recorre los elementos de un iterable; <code>while</code> repite mientras una condición sea verdadera.</li>
+  <li><code>break</code>, <code>continue</code> y <code>pass</code> controlan el comportamiento dentro de un bucle.</li>
+  <li>La cláusula <code>else</code> de un bucle solo se ejecuta si no hubo <code>break</code>.</li>
+</ul>
+<h1>Funciones</h1>
+
+<h2>Definición y retorno de valores</h2>
+<p>Una función es un bloque de código con nombre que puede ejecutarse varias veces. Se define con la palabra clave <code>def</code>, y la instrucción <code>return</code> finaliza su ejecución y, opcionalmente, devuelve un valor.</p>
+<pre><code>def imprimir_mensaje():
+    print("mensaje especial: ")
+    print("estoy aprendiendo a usar funciones")
+
+
+def sumar(a, b):
+    return a + b
+
+
+resultado = sumar(3, 4)
+print(resultado)
+&gt;&gt; 7</code></pre>
+
+<h2>Argumentos de cantidad variable: *args y **kwargs</h2>
+<p>Cuando no se conoce de antemano el número de argumentos que se pasarán a una función se emplean dos sintaxis especiales. El nombre <code>args</code> o <code>kwargs</code> no es obligatorio, pero se recomienda como buena práctica; cualquier nombre precedido por <code>*</code> o <code>**</code> cumple la misma función.</p>
+<ul class="lista">
+  <li><code>*args</code> agrupa en una <b>tupla</b> los argumentos posicionales adicionales, después de los obligatorios.</li>
+  <li><code>**kwargs</code> (<i>keyword arguments</i>) agrupa en un <b>diccionario</b> los argumentos con nombre, que identifican al argumento por su nombre y no por su posición.</li>
+</ul>
+<pre><code>def mi_funcion(arg_1, arg_2, *args):
+    print(arg_1, arg_2, args)
+
+mi_funcion("ejemplo", 25, 40, 75, 10)
+&gt;&gt; ejemplo 25 (40, 75, 10)
+
+
+def atributos_persona(**kwargs):
+    print(kwargs)
+
+atributos_persona(ojos="azules", pelo="corto")
+&gt;&gt; {'ojos': 'azules', 'pelo': 'corto'}</code></pre>
+
+<h2>Funciones anónimas: lambda</h2>
+<p>Una función <code>lambda</code> es una función sin nombre, limitada a una sola expresión. Su estructura es <code>lambda argumentos: expresión</code>.</p>
+<pre><code>doble = lambda x: x * 2
+print(doble(4))
+&gt;&gt; 8</code></pre>
+
+<h2>Alcance de las variables (scope)</h2>
+<p>El alcance determina desde dónde puede utilizarse una variable. Una variable <b>local</b> existe solo dentro del bloque en que se define; una variable <b>global</b> está disponible en todas las funciones del módulo. Pueden coexistir una variable local y una global con el mismo nombre y valores distintos.</p>
+
+<h2>Funciones anidadas y clausuras</h2>
+<p>Una <b>función anidada</b> (<i>nested function</i>) es una función definida dentro de otra. Una <b>clausura</b> (<i>closure</i>) ocurre cuando una función interna recuerda una variable de un ámbito superior aunque ese ámbito ya no exista. Para que exista una clausura deben cumplirse tres condiciones:</p>
+<ol class="lista">
+  <li>Debe haber una función anidada.</li>
+  <li>La función anidada debe hacer referencia a un valor de un ámbito superior.</li>
+  <li>La función que envuelve a la anidada debe retornarla.</li>
+</ol>
+<pre><code>def crear_multiplicador(factor):
+    def multiplicar(numero):
+        return numero * factor   # recuerda "factor"
+    return multiplicar
+
+
+por_tres = crear_multiplicador(3)
+print(por_tres(5))
+&gt;&gt; 15</code></pre>
+<p>Las clausuras aparecen con frecuencia en clases cortas y en el uso de decoradores.</p>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li><code>def</code> define una función y <code>return</code> devuelve un valor.</li>
+  <li><code>*args</code> recibe argumentos posicionales como tupla; <code>**kwargs</code>, argumentos con nombre como diccionario.</li>
+  <li>Una clausura es una función interna que conserva variables del ámbito que la contiene.</li>
+</ul>
+
+<h1>Decoradores, iteradores y generadores</h1>
+
+<h2>Decoradores</h2>
+<p>Un decorador es una función que recibe otra función como parámetro, le añade comportamiento y retorna una función diferente, sin modificar el código interno de la original. Se emplea para agregar comprobaciones (por ejemplo, permisos), medir el tiempo de ejecución, registrar eventos y reutilizar código. Se aplica escribiendo <code>@nombre_del_decorador</code> encima de la función decorada.</p>
+<pre><code>def decorar_saludo(funcion):
+
+    def otra_funcion(palabra):
+        print("hola")
+        funcion(palabra)
+        print("adios")
+
+    return otra_funcion
+
+
+@decorar_saludo
+def minuscula(texto):
+    print(texto.lower())
+
+
+def mayuscula(texto):
+    print(texto.upper())
+
+
+mayuscula("PytHon")
+minuscula("PytHon")
+&gt;&gt; PYTHON
+&gt;&gt; hola
+&gt;&gt; python
+&gt;&gt; adios</code></pre>
+<div class="foco">
+  <span class="et">Nota</span>
+  <p>La línea <code>@decorar_saludo</code> equivale a ejecutar <code>minuscula = decorar_saludo(minuscula)</code>. Si la función original recibe parámetros, la función interna del decorador debe aceptar <code>*args</code> y <code>**kwargs</code> para transmitirlos.</p>
+</div>
+
+<h2>Iterables e iteradores</h2>
+<p>Un <b>iterable</b> es todo objeto que puede recorrerse en un ciclo, como una lista o una cadena. Un <b>iterador</b> produce sus elementos de uno en uno; ahorra recursos porque puede representar secuencias y progresiones matemáticas ocupando poca memoria.</p>
+
+<h2>Generadores</h2>
+<p>Un generador es una función especial que no devuelve todos los valores a la vez, sino que los genera uno por uno cuando se le piden. Utiliza la palabra clave <code>yield</code> en lugar de <code>return</code>: al encontrarla, pausa su ejecución y devuelve el valor; cuando se reanuda, continúa justo donde se quedó. Conserva un estado, ofrece las ventajas de un iterador con una sintaxis más sencilla y es útil para leer archivos línea por línea, procesar datos masivos o crear flujos infinitos.</p>
+<pre><code>def mi_generador():
+    x = 1
+    yield x
+
+    x += 1
+    yield x
+
+    x += 1
+    yield x
+
+
+g = mi_generador()
+
+print(g)
+print(next(g))
+print(next(g))
+print("Hola mundo")
+print(next(g))
+&gt;&gt; &lt;generator object mi_generador at 0x000001C7FF054B80&gt;
+&gt;&gt; 1
+&gt;&gt; 2
+&gt;&gt; Hola mundo
+&gt;&gt; 3</code></pre>
+<p>La dirección de memoria que aparece en la primera línea varía en cada ejecución. Las <b>expresiones generadoras</b> siguen la sintaxis de la comprensión de listas, pero con paréntesis: mientras la comprensión de listas almacena todos los elementos en memoria, la expresión generadora los entrega uno por uno.</p>
+<pre><code>cuadrados_lista = [n**2 for n in range(1000)]   # todos los elementos en memoria
+cuadrados_gen = (n**2 for n in range(1000))     # un elemento a la vez</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Un decorador envuelve una función para ampliar su comportamiento sin alterar su código.</li>
+  <li>Un generador, definido con <code>yield</code>, produce valores bajo demanda y ahorra memoria.</li>
+  <li>La expresión generadora es la versión perezosa de la comprensión de listas.</li>
+</ul>
+
+<h1>Programación orientada a objetos</h1>
+
+<h2>Clases, objetos, atributos y métodos</h2>
+<p>Una <b>clase</b> es una plantilla que define las propiedades (<i>atributos</i>) y las acciones (<i>métodos</i>) de los objetos creados a partir de ella. Es un concepto fundamental de la programación orientada a objetos porque permite organizar el código de forma modular y reutilizable. Un <b>objeto</b> (o <i>instancia</i>) es una entidad concreta con sus propios datos y comportamientos, creada desde una clase.</p>
+<pre><code>class Perro:                      # clase
+
+    def __init__(self, raza):     # método especial que asigna el atributo "raza"
+        self.raza = raza
+
+    def ladrar(self):             # método
+        print(f"{self.raza} ha ladrado")
+
+
+mi_perro = Perro("Chihuahua")     # objeto con el atributo "Chihuahua"
+mi_perro.ladrar()
+&gt;&gt; Chihuahua ha ladrado</code></pre>
+
+<h3>Atributos</h3>
+<p>Los atributos son las características o datos que pertenecen a un objeto o a una clase. Los <b>atributos de instancia</b> son propios de cada objeto y se definen con <code>self</code> (por ejemplo, la raza, el color o el nombre de un perro). Los <b>atributos de clase</b> son comunes a todos los objetos y se definen directamente dentro de la clase.</p>
+
+<h3>Métodos</h3>
+<p>Los métodos son funciones definidas dentro de una clase que permiten a los objetos realizar acciones con sus atributos. Existen tres tipos.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 13</b><i>Tipos de Métodos en una Clase</i></p>
+  <table>
+    <thead><tr><th>Tipo</th><th>Decorador</th><th>Primer parámetro</th><th>Acceso y uso</th></tr></thead>
+    <tbody>
+      <tr><td>De instancia</td><td>—</td><td><code>self</code></td><td>Operan sobre un objeto y acceden a sus atributos de instancia. Son los más comunes.</td></tr>
+      <tr><td>De clase</td><td><code>@classmethod</code></td><td><code>cls</code></td><td>Se relacionan con la clase, no con las instancias; acceden a los atributos de clase.</td></tr>
+      <tr><td>Estático</td><td><code>@staticmethod</code></td><td>—</td><td>No acceden a atributos de clase ni de instancia; agrupan funciones relacionadas con la clase.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<pre><code>class Pajaro:
+
+    alas = True                       # atributo de clase
+
+    def __init__(self, color, especie):
+        self.color = color
+        self.especie = especie
+
+    def caracteristicas(self):        # método de instancia
+        print(f"Piolin es un {self.especie} de color {self.color}")
+
+    def volar(self, metros):
+        print(f"El pajaro vuela {metros} metros")
+        self.especie = "colibrí"      # se pueden modificar los atributos del objeto
+        print(f"Ahora el pajaro es un {self.especie}")
+        self.caracteristicas()        # se puede llamar a otros métodos de instancia
+
+    @classmethod
+    def poner_huevos(cls, cantidad):  # método de clase
+        print(f"Puso {cantidad} huevos")
+        cls.alas = True               # se puede modificar un atributo de clase
+        print(Pajaro.alas)
+
+    @staticmethod
+    def mirar():                      # método estático
+        print("El pajaro es ciego")
+
+
+piolin = Pajaro("amarillo", "canario")   # objeto (instancia)
+piolin.volar(5)
+piolin.alas = False                      # modifica el atributo solo en este objeto
+print(piolin.alas)
+Pajaro.poner_huevos(3)                   # no necesita una instancia
+Pajaro.mirar()
+&gt;&gt; El pajaro vuela 5 metros
+&gt;&gt; Ahora el pajaro es un colibrí
+&gt;&gt; Piolin es un colibrí de color amarillo
+&gt;&gt; False
+&gt;&gt; Puso 3 huevos
+&gt;&gt; True
+&gt;&gt; El pajaro es ciego</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>La instrucción <code>piolin.alas = False</code> crea un atributo de instancia que oculta al atributo de clase solo para ese objeto; el atributo de la clase <code>Pajaro.alas</code> no cambia, lo cual explica que <code>poner_huevos()</code> imprima <code>True</code>.</p>
+</div>
+
+<h2>Herencia</h2>
+<p>La herencia permite que una clase obtenga los atributos y métodos de otra. La clase original se denomina <b>clase padre</b> o superclase, y la que hereda, <b>clase hija</b> o subclase. La subclase dispone automáticamente de todo lo definido en la superclase y puede agregar elementos propios.</p>
+<pre><code>class Animal:
+    def __init__(self, edad, color):
+        self.edad = edad
+        self.color = color
+
+    def nacer(self):
+        print("Este animal ha nacido")
+        print(f"Tiene {self.edad} años y es de color {self.color}")
+
+
+class Pajaro(Animal):
+    pass
+
+
+piolin = Pajaro(2, "amarillo")
+piolin.nacer()</code></pre>
+
+<h3>Herencia extendida</h3>
+<p>La subclase puede además añadir atributos o métodos propios, <b>sobrescribir</b> un método heredado para que funcione de otra manera y <b>llamar al método original</b> mediante <code>super()</code> cuando necesita conservar parte del comportamiento de la superclase.</p>
+<pre><code>class Animal:
+    def __init__(self, edad, color):
+        self.edad = edad
+        self.color = color
+
+    def nacer(self):
+        print("Este animal ha nacido")
+
+    def hablar(self):
+        print("Este animal emite un sonido")
+
+
+class Pajaro(Animal):
+    def __init__(self, edad, color, vuelo_metros):
+        super().__init__(edad, color)       # reutiliza el constructor de Animal
+        self.vuelo_metros = vuelo_metros
+
+    def hablar(self):                       # sobrescribe el método heredado
+        print(f"{self.color}")
+
+    def volar(self):
+        print(f"El pajaro vuela {self.vuelo_metros} metros")
+
+
+class Aguila(Pajaro):
+    pass
+
+
+mi_aguila = Aguila(30, "marrón", 5)
+mi_aguila.volar()
+&gt;&gt; El pajaro vuela 5 metros</code></pre>
+
+<h2>Polimorfismo</h2>
+<p>El polimorfismo significa que diferentes clases pueden usar el mismo nombre de método, pero cada una lo implementa a su manera. Así, un mismo código puede operar sobre objetos de clases distintas.</p>
+<pre><code>class Vaca:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def hablar(self):
+        print(self.nombre + " dice muuuu")
+
+
+class Oveja:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def hablar(self):
+        print(self.nombre + " dice meeeeee")
+
+
+animales = [Vaca("Aurora"), Oveja("Nube")]
+
+for animal in animales:
+    animal.hablar()
+&gt;&gt; Aurora dice muuuu
+&gt;&gt; Nube dice meeeeee</code></pre>
+
+<h2>Métodos especiales</h2>
+<p>Los métodos especiales (también llamados métodos «mágicos» o <i>magic methods</i>) son funciones cuyo nombre empieza y termina con dos guiones bajos, como <code>__nombre__</code>. Otorgan comportamientos particulares a los objetos y Python los invoca de forma automática en ciertas situaciones.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 14</b><i>Métodos Especiales Empleados en los Ejemplos</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Se invoca cuando…</th></tr></thead>
+    <tbody>
+      <tr><td><code>__init__</code></td><td>se crea un objeto; inicializa sus atributos.</td></tr>
+      <tr><td><code>__str__</code></td><td>se llama a <code>str(objeto)</code> o <code>print(objeto)</code>; devuelve su representación en texto.</td></tr>
+      <tr><td><code>__len__</code></td><td>se llama a <code>len(objeto)</code>.</td></tr>
+      <tr><td><code>__del__</code></td><td>el objeto se elimina, por ejemplo con <code>del objeto</code>.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Elaboración propia a partir de las notas del autor.</p>
+</div>
+
+<pre><code>class CD:
+
+    def __init__(self, autor, titulo, canciones):
+        self.autor = autor
+        self.titulo = titulo
+        self.canciones = canciones
+
+    def __str__(self):
+        return f"Album: {self.titulo} de {self.autor}"
+
+    def __len__(self):
+        return self.canciones
+
+    def __del__(self):
+        print(f"Se ha eliminado la canción {self.titulo}")
+
+
+mi_cd = CD("Pink Floyd", "The Wall", 24)
+
+print(str(mi_cd))
+print(len(mi_cd))
+del mi_cd
+&gt;&gt; Album: The Wall de Pink Floyd
+&gt;&gt; 24
+&gt;&gt; Se ha eliminado la canción The Wall</code></pre>
+
+<h2>Pilares de la programación orientada a objetos</h2>
+<p>El curso de referencia presenta la programación orientada a objetos como un modo de programación basado en seis pilares. Dos de ellos, la <b>herencia</b> y el <b>polimorfismo</b>, se desarrollaron en este capítulo. Los cuatro restantes tienen un carácter más conceptual:</p>
+<ul class="lista">
+  <li>Cohesión.</li>
+  <li>Acoplamiento.</li>
+  <li>Abstracción.</li>
+  <li>Encapsulamiento.</li>
+</ul>
+<div class="foco">
+  <span class="et">Nota</span>
+  <p>Las notas originales remiten a cuatro artículos del blog de Escuela Directa para estudiar estos pilares: <code>escueladirecta-blog.blogspot.com/2021/09/cohesion-pilares-de-la-programacion.html</code>, <code>…/2021/10/acoplamiento-pilares-de-la-programacion.html</code>, <code>…/2021/10/abstraccion-pilares-de-la-programacion.html</code> y <code>…/2021/10/encapsulamiento-pilares-de-la.html</code>.</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Una clase es una plantilla; un objeto es una instancia con datos propios.</li>
+  <li>Los métodos pueden ser de instancia (<code>self</code>), de clase (<code>cls</code>) o estáticos.</li>
+  <li>La herencia reutiliza código y <code>super()</code> permite aprovechar el comportamiento de la superclase.</li>
+  <li>El polimorfismo permite que clases distintas respondan al mismo método de maneras diferentes.</li>
+</ul>
+<h1>Manejo de archivos</h1>
+
+<h2>Apertura, lectura y escritura</h2>
+<p>La función <code>open(archivo, modo)</code> abre un archivo y devuelve un objeto sobre el que pueden aplicarse métodos de lectura y escritura. El parámetro <i>modo</i> determina qué operaciones se permiten y qué ocurre con el contenido previo.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 15</b><i>Modos de Apertura de Archivos</i></p>
+  <table>
+    <thead><tr><th>Modo</th><th>Operaciones</th><th>Comportamiento</th></tr></thead>
+    <tbody>
+      <tr><td><code>"r"</code></td><td>Solo lectura (predeterminado)</td><td>Lanza un error si el archivo no existe.</td></tr>
+      <tr><td><code>"r+"</code></td><td>Lectura y escritura</td><td>Requiere que el archivo exista.</td></tr>
+      <tr><td><code>"w"</code></td><td>Solo escritura</td><td>Sobrescribe el archivo si existe; lo crea si no existe.</td></tr>
+      <tr><td><code>"w+"</code></td><td>Escritura y lectura</td><td>Sobrescribe el archivo si existe; lo crea si no existe.</td></tr>
+      <tr><td><code>"a"</code></td><td>Añadir contenido</td><td>Agrega al final; crea el archivo si no existe.</td></tr>
+      <tr><td><code>"a+"</code></td><td>Añadir y leer</td><td>Agrega al final; crea el archivo si no existe.</td></tr>
+      <tr><td><code>"x"</code></td><td>Creación exclusiva</td><td>Crea el archivo; lanza un error si ya existe.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor y de Python Software Foundation (s. f.-b).</p>
+</div>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 16</b><i>Métodos de los Objetos de Archivo</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Función</th></tr></thead>
+    <tbody>
+      <tr><td><code>read(bytes)</code></td><td>Devuelve el número de bytes indicado; sin argumento, devuelve el archivo completo.</td></tr>
+      <tr><td><code>readline(bytes)</code></td><td>Devuelve una línea del archivo, limitada por el tamaño indicado.</td></tr>
+      <tr><td><code>readlines(bytes)</code></td><td>Devuelve una lista con cada línea del archivo como elemento.</td></tr>
+      <tr><td><code>write(texto)</code></td><td>Escribe el texto indicado en el archivo.</td></tr>
+      <tr><td><code>writelines(lista)</code></td><td>Escribe el contenido de una lista de cadenas.</td></tr>
+      <tr><td><code>close()</code></td><td>Cierra el archivo; no puede leerse ni escribirse después.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<pre><code># Escritura (sobrescribe) y lectura
+archivo = open("archivo.txt", "w")
+archivo.write("hola mundo")
+archivo.close()
+
+archivo = open("archivo.txt", "r")
+print(archivo.read())
+archivo.close()
+
+# Añadir contenido al final
+archivo = open("archivo.txt", "a")
+archivo.write("hola mundo")
+archivo.close()</code></pre>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>La documentación oficial recomienda emplear la palabra clave <code>with</code> al trabajar con archivos: el archivo se cierra correctamente al terminar el bloque, incluso si se produce una excepción. Sin ella, una escritura puede no llegar completa al disco si no se invoca <code>close()</code> (Python Software Foundation, s. f.-b).</p>
+</div>
+
+<pre><code>with open("./ruta/del/archivo.txt", "r", encoding="utf-8") as f:
+    contenido = f.read()</code></pre>
+<p>El argumento <code>encoding="utf-8"</code> permite que Python soporte los caracteres del español, como la «ñ» y las letras con tilde. Resulta conveniente indicarlo de forma explícita para que el programa se comporte igual en distintos sistemas operativos.</p>
+
+<h2>Rutas con pathlib</h2>
+<p>La clase <code>Path</code> del módulo <code>pathlib</code> construye rutas de archivos y carpetas de forma independiente del sistema operativo.</p>
+<pre><code>from pathlib import Path
+
+base = Path.home()                       # carpeta personal del usuario
+ruta = Path(base, "Loja", "sucre.txt")
+print(ruta)
+&gt;&gt; C:\Users\usuario\Loja\sucre.txt</code></pre>
+
+<h2>Los módulos os y shutil</h2>
+<p>El módulo <code>os</code> permite interactuar con el sistema operativo. El módulo <code>shutil</code> ofrece operaciones de alto nivel sobre archivos y carpetas completas, y resulta útil cuando <code>os</code> es insuficiente.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 17</b><i>Funciones Frecuentes del Módulo os</i></p>
+  <table>
+    <thead><tr><th>Función</th><th>Descripción</th></tr></thead>
+    <tbody>
+      <tr><td><code>os.getcwd()</code></td><td>Devuelve el directorio de trabajo actual.</td></tr>
+      <tr><td><code>os.chdir(ruta)</code></td><td>Cambia el directorio de trabajo.</td></tr>
+      <tr><td><code>os.listdir(ruta)</code></td><td>Lista los archivos y carpetas de un directorio.</td></tr>
+      <tr><td><code>os.mkdir(nombre)</code></td><td>Crea una carpeta.</td></tr>
+      <tr><td><code>os.makedirs(ruta)</code></td><td>Crea directorios anidados.</td></tr>
+      <tr><td><code>os.remove(archivo)</code></td><td>Elimina un archivo.</td></tr>
+      <tr><td><code>os.rmdir(carpeta)</code></td><td>Elimina una carpeta vacía.</td></tr>
+      <tr><td><code>os.rename(origen, destino)</code></td><td>Cambia el nombre de un archivo o carpeta, o lo mueve.</td></tr>
+      <tr><td><code>os.path.exists(ruta)</code></td><td>Verifica si una ruta existe.</td></tr>
+      <tr><td><code>os.path.isfile(ruta)</code></td><td>Verifica si la ruta es un archivo.</td></tr>
+      <tr><td><code>os.path.isdir(ruta)</code></td><td>Verifica si la ruta es un directorio.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 18</b><i>Funciones Principales del Módulo shutil</i></p>
+  <table>
+    <thead><tr><th>Función</th><th>Descripción</th></tr></thead>
+    <tbody>
+      <tr><td><code>shutil.copy(src, dst)</code></td><td>Copia un archivo a otro lugar.</td></tr>
+      <tr><td><code>shutil.copy2(src, dst)</code></td><td>Igual que <code>copy</code>, pero conserva los metadatos (fecha, permisos).</td></tr>
+      <tr><td><code>shutil.copytree(src, dst)</code></td><td>Copia un directorio completo de forma recursiva.</td></tr>
+      <tr><td><code>shutil.move(src, dst)</code></td><td>Mueve un archivo o directorio.</td></tr>
+      <tr><td><code>shutil.rmtree(ruta)</code></td><td>Elimina un directorio y todo su contenido.</td></tr>
+      <tr><td><code>shutil.disk_usage(ruta)</code></td><td>Devuelve el espacio total, usado y libre del disco.</td></tr>
+      <tr><td><code>shutil.make_archive(nombre, "zip", carpeta)</code></td><td>Comprime una carpeta en un archivo.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p><code>shutil.rmtree()</code> y <code>os.remove()</code> eliminan de forma definitiva, sin pasar por la papelera. Conviene verificar la ruta antes de ejecutarlos.</p>
+</div>
+
+<h2>Compresión con zipfile</h2>
+<p>El módulo <code>zipfile</code> permite crear, leer, escribir y extraer archivos ZIP.</p>
+<pre><code>import zipfile
+
+# Crear un archivo ZIP y agregarle un archivo existente
+with zipfile.ZipFile("archivo_comprimido.zip", "w") as zipf:
+    zipf.write("documento.txt")
+
+# Extraer todo el contenido
+with zipfile.ZipFile("archivo_comprimido.zip", "r") as zipf:
+    zipf.extractall("carpeta_destino")
+
+# Listar el contenido
+with zipfile.ZipFile("archivo_comprimido.zip", "r") as zipf:
+    print(zipf.namelist())</code></pre>
+<p>Con <code>shutil</code>, la compresión de una carpeta se reduce a una instrucción:</p>
+<pre><code>import shutil
+
+shutil.copy("archivo.txt", "copia.txt")
+shutil.move("archivo.txt", "carpeta_destino/archivo.txt")
+shutil.copytree("carpeta_origen", "carpeta_copia")
+shutil.make_archive("backup", "zip", "carpeta_a_comprimir")</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>El modo de apertura determina si se lee, se escribe, se añade o se crea un archivo.</li>
+  <li><code>with open(...)</code> garantiza el cierre del archivo; conviene indicar <code>encoding="utf-8"</code>.</li>
+  <li><code>pathlib</code>, <code>os</code> y <code>shutil</code> gestionan rutas, carpetas, copias y compresión.</li>
+</ul>
+
+<h1>Manejo de errores y calidad del código</h1>
+
+<h2>Excepciones: try, except, else y finally</h2>
+<p>El manejo de excepciones permite controlar situaciones inesperadas durante la ejecución, de modo que el programa no se detenga abruptamente. Sirve para que el programa no se cierre cuando el usuario comete un error (por ejemplo, al escribir letras donde se pedía un número), para mostrar un mensaje claro y para continuar de forma controlada.</p>
+<pre><code>try:
+    # código que podría fallar
+except:
+    # código si falla
+else:
+    # código si no hubo error
+finally:
+    # código que siempre se ejecuta</code></pre>
+<ul class="lista">
+  <li><b><code>try</code></b>: contiene el código que se espera pueda lanzar un error.</li>
+  <li><b><code>except</code></b>: gestiona el error; si ocurre dentro del bloque <code>try</code>, se interrumpe su ejecución y se ejecuta lo definido en <code>except</code>.</li>
+  <li><b><code>else</code></b>: se ejecuta solo si no se lanzó ninguna excepción en el <code>try</code>.</li>
+  <li><b><code>finally</code></b>: se ejecuta siempre, se haya lanzado o no una excepción.</li>
+</ul>
+<pre><code>try:
+    numero = int(input("Ingrese un número: "))
+except ValueError:
+    print("Eso no es un número válido.")
+else:
+    print(f"¡Ingresaste correctamente el número {numero}!")
+finally:
+    print("Fin de la operación.")</code></pre>
+<p>Si el usuario escribe un número válido, se muestra el número y «Fin de la operación». Si escribe un texto no numérico, se muestra el aviso de error y también «Fin de la operación».</p>
+
+<div class="foco consejo">
+  <span class="et">Consejo</span>
+  <p>Es preferible capturar el tipo de excepción concreto (<code>except ValueError:</code>) que usar un <code>except:</code> genérico, porque este último también oculta errores inesperados.</p>
+</div>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 19</b><i>Excepciones Frecuentes</i></p>
+  <table>
+    <thead><tr><th>Excepción</th><th>Se produce cuando…</th></tr></thead>
+    <tbody>
+      <tr><td><code>ValueError</code></td><td>una función recibe un valor de tipo correcto pero inadecuado, por ejemplo <code>int("abc")</code>.</td></tr>
+      <tr><td><code>KeyError</code></td><td>se consulta una clave que no existe en un diccionario.</td></tr>
+      <tr><td><code>IndexError</code></td><td>se accede a una posición fuera del rango de una secuencia.</td></tr>
+      <tr><td><code>FileNotFoundError</code></td><td>se intenta abrir un archivo que no existe.</td></tr>
+      <tr><td><code>ZeroDivisionError</code></td><td>se divide entre cero.</td></tr>
+      <tr><td><code>ImportError</code></td><td>falla la importación de un módulo.</td></tr>
+      <tr><td><code>KeyboardInterrupt</code></td><td>el usuario interrumpe el programa desde el teclado.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Las notas originales enumeran estas excepciones junto con <code>SyntaxError</code>, que corresponde a un error de sintaxis detectado antes de la ejecución.</p>
+</div>
+
+<h2>Sentencias assert</h2>
+<p>La sentencia <code>assert</code> verifica una condición durante la ejecución y, si es falsa, lanza un error con un mensaje. Su estructura es <code>assert condición, mensaje de error</code>. El método <code>.isnumeric()</code> de las cadenas devuelve <code>True</code> si el texto está formado por números, por lo que resulta útil para validar entradas.</p>
+<pre><code>entrada = "25"
+assert entrada.isnumeric(), "Debe ingresarse un número"</code></pre>
+
+<h2>Depuración</h2>
+<p>El depurador permite detener el programa y observar su estado. En Visual Studio Code, el procedimiento es el siguiente:</p>
+<ol class="lista">
+  <li>Abrir la vista <i>Ejecución y depuración</i> y seleccionar <i>Python file</i>.</li>
+  <li>Colocar un punto de interrupción (círculo rojo) en la línea donde debe detenerse el programa.</li>
+  <li>Con el botón de pausa se detiene la ejecución en el punto deseado.</li>
+  <li>Con la opción de depurar paso a paso se avanza línea por línea.</li>
+  <li>Con la opción de depurar paso a paso por instrucciones se ingresa al origen del código para revisarlo.</li>
+</ol>
+
+<h2>Análisis estático con pylint</h2>
+<p><code>pylint</code> es una herramienta que analiza el código Python de forma automática: busca errores de sintaxis, malas prácticas (nombres poco claros, funciones sin documentar), incumplimientos de las normas de estilo PEP 8 (nombres significativos, espacios, un máximo de 79 caracteres por línea) y código no utilizado. Además, asigna al archivo una puntuación de 0 a 10. Se instala una sola vez y luego se ejecuta sobre el archivo:</p>
+<pre><code>pip install pylint
+pylint ejercicio_ejemplo.py</code></pre>
+
+<h2>Pruebas automáticas con unittest</h2>
+<p>El módulo <code>unittest</code> viene incluido en Python y permite crear pruebas automáticas que comprueban el funcionamiento correcto de funciones, clases y métodos. Está inspirado en JUnit y su unidad básica es el <i>caso de prueba</i>, que verifica una respuesta específica ante un conjunto de entradas (Python Software Foundation, s. f.-e). El procedimiento es:</p>
+<ol class="lista">
+  <li>Importar el módulo: <code>import unittest</code>.</li>
+  <li>Crear una clase de prueba que herede de <code>unittest.TestCase</code>.</li>
+  <li>Definir métodos cuyo nombre comience con <code>test_</code>; esa convención indica al ejecutor qué métodos son pruebas.</li>
+  <li>Ejecutar las pruebas con <code>unittest.main()</code>.</li>
+</ol>
+<pre><code>import unittest
+
+
+def sumar(a, b):
+    return a + b
+
+
+class TestSumar(unittest.TestCase):
+    def test_suma_correcta(self):
+        self.assertEqual(sumar(2, 3), 5)
+
+
+if __name__ == "__main__":
+    unittest.main()</code></pre>
+<p>Al ejecutar el archivo, la salida indica <code>OK</code> si las pruebas pasan o señala la prueba que falló y el motivo.</p>
+
+<h2>Tipado y verificación con mypy</h2>
+<p>Los lenguajes de programación se clasifican según su sistema de tipos en estático, dinámico, débil y fuerte. Python es de tipado dinámico, pero desde la versión 3.6 permite <b>anotar</b> los tipos de las variables, lo que facilita la lectura y la detección de errores:</p>
+<pre><code>a: int = 5
+b: str = "hola"
+c: bool = True
+
+from typing import Dict, List, Tuple
+
+numeros: List[int] = [1, 2, 3]
+persona: Dict[str, int] = {"edad": 25}
+punto: Tuple[int, int] = (3, 4)</code></pre>
+<p>Las anotaciones no se verifican al ejecutar el programa. Para comprobarlas se utiliza <code>mypy</code>, un módulo que muestra en consola los errores de tipos y que se complementa con el módulo <code>typing</code>:</p>
+<pre><code>pip install mypy
+mypy nombre_archivo.py --check-untyped-defs</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li><code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code> controlan los errores en tiempo de ejecución.</li>
+  <li><code>assert</code>, el depurador y <code>pylint</code> ayudan a detectar problemas durante el desarrollo.</li>
+  <li><code>unittest</code> automatiza las pruebas y <code>mypy</code> verifica las anotaciones de tipos.</li>
+</ul>
+
+<h1>Módulos, paquetes y entornos virtuales</h1>
+
+<h2>Módulos y paquetes</h2>
+<p>Un <b>módulo</b> es cualquier archivo <code>.py</code> que contiene funciones, clases o variables reutilizables. Un <b>paquete</b> es una carpeta que agrupa módulos y, tradicionalmente, un archivo <code>__init__.py</code>. Desde Python 3.3 este archivo ya no es obligatorio, aunque sigue considerándose una buena práctica. Un módulo es, en esencia, código escrito por otra persona (o por uno mismo) que ahorra tiempo y puede implementarse en otros programas.</p>
+<pre><code># archivo: saludos.py
+def hola(nombre):
+    return f"Hola, {nombre}!"
+
+# archivo: main.py
+import saludos
+
+print(saludos.hola("Yasmani"))</code></pre>
+<pre><code>mi_proyecto/
+├── calculadora/
+│   ├── __init__.py
+│   ├── suma.py
+│   └── resta.py
+└── app.py
+
+# app.py
+from calculadora.suma import sumar
+print(sumar(3, 4))</code></pre>
+
+<h2>Entornos virtuales con venv</h2>
+<p>Un entorno virtual es un entorno de Python aislado y ligero, con su propio conjunto de paquetes; evita conflictos entre las dependencias de distintos proyectos. Suele ubicarse en una carpeta denominada <code>venv</code> o <code>.venv</code> dentro del proyecto, no debe incluirse en el control de versiones y puede eliminarse y recrearse en cualquier momento (Python Software Foundation, s. f.-f).</p>
+<pre><code>python -m venv venv           # crear el entorno llamado "venv"
+deactivate                    # salir del entorno virtual</code></pre>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 20</b><i>Comandos para Activar un Entorno Virtual</i></p>
+  <table>
+    <thead><tr><th>Terminal</th><th>Comando</th></tr></thead>
+    <tbody>
+      <tr><td>Windows, PowerShell</td><td><code>.\venv\Scripts\Activate.ps1</code></td></tr>
+      <tr><td>Windows, CMD</td><td><code>.\venv\Scripts\activate.bat</code></td></tr>
+      <tr><td>Git Bash en Windows</td><td><code>source venv/Scripts/activate</code></td></tr>
+      <tr><td>macOS y Linux (bash, zsh)</td><td><code>source venv/bin/activate</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor y de Python Software Foundation (s. f.-f).</p>
+</div>
+
+<p>Cuando el entorno está activo, el <i>prompt</i> muestra su nombre entre paréntesis, por ejemplo <code>(venv) C:\proyecto&gt;</code>.</p>
+
+<div class="foco consejo">
+  <span class="et">Consejo</span>
+  <p>Si PowerShell muestra el error «no puede ejecutarse el script», se resuelve ejecutando primero <code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code> y repitiendo la activación. Para abreviar el comando de activación, puede definirse un alias, por ejemplo <code>alias avenv=".\venv\Scripts\activate"</code> en Git Bash.</p>
+</div>
+
+<h2>Instalación de dependencias con pip</h2>
+<ol class="lista">
+  <li>Activar el entorno virtual.</li>
+  <li><code>pip freeze</code>: muestra los módulos instalados con sus versiones.</li>
+  <li><code>pip install pandas</code>: instala un módulo (en el ejemplo, <code>pandas</code>).</li>
+  <li><code>pip freeze &gt; requirements.txt</code>: guarda las dependencias con sus versiones, para compartirlas, por ejemplo, en GitHub.</li>
+  <li><code>cat requirements.txt</code>: muestra el contenido del archivo.</li>
+  <li><code>pip install -r requirements.txt</code>: instala las dependencias guardadas (lo ejecuta la persona que recibe el proyecto).</li>
+</ol>
+
+<h2>Anaconda</h2>
+<p>Anaconda es una distribución especializada en ciencia de datos; no se recomienda para otros campos de desarrollo. El procedimiento básico es:</p>
+<ol class="lista">
+  <li>Instalar Anaconda y ejecutar <i>Anaconda Navigator</i>.</li>
+  <li>En <i>Environments</i>, seleccionar <i>Create</i>, asignar un nombre y elegir el lenguaje.</li>
+  <li>En <i>Install</i>, seleccionar <i>All</i> y actualizar el índice (<i>Update Index</i>).</li>
+  <li>Buscar el paquete (por ejemplo, <code>pandas</code>), seleccionarlo y pulsar <i>Apply</i>.</li>
+</ol>
+
+<h2>Inicio de un proyecto nuevo</h2>
+<p>La secuencia de trabajo propuesta en las notas combina Git, un entorno virtual y la verificación de tipos:</p>
+<ol class="lista">
+  <li>Crear la carpeta del proyecto e ingresar a ella.</li>
+  <li>Inicializar el repositorio: <code>git init</code>.</li>
+  <li>Crear el entorno virtual: <code>python -m venv venv</code>.</li>
+  <li>Crear el archivo <code>.gitignore</code> y escribir en él <code>venv/</code>.</li>
+  <li>Activar el entorno virtual.</li>
+  <li>Instalar las herramientas necesarias, por ejemplo <code>pip install mypy</code>.</li>
+  <li>Crear el archivo <code>.py</code> y comenzar a trabajar.</li>
+  <li>Ejecutar el código con <code>python nombre_archivo.py</code> y revisar los tipos con <code>mypy nombre_archivo.py --check-untyped-defs</code>.</li>
+</ol>
+
+<h2>Módulos de la biblioteca estándar</h2>
+<h3>collections</h3>
+<p>El módulo <code>collections</code> ofrece tipos de datos especializados que amplían las colecciones estándar.</p>
+<pre><code>from collections import namedtuple, deque, Counter, defaultdict
+
+# namedtuple: tupla con campos nombrados
+Persona = namedtuple("Persona", ["nombre", "edad"])
+p = Persona(nombre="Yasmani", edad=30)
+print(p.nombre)      # Yasmani
+
+# deque: lista optimizada para insertar y eliminar en ambos extremos
+cola = deque(["a", "b", "c"])
+cola.append("d")         # agrega al final
+cola.appendleft("z")     # agrega al inicio
+cola.pop()               # elimina del final
+cola.popleft()           # elimina del inicio
+
+# Counter: cuenta la repetición de cada elemento
+contador = Counter("abracadabra")
+print(contador.most_common(2))   # [('a', 5), ('b', 2)]
+
+# defaultdict: diccionario con valor por defecto
+dic = defaultdict(int)
+dic["manzanas"] += 1
+print(dic["peras"])      # 0 (no lanza error)</code></pre>
+
+<h3>datetime</h3>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 21</b><i>Clases y Funciones Comunes del Módulo datetime</i></p>
+  <table>
+    <thead><tr><th>Clase o función</th><th>Descripción</th></tr></thead>
+    <tbody>
+      <tr><td><code>datetime.datetime.now()</code></td><td>Devuelve la fecha y la hora actuales.</td></tr>
+      <tr><td><code>datetime.date.today()</code></td><td>Devuelve solo la fecha actual.</td></tr>
+      <tr><td><code>datetime.datetime.strptime()</code></td><td>Convierte una cadena en un objeto <code>datetime</code>.</td></tr>
+      <tr><td><code>datetime.datetime.strftime()</code></td><td>Convierte un objeto <code>datetime</code> en una cadena.</td></tr>
+      <tr><td><code>datetime.timedelta</code></td><td>Permite operar con diferencias de tiempo (días, horas, etc.).</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+<pre><code>import datetime
+
+mi_tiempo = datetime.datetime.now()
+mi_dia = datetime.date.today()
+print(mi_dia.year, mi_dia.month, mi_dia.day)</code></pre>
+<p>Para trabajar con zonas horarias, las notas utilizan el paquete externo <code>pytz</code> (<code>pip install pytz</code>), que se importa junto con <code>from datetime import datetime</code>.</p>
+
+<h3>time y timeit</h3>
+<p>Para medir el tiempo de ejecución se usan las funciones <code>time()</code> o <code>perf_counter()</code> del módulo <code>time</code>; la segunda es más precisa en intervalos pequeños. El módulo <code>timeit</code> mide con gran precisión pequeños fragmentos de código al minimizar las interferencias del sistema.</p>
+<pre><code>import time
+
+inicio = time.perf_counter()
+time.sleep(2)                       # simula una función que tarda 2 segundos
+fin = time.perf_counter()
+print(f"Tiempo de ejecución: {fin - inicio:.4f} segundos")
+
+import timeit
+
+tiempo = timeit.timeit(stmt='"-".join(str(n) for n in range(100))', number=1000)
+print(f"Tiempo de ejecución: {tiempo:.6f} segundos")</code></pre>
+<p>El parámetro <code>stmt</code> es el código que se ejecuta, escrito como cadena, y <code>number</code> es la cantidad de repeticiones para obtener un promedio más preciso.</p>
+
+<h3>math</h3>
+<pre><code>import math
+
+print(math.pi)            # 3.141592653589793
+print(math.e)             # 2.718281828459045
+print(math.sqrt(16))      # 4.0
+print(math.pow(2, 3))     # 8.0
+print(math.log(100, 10))  # 2.0
+print(math.sin(math.pi / 2))  # 1.0
+print(math.floor(4.7))    # 4
+print(math.ceil(4.2))     # 5
+print(math.fabs(-5))      # 5.0
+print(math.factorial(5))  # 120</code></pre>
+
+<h3>re (expresiones regulares)</h3>
+<p>El módulo <code>re</code> permite trabajar con expresiones regulares, que son patrones para buscar, validar o extraer texto.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 22</b><i>Símbolos Comunes de las Expresiones Regulares</i></p>
+  <table>
+    <thead><tr><th>Símbolo</th><th>Significado</th></tr></thead>
+    <tbody>
+      <tr><td><code>\d</code></td><td>Un dígito (0-9).</td></tr>
+      <tr><td><code>\w</code></td><td>Un carácter alfanumérico (letra, número o guion bajo).</td></tr>
+      <tr><td><code>.</code></td><td>Cualquier carácter excepto el salto de línea.</td></tr>
+      <tr><td><code>*</code>, <code>+</code>, <code>?</code></td><td>Cero o más, uno o más, cero o uno.</td></tr>
+      <tr><td><code>{n}</code></td><td>Exactamente <i>n</i> repeticiones.</td></tr>
+      <tr><td><code>^</code>, <code>$</code></td><td>Inicio y fin de línea.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<pre><code>import re
+
+texto = "Mi número es 0991234567 y mi correo es ejemplo@email.com"
+
+resultado = re.search(r"\d{10}", texto)             # buscar un número de celular
+print(resultado.group())
+&gt;&gt; 0991234567
+
+correo_valido = re.match(r"\w+@\w+\.\w+", "ejemplo@email.com")
+print(correo_valido is not None)                    # validar un formato
+&gt;&gt; True
+
+print(re.findall(r"\d+", texto))                    # todas las coincidencias
+&gt;&gt; ['0991234567']
+
+print(re.sub(r"\d{10}", "XXXXXXXXXX", texto))       # reemplazar patrones
+&gt;&gt; Mi número es XXXXXXXXXX y mi correo es ejemplo@email.com</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Un módulo es un archivo <code>.py</code>; un paquete es una carpeta de módulos.</li>
+  <li>Los entornos virtuales aíslan las dependencias de cada proyecto, y <code>requirements.txt</code> permite reproducirlas.</li>
+  <li>La biblioteca estándar incluye módulos para colecciones, fechas, tiempo, matemáticas y expresiones regulares.</li>
+</ul>
+<h1>Proyectos aplicados</h1>
+
+<h2>Videojuego con Pygame: Invasión Espacial</h2>
+<p>Este proyecto construye, paso a paso, un videojuego en dos dimensiones con la biblioteca <code>pygame</code>. Cada subsección muestra únicamente el código nuevo o modificado respecto del paso anterior; el programa completo se incluye en el anexo A. Los archivos de imagen y sonido (<code>logo_color.png</code>, <code>mouse.png</code>, <code>veneno.png</code>, <code>bala.png</code>, <code>fondo.png</code>, <code>MusicaFondo.mp3</code>, <code>disparo.mp3</code> y <code>Golpe.mp3</code>) deben estar en la misma carpeta que el programa.</p>
+<pre><code>pip install pygame</code></pre>
+
+<h3>Paso 1. Crear la pantalla</h3>
+<p>Se importa el paquete, se inicializa y se crea una ventana de 800 × 600 píxeles. El <b>bucle del juego</b> se mantiene mientras la variable <code>se_ejecuta</code> sea verdadera y la ventana se cierra al hacer clic en la «X».</p>
+<pre><code>import pygame
+
+pygame.init()                                   # inicializa Pygame
+pantalla = pygame.display.set_mode((800, 600))  # pantalla de 800 px x 600 px
+
+se_ejecuta = True
+
+while se_ejecuta:                               # bucle del juego
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:          # clic en la X de la ventana
+            se_ejecuta = False</code></pre>
+
+<h3>Paso 2. Título, icono y color de fondo</h3>
+<pre><code>icono = pygame.image.load("logo_color.png")
+pygame.display.set_caption("Invasión Lolera")   # título de la ventana
+pygame.display.set_icon(icono)                  # icono de la ventana
+
+color_fondo = (255, 255, 255)                   # color RGB del fondo
+
+# dentro del bucle del juego:
+    pantalla.fill(color_fondo)                  # pinta el fondo
+    pygame.display.update()                     # actualiza la pantalla</code></pre>
+
+<h3>Paso 3. Agregar el protagonista</h3>
+<pre><code>img_jugador = pygame.image.load("mouse.png")    # imagen de la nave
+jugador_x = 368                                 # posición en X
+jugador_y = 536                                 # posición en Y
+
+def jugador():
+    pantalla.blit(img_jugador, (jugador_x, jugador_y))   # dibuja la nave
+
+# dentro del bucle, después de pintar el fondo:
+    jugador()</code></pre>
+
+<h3>Paso 4. Mover al personaje</h3>
+<p>Una variable de cambio guarda la velocidad horizontal. Al presionar una flecha se asigna un valor positivo o negativo, y al soltarla vuelve a cero. Además, se limita la posición para que la nave no salga de la pantalla: el máximo es 800 − 64, donde 64 corresponde al ancho de la imagen.</p>
+<pre><code>jugador_x_cambio = 0
+
+def jugador(x, y):
+    pantalla.blit(img_jugador, (x, y))
+
+# dentro del bucle, en la revisión de eventos:
+    if evento.type == pygame.KEYDOWN:
+        if evento.key == pygame.K_LEFT:
+            jugador_x_cambio = -0.1
+        elif evento.key == pygame.K_RIGHT:
+            jugador_x_cambio = 0.1
+
+    if evento.type == pygame.KEYUP:
+        if evento.key == pygame.K_LEFT or evento.key == pygame.K_RIGHT:
+            jugador_x_cambio = 0
+
+# después de los eventos:
+    jugador_x += jugador_x_cambio
+
+    if jugador_x &lt;= 0:
+        jugador_x = 0
+    elif jugador_x &gt;= 736:
+        jugador_x = 736
+
+    jugador(jugador_x, jugador_y)</code></pre>
+
+<h3>Paso 5. Crear al enemigo</h3>
+<p>El enemigo aparece en una posición aleatoria gracias al módulo <code>random</code>.</p>
+<pre><code>import random
+
+img_enemigo = pygame.image.load("cheese.png")
+enemigo_x = random.randint(0, 736)
+enemigo_y = random.randint(50, 200)
+
+def enemigo(x, y):
+    pantalla.blit(img_enemigo, (x, y))
+
+# dentro del bucle:
+    enemigo(enemigo_x, enemigo_y)</code></pre>
+
+<h3>Paso 6. Movimiento del enemigo</h3>
+<p>El enemigo avanza en horizontal y, al tocar un borde, invierte su dirección y desciende.</p>
+<pre><code>enemigo_x_cambio = 0.05
+enemigo_y_cambio = 50
+
+# dentro del bucle:
+    enemigo_x += enemigo_x_cambio
+
+    if enemigo_x &lt;= 0:
+        enemigo_x_cambio = 0.05
+        enemigo_y += enemigo_y_cambio
+    elif enemigo_x &gt;= 736:
+        enemigo_x_cambio = -0.05
+        enemigo_y += enemigo_y_cambio</code></pre>
+
+<h3>Paso 7. Imagen de fondo</h3>
+<pre><code>fondo = pygame.image.load("fondo.jpg")
+
+# dentro del bucle, en lugar de pantalla.fill(color_fondo):
+    pantalla.blit(fondo, (0, 0))</code></pre>
+
+<h3>Paso 8. Disparar balas</h3>
+<p>La bala permanece invisible hasta que se presiona la barra espaciadora; entonces se dibuja y asciende hasta salir de la pantalla. La palabra clave <code>global</code> permite modificar dentro de la función una variable definida fuera de ella.</p>
+<pre><code>img_bala = pygame.image.load("bala.png")
+bala_x = 0
+bala_y = 500                  # el mismo valor que la posición Y del jugador
+bala_y_cambio = 1
+bala_visible = False
+
+def disparar_bala(x, y):
+    global bala_visible
+    bala_visible = True
+    pantalla.blit(img_bala, (x + 22, y + 10))
+
+# en los eventos de teclado:
+    elif evento.key == pygame.K_SPACE:
+        if not bala_visible:
+            bala_x = jugador_x
+            disparar_bala(bala_x, bala_y)
+
+# en el bucle, movimiento de la bala:
+    if bala_y &lt;= -64:
+        bala_y = 500
+        bala_visible = False
+
+    if bala_visible:
+        disparar_bala(bala_x, bala_y)
+        bala_y -= bala_y_cambio</code></pre>
+
+<h3>Paso 9. Detectar colisiones</h3>
+<p>Se calcula la distancia euclidiana entre la bala y el enemigo: si es menor que 27 píxeles, se considera que hubo colisión. En ese caso la bala vuelve a su posición inicial, aumenta el puntaje y el enemigo reaparece en un lugar aleatorio.</p>
+<pre><code>import math
+
+puntaje = 0
+
+def colision(x_1, y_1, x_2, y_2):
+    operacion1 = math.pow((x_2 - x_1), 2)
+    operacion2 = math.pow((y_2 - y_1), 2)
+    distancia = math.sqrt(operacion1 + operacion2)
+    if distancia &lt; 27:
+        return True
+    else:
+        return False
+
+# en el bucle:
+    hay_colision = colision(enemigo_x, enemigo_y, bala_x, bala_y)
+    if hay_colision:
+        bala_y = 500
+        bala_visible = False
+        puntaje += 1
+        enemigo_x = random.randint(0, 736)
+        enemigo_y = random.randint(50, 200)</code></pre>
+
+<h3>Paso 10. Varios enemigos</h3>
+<p>Para generar varios enemigos, cada atributo (imagen, posición y velocidades) se guarda en una lista, y un bucle <code>for</code> los inicializa y los actualiza.</p>
+<pre><code>img_enemigo = []
+enemigo_x = []
+enemigo_y = []
+enemigo_x_cambio = []
+enemigo_y_cambio = []
+cantidad_enemigos = 8
+
+for e in range(cantidad_enemigos):
+    img_enemigo.append(pygame.image.load("veneno.png"))
+    enemigo_x.append(random.randint(0, 736))
+    enemigo_y.append(random.randint(50, 200))
+    enemigo_x_cambio.append(0.5)
+    enemigo_y_cambio.append(50)
+
+def enemigo(x, y, ene):
+    pantalla.blit(img_enemigo[ene], (x, y))
+
+# en el bucle, el movimiento y las colisiones se aplican a cada enemigo:
+    for e in range(cantidad_enemigos):
+        enemigo_x[e] += enemigo_x_cambio[e]
+
+        if enemigo_x[e] &lt;= 0:
+            enemigo_x_cambio[e] = 0.5
+            enemigo_y[e] += enemigo_y_cambio[e]
+        elif enemigo_x[e] &gt;= 736:
+            enemigo_x_cambio[e] = -0.5
+            enemigo_y[e] += enemigo_y_cambio[e]
+
+        hay_colision = colision(enemigo_x[e], enemigo_y[e], bala_x, bala_y)
+        if hay_colision:
+            bala_y = 500
+            bala_visible = False
+            puntaje += 1
+            enemigo_x[e] = random.randint(0, 736)
+            enemigo_y[e] = random.randint(50, 200)
+
+        enemigo(enemigo_x[e], enemigo_y[e], e)</code></pre>
+
+<h3>Paso 11. Mostrar el puntaje</h3>
+<pre><code>fuente = pygame.font.Font("freesansbold.ttf", 32)   # tipo y tamaño de fuente
+texto_x = 10
+texto_y = 10
+
+def mostrar_puntaje(x, y):
+    texto = fuente.render(f"Puntaje: {puntaje}", True, (255, 255, 255))
+    pantalla.blit(texto, (x, y))
+
+# en el bucle:
+    mostrar_puntaje(texto_x, texto_y)</code></pre>
+
+<h3>Paso 12. Música y sonidos</h3>
+<pre><code>from pygame import mixer
+
+mixer.music.load("MusicaFondo.mp3")
+mixer.music.set_volume(0.5)
+mixer.music.play(-1)              # -1: repetición continua
+
+# al disparar:
+    sonido_bala = mixer.Sound("disparo.mp3")
+    sonido_bala.play()
+
+# al detectar una colisión:
+    sonido_choque = mixer.Sound("Golpe.mp3")
+    sonido_choque.play()</code></pre>
+
+<h3>Paso 13. Versión final</h3>
+<p>La versión final incorpora varias mejoras: admite múltiples balas simultáneas (cada una es un diccionario guardado en una lista), muestra el mensaje «GAME OVER» cuando un enemigo llega a la altura de la nave y define la función <code>ruta_absoluta()</code>, que permite localizar los recursos tanto al ejecutar el script como al empaquetarlo como programa ejecutable con PyInstaller.</p>
+<pre><code>def ruta_absoluta(ruta_relativa):
+    base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, ruta_relativa)
+
+# nueva bala al presionar la barra espaciadora:
+    nueva_bala = {"x": jugador_x, "y": jugador_y, "velocidad": -2}
+    balas.append(nueva_bala)
+
+# fin del juego:
+    if enemigo_y[e] &gt; 440:
+        for k in range(cantidad_enemigos):
+            enemigo_y[k] = 1000
+        texto_final()
+        break</code></pre>
+
+<div class="foco">
+  <span class="et">Nota</span>
+  <p>Este ejemplo desplaza los objetos una cantidad fija en cada vuelta del bucle, por lo que la velocidad aparente depende de la rapidez del equipo. En proyectos de mayor tamaño conviene limitar el número de cuadros por segundo del bucle.</p>
+</div>
+
+<h2>Interfaz gráfica con Tkinter</h2>
+<p><code>tkinter</code> es la interfaz estándar de Python para el conjunto de herramientas gráficas Tcl/Tk; es un módulo opcional que viene incluido en la mayoría de las instalaciones (Python Software Foundation, s. f.-d). Una aplicación se construye creando una ventana, agregando <i>widgets</i> (paneles, etiquetas, cuadros de texto, botones) y entregando el control a un bucle de eventos con <code>mainloop()</code>, que procesa las acciones del usuario hasta que se cierran todas las ventanas.</p>
+
+<h3>Configuración de la ventana</h3>
+<pre><code>from tkinter import *
+
+aplicacion = Tk()                                   # inicia tkinter
+
+aplicacion.geometry("1020x630+0+0")                 # tamaño 1020x630, ubicada en (0, 0)
+aplicacion.resizable(0, 0)                          # impide redimensionar en X y en Y
+aplicacion.title("Aplicación Yasmani - Restaurante")
+aplicacion.config(bg="pink")                        # color de fondo
+
+aplicacion.mainloop()                               # evita que la ventana se cierre</code></pre>
+
+<h3>Ejemplo: sistema de facturación de un restaurante</h3>
+<p>El ejemplo integra los elementos habituales de una aplicación de escritorio: paneles organizados con <code>pack()</code> y <code>grid()</code>, casillas de verificación (<code>Checkbutton</code>) que habilitan cuadros de entrada (<code>Entry</code>), variables enlazadas a los widgets (<code>StringVar</code>, <code>IntVar</code>), una calculadora, un área de recibo (<code>Text</code>) y botones que ejecutan funciones: calcular el total, generar el recibo, guardarlo en un archivo y reiniciar el formulario.</p>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>La calculadora del ejemplo evalúa la operación con la función <code>eval()</code>, que ejecuta cualquier expresión de Python. Es aceptable aquí porque el texto proviene solo de botones numéricos, pero no debe usarse con texto introducido libremente por el usuario.</p>
+</div>
+
+<pre><code>from tkinter import *
+import random
+import datetime
+from tkinter import filedialog, messagebox
+
+operador = ""
+precios_comida = [1.32, 1.65, 2.31, 3.22, 1.22, 1.99, 2.05]
+precios_bebida = [0.25, 0.99, 1.21, 1.54, 1.08, 1.10, 2.00]
+precios_postres = [1.54, 1.68, 1.32, 1.97, 2.55, 2.14, 1.94]
+
+
+def click_boton(numero):
+    global operador
+    operador = operador + numero
+    visor_calculadora.delete(0, END)
+    visor_calculadora.insert(END, operador)
+
+
+def borrar():
+    global operador
+    operador = ""
+    visor_calculadora.delete(0, END)
+
+
+def obtener_resultado():
+    global operador
+    resultado = str(eval(operador))
+    visor_calculadora.delete(0, END)
+    visor_calculadora.insert(0, resultado)
+    operador = ""
+
+
+# Generar total de precios
+def total():
+    sub_total_comida = 0
+    p = 0
+    for cantidad in texto_comida:
+        sub_total_comida = sub_total_comida + (float(cantidad.get()) * precios_comida[p])
+        p += 1
+
+    sub_total_bebida = 0
+    p = 0
+    for cantidad in texto_bebida:
+        sub_total_bebida = sub_total_bebida + (float(cantidad.get()) * precios_bebida[p])
+        p += 1
+
+    sub_total_postre = 0
+    p = 0
+    for cantidad in texto_postres:
+        sub_total_postre = sub_total_postre + (float(cantidad.get()) * precios_postres[p])
+        p += 1
+
+    sub_total = sub_total_comida + sub_total_bebida + sub_total_postre
+    impuestos = sub_total * 0.07
+    final = sub_total + impuestos
+
+    var_costo_comida.set(f"$ {round(sub_total_comida, 2)}")
+    var_costo_bebida.set(f"$ {round(sub_total_bebida, 2)}")
+    var_costo_postre.set(f"$ {round(sub_total_postre, 2)}")
+    var_subtotal.set(f"$ {round(sub_total, 2)}")
+    var_impuesto.set(f"$ {round(impuestos, 2)}")
+    var_total.set(f"$ {round(final, 2)}")
+
+
+# Generar recibo
+def recibo():
+    texto_recibo.delete(1.0, END)
+    num_recibo = f"N# - {random.randint(10000, 99999)}"
+    fecha = datetime.datetime.now()
+    fecha_recibo = f"{fecha.day}/{fecha.month}/{fecha.year} - {fecha.hour}:{fecha.minute}"
+    texto_recibo.insert(END, f"Datos:\t{num_recibo}\t\t{fecha_recibo}" "\n")
+    texto_recibo.insert(END, f"*" * 73 + "\n")
+    texto_recibo.insert(END, "Items\t\tCant.\tCosto Items\n")
+    texto_recibo.insert(END, f"-" * 88 + "\n")
+
+    x = 0
+    for comida in texto_comida:
+        if comida.get() != "0":
+            texto_recibo.insert(END, f"{lista_comidas[x]}\t\t{comida.get()}\t$ {int(comida.get()) * precios_comida[x]}\n")
+        x += 1
+
+    x = 0
+    for bebida in texto_bebida:
+        if bebida.get() != "0":
+            texto_recibo.insert(END, f"{lista_bebidas[x]}\t\t{bebida.get()}\t$ {int(bebida.get()) * precios_bebida[x]}\n")
+        x += 1
+
+    x = 0
+    for postre in texto_postres:
+        if postre.get() != "0":
+            texto_recibo.insert(END, f"{lista_postres[x]}\t\t{postre.get()}\t$ {int(postre.get()) * precios_postres[x]}\n")
+        x += 1
+
+    texto_recibo.insert(END, f"-" * 88 + "\n")
+    texto_recibo.insert(END, f" Costo de la Comida: \t\t\t{var_costo_comida.get()}\n")
+    texto_recibo.insert(END, f" Costo de la Bebida: \t\t\t{var_costo_bebida.get()}\n")
+    texto_recibo.insert(END, f" Costo de los Postres: \t\t\t{var_costo_postre.get()}\n")
+    texto_recibo.insert(END, f"-" * 88 + "\n")
+    texto_recibo.insert(END, f" Subtotal: \t\t\t{var_subtotal.get()}\n")
+    texto_recibo.insert(END, f" Impuestos: \t\t\t{var_impuesto.get()}\n")
+    texto_recibo.insert(END, f" Total: \t\t\t{var_total.get()}\n")
+    texto_recibo.insert(END, f"*" * 73 + "\n")
+    texto_recibo.insert(END, "Lo esperamos pronto ¡GRACIAS!")
+
+
+# Guardar el recibo
+def guardar():
+    info_recibo = texto_recibo.get(1.0, END)
+    archivo = filedialog.asksaveasfile(mode="w", defaultextension=".txt")
+    archivo.write(info_recibo)
+    archivo.close()
+    messagebox.showinfo("Información", "Su recibo ha sido guardado")
+
+
+# Reiniciar todos los campos
+def resetear():
+    texto_recibo.delete(0.1, END)
+
+    for texto in texto_comida:
+        texto.set("0")
+    for texto in texto_bebida:
+        texto.set("0")
+    for texto in texto_postres:
+        texto.set("0")
+
+    for cuadro in cuadros_comida:
+        cuadro.config(state=DISABLED)
+    for cuadro in cuadros_bebida:
+        cuadro.config(state=DISABLED)
+    for cuadro in cuadros_postres:
+        cuadro.config(state=DISABLED)
+
+    for v in variables_comida:
+        v.set(0)
+    for v in variables_bebida:
+        v.set(0)
+    for v in variables_postres:
+        v.set(0)
+
+    var_costo_comida.set("")
+    var_costo_bebida.set("")
+    var_costo_postre.set("")
+    var_subtotal.set("")
+    var_impuesto.set("")
+    var_total.set("")
+
+
+def revisar_check():
+    x = 0
+    for c in cuadros_comida:
+        if variables_comida[x].get() == 1:
+            cuadros_comida[x].config(state=NORMAL)
+            if cuadros_comida[x].get() == "0":
+                cuadros_comida[x].delete(0, END)
+            cuadros_comida[x].focus()
+        else:
+            cuadros_comida[x].config(state=DISABLED)
+            texto_comida[x].set("0")
+        x += 1
+
+    x = 0
+    for c in cuadros_bebida:
+        if variables_bebida[x].get() == 1:
+            cuadros_bebida[x].config(state=NORMAL)
+            if cuadros_bebida[x].get() == "0":
+                cuadros_bebida[x].delete(0, END)
+            cuadros_bebida[x].focus()
+        else:
+            cuadros_bebida[x].config(state=DISABLED)
+            texto_bebida[x].set("0")
+        x += 1
+
+    x = 0
+    for c in cuadros_postres:
+        if variables_postres[x].get() == 1:
+            cuadros_postres[x].config(state=NORMAL)
+            if cuadros_postres[x].get() == "0":
+                cuadros_postres[x].delete(0, END)
+            cuadros_postres[x].focus()
+        else:
+            cuadros_postres[x].config(state=DISABLED)
+            texto_postres[x].set("0")
+        x += 1
+
+
+# Iniciar tkinter
+aplicacion = Tk()
+aplicacion.geometry("1220x630+0+0")
+aplicacion.resizable(0, 0)
+aplicacion.title("Aplicación Yasmani - Restaurante")
+aplicacion.config(bg="pink")
+
+# Panel superior
+panel_superior = Frame(aplicacion, bd=1, relief=FLAT)   # ventana, ancho del borde, relieve
+panel_superior.pack(side=TOP)
+
+# Etiqueta título
+etiqueta_titulo = Label(panel_superior, text="Sistema de Facturación", fg="azure4",
+                        font=("Arial", 58), bg="burlywood", width=30)
+etiqueta_titulo.grid(row=0, column=0)
+
+# Panel izquierdo
+panel_izquierdo = Frame(aplicacion, bd=1, relief=FLAT)
+panel_izquierdo.pack(side=LEFT)
+
+# Panel costos
+panel_costos = Frame(panel_izquierdo, bd=1, relief=FLAT, bg="azure4", padx=40)
+panel_costos.pack(side=BOTTOM)
+
+# Panel comidas
+panel_comidas = LabelFrame(panel_izquierdo, text="Comida", font=("Arial", 19, "bold"),
+                           bd=1, relief=FLAT, fg="azure4")
+panel_comidas.pack(side=LEFT)
+
+# Panel bebidas
+panel_bebida = LabelFrame(panel_izquierdo, text="Bebidas", font=("Arial", 19, "bold"),
+                          bd=1, relief=FLAT, fg="azure4")
+panel_bebida.pack(side=LEFT)
+
+# Panel postres
+panel_postres = LabelFrame(panel_izquierdo, text="Postres", font=("Arial", 19, "bold"),
+                           bd=1, relief=FLAT, fg="azure4")
+panel_postres.pack(side=LEFT)
+
+# Panel derecho
+panel_derecha = Frame(aplicacion, bd=1, relief=FLAT)
+panel_derecha.pack(side=RIGHT)
+
+# Panel calculadora
+panel_calculadora = Frame(panel_derecha, bd=1, relief=FLAT, bg="burlywood")
+panel_calculadora.pack()
+
+# Panel recibo
+panel_recibo = Frame(panel_derecha, bd=1, relief=FLAT, bg="burlywood")
+panel_recibo.pack()
+
+# Panel botones
+panel_botones = Frame(panel_derecha, bd=1, relief=FLAT, bg="burlywood")
+panel_botones.pack()
+
+# Lista de productos
+lista_comidas = ["pollo", "cordero", "cerdo", "res", "pato", "pescado", "comida2"]
+lista_bebidas = ["agua", "vino", "tequila", "ron", "cola", "vodka", "cerveza"]
+lista_postres = ["helado", "fruta", "flan", "pastel", "creaps", "mousse", "postre2"]
+
+# Generar items de comida
+variables_comida = []
+cuadros_comida = []
+texto_comida = []
+contador = 0
+for comida in lista_comidas:
+
+    # Crear checkbutton
+    variables_comida.append("")
+    variables_comida[contador] = IntVar()
+    comida = Checkbutton(panel_comidas, text=comida.title(), font=("Arial", 19, "bold"),
+                         onvalue=1, offvalue=0, variable=variables_comida[contador],
+                         command=revisar_check)
+    comida.grid(row=contador, column=0, sticky=W)
+
+    # Crear cuadros de entrada
+    cuadros_comida.append("")
+    texto_comida.append("")
+    texto_comida[contador] = StringVar()
+    texto_comida[contador].set("0")
+    cuadros_comida[contador] = Entry(panel_comidas, font=("Arial", 18, "bold"), bd=1, width=6,
+                                     state=DISABLED, textvariable=texto_comida[contador])
+    cuadros_comida[contador].grid(row=contador, column=1)
+    contador += 1
+
+# Generar items de bebida
+variables_bebida = []
+cuadros_bebida = []
+texto_bebida = []
+contador = 0
+for bebida in lista_bebidas:
+
+    variables_bebida.append("")
+    variables_bebida[contador] = IntVar()
+    bebida = Checkbutton(panel_bebida, text=bebida.title(), font=("Arial", 19, "bold"),
+                         onvalue=1, offvalue=0, variable=variables_bebida[contador],
+                         command=revisar_check)
+    bebida.grid(row=contador, column=0, sticky=W)
+
+    cuadros_bebida.append("")
+    texto_bebida.append("")
+    texto_bebida[contador] = StringVar()
+    texto_bebida[contador].set("0")
+    cuadros_bebida[contador] = Entry(panel_bebida, font=("Arial", 18, "bold"), bd=1, width=6,
+                                     state=DISABLED, textvariable=texto_bebida[contador])
+    cuadros_bebida[contador].grid(row=contador, column=1)
+    contador += 1
+
+# Generar items de postres
+variables_postres = []
+cuadros_postres = []
+texto_postres = []
+contador = 0
+for postres in lista_postres:
+    variables_postres.append("")
+    variables_postres[contador] = IntVar()
+    postres = Checkbutton(panel_postres, text=postres.title(), font=("Arial", 19, "bold"),
+                          onvalue=1, offvalue=0, variable=variables_postres[contador],
+                          command=revisar_check)
+    postres.grid(row=contador, column=0, sticky=W)
+
+    cuadros_postres.append("")
+    texto_postres.append("")
+    texto_postres[contador] = StringVar()
+    texto_postres[contador].set("0")
+    cuadros_postres[contador] = Entry(panel_postres, font=("Arial", 18, "bold"), bd=1, width=6,
+                                      state=DISABLED, textvariable=texto_postres[contador])
+    cuadros_postres[contador].grid(row=contador, column=1)
+    contador += 1
+
+# Variables de costos
+var_costo_comida = StringVar()
+var_costo_bebida = StringVar()
+var_costo_postre = StringVar()
+var_subtotal = StringVar()
+var_impuesto = StringVar()
+var_total = StringVar()
+
+# Etiquetas de costo y campos de entrada
+etiqueta_costo_comida = Label(panel_costos, text="Costo comida", font=("Arial", 18, "bold"),
+                              bg="azure4", fg="white")
+etiqueta_costo_comida.grid(row=0, column=0, padx=40)
+texto_costo_comida = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                           state="readonly", textvariable=var_costo_comida)
+texto_costo_comida.grid(row=0, column=1)
+
+etiqueta_costo_bebida = Label(panel_costos, text="Costo bebida", font=("Arial", 18, "bold"),
+                              bg="azure4", fg="white")
+etiqueta_costo_bebida.grid(row=1, column=0, padx=40)
+texto_costo_bebida = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                           state="readonly", textvariable=var_costo_bebida)
+texto_costo_bebida.grid(row=1, column=1)
+
+etiqueta_costo_postre = Label(panel_costos, text="Costo postre", font=("Arial", 18, "bold"),
+                              bg="azure4", fg="white")
+etiqueta_costo_postre.grid(row=2, column=0, padx=40)
+texto_costo_postre = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                           state="readonly", textvariable=var_costo_postre)
+texto_costo_postre.grid(row=2, column=1)
+
+etiqueta_subtotal = Label(panel_costos, text="Subtotal", font=("Arial", 18, "bold"),
+                          bg="azure4", fg="white")
+etiqueta_subtotal.grid(row=0, column=3, padx=40)
+texto_subtotal = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                       state="readonly", textvariable=var_subtotal)
+texto_subtotal.grid(row=0, column=4)
+
+etiqueta_impuesto = Label(panel_costos, text="Impuestos", font=("Arial", 18, "bold"),
+                          bg="azure4", fg="white")
+etiqueta_impuesto.grid(row=1, column=3, padx=40)
+texto_impuesto = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                       state="readonly", textvariable=var_impuesto)
+texto_impuesto.grid(row=1, column=4)
+
+etiqueta_total = Label(panel_costos, text="Total", font=("Arial", 18, "bold"),
+                       bg="azure4", fg="white")
+etiqueta_total.grid(row=2, column=3, padx=40)
+texto_total = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                    state="readonly", textvariable=var_total)
+texto_total.grid(row=2, column=4)
+
+# Botones
+botones = ["Total", "Recibo", "Guardar", "Resetear"]
+botones_creados = []
+columnas = 0
+for boton in botones:
+    boton = Button(panel_botones, text=boton.title(), font=("Arial", 14, "bold"),
+                   fg="white", bg="azure4", bd=1, width=8)
+    botones_creados.append(boton)
+    boton.grid(row=0, column=columnas)
+    columnas += 1
+
+botones_creados[0].config(command=total)
+botones_creados[1].config(command=recibo)
+botones_creados[2].config(command=guardar)
+botones_creados[3].config(command=resetear)
+
+# Área de recibo
+texto_recibo = Text(panel_recibo, font=("Arial", 12, "bold"), bd=1, width=49, height=10)
+texto_recibo.grid(row=0, column=0)
+
+# Calculadora
+visor_calculadora = Entry(panel_calculadora, font=("Arial", 16, "bold"), width=37, bd=1)
+visor_calculadora.grid(row=0, column=0, columnspan=4)
+
+botones_calculadora = ["7", "8", "9", "+", "4", "5", "6", "-", "1", "2", "3", "x",
+                       "CE", "Borrar", "0", "/"]
+botones_guardados = []
+
+fila = 1
+columna = 0
+
+for boton in botones_calculadora:
+    boton = Button(panel_calculadora, text=boton.title(), font=("Arial", 16, "bold"),
+                   fg="white", bg="azure4", bd=1, width=8)
+    botones_guardados.append(boton)
+    boton.grid(row=fila, column=columna)
+
+    if columna == 3:
+        fila += 1
+    columna += 1
+
+    if columna == 4:
+        columna = 0
+
+botones_guardados[0].config(command=lambda: click_boton("7"))
+botones_guardados[1].config(command=lambda: click_boton("8"))
+botones_guardados[2].config(command=lambda: click_boton("9"))
+botones_guardados[3].config(command=lambda: click_boton("+"))
+botones_guardados[4].config(command=lambda: click_boton("4"))
+botones_guardados[5].config(command=lambda: click_boton("5"))
+botones_guardados[6].config(command=lambda: click_boton("6"))
+botones_guardados[7].config(command=lambda: click_boton("-"))
+botones_guardados[8].config(command=lambda: click_boton("1"))
+botones_guardados[9].config(command=lambda: click_boton("2"))
+botones_guardados[10].config(command=lambda: click_boton("3"))
+botones_guardados[11].config(command=lambda: click_boton("*"))
+botones_guardados[12].config(command=obtener_resultado)
+botones_guardados[13].config(command=borrar)
+botones_guardados[14].config(command=lambda: click_boton("0"))
+botones_guardados[15].config(command=lambda: click_boton("/"))
+
+# Evitar que la pantalla se cierre
+aplicacion.mainloop()</code></pre>
+
+<h2>Asistente de voz</h2>
+<p>Un asistente virtual por voz se construye combinando varios módulos externos: <code>pyttsx3</code> (síntesis de voz), <code>speech_recognition</code> (reconocimiento de voz desde el micrófono), <code>pywhatkit</code> (automatización de WhatsApp y YouTube), <code>pyjokes</code> (chistes), <code>wikipedia</code> (consulta de información), además de <code>webbrowser</code> y <code>datetime</code>, de la biblioteca estándar. El asistente de este ejemplo responde con voz, escucha comandos por el micrófono, abre sitios web, informa el día y la hora, busca en Wikipedia e internet, reproduce videos de YouTube y cuenta chistes.</p>
+<pre><code>pip install pyttsx3 SpeechRecognition pywhatkit pyjokes wikipedia pyaudio</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>El reconocimiento de voz con <code>recognize_google()</code> requiere conexión a internet, y la lista de voces disponibles depende del sistema operativo. Los identificadores de voz del ejemplo corresponden a voces de Windows, que se muestran con el fragmento comentado del código. El paquete PyAudio solo es necesario para usar el micrófono (Python Package Index, s. f.).</p>
+</div>
+
+<pre><code>import pyttsx3
+import speech_recognition as sr
+import pywhatkit
+import pyjokes
+import webbrowser
+from datetime import datetime
+import wikipedia
+
+
+# Escuchar el micrófono y devolver el audio como texto
+def transformar_audio_en_texto():
+
+    # almacenar el reconocedor en una variable
+    r = sr.Recognizer()
+
+    # configurar el micrófono
+    with sr.Microphone() as origen:
+
+        # tiempo de espera
+        r.pause_threshold = 0.8
+
+        # informar que comenzó la grabación
+        print("ya puedes hablar")
+
+        # guardar lo que escuche como audio
+        audio = r.listen(origen)
+
+        try:
+            # buscar en Google
+            pedido = r.recognize_google(audio, language="es-ec")
+
+            # prueba de que pudo ingresar
+            print("Dijiste: " + pedido)
+
+            # devolver pedido
+            return pedido
+
+        # en caso de que no comprenda el audio
+        except sr.UnknownValueError:
+            print("Ups, no entendí")
+            return "sigo esperando"
+
+        # en caso de no resolver el pedido
+        except sr.RequestError:
+            print("Ups, no hay servicio")
+            return "sigo esperando"
+
+        # error inesperado
+        except:
+            print("Ups, algo ha salido mal")
+            return "sigo esperando"
+
+
+# Opciones de voz / idioma
+id1 = r"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_ES-ES_HELENA_11.0"
+id2 = r"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
+id3 = r"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0"
+
+
+# Función para que el asistente pueda ser escuchado
+def hablar(mensaje):
+
+    # encender el motor de pyttsx3
+    engine = pyttsx3.init()
+    engine.setProperty("voice", id1)    # voz del equipo que más guste
+
+    # pronunciar el mensaje
+    engine.say(mensaje)
+    engine.runAndWait()
+
+
+"""
+# Imprime todas las voces instaladas en el ordenador
+engine = pyttsx3.init()
+for voz in engine.getProperty("voices"):
+    print(voz)
+"""
+
+
+# Informar el día de la semana
+def pedir_dia():
+
+    # crear datos de hoy
+    dia = datetime.today()
+
+    # día de la semana (0 = lunes)
+    dia_semana = dia.weekday()
+
+    # diccionario con los nombres de los días
+    calendario = {0: "Lunes", 1: "Martes", 2: "Miércoles", 3: "Jueves",
+                  4: "Viernes", 5: "Sábado", 6: "Domingo"}
+
+    # decir el día de la semana
+    hablar(f"Hoy es {calendario[dia_semana]}")
+
+
+# Informar la hora
+def pedir_hora():
+    hora = datetime.now()
+    hablar(f"En este momento, son las {hora.hour} horas con {hora.minute} minutos")
+
+
+# Saludo inicial
+def saludo_inicial():
+    hora = datetime.now()
+    if hora.hour &lt; 6 or hora.hour &gt; 20:
+        momento = "Buenas noches"
+    elif 6 &lt;= hora.hour &lt; 13:
+        momento = "Buen día"
+    else:
+        momento = "Buenas tardes"
+
+    hablar(f"Hola Yasmani, {momento}, soy Helena, tu asistente personal. "
+           "Por favor, dime en qué te puedo ayudar")
+
+
+# Función central del asistente
+def pedir_cosas():
+
+    # activar el saludo inicial
+    saludo_inicial()
+
+    # variable de corte
+    comenzar = True
+
+    # bucle central
+    while comenzar:
+
+        # activar el micrófono y guardar el pedido en un string
+        pedido = transformar_audio_en_texto().lower()
+
+        if "abrir youtube" in pedido:
+            hablar("Con gusto, estoy abriendo YouTube")
+            webbrowser.open("https://www.youtube.com")
+            continue
+        elif "abrir navegador" in pedido:
+            hablar("Claro, estoy en eso")
+            webbrowser.open("https://www.google.com")
+            continue
+        elif "qué día es hoy" in pedido:
+            pedir_dia()
+            continue
+        elif "qué hora es" in pedido:
+            pedir_hora()
+            continue
+        elif "busca en wikipedia" in pedido:
+            hablar("Buscando eso en wikipedia")
+            pedido = pedido.replace("busca en wikipedia", "")
+            wikipedia.set_lang("es")
+            resultado = wikipedia.summary(pedido, sentences=1)
+            hablar(f"Wikipedia dice lo siguiente: {resultado}")
+            continue
+        elif "busca en internet" in pedido:
+            hablar("Lo estoy buscando")
+            pedido = pedido.replace("busca en internet", "")
+            pywhatkit.search(pedido)
+            hablar("Esto es lo que he encontrado")
+            continue
+        elif "reproducir" in pedido:
+            hablar("Es hora de la música")
+            pywhatkit.playonyt(pedido)
+            continue
+        elif "chiste" in pedido:
+            hablar(pyjokes.get_joke("es"))
+            continue
+        elif "adiós" in pedido:
+            hablar("Un placer ayudarte Yasmani, hasta pronto")
+            break
+
+
+pedir_cosas()</code></pre>
+
+<h2>Reconocimiento facial</h2>
+<p>El reconocimiento facial se apoya en cuatro componentes: <code>opencv-python</code> captura la imagen o el video; <code>face-recognition</code> (que utiliza <code>dlib</code>) detecta y reconoce rostros; <code>numpy</code> procesa los datos de imagen como matrices, y <code>cmake</code> se usa durante la instalación para compilar los componentes necesarios.</p>
+<pre><code>pip install cmake
+pip install opencv-python face-recognition numpy</code></pre>
+<p>El ejemplo se desarrolla en ocho etapas: cargar las imágenes, comparar caras, medir la diferencia (distancia), mostrar la distancia, crear una base de datos, encontrar coincidencias, mostrar coincidencias y registrar la asistencia.</p>
+
+<h3>Comparación de dos fotografías</h3>
+<p>La función <code>compare_faces()</code> devuelve si dos rostros coinciden. Por defecto la tolerancia es de 0,6: cuanto más cercana a cero, más exacta debe ser la coincidencia. La función <code>face_distance()</code> mide la diferencia numérica entre los rostros.</p>
+<pre><code>import cv2
+import face_recognition as fr
+
+# cargar imágenes
+foto_control = fr.load_image_file("FotoA.jpg")
+foto_prueba = fr.load_image_file("FotoC.jpg")
+
+# pasar las imágenes a RGB
+foto_control = cv2.cvtColor(foto_control, cv2.COLOR_BGR2RGB)
+foto_prueba = cv2.cvtColor(foto_prueba, cv2.COLOR_BGR2RGB)
+
+# localizar y codificar la cara de control
+lugar_cara_A = fr.face_locations(foto_control)[0]
+cara_codificada_A = fr.face_encodings(foto_control)[0]
+
+# localizar y codificar la cara de prueba
+lugar_cara_B = fr.face_locations(foto_prueba)[0]
+cara_codificada_B = fr.face_encodings(foto_prueba)[0]
+
+# mostrar rectángulos
+cv2.rectangle(foto_control, (lugar_cara_A[3], lugar_cara_A[0]),
+              (lugar_cara_A[1], lugar_cara_A[2]), (0, 255, 0), 2)
+cv2.rectangle(foto_prueba, (lugar_cara_B[3], lugar_cara_B[0]),
+              (lugar_cara_B[1], lugar_cara_B[2]), (0, 255, 0), 2)
+
+# realizar la comparación
+resultado = fr.compare_faces([cara_codificada_A], cara_codificada_B)
+
+# medir la distancia
+distancia = fr.face_distance([cara_codificada_A], cara_codificada_B)
+
+# mostrar el resultado
+cv2.putText(foto_prueba, f"{resultado}{distancia.round(2)}", (50, 50),
+            cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
+
+# mostrar las imágenes
+cv2.imshow("Foto Control", foto_control)
+cv2.imshow("Foto Prueba", foto_prueba)
+
+# mantener el programa abierto
+cv2.waitKey(0)</code></pre>
+
+<h3>Registro de asistencia con cámara web</h3>
+<p>El segundo programa construye una base de datos a partir de las fotografías de una carpeta (el nombre de cada archivo corresponde al nombre del empleado), toma una imagen de la cámara web, busca la mejor coincidencia y, si la distancia es menor o igual a 0,6, dibuja el nombre sobre el rostro y registra la hora de ingreso en el archivo <code>registro.csv</code>.</p>
+<pre><code>import cv2
+import face_recognition as fr
+import os
+import numpy
+from datetime import datetime
+
+# crear la base de datos
+ruta = "Empleados"
+mis_imagenes = []
+nombres_empleados = []
+lista_empleados = os.listdir(ruta)
+
+for nombre in lista_empleados:
+    imagen_actual = cv2.imread(f"{ruta}/{nombre}")
+    mis_imagenes.append(imagen_actual)
+    nombres_empleados.append(os.path.splitext(nombre)[0])
+
+print(nombres_empleados)
+
+
+# codificar imágenes
+def codificar(imagenes):
+
+    # crear una lista nueva
+    lista_codificada = []
+
+    # pasar todas las imágenes a RGB
+    for imagen in imagenes:
+        imagen = cv2.cvtColor(imagen, cv2.COLOR_BGR2RGB)
+
+        # codificar
+        codificado = fr.face_encodings(imagen)[0]
+
+        # agregar a la lista
+        lista_codificada.append(codificado)
+
+    # devolver la lista codificada
+    return lista_codificada
+
+
+# registrar los ingresos
+def registrar_ingresos(persona):
+    f = open("registro.csv", "r+")
+    lista_datos = f.readlines()
+    nombres_registro = []
+    for linea in lista_datos:
+        ingreso = linea.split(",")
+        nombres_registro.append(ingreso[0])
+
+    if persona not in nombres_registro:
+        ahora = datetime.now()
+        string_ahora = ahora.strftime("%H:%M:%S")
+        f.writelines(f"\n{persona}, {string_ahora}")
+
+
+lista_empleados_codificada = codificar(mis_imagenes)
+
+# tomar una imagen de la cámara web
+captura = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+
+# leer la imagen de la cámara
+exito, imagen = captura.read()
+
+if not exito:
+    print("No se ha podido tomar la captura")
+else:
+
+    # reconocer la cara en la captura
+    cara_captura = fr.face_locations(imagen)
+
+    # codificar la cara capturada
+    cara_captura_codificada = fr.face_encodings(imagen, cara_captura)
+
+    # buscar coincidencias
+    for caracodif, caraubic in zip(cara_captura_codificada, cara_captura):
+        coincidencias = fr.compare_faces(lista_empleados_codificada, caracodif)
+        distancias = fr.face_distance(lista_empleados_codificada, caracodif)
+
+        print(distancias)
+
+        indice_coincidencia = numpy.argmin(distancias)
+
+        # mostrar coincidencias si las hay
+        if distancias[indice_coincidencia] &gt; 0.6:
+            print("No coincide con ninguno de nuestros empleados")
+        else:
+
+            # buscar el nombre del empleado encontrado
+            nombre = nombres_empleados[indice_coincidencia]
+
+            y1, x2, y2, x1 = caraubic
+            cv2.rectangle(imagen, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            cv2.rectangle(imagen, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
+            cv2.putText(imagen, nombre, (x1 + 6, y2 - 6),
+                        cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255), 2)
+
+            registrar_ingresos(nombre)
+
+            # mostrar la imagen obtenida
+            cv2.imshow("Imagen web", imagen)
+
+            # mantener la ventana abierta
+            cv2.waitKey(0)</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>Las imágenes faciales son datos personales sensibles. Un sistema real requiere el consentimiento de las personas registradas y el cumplimiento de la normativa de protección de datos vigente.</p>
+</div>
+
+<h2>Sitio web con Django</h2>
+<p>Django es un <i>framework</i> web de alto nivel para Python que permite desarrollar aplicaciones web de forma rápida, segura y escalable. El procedimiento inicial es el siguiente.</p>
+<ol class="lista">
+  <li><b>Crear y activar un entorno virtual</b> (ver el capítulo 11): <code>python -m venv venv</code>.</li>
+  <li><b>Instalar Django</b> en el entorno: <code>pip install django</code>. Esto permite crear aplicaciones web con funcionalidades completas.</li>
+  <li><b>Crear un directorio para el proyecto</b>: <code>mkdir src</code> y <code>cd src</code>. El nombre <code>src</code> es una abreviatura habitual de «source» (código fuente).</li>
+  <li><b>Crear el proyecto</b>: <code>django-admin startproject nombre_proyecto</code>, y luego ingresar a la carpeta con <code>cd nombre_proyecto</code>.</li>
+  <li><b>Iniciar el servidor de desarrollo</b>: <code>python manage.py runserver</code>. El sitio queda disponible en <code>http://127.0.0.1:8000/</code>; aún no tiene contenido, pero el sistema funciona.</li>
+  <li><b>Aplicar las migraciones iniciales</b>: <code>python manage.py migrate</code>. Las aplicaciones internas de Django (<code>auth</code>, <code>admin</code>, <code>sessions</code>) requieren tablas en la base de datos; este comando las crea.</li>
+  <li><b>Crear un usuario administrador</b>: <code>python manage.py createsuperuser</code>. Ese usuario puede iniciar sesión en el panel de administración (<code>/admin</code>) para gestionar usuarios y modelos.</li>
+</ol>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>La documentación oficial advierte que el servidor de desarrollo, ligero y escrito íntegramente en Python, está pensado solo para el desarrollo y no debe emplearse en un entorno de producción (Django Software Foundation, s. f.).</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Un videojuego se estructura alrededor de un bucle que procesa eventos, actualiza el estado y redibuja la pantalla.</li>
+  <li>Tkinter organiza una interfaz mediante paneles y widgets, y entrega el control a <code>mainloop()</code>.</li>
+  <li>Los asistentes de voz y el reconocimiento facial combinan módulos externos especializados.</li>
+  <li>Django proporciona un servidor de desarrollo, migraciones y un panel de administración listos para usar.</li>
+</ul>
+<h1>Lecturas y herramientas complementarias</h1>
+
+<h2>Web scraping</h2>
+<p>El <i>web scraping</i> es el proceso de extraer información de sitios web de forma automática mediante código. En lugar de copiar manualmente los datos de una página, un programa los obtiene y los organiza. Python es el lenguaje más empleado para esta tarea y cuenta con bibliotecas especializadas:</p>
+<ul class="lista">
+  <li><code>requests</code>: realiza peticiones HTTP.</li>
+  <li><code>BeautifulSoup</code>: analiza (<i>parsea</i>) el HTML.</li>
+  <li><code>lxml</code>: analizador rápido y potente.</li>
+  <li><code>Selenium</code>: interactúa con páginas dinámicas que usan JavaScript.</li>
+  <li><code>Scrapy</code>: <i>framework</i> especializado para extracciones a gran escala.</li>
+</ul>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+
+url = "https://example.com"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+# obtener todos los títulos &lt;h2&gt; de la página
+titulos = soup.find_all("h2")
+for titulo in titulos:
+    print(titulo.text)</code></pre>
+<p>Las bibliotecas externas se instalan con <code>pip install requests beautifulsoup4 lxml</code>.</p>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>Antes de extraer datos de un sitio conviene revisar sus términos de uso y su archivo <code>robots.txt</code>, y evitar saturarlo con peticiones.</p>
+</div>
+
+<h2>Análisis y visualización de datos</h2>
+<p>El análisis de datos en Python se apoya, principalmente, en tres bibliotecas:</p>
+<ul class="lista">
+  <li><b>NumPy</b> trabaja con números: permite manejar <i>arrays</i> y realizar operaciones matemáticas de forma rápida y eficiente.</li>
+  <li><b>Pandas</b> trabaja con datos tabulares: sirve para leer, limpiar, organizar y analizar datos como si se usara una hoja de cálculo.</li>
+  <li><b>Matplotlib</b> crea gráficos: permite visualizar los datos mediante gráficos de líneas, barras, tortas y otros.</li>
+</ul>
+<p>Las notas originales incluyen cuadernos de práctica en Google Colab para cada una de estas bibliotecas y para <i>machine learning</i>:</p>
+<ul class="lista">
+  <li>NumPy: <code>colab.research.google.com/drive/1vp7zrchG_pJF3uzEgbCjfb_piu43mJXS</code></li>
+  <li>Pandas: <code>colab.research.google.com/drive/1p1zylnSj4ep6uRuzefwu4RgRj2Dvb0dD</code></li>
+  <li>Matplotlib: <code>colab.research.google.com/drive/1vIYDD5xW5LEiAWNuxEAbjHK6oNgVfWsS</code></li>
+  <li>Machine learning: <code>colab.research.google.com/drive/1Lbx5LBtKHqt8oejYVcR_UFN64jLzRHnu</code></li>
+</ul>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>El <i>web scraping</i> automatiza la extracción de datos de páginas web con <code>requests</code> y <code>BeautifulSoup</code>.</li>
+  <li>NumPy, Pandas y Matplotlib forman la base del análisis y la visualización de datos.</li>
+</ul>
+
+<h1 data-sin-numero>Glosario</h1>
+<div class="refs">
+  <p><b>Atributo.</b> Dato o característica que pertenece a un objeto o a una clase.</p>
+  <p><b>Clase.</b> Plantilla que define los atributos y métodos de los objetos creados a partir de ella.</p>
+  <p><b>Clausura (<i>closure</i>).</b> Función interna que recuerda variables de un ámbito superior aunque este ya no exista.</p>
+  <p><b>Comprensión de listas.</b> Sintaxis breve para crear una lista a partir de otra secuencia.</p>
+  <p><b>Decorador.</b> Función que recibe otra función, le añade comportamiento y retorna una función distinta.</p>
+  <p><b>Diccionario.</b> Colección de pares clave: valor, con claves únicas.</p>
+  <p><b>Entorno virtual.</b> Entorno de Python aislado, con su propio conjunto de paquetes.</p>
+  <p><b>Excepción.</b> Error detectado durante la ejecución que puede capturarse con <code>try</code>/<code>except</code>.</p>
+  <p><b>Generador.</b> Función con <code>yield</code> que produce sus valores uno por uno y conserva su estado.</p>
+  <p><b>Herencia.</b> Mecanismo por el que una clase obtiene los atributos y métodos de otra.</p>
+  <p><b>Iterable.</b> Objeto que puede recorrerse en un ciclo, como una lista o una cadena.</p>
+  <p><b>Método.</b> Función definida dentro de una clase.</p>
+  <p><b>Módulo.</b> Archivo <code>.py</code> con código reutilizable.</p>
+  <p><b>Objeto (instancia).</b> Entidad concreta creada a partir de una clase.</p>
+  <p><b>Paquete.</b> Carpeta que agrupa módulos.</p>
+  <p><b>Polimorfismo.</b> Capacidad de clases distintas de responder al mismo método de maneras diferentes.</p>
+  <p><b>Tupla.</b> Secuencia ordenada e inmutable de elementos.</p>
+</div>
+
+<h1 data-sin-numero>Referencias</h1>
+<div class="refs">
+  <p>Django Software Foundation. (s. f.). <i>Writing your first Django app, part 1</i>. Django Documentation. https://docs.djangoproject.com/en/stable/intro/tutorial01/</p>
+  <p>Escuela Directa. (s. f.). <i>Python TOTAL</i> [Material de curso en línea]. Udemy.</p>
+  <p>Python Package Index. (s. f.). <i>SpeechRecognition</i>. https://pypi.org/project/SpeechRecognition/</p>
+  <p>Python Software Foundation. (s. f.-a). <i>Data structures</i>. En <i>The Python tutorial</i>. https://docs.python.org/3/tutorial/datastructures.html</p>
+  <p>Python Software Foundation. (s. f.-b). <i>Input and output</i>. En <i>The Python tutorial</i>. https://docs.python.org/3/tutorial/inputoutput.html</p>
+  <p>Python Software Foundation. (s. f.-c). <i>Python 3 documentation</i>. https://docs.python.org/3/</p>
+  <p>Python Software Foundation. (s. f.-d). <i>tkinter — Python interface to Tcl/Tk</i>. https://docs.python.org/3/library/tkinter.html</p>
+  <p>Python Software Foundation. (s. f.-e). <i>unittest — Unit testing framework</i>. https://docs.python.org/3/library/unittest.html</p>
+  <p>Python Software Foundation. (s. f.-f). <i>venv — Creation of virtual environments</i>. https://docs.python.org/3/library/venv.html</p>
+  <p>van Rossum, G., Warsaw, B., &amp; Coghlan, A. (2001). <i>PEP 8 – Style guide for Python code</i>. Python Enhancement Proposals. https://peps.python.org/pep-0008/</p>
+</div>
+
+<h1 data-anexo="A">Código completo del videojuego</h1>
+<p>El siguiente programa reúne todos los pasos del proyecto «Invasión Espacial» (capítulo 12) en su versión final.</p>
+<pre><code>import pygame
+import random
+import math
+from pygame import mixer
+import sys
+import os
+
+
+# Función para manejar rutas en modo script o ejecutable
+def ruta_absoluta(ruta_relativa):
+    base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, ruta_relativa)
+
+
+pygame.init()
+
+pantalla = pygame.display.set_mode((800, 600))
+
+# Título e icono
+icono = pygame.image.load(ruta_absoluta("logo_color.png"))
+pygame.display.set_caption("Invasión Lolera")
+pygame.display.set_icon(icono)
+
+# Agregar música
+mixer.music.load(ruta_absoluta("MusicaFondo.mp3"))
+mixer.music.set_volume(0.5)
+mixer.music.play(-1)
+
+# Jugador
+img_jugador = pygame.image.load(ruta_absoluta("mouse.png"))
+jugador_x = 368
+jugador_y = 500
+jugador_x_cambio = 0
+
+# Enemigos
+img_enemigo = []
+enemigo_x = []
+enemigo_y = []
+enemigo_x_cambio = []
+enemigo_y_cambio = []
+cantidad_enemigos = 7
+
+for e in range(cantidad_enemigos):
+    img_enemigo.append(pygame.image.load(ruta_absoluta("veneno.png")))
+    enemigo_x.append(random.randint(0, 736))
+    enemigo_y.append(random.randint(50, 200))
+    enemigo_x_cambio.append(1)
+    enemigo_y_cambio.append(50)
+
+# Balas
+balas = []
+img_bala = pygame.image.load(ruta_absoluta("bala.png"))
+bala_x = 0
+bala_y = 500
+bala_x_cambio = 1.5
+bala_y_cambio = 1.5
+bala_visible = False
+
+# Puntaje
+puntaje = 0
+fuente = pygame.font.Font(ruta_absoluta("freesansbold.ttf"), 32)
+texto_x = 10
+texto_y = 10
+
+# Texto final del juego
+fuente_final = pygame.font.Font(ruta_absoluta("freesansbold.ttf"), 40)
+
+
+def texto_final():
+    mi_fuente_final = fuente_final.render("GAME OVER", True, (255, 255, 255))
+    pantalla.blit(mi_fuente_final, (280, 250))
+
+
+def mostrar_puntaje(x, y):
+    texto = fuente.render(f"Puntaje: {puntaje}", True, (255, 255, 255))
+    pantalla.blit(texto, (x, y))
+
+
+def jugador(x, y):
+    pantalla.blit(img_jugador, (x, y))
+
+
+def enemigo(x, y, ene):
+    pantalla.blit(img_enemigo[ene], (x, y))
+
+
+def disparar_bala(x, y):
+    global bala_visible
+    bala_visible = True
+    pantalla.blit(img_bala, (x + 22, y + 10))
+
+
+fondo = pygame.image.load(ruta_absoluta("fondo.png"))
+
+
+def colision(x_1, y_1, x_2, y_2):
+    distancia = math.sqrt((x_2 - x_1) ** 2 + (y_2 - y_1) ** 2)
+    return distancia &lt; 27
+
+
+# Bucle del juego
+se_ejecuta = True
+
+while se_ejecuta:
+    pantalla.blit(fondo, (0, 0))
+
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            se_ejecuta = False
+
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_LEFT:
+                jugador_x_cambio = -0.8
+            elif evento.key == pygame.K_RIGHT:
+                jugador_x_cambio = 0.8
+            elif evento.key == pygame.K_SPACE:
+                sonido_bala = mixer.Sound(ruta_absoluta("disparo.mp3"))
+                sonido_bala.play()
+                nueva_bala = {"x": jugador_x, "y": jugador_y, "velocidad": -2}
+                balas.append(nueva_bala)
+
+        if evento.type == pygame.KEYUP:
+            if evento.key in [pygame.K_LEFT, pygame.K_RIGHT]:
+                jugador_x_cambio = 0
+
+    jugador_x += jugador_x_cambio
+
+    if jugador_x &lt; 0:
+        jugador_x = 0
+    elif jugador_x &gt; 736:
+        jugador_x = 736
+
+    for e in range(cantidad_enemigos):
+        if enemigo_y[e] &gt; 440:
+            for k in range(cantidad_enemigos):
+                enemigo_y[k] = 1000
+            texto_final()
+            break
+
+        enemigo_x[e] += enemigo_x_cambio[e]
+
+        if enemigo_x[e] &lt; 0:
+            enemigo_x_cambio[e] = 1
+            enemigo_y[e] += enemigo_y_cambio[e]
+        elif enemigo_x[e] &gt; 736:
+            enemigo_x_cambio[e] = -1
+            enemigo_y[e] += enemigo_y_cambio[e]
+
+        for bala in balas:
+            if colision(enemigo_x[e], enemigo_y[e], bala["x"], bala["y"]):
+                sonido_choque = mixer.Sound(ruta_absoluta("Golpe.mp3"))
+                sonido_choque.play()
+                balas.remove(bala)
+                puntaje += 1
+                enemigo_x[e] = random.randint(0, 736)
+                enemigo_y[e] = random.randint(50, 200)
+                break
+
+        enemigo(enemigo_x[e], enemigo_y[e], e)
+
+    for bala in balas[:]:
+        bala["y"] += bala["velocidad"]
+        pantalla.blit(img_bala, (bala["x"] + 22, bala["y"] + 10))
+        if bala["y"] &lt; 0:
+            balas.remove(bala)
+
+    jugador(jugador_x, jugador_y)
+    mostrar_puntaje(texto_x, texto_y)
+    pygame.display.update()</code></pre>

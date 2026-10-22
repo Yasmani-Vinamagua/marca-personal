@@ -1,0 +1,367 @@
+<h1>Funciones</h1>
+
+<h2>Definición y retorno de valores</h2>
+<p>Una función es un bloque de código con nombre que puede ejecutarse varias veces. Se define con la palabra clave <code>def</code>, y la instrucción <code>return</code> finaliza su ejecución y, opcionalmente, devuelve un valor.</p>
+<pre><code>def imprimir_mensaje():
+    print("mensaje especial: ")
+    print("estoy aprendiendo a usar funciones")
+
+
+def sumar(a, b):
+    return a + b
+
+
+resultado = sumar(3, 4)
+print(resultado)
+&gt;&gt; 7</code></pre>
+
+<h2>Argumentos de cantidad variable: *args y **kwargs</h2>
+<p>Cuando no se conoce de antemano el número de argumentos que se pasarán a una función se emplean dos sintaxis especiales. El nombre <code>args</code> o <code>kwargs</code> no es obligatorio, pero se recomienda como buena práctica; cualquier nombre precedido por <code>*</code> o <code>**</code> cumple la misma función.</p>
+<ul class="lista">
+  <li><code>*args</code> agrupa en una <b>tupla</b> los argumentos posicionales adicionales, después de los obligatorios.</li>
+  <li><code>**kwargs</code> (<i>keyword arguments</i>) agrupa en un <b>diccionario</b> los argumentos con nombre, que identifican al argumento por su nombre y no por su posición.</li>
+</ul>
+<pre><code>def mi_funcion(arg_1, arg_2, *args):
+    print(arg_1, arg_2, args)
+
+mi_funcion("ejemplo", 25, 40, 75, 10)
+&gt;&gt; ejemplo 25 (40, 75, 10)
+
+
+def atributos_persona(**kwargs):
+    print(kwargs)
+
+atributos_persona(ojos="azules", pelo="corto")
+&gt;&gt; {'ojos': 'azules', 'pelo': 'corto'}</code></pre>
+
+<h2>Funciones anónimas: lambda</h2>
+<p>Una función <code>lambda</code> es una función sin nombre, limitada a una sola expresión. Su estructura es <code>lambda argumentos: expresión</code>.</p>
+<pre><code>doble = lambda x: x * 2
+print(doble(4))
+&gt;&gt; 8</code></pre>
+
+<h2>Alcance de las variables (scope)</h2>
+<p>El alcance determina desde dónde puede utilizarse una variable. Una variable <b>local</b> existe solo dentro del bloque en que se define; una variable <b>global</b> está disponible en todas las funciones del módulo. Pueden coexistir una variable local y una global con el mismo nombre y valores distintos.</p>
+
+<h2>Funciones anidadas y clausuras</h2>
+<p>Una <b>función anidada</b> (<i>nested function</i>) es una función definida dentro de otra. Una <b>clausura</b> (<i>closure</i>) ocurre cuando una función interna recuerda una variable de un ámbito superior aunque ese ámbito ya no exista. Para que exista una clausura deben cumplirse tres condiciones:</p>
+<ol class="lista">
+  <li>Debe haber una función anidada.</li>
+  <li>La función anidada debe hacer referencia a un valor de un ámbito superior.</li>
+  <li>La función que envuelve a la anidada debe retornarla.</li>
+</ol>
+<pre><code>def crear_multiplicador(factor):
+    def multiplicar(numero):
+        return numero * factor   # recuerda "factor"
+    return multiplicar
+
+
+por_tres = crear_multiplicador(3)
+print(por_tres(5))
+&gt;&gt; 15</code></pre>
+<p>Las clausuras aparecen con frecuencia en clases cortas y en el uso de decoradores.</p>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li><code>def</code> define una función y <code>return</code> devuelve un valor.</li>
+  <li><code>*args</code> recibe argumentos posicionales como tupla; <code>**kwargs</code>, argumentos con nombre como diccionario.</li>
+  <li>Una clausura es una función interna que conserva variables del ámbito que la contiene.</li>
+</ul>
+
+<h1>Decoradores, iteradores y generadores</h1>
+
+<h2>Decoradores</h2>
+<p>Un decorador es una función que recibe otra función como parámetro, le añade comportamiento y retorna una función diferente, sin modificar el código interno de la original. Se emplea para agregar comprobaciones (por ejemplo, permisos), medir el tiempo de ejecución, registrar eventos y reutilizar código. Se aplica escribiendo <code>@nombre_del_decorador</code> encima de la función decorada.</p>
+<pre><code>def decorar_saludo(funcion):
+
+    def otra_funcion(palabra):
+        print("hola")
+        funcion(palabra)
+        print("adios")
+
+    return otra_funcion
+
+
+@decorar_saludo
+def minuscula(texto):
+    print(texto.lower())
+
+
+def mayuscula(texto):
+    print(texto.upper())
+
+
+mayuscula("PytHon")
+minuscula("PytHon")
+&gt;&gt; PYTHON
+&gt;&gt; hola
+&gt;&gt; python
+&gt;&gt; adios</code></pre>
+<div class="foco">
+  <span class="et">Nota</span>
+  <p>La línea <code>@decorar_saludo</code> equivale a ejecutar <code>minuscula = decorar_saludo(minuscula)</code>. Si la función original recibe parámetros, la función interna del decorador debe aceptar <code>*args</code> y <code>**kwargs</code> para transmitirlos.</p>
+</div>
+
+<h2>Iterables e iteradores</h2>
+<p>Un <b>iterable</b> es todo objeto que puede recorrerse en un ciclo, como una lista o una cadena. Un <b>iterador</b> produce sus elementos de uno en uno; ahorra recursos porque puede representar secuencias y progresiones matemáticas ocupando poca memoria.</p>
+
+<h2>Generadores</h2>
+<p>Un generador es una función especial que no devuelve todos los valores a la vez, sino que los genera uno por uno cuando se le piden. Utiliza la palabra clave <code>yield</code> en lugar de <code>return</code>: al encontrarla, pausa su ejecución y devuelve el valor; cuando se reanuda, continúa justo donde se quedó. Conserva un estado, ofrece las ventajas de un iterador con una sintaxis más sencilla y es útil para leer archivos línea por línea, procesar datos masivos o crear flujos infinitos.</p>
+<pre><code>def mi_generador():
+    x = 1
+    yield x
+
+    x += 1
+    yield x
+
+    x += 1
+    yield x
+
+
+g = mi_generador()
+
+print(g)
+print(next(g))
+print(next(g))
+print("Hola mundo")
+print(next(g))
+&gt;&gt; &lt;generator object mi_generador at 0x000001C7FF054B80&gt;
+&gt;&gt; 1
+&gt;&gt; 2
+&gt;&gt; Hola mundo
+&gt;&gt; 3</code></pre>
+<p>La dirección de memoria que aparece en la primera línea varía en cada ejecución. Las <b>expresiones generadoras</b> siguen la sintaxis de la comprensión de listas, pero con paréntesis: mientras la comprensión de listas almacena todos los elementos en memoria, la expresión generadora los entrega uno por uno.</p>
+<pre><code>cuadrados_lista = [n**2 for n in range(1000)]   # todos los elementos en memoria
+cuadrados_gen = (n**2 for n in range(1000))     # un elemento a la vez</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Un decorador envuelve una función para ampliar su comportamiento sin alterar su código.</li>
+  <li>Un generador, definido con <code>yield</code>, produce valores bajo demanda y ahorra memoria.</li>
+  <li>La expresión generadora es la versión perezosa de la comprensión de listas.</li>
+</ul>
+
+<h1>Programación orientada a objetos</h1>
+
+<h2>Clases, objetos, atributos y métodos</h2>
+<p>Una <b>clase</b> es una plantilla que define las propiedades (<i>atributos</i>) y las acciones (<i>métodos</i>) de los objetos creados a partir de ella. Es un concepto fundamental de la programación orientada a objetos porque permite organizar el código de forma modular y reutilizable. Un <b>objeto</b> (o <i>instancia</i>) es una entidad concreta con sus propios datos y comportamientos, creada desde una clase.</p>
+<pre><code>class Perro:                      # clase
+
+    def __init__(self, raza):     # método especial que asigna el atributo "raza"
+        self.raza = raza
+
+    def ladrar(self):             # método
+        print(f"{self.raza} ha ladrado")
+
+
+mi_perro = Perro("Chihuahua")     # objeto con el atributo "Chihuahua"
+mi_perro.ladrar()
+&gt;&gt; Chihuahua ha ladrado</code></pre>
+
+<h3>Atributos</h3>
+<p>Los atributos son las características o datos que pertenecen a un objeto o a una clase. Los <b>atributos de instancia</b> son propios de cada objeto y se definen con <code>self</code> (por ejemplo, la raza, el color o el nombre de un perro). Los <b>atributos de clase</b> son comunes a todos los objetos y se definen directamente dentro de la clase.</p>
+
+<h3>Métodos</h3>
+<p>Los métodos son funciones definidas dentro de una clase que permiten a los objetos realizar acciones con sus atributos. Existen tres tipos.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 13</b><i>Tipos de Métodos en una Clase</i></p>
+  <table>
+    <thead><tr><th>Tipo</th><th>Decorador</th><th>Primer parámetro</th><th>Acceso y uso</th></tr></thead>
+    <tbody>
+      <tr><td>De instancia</td><td>—</td><td><code>self</code></td><td>Operan sobre un objeto y acceden a sus atributos de instancia. Son los más comunes.</td></tr>
+      <tr><td>De clase</td><td><code>@classmethod</code></td><td><code>cls</code></td><td>Se relacionan con la clase, no con las instancias; acceden a los atributos de clase.</td></tr>
+      <tr><td>Estático</td><td><code>@staticmethod</code></td><td>—</td><td>No acceden a atributos de clase ni de instancia; agrupan funciones relacionadas con la clase.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<pre><code>class Pajaro:
+
+    alas = True                       # atributo de clase
+
+    def __init__(self, color, especie):
+        self.color = color
+        self.especie = especie
+
+    def caracteristicas(self):        # método de instancia
+        print(f"Piolin es un {self.especie} de color {self.color}")
+
+    def volar(self, metros):
+        print(f"El pajaro vuela {metros} metros")
+        self.especie = "colibrí"      # se pueden modificar los atributos del objeto
+        print(f"Ahora el pajaro es un {self.especie}")
+        self.caracteristicas()        # se puede llamar a otros métodos de instancia
+
+    @classmethod
+    def poner_huevos(cls, cantidad):  # método de clase
+        print(f"Puso {cantidad} huevos")
+        cls.alas = True               # se puede modificar un atributo de clase
+        print(Pajaro.alas)
+
+    @staticmethod
+    def mirar():                      # método estático
+        print("El pajaro es ciego")
+
+
+piolin = Pajaro("amarillo", "canario")   # objeto (instancia)
+piolin.volar(5)
+piolin.alas = False                      # modifica el atributo solo en este objeto
+print(piolin.alas)
+Pajaro.poner_huevos(3)                   # no necesita una instancia
+Pajaro.mirar()
+&gt;&gt; El pajaro vuela 5 metros
+&gt;&gt; Ahora el pajaro es un colibrí
+&gt;&gt; Piolin es un colibrí de color amarillo
+&gt;&gt; False
+&gt;&gt; Puso 3 huevos
+&gt;&gt; True
+&gt;&gt; El pajaro es ciego</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>La instrucción <code>piolin.alas = False</code> crea un atributo de instancia que oculta al atributo de clase solo para ese objeto; el atributo de la clase <code>Pajaro.alas</code> no cambia, lo cual explica que <code>poner_huevos()</code> imprima <code>True</code>.</p>
+</div>
+
+<h2>Herencia</h2>
+<p>La herencia permite que una clase obtenga los atributos y métodos de otra. La clase original se denomina <b>clase padre</b> o superclase, y la que hereda, <b>clase hija</b> o subclase. La subclase dispone automáticamente de todo lo definido en la superclase y puede agregar elementos propios.</p>
+<pre><code>class Animal:
+    def __init__(self, edad, color):
+        self.edad = edad
+        self.color = color
+
+    def nacer(self):
+        print("Este animal ha nacido")
+        print(f"Tiene {self.edad} años y es de color {self.color}")
+
+
+class Pajaro(Animal):
+    pass
+
+
+piolin = Pajaro(2, "amarillo")
+piolin.nacer()</code></pre>
+
+<h3>Herencia extendida</h3>
+<p>La subclase puede además añadir atributos o métodos propios, <b>sobrescribir</b> un método heredado para que funcione de otra manera y <b>llamar al método original</b> mediante <code>super()</code> cuando necesita conservar parte del comportamiento de la superclase.</p>
+<pre><code>class Animal:
+    def __init__(self, edad, color):
+        self.edad = edad
+        self.color = color
+
+    def nacer(self):
+        print("Este animal ha nacido")
+
+    def hablar(self):
+        print("Este animal emite un sonido")
+
+
+class Pajaro(Animal):
+    def __init__(self, edad, color, vuelo_metros):
+        super().__init__(edad, color)       # reutiliza el constructor de Animal
+        self.vuelo_metros = vuelo_metros
+
+    def hablar(self):                       # sobrescribe el método heredado
+        print(f"{self.color}")
+
+    def volar(self):
+        print(f"El pajaro vuela {self.vuelo_metros} metros")
+
+
+class Aguila(Pajaro):
+    pass
+
+
+mi_aguila = Aguila(30, "marrón", 5)
+mi_aguila.volar()
+&gt;&gt; El pajaro vuela 5 metros</code></pre>
+
+<h2>Polimorfismo</h2>
+<p>El polimorfismo significa que diferentes clases pueden usar el mismo nombre de método, pero cada una lo implementa a su manera. Así, un mismo código puede operar sobre objetos de clases distintas.</p>
+<pre><code>class Vaca:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def hablar(self):
+        print(self.nombre + " dice muuuu")
+
+
+class Oveja:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def hablar(self):
+        print(self.nombre + " dice meeeeee")
+
+
+animales = [Vaca("Aurora"), Oveja("Nube")]
+
+for animal in animales:
+    animal.hablar()
+&gt;&gt; Aurora dice muuuu
+&gt;&gt; Nube dice meeeeee</code></pre>
+
+<h2>Métodos especiales</h2>
+<p>Los métodos especiales (también llamados métodos «mágicos» o <i>magic methods</i>) son funciones cuyo nombre empieza y termina con dos guiones bajos, como <code>__nombre__</code>. Otorgan comportamientos particulares a los objetos y Python los invoca de forma automática en ciertas situaciones.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 14</b><i>Métodos Especiales Empleados en los Ejemplos</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Se invoca cuando…</th></tr></thead>
+    <tbody>
+      <tr><td><code>__init__</code></td><td>se crea un objeto; inicializa sus atributos.</td></tr>
+      <tr><td><code>__str__</code></td><td>se llama a <code>str(objeto)</code> o <code>print(objeto)</code>; devuelve su representación en texto.</td></tr>
+      <tr><td><code>__len__</code></td><td>se llama a <code>len(objeto)</code>.</td></tr>
+      <tr><td><code>__del__</code></td><td>el objeto se elimina, por ejemplo con <code>del objeto</code>.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Elaboración propia a partir de las notas del autor.</p>
+</div>
+
+<pre><code>class CD:
+
+    def __init__(self, autor, titulo, canciones):
+        self.autor = autor
+        self.titulo = titulo
+        self.canciones = canciones
+
+    def __str__(self):
+        return f"Album: {self.titulo} de {self.autor}"
+
+    def __len__(self):
+        return self.canciones
+
+    def __del__(self):
+        print(f"Se ha eliminado la canción {self.titulo}")
+
+
+mi_cd = CD("Pink Floyd", "The Wall", 24)
+
+print(str(mi_cd))
+print(len(mi_cd))
+del mi_cd
+&gt;&gt; Album: The Wall de Pink Floyd
+&gt;&gt; 24
+&gt;&gt; Se ha eliminado la canción The Wall</code></pre>
+
+<h2>Pilares de la programación orientada a objetos</h2>
+<p>El curso de referencia presenta la programación orientada a objetos como un modo de programación basado en seis pilares. Dos de ellos, la <b>herencia</b> y el <b>polimorfismo</b>, se desarrollaron en este capítulo. Los cuatro restantes tienen un carácter más conceptual:</p>
+<ul class="lista">
+  <li>Cohesión.</li>
+  <li>Acoplamiento.</li>
+  <li>Abstracción.</li>
+  <li>Encapsulamiento.</li>
+</ul>
+<div class="foco">
+  <span class="et">Nota</span>
+  <p>Las notas originales remiten a cuatro artículos del blog de Escuela Directa para estudiar estos pilares: <code>escueladirecta-blog.blogspot.com/2021/09/cohesion-pilares-de-la-programacion.html</code>, <code>…/2021/10/acoplamiento-pilares-de-la-programacion.html</code>, <code>…/2021/10/abstraccion-pilares-de-la-programacion.html</code> y <code>…/2021/10/encapsulamiento-pilares-de-la.html</code>.</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Una clase es una plantilla; un objeto es una instancia con datos propios.</li>
+  <li>Los métodos pueden ser de instancia (<code>self</code>), de clase (<code>cls</code>) o estáticos.</li>
+  <li>La herencia reutiliza código y <code>super()</code> permite aprovechar el comportamiento de la superclase.</li>
+  <li>El polimorfismo permite que clases distintas respondan al mismo método de maneras diferentes.</li>
+</ul>

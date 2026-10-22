@@ -1,0 +1,1065 @@
+<h1>Proyectos aplicados</h1>
+
+<h2>Videojuego con Pygame: Invasión Espacial</h2>
+<p>Este proyecto construye, paso a paso, un videojuego en dos dimensiones con la biblioteca <code>pygame</code>. Cada subsección muestra únicamente el código nuevo o modificado respecto del paso anterior; el programa completo se incluye en el anexo A. Los archivos de imagen y sonido (<code>logo_color.png</code>, <code>mouse.png</code>, <code>veneno.png</code>, <code>bala.png</code>, <code>fondo.png</code>, <code>MusicaFondo.mp3</code>, <code>disparo.mp3</code> y <code>Golpe.mp3</code>) deben estar en la misma carpeta que el programa.</p>
+<pre><code>pip install pygame</code></pre>
+
+<h3>Paso 1. Crear la pantalla</h3>
+<p>Se importa el paquete, se inicializa y se crea una ventana de 800 × 600 píxeles. El <b>bucle del juego</b> se mantiene mientras la variable <code>se_ejecuta</code> sea verdadera y la ventana se cierra al hacer clic en la «X».</p>
+<pre><code>import pygame
+
+pygame.init()                                   # inicializa Pygame
+pantalla = pygame.display.set_mode((800, 600))  # pantalla de 800 px x 600 px
+
+se_ejecuta = True
+
+while se_ejecuta:                               # bucle del juego
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:          # clic en la X de la ventana
+            se_ejecuta = False</code></pre>
+
+<h3>Paso 2. Título, icono y color de fondo</h3>
+<pre><code>icono = pygame.image.load("logo_color.png")
+pygame.display.set_caption("Invasión Lolera")   # título de la ventana
+pygame.display.set_icon(icono)                  # icono de la ventana
+
+color_fondo = (255, 255, 255)                   # color RGB del fondo
+
+# dentro del bucle del juego:
+    pantalla.fill(color_fondo)                  # pinta el fondo
+    pygame.display.update()                     # actualiza la pantalla</code></pre>
+
+<h3>Paso 3. Agregar el protagonista</h3>
+<pre><code>img_jugador = pygame.image.load("mouse.png")    # imagen de la nave
+jugador_x = 368                                 # posición en X
+jugador_y = 536                                 # posición en Y
+
+def jugador():
+    pantalla.blit(img_jugador, (jugador_x, jugador_y))   # dibuja la nave
+
+# dentro del bucle, después de pintar el fondo:
+    jugador()</code></pre>
+
+<h3>Paso 4. Mover al personaje</h3>
+<p>Una variable de cambio guarda la velocidad horizontal. Al presionar una flecha se asigna un valor positivo o negativo, y al soltarla vuelve a cero. Además, se limita la posición para que la nave no salga de la pantalla: el máximo es 800 − 64, donde 64 corresponde al ancho de la imagen.</p>
+<pre><code>jugador_x_cambio = 0
+
+def jugador(x, y):
+    pantalla.blit(img_jugador, (x, y))
+
+# dentro del bucle, en la revisión de eventos:
+    if evento.type == pygame.KEYDOWN:
+        if evento.key == pygame.K_LEFT:
+            jugador_x_cambio = -0.1
+        elif evento.key == pygame.K_RIGHT:
+            jugador_x_cambio = 0.1
+
+    if evento.type == pygame.KEYUP:
+        if evento.key == pygame.K_LEFT or evento.key == pygame.K_RIGHT:
+            jugador_x_cambio = 0
+
+# después de los eventos:
+    jugador_x += jugador_x_cambio
+
+    if jugador_x &lt;= 0:
+        jugador_x = 0
+    elif jugador_x &gt;= 736:
+        jugador_x = 736
+
+    jugador(jugador_x, jugador_y)</code></pre>
+
+<h3>Paso 5. Crear al enemigo</h3>
+<p>El enemigo aparece en una posición aleatoria gracias al módulo <code>random</code>.</p>
+<pre><code>import random
+
+img_enemigo = pygame.image.load("cheese.png")
+enemigo_x = random.randint(0, 736)
+enemigo_y = random.randint(50, 200)
+
+def enemigo(x, y):
+    pantalla.blit(img_enemigo, (x, y))
+
+# dentro del bucle:
+    enemigo(enemigo_x, enemigo_y)</code></pre>
+
+<h3>Paso 6. Movimiento del enemigo</h3>
+<p>El enemigo avanza en horizontal y, al tocar un borde, invierte su dirección y desciende.</p>
+<pre><code>enemigo_x_cambio = 0.05
+enemigo_y_cambio = 50
+
+# dentro del bucle:
+    enemigo_x += enemigo_x_cambio
+
+    if enemigo_x &lt;= 0:
+        enemigo_x_cambio = 0.05
+        enemigo_y += enemigo_y_cambio
+    elif enemigo_x &gt;= 736:
+        enemigo_x_cambio = -0.05
+        enemigo_y += enemigo_y_cambio</code></pre>
+
+<h3>Paso 7. Imagen de fondo</h3>
+<pre><code>fondo = pygame.image.load("fondo.jpg")
+
+# dentro del bucle, en lugar de pantalla.fill(color_fondo):
+    pantalla.blit(fondo, (0, 0))</code></pre>
+
+<h3>Paso 8. Disparar balas</h3>
+<p>La bala permanece invisible hasta que se presiona la barra espaciadora; entonces se dibuja y asciende hasta salir de la pantalla. La palabra clave <code>global</code> permite modificar dentro de la función una variable definida fuera de ella.</p>
+<pre><code>img_bala = pygame.image.load("bala.png")
+bala_x = 0
+bala_y = 500                  # el mismo valor que la posición Y del jugador
+bala_y_cambio = 1
+bala_visible = False
+
+def disparar_bala(x, y):
+    global bala_visible
+    bala_visible = True
+    pantalla.blit(img_bala, (x + 22, y + 10))
+
+# en los eventos de teclado:
+    elif evento.key == pygame.K_SPACE:
+        if not bala_visible:
+            bala_x = jugador_x
+            disparar_bala(bala_x, bala_y)
+
+# en el bucle, movimiento de la bala:
+    if bala_y &lt;= -64:
+        bala_y = 500
+        bala_visible = False
+
+    if bala_visible:
+        disparar_bala(bala_x, bala_y)
+        bala_y -= bala_y_cambio</code></pre>
+
+<h3>Paso 9. Detectar colisiones</h3>
+<p>Se calcula la distancia euclidiana entre la bala y el enemigo: si es menor que 27 píxeles, se considera que hubo colisión. En ese caso la bala vuelve a su posición inicial, aumenta el puntaje y el enemigo reaparece en un lugar aleatorio.</p>
+<pre><code>import math
+
+puntaje = 0
+
+def colision(x_1, y_1, x_2, y_2):
+    operacion1 = math.pow((x_2 - x_1), 2)
+    operacion2 = math.pow((y_2 - y_1), 2)
+    distancia = math.sqrt(operacion1 + operacion2)
+    if distancia &lt; 27:
+        return True
+    else:
+        return False
+
+# en el bucle:
+    hay_colision = colision(enemigo_x, enemigo_y, bala_x, bala_y)
+    if hay_colision:
+        bala_y = 500
+        bala_visible = False
+        puntaje += 1
+        enemigo_x = random.randint(0, 736)
+        enemigo_y = random.randint(50, 200)</code></pre>
+
+<h3>Paso 10. Varios enemigos</h3>
+<p>Para generar varios enemigos, cada atributo (imagen, posición y velocidades) se guarda en una lista, y un bucle <code>for</code> los inicializa y los actualiza.</p>
+<pre><code>img_enemigo = []
+enemigo_x = []
+enemigo_y = []
+enemigo_x_cambio = []
+enemigo_y_cambio = []
+cantidad_enemigos = 8
+
+for e in range(cantidad_enemigos):
+    img_enemigo.append(pygame.image.load("veneno.png"))
+    enemigo_x.append(random.randint(0, 736))
+    enemigo_y.append(random.randint(50, 200))
+    enemigo_x_cambio.append(0.5)
+    enemigo_y_cambio.append(50)
+
+def enemigo(x, y, ene):
+    pantalla.blit(img_enemigo[ene], (x, y))
+
+# en el bucle, el movimiento y las colisiones se aplican a cada enemigo:
+    for e in range(cantidad_enemigos):
+        enemigo_x[e] += enemigo_x_cambio[e]
+
+        if enemigo_x[e] &lt;= 0:
+            enemigo_x_cambio[e] = 0.5
+            enemigo_y[e] += enemigo_y_cambio[e]
+        elif enemigo_x[e] &gt;= 736:
+            enemigo_x_cambio[e] = -0.5
+            enemigo_y[e] += enemigo_y_cambio[e]
+
+        hay_colision = colision(enemigo_x[e], enemigo_y[e], bala_x, bala_y)
+        if hay_colision:
+            bala_y = 500
+            bala_visible = False
+            puntaje += 1
+            enemigo_x[e] = random.randint(0, 736)
+            enemigo_y[e] = random.randint(50, 200)
+
+        enemigo(enemigo_x[e], enemigo_y[e], e)</code></pre>
+
+<h3>Paso 11. Mostrar el puntaje</h3>
+<pre><code>fuente = pygame.font.Font("freesansbold.ttf", 32)   # tipo y tamaño de fuente
+texto_x = 10
+texto_y = 10
+
+def mostrar_puntaje(x, y):
+    texto = fuente.render(f"Puntaje: {puntaje}", True, (255, 255, 255))
+    pantalla.blit(texto, (x, y))
+
+# en el bucle:
+    mostrar_puntaje(texto_x, texto_y)</code></pre>
+
+<h3>Paso 12. Música y sonidos</h3>
+<pre><code>from pygame import mixer
+
+mixer.music.load("MusicaFondo.mp3")
+mixer.music.set_volume(0.5)
+mixer.music.play(-1)              # -1: repetición continua
+
+# al disparar:
+    sonido_bala = mixer.Sound("disparo.mp3")
+    sonido_bala.play()
+
+# al detectar una colisión:
+    sonido_choque = mixer.Sound("Golpe.mp3")
+    sonido_choque.play()</code></pre>
+
+<h3>Paso 13. Versión final</h3>
+<p>La versión final incorpora varias mejoras: admite múltiples balas simultáneas (cada una es un diccionario guardado en una lista), muestra el mensaje «GAME OVER» cuando un enemigo llega a la altura de la nave y define la función <code>ruta_absoluta()</code>, que permite localizar los recursos tanto al ejecutar el script como al empaquetarlo como programa ejecutable con PyInstaller.</p>
+<pre><code>def ruta_absoluta(ruta_relativa):
+    base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, ruta_relativa)
+
+# nueva bala al presionar la barra espaciadora:
+    nueva_bala = {"x": jugador_x, "y": jugador_y, "velocidad": -2}
+    balas.append(nueva_bala)
+
+# fin del juego:
+    if enemigo_y[e] &gt; 440:
+        for k in range(cantidad_enemigos):
+            enemigo_y[k] = 1000
+        texto_final()
+        break</code></pre>
+
+<div class="foco">
+  <span class="et">Nota</span>
+  <p>Este ejemplo desplaza los objetos una cantidad fija en cada vuelta del bucle, por lo que la velocidad aparente depende de la rapidez del equipo. En proyectos de mayor tamaño conviene limitar el número de cuadros por segundo del bucle.</p>
+</div>
+
+<h2>Interfaz gráfica con Tkinter</h2>
+<p><code>tkinter</code> es la interfaz estándar de Python para el conjunto de herramientas gráficas Tcl/Tk; es un módulo opcional que viene incluido en la mayoría de las instalaciones (Python Software Foundation, s. f.-d). Una aplicación se construye creando una ventana, agregando <i>widgets</i> (paneles, etiquetas, cuadros de texto, botones) y entregando el control a un bucle de eventos con <code>mainloop()</code>, que procesa las acciones del usuario hasta que se cierran todas las ventanas.</p>
+
+<h3>Configuración de la ventana</h3>
+<pre><code>from tkinter import *
+
+aplicacion = Tk()                                   # inicia tkinter
+
+aplicacion.geometry("1020x630+0+0")                 # tamaño 1020x630, ubicada en (0, 0)
+aplicacion.resizable(0, 0)                          # impide redimensionar en X y en Y
+aplicacion.title("Aplicación Yasmani - Restaurante")
+aplicacion.config(bg="pink")                        # color de fondo
+
+aplicacion.mainloop()                               # evita que la ventana se cierre</code></pre>
+
+<h3>Ejemplo: sistema de facturación de un restaurante</h3>
+<p>El ejemplo integra los elementos habituales de una aplicación de escritorio: paneles organizados con <code>pack()</code> y <code>grid()</code>, casillas de verificación (<code>Checkbutton</code>) que habilitan cuadros de entrada (<code>Entry</code>), variables enlazadas a los widgets (<code>StringVar</code>, <code>IntVar</code>), una calculadora, un área de recibo (<code>Text</code>) y botones que ejecutan funciones: calcular el total, generar el recibo, guardarlo en un archivo y reiniciar el formulario.</p>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>La calculadora del ejemplo evalúa la operación con la función <code>eval()</code>, que ejecuta cualquier expresión de Python. Es aceptable aquí porque el texto proviene solo de botones numéricos, pero no debe usarse con texto introducido libremente por el usuario.</p>
+</div>
+
+<pre><code>from tkinter import *
+import random
+import datetime
+from tkinter import filedialog, messagebox
+
+operador = ""
+precios_comida = [1.32, 1.65, 2.31, 3.22, 1.22, 1.99, 2.05]
+precios_bebida = [0.25, 0.99, 1.21, 1.54, 1.08, 1.10, 2.00]
+precios_postres = [1.54, 1.68, 1.32, 1.97, 2.55, 2.14, 1.94]
+
+
+def click_boton(numero):
+    global operador
+    operador = operador + numero
+    visor_calculadora.delete(0, END)
+    visor_calculadora.insert(END, operador)
+
+
+def borrar():
+    global operador
+    operador = ""
+    visor_calculadora.delete(0, END)
+
+
+def obtener_resultado():
+    global operador
+    resultado = str(eval(operador))
+    visor_calculadora.delete(0, END)
+    visor_calculadora.insert(0, resultado)
+    operador = ""
+
+
+# Generar total de precios
+def total():
+    sub_total_comida = 0
+    p = 0
+    for cantidad in texto_comida:
+        sub_total_comida = sub_total_comida + (float(cantidad.get()) * precios_comida[p])
+        p += 1
+
+    sub_total_bebida = 0
+    p = 0
+    for cantidad in texto_bebida:
+        sub_total_bebida = sub_total_bebida + (float(cantidad.get()) * precios_bebida[p])
+        p += 1
+
+    sub_total_postre = 0
+    p = 0
+    for cantidad in texto_postres:
+        sub_total_postre = sub_total_postre + (float(cantidad.get()) * precios_postres[p])
+        p += 1
+
+    sub_total = sub_total_comida + sub_total_bebida + sub_total_postre
+    impuestos = sub_total * 0.07
+    final = sub_total + impuestos
+
+    var_costo_comida.set(f"$ {round(sub_total_comida, 2)}")
+    var_costo_bebida.set(f"$ {round(sub_total_bebida, 2)}")
+    var_costo_postre.set(f"$ {round(sub_total_postre, 2)}")
+    var_subtotal.set(f"$ {round(sub_total, 2)}")
+    var_impuesto.set(f"$ {round(impuestos, 2)}")
+    var_total.set(f"$ {round(final, 2)}")
+
+
+# Generar recibo
+def recibo():
+    texto_recibo.delete(1.0, END)
+    num_recibo = f"N# - {random.randint(10000, 99999)}"
+    fecha = datetime.datetime.now()
+    fecha_recibo = f"{fecha.day}/{fecha.month}/{fecha.year} - {fecha.hour}:{fecha.minute}"
+    texto_recibo.insert(END, f"Datos:\t{num_recibo}\t\t{fecha_recibo}" "\n")
+    texto_recibo.insert(END, f"*" * 73 + "\n")
+    texto_recibo.insert(END, "Items\t\tCant.\tCosto Items\n")
+    texto_recibo.insert(END, f"-" * 88 + "\n")
+
+    x = 0
+    for comida in texto_comida:
+        if comida.get() != "0":
+            texto_recibo.insert(END, f"{lista_comidas[x]}\t\t{comida.get()}\t$ {int(comida.get()) * precios_comida[x]}\n")
+        x += 1
+
+    x = 0
+    for bebida in texto_bebida:
+        if bebida.get() != "0":
+            texto_recibo.insert(END, f"{lista_bebidas[x]}\t\t{bebida.get()}\t$ {int(bebida.get()) * precios_bebida[x]}\n")
+        x += 1
+
+    x = 0
+    for postre in texto_postres:
+        if postre.get() != "0":
+            texto_recibo.insert(END, f"{lista_postres[x]}\t\t{postre.get()}\t$ {int(postre.get()) * precios_postres[x]}\n")
+        x += 1
+
+    texto_recibo.insert(END, f"-" * 88 + "\n")
+    texto_recibo.insert(END, f" Costo de la Comida: \t\t\t{var_costo_comida.get()}\n")
+    texto_recibo.insert(END, f" Costo de la Bebida: \t\t\t{var_costo_bebida.get()}\n")
+    texto_recibo.insert(END, f" Costo de los Postres: \t\t\t{var_costo_postre.get()}\n")
+    texto_recibo.insert(END, f"-" * 88 + "\n")
+    texto_recibo.insert(END, f" Subtotal: \t\t\t{var_subtotal.get()}\n")
+    texto_recibo.insert(END, f" Impuestos: \t\t\t{var_impuesto.get()}\n")
+    texto_recibo.insert(END, f" Total: \t\t\t{var_total.get()}\n")
+    texto_recibo.insert(END, f"*" * 73 + "\n")
+    texto_recibo.insert(END, "Lo esperamos pronto ¡GRACIAS!")
+
+
+# Guardar el recibo
+def guardar():
+    info_recibo = texto_recibo.get(1.0, END)
+    archivo = filedialog.asksaveasfile(mode="w", defaultextension=".txt")
+    archivo.write(info_recibo)
+    archivo.close()
+    messagebox.showinfo("Información", "Su recibo ha sido guardado")
+
+
+# Reiniciar todos los campos
+def resetear():
+    texto_recibo.delete(0.1, END)
+
+    for texto in texto_comida:
+        texto.set("0")
+    for texto in texto_bebida:
+        texto.set("0")
+    for texto in texto_postres:
+        texto.set("0")
+
+    for cuadro in cuadros_comida:
+        cuadro.config(state=DISABLED)
+    for cuadro in cuadros_bebida:
+        cuadro.config(state=DISABLED)
+    for cuadro in cuadros_postres:
+        cuadro.config(state=DISABLED)
+
+    for v in variables_comida:
+        v.set(0)
+    for v in variables_bebida:
+        v.set(0)
+    for v in variables_postres:
+        v.set(0)
+
+    var_costo_comida.set("")
+    var_costo_bebida.set("")
+    var_costo_postre.set("")
+    var_subtotal.set("")
+    var_impuesto.set("")
+    var_total.set("")
+
+
+def revisar_check():
+    x = 0
+    for c in cuadros_comida:
+        if variables_comida[x].get() == 1:
+            cuadros_comida[x].config(state=NORMAL)
+            if cuadros_comida[x].get() == "0":
+                cuadros_comida[x].delete(0, END)
+            cuadros_comida[x].focus()
+        else:
+            cuadros_comida[x].config(state=DISABLED)
+            texto_comida[x].set("0")
+        x += 1
+
+    x = 0
+    for c in cuadros_bebida:
+        if variables_bebida[x].get() == 1:
+            cuadros_bebida[x].config(state=NORMAL)
+            if cuadros_bebida[x].get() == "0":
+                cuadros_bebida[x].delete(0, END)
+            cuadros_bebida[x].focus()
+        else:
+            cuadros_bebida[x].config(state=DISABLED)
+            texto_bebida[x].set("0")
+        x += 1
+
+    x = 0
+    for c in cuadros_postres:
+        if variables_postres[x].get() == 1:
+            cuadros_postres[x].config(state=NORMAL)
+            if cuadros_postres[x].get() == "0":
+                cuadros_postres[x].delete(0, END)
+            cuadros_postres[x].focus()
+        else:
+            cuadros_postres[x].config(state=DISABLED)
+            texto_postres[x].set("0")
+        x += 1
+
+
+# Iniciar tkinter
+aplicacion = Tk()
+aplicacion.geometry("1220x630+0+0")
+aplicacion.resizable(0, 0)
+aplicacion.title("Aplicación Yasmani - Restaurante")
+aplicacion.config(bg="pink")
+
+# Panel superior
+panel_superior = Frame(aplicacion, bd=1, relief=FLAT)   # ventana, ancho del borde, relieve
+panel_superior.pack(side=TOP)
+
+# Etiqueta título
+etiqueta_titulo = Label(panel_superior, text="Sistema de Facturación", fg="azure4",
+                        font=("Arial", 58), bg="burlywood", width=30)
+etiqueta_titulo.grid(row=0, column=0)
+
+# Panel izquierdo
+panel_izquierdo = Frame(aplicacion, bd=1, relief=FLAT)
+panel_izquierdo.pack(side=LEFT)
+
+# Panel costos
+panel_costos = Frame(panel_izquierdo, bd=1, relief=FLAT, bg="azure4", padx=40)
+panel_costos.pack(side=BOTTOM)
+
+# Panel comidas
+panel_comidas = LabelFrame(panel_izquierdo, text="Comida", font=("Arial", 19, "bold"),
+                           bd=1, relief=FLAT, fg="azure4")
+panel_comidas.pack(side=LEFT)
+
+# Panel bebidas
+panel_bebida = LabelFrame(panel_izquierdo, text="Bebidas", font=("Arial", 19, "bold"),
+                          bd=1, relief=FLAT, fg="azure4")
+panel_bebida.pack(side=LEFT)
+
+# Panel postres
+panel_postres = LabelFrame(panel_izquierdo, text="Postres", font=("Arial", 19, "bold"),
+                           bd=1, relief=FLAT, fg="azure4")
+panel_postres.pack(side=LEFT)
+
+# Panel derecho
+panel_derecha = Frame(aplicacion, bd=1, relief=FLAT)
+panel_derecha.pack(side=RIGHT)
+
+# Panel calculadora
+panel_calculadora = Frame(panel_derecha, bd=1, relief=FLAT, bg="burlywood")
+panel_calculadora.pack()
+
+# Panel recibo
+panel_recibo = Frame(panel_derecha, bd=1, relief=FLAT, bg="burlywood")
+panel_recibo.pack()
+
+# Panel botones
+panel_botones = Frame(panel_derecha, bd=1, relief=FLAT, bg="burlywood")
+panel_botones.pack()
+
+# Lista de productos
+lista_comidas = ["pollo", "cordero", "cerdo", "res", "pato", "pescado", "comida2"]
+lista_bebidas = ["agua", "vino", "tequila", "ron", "cola", "vodka", "cerveza"]
+lista_postres = ["helado", "fruta", "flan", "pastel", "creaps", "mousse", "postre2"]
+
+# Generar items de comida
+variables_comida = []
+cuadros_comida = []
+texto_comida = []
+contador = 0
+for comida in lista_comidas:
+
+    # Crear checkbutton
+    variables_comida.append("")
+    variables_comida[contador] = IntVar()
+    comida = Checkbutton(panel_comidas, text=comida.title(), font=("Arial", 19, "bold"),
+                         onvalue=1, offvalue=0, variable=variables_comida[contador],
+                         command=revisar_check)
+    comida.grid(row=contador, column=0, sticky=W)
+
+    # Crear cuadros de entrada
+    cuadros_comida.append("")
+    texto_comida.append("")
+    texto_comida[contador] = StringVar()
+    texto_comida[contador].set("0")
+    cuadros_comida[contador] = Entry(panel_comidas, font=("Arial", 18, "bold"), bd=1, width=6,
+                                     state=DISABLED, textvariable=texto_comida[contador])
+    cuadros_comida[contador].grid(row=contador, column=1)
+    contador += 1
+
+# Generar items de bebida
+variables_bebida = []
+cuadros_bebida = []
+texto_bebida = []
+contador = 0
+for bebida in lista_bebidas:
+
+    variables_bebida.append("")
+    variables_bebida[contador] = IntVar()
+    bebida = Checkbutton(panel_bebida, text=bebida.title(), font=("Arial", 19, "bold"),
+                         onvalue=1, offvalue=0, variable=variables_bebida[contador],
+                         command=revisar_check)
+    bebida.grid(row=contador, column=0, sticky=W)
+
+    cuadros_bebida.append("")
+    texto_bebida.append("")
+    texto_bebida[contador] = StringVar()
+    texto_bebida[contador].set("0")
+    cuadros_bebida[contador] = Entry(panel_bebida, font=("Arial", 18, "bold"), bd=1, width=6,
+                                     state=DISABLED, textvariable=texto_bebida[contador])
+    cuadros_bebida[contador].grid(row=contador, column=1)
+    contador += 1
+
+# Generar items de postres
+variables_postres = []
+cuadros_postres = []
+texto_postres = []
+contador = 0
+for postres in lista_postres:
+    variables_postres.append("")
+    variables_postres[contador] = IntVar()
+    postres = Checkbutton(panel_postres, text=postres.title(), font=("Arial", 19, "bold"),
+                          onvalue=1, offvalue=0, variable=variables_postres[contador],
+                          command=revisar_check)
+    postres.grid(row=contador, column=0, sticky=W)
+
+    cuadros_postres.append("")
+    texto_postres.append("")
+    texto_postres[contador] = StringVar()
+    texto_postres[contador].set("0")
+    cuadros_postres[contador] = Entry(panel_postres, font=("Arial", 18, "bold"), bd=1, width=6,
+                                      state=DISABLED, textvariable=texto_postres[contador])
+    cuadros_postres[contador].grid(row=contador, column=1)
+    contador += 1
+
+# Variables de costos
+var_costo_comida = StringVar()
+var_costo_bebida = StringVar()
+var_costo_postre = StringVar()
+var_subtotal = StringVar()
+var_impuesto = StringVar()
+var_total = StringVar()
+
+# Etiquetas de costo y campos de entrada
+etiqueta_costo_comida = Label(panel_costos, text="Costo comida", font=("Arial", 18, "bold"),
+                              bg="azure4", fg="white")
+etiqueta_costo_comida.grid(row=0, column=0, padx=40)
+texto_costo_comida = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                           state="readonly", textvariable=var_costo_comida)
+texto_costo_comida.grid(row=0, column=1)
+
+etiqueta_costo_bebida = Label(panel_costos, text="Costo bebida", font=("Arial", 18, "bold"),
+                              bg="azure4", fg="white")
+etiqueta_costo_bebida.grid(row=1, column=0, padx=40)
+texto_costo_bebida = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                           state="readonly", textvariable=var_costo_bebida)
+texto_costo_bebida.grid(row=1, column=1)
+
+etiqueta_costo_postre = Label(panel_costos, text="Costo postre", font=("Arial", 18, "bold"),
+                              bg="azure4", fg="white")
+etiqueta_costo_postre.grid(row=2, column=0, padx=40)
+texto_costo_postre = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                           state="readonly", textvariable=var_costo_postre)
+texto_costo_postre.grid(row=2, column=1)
+
+etiqueta_subtotal = Label(panel_costos, text="Subtotal", font=("Arial", 18, "bold"),
+                          bg="azure4", fg="white")
+etiqueta_subtotal.grid(row=0, column=3, padx=40)
+texto_subtotal = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                       state="readonly", textvariable=var_subtotal)
+texto_subtotal.grid(row=0, column=4)
+
+etiqueta_impuesto = Label(panel_costos, text="Impuestos", font=("Arial", 18, "bold"),
+                          bg="azure4", fg="white")
+etiqueta_impuesto.grid(row=1, column=3, padx=40)
+texto_impuesto = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                       state="readonly", textvariable=var_impuesto)
+texto_impuesto.grid(row=1, column=4)
+
+etiqueta_total = Label(panel_costos, text="Total", font=("Arial", 18, "bold"),
+                       bg="azure4", fg="white")
+etiqueta_total.grid(row=2, column=3, padx=40)
+texto_total = Entry(panel_costos, font=("Arial", 12, "bold"), bd=1, width=10,
+                    state="readonly", textvariable=var_total)
+texto_total.grid(row=2, column=4)
+
+# Botones
+botones = ["Total", "Recibo", "Guardar", "Resetear"]
+botones_creados = []
+columnas = 0
+for boton in botones:
+    boton = Button(panel_botones, text=boton.title(), font=("Arial", 14, "bold"),
+                   fg="white", bg="azure4", bd=1, width=8)
+    botones_creados.append(boton)
+    boton.grid(row=0, column=columnas)
+    columnas += 1
+
+botones_creados[0].config(command=total)
+botones_creados[1].config(command=recibo)
+botones_creados[2].config(command=guardar)
+botones_creados[3].config(command=resetear)
+
+# Área de recibo
+texto_recibo = Text(panel_recibo, font=("Arial", 12, "bold"), bd=1, width=49, height=10)
+texto_recibo.grid(row=0, column=0)
+
+# Calculadora
+visor_calculadora = Entry(panel_calculadora, font=("Arial", 16, "bold"), width=37, bd=1)
+visor_calculadora.grid(row=0, column=0, columnspan=4)
+
+botones_calculadora = ["7", "8", "9", "+", "4", "5", "6", "-", "1", "2", "3", "x",
+                       "CE", "Borrar", "0", "/"]
+botones_guardados = []
+
+fila = 1
+columna = 0
+
+for boton in botones_calculadora:
+    boton = Button(panel_calculadora, text=boton.title(), font=("Arial", 16, "bold"),
+                   fg="white", bg="azure4", bd=1, width=8)
+    botones_guardados.append(boton)
+    boton.grid(row=fila, column=columna)
+
+    if columna == 3:
+        fila += 1
+    columna += 1
+
+    if columna == 4:
+        columna = 0
+
+botones_guardados[0].config(command=lambda: click_boton("7"))
+botones_guardados[1].config(command=lambda: click_boton("8"))
+botones_guardados[2].config(command=lambda: click_boton("9"))
+botones_guardados[3].config(command=lambda: click_boton("+"))
+botones_guardados[4].config(command=lambda: click_boton("4"))
+botones_guardados[5].config(command=lambda: click_boton("5"))
+botones_guardados[6].config(command=lambda: click_boton("6"))
+botones_guardados[7].config(command=lambda: click_boton("-"))
+botones_guardados[8].config(command=lambda: click_boton("1"))
+botones_guardados[9].config(command=lambda: click_boton("2"))
+botones_guardados[10].config(command=lambda: click_boton("3"))
+botones_guardados[11].config(command=lambda: click_boton("*"))
+botones_guardados[12].config(command=obtener_resultado)
+botones_guardados[13].config(command=borrar)
+botones_guardados[14].config(command=lambda: click_boton("0"))
+botones_guardados[15].config(command=lambda: click_boton("/"))
+
+# Evitar que la pantalla se cierre
+aplicacion.mainloop()</code></pre>
+
+<h2>Asistente de voz</h2>
+<p>Un asistente virtual por voz se construye combinando varios módulos externos: <code>pyttsx3</code> (síntesis de voz), <code>speech_recognition</code> (reconocimiento de voz desde el micrófono), <code>pywhatkit</code> (automatización de WhatsApp y YouTube), <code>pyjokes</code> (chistes), <code>wikipedia</code> (consulta de información), además de <code>webbrowser</code> y <code>datetime</code>, de la biblioteca estándar. El asistente de este ejemplo responde con voz, escucha comandos por el micrófono, abre sitios web, informa el día y la hora, busca en Wikipedia e internet, reproduce videos de YouTube y cuenta chistes.</p>
+<pre><code>pip install pyttsx3 SpeechRecognition pywhatkit pyjokes wikipedia pyaudio</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>El reconocimiento de voz con <code>recognize_google()</code> requiere conexión a internet, y la lista de voces disponibles depende del sistema operativo. Los identificadores de voz del ejemplo corresponden a voces de Windows, que se muestran con el fragmento comentado del código. El paquete PyAudio solo es necesario para usar el micrófono (Python Package Index, s. f.).</p>
+</div>
+
+<pre><code>import pyttsx3
+import speech_recognition as sr
+import pywhatkit
+import pyjokes
+import webbrowser
+from datetime import datetime
+import wikipedia
+
+
+# Escuchar el micrófono y devolver el audio como texto
+def transformar_audio_en_texto():
+
+    # almacenar el reconocedor en una variable
+    r = sr.Recognizer()
+
+    # configurar el micrófono
+    with sr.Microphone() as origen:
+
+        # tiempo de espera
+        r.pause_threshold = 0.8
+
+        # informar que comenzó la grabación
+        print("ya puedes hablar")
+
+        # guardar lo que escuche como audio
+        audio = r.listen(origen)
+
+        try:
+            # buscar en Google
+            pedido = r.recognize_google(audio, language="es-ec")
+
+            # prueba de que pudo ingresar
+            print("Dijiste: " + pedido)
+
+            # devolver pedido
+            return pedido
+
+        # en caso de que no comprenda el audio
+        except sr.UnknownValueError:
+            print("Ups, no entendí")
+            return "sigo esperando"
+
+        # en caso de no resolver el pedido
+        except sr.RequestError:
+            print("Ups, no hay servicio")
+            return "sigo esperando"
+
+        # error inesperado
+        except:
+            print("Ups, algo ha salido mal")
+            return "sigo esperando"
+
+
+# Opciones de voz / idioma
+id1 = r"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_ES-ES_HELENA_11.0"
+id2 = r"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
+id3 = r"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0"
+
+
+# Función para que el asistente pueda ser escuchado
+def hablar(mensaje):
+
+    # encender el motor de pyttsx3
+    engine = pyttsx3.init()
+    engine.setProperty("voice", id1)    # voz del equipo que más guste
+
+    # pronunciar el mensaje
+    engine.say(mensaje)
+    engine.runAndWait()
+
+
+"""
+# Imprime todas las voces instaladas en el ordenador
+engine = pyttsx3.init()
+for voz in engine.getProperty("voices"):
+    print(voz)
+"""
+
+
+# Informar el día de la semana
+def pedir_dia():
+
+    # crear datos de hoy
+    dia = datetime.today()
+
+    # día de la semana (0 = lunes)
+    dia_semana = dia.weekday()
+
+    # diccionario con los nombres de los días
+    calendario = {0: "Lunes", 1: "Martes", 2: "Miércoles", 3: "Jueves",
+                  4: "Viernes", 5: "Sábado", 6: "Domingo"}
+
+    # decir el día de la semana
+    hablar(f"Hoy es {calendario[dia_semana]}")
+
+
+# Informar la hora
+def pedir_hora():
+    hora = datetime.now()
+    hablar(f"En este momento, son las {hora.hour} horas con {hora.minute} minutos")
+
+
+# Saludo inicial
+def saludo_inicial():
+    hora = datetime.now()
+    if hora.hour &lt; 6 or hora.hour &gt; 20:
+        momento = "Buenas noches"
+    elif 6 &lt;= hora.hour &lt; 13:
+        momento = "Buen día"
+    else:
+        momento = "Buenas tardes"
+
+    hablar(f"Hola Yasmani, {momento}, soy Helena, tu asistente personal. "
+           "Por favor, dime en qué te puedo ayudar")
+
+
+# Función central del asistente
+def pedir_cosas():
+
+    # activar el saludo inicial
+    saludo_inicial()
+
+    # variable de corte
+    comenzar = True
+
+    # bucle central
+    while comenzar:
+
+        # activar el micrófono y guardar el pedido en un string
+        pedido = transformar_audio_en_texto().lower()
+
+        if "abrir youtube" in pedido:
+            hablar("Con gusto, estoy abriendo YouTube")
+            webbrowser.open("https://www.youtube.com")
+            continue
+        elif "abrir navegador" in pedido:
+            hablar("Claro, estoy en eso")
+            webbrowser.open("https://www.google.com")
+            continue
+        elif "qué día es hoy" in pedido:
+            pedir_dia()
+            continue
+        elif "qué hora es" in pedido:
+            pedir_hora()
+            continue
+        elif "busca en wikipedia" in pedido:
+            hablar("Buscando eso en wikipedia")
+            pedido = pedido.replace("busca en wikipedia", "")
+            wikipedia.set_lang("es")
+            resultado = wikipedia.summary(pedido, sentences=1)
+            hablar(f"Wikipedia dice lo siguiente: {resultado}")
+            continue
+        elif "busca en internet" in pedido:
+            hablar("Lo estoy buscando")
+            pedido = pedido.replace("busca en internet", "")
+            pywhatkit.search(pedido)
+            hablar("Esto es lo que he encontrado")
+            continue
+        elif "reproducir" in pedido:
+            hablar("Es hora de la música")
+            pywhatkit.playonyt(pedido)
+            continue
+        elif "chiste" in pedido:
+            hablar(pyjokes.get_joke("es"))
+            continue
+        elif "adiós" in pedido:
+            hablar("Un placer ayudarte Yasmani, hasta pronto")
+            break
+
+
+pedir_cosas()</code></pre>
+
+<h2>Reconocimiento facial</h2>
+<p>El reconocimiento facial se apoya en cuatro componentes: <code>opencv-python</code> captura la imagen o el video; <code>face-recognition</code> (que utiliza <code>dlib</code>) detecta y reconoce rostros; <code>numpy</code> procesa los datos de imagen como matrices, y <code>cmake</code> se usa durante la instalación para compilar los componentes necesarios.</p>
+<pre><code>pip install cmake
+pip install opencv-python face-recognition numpy</code></pre>
+<p>El ejemplo se desarrolla en ocho etapas: cargar las imágenes, comparar caras, medir la diferencia (distancia), mostrar la distancia, crear una base de datos, encontrar coincidencias, mostrar coincidencias y registrar la asistencia.</p>
+
+<h3>Comparación de dos fotografías</h3>
+<p>La función <code>compare_faces()</code> devuelve si dos rostros coinciden. Por defecto la tolerancia es de 0,6: cuanto más cercana a cero, más exacta debe ser la coincidencia. La función <code>face_distance()</code> mide la diferencia numérica entre los rostros.</p>
+<pre><code>import cv2
+import face_recognition as fr
+
+# cargar imágenes
+foto_control = fr.load_image_file("FotoA.jpg")
+foto_prueba = fr.load_image_file("FotoC.jpg")
+
+# pasar las imágenes a RGB
+foto_control = cv2.cvtColor(foto_control, cv2.COLOR_BGR2RGB)
+foto_prueba = cv2.cvtColor(foto_prueba, cv2.COLOR_BGR2RGB)
+
+# localizar y codificar la cara de control
+lugar_cara_A = fr.face_locations(foto_control)[0]
+cara_codificada_A = fr.face_encodings(foto_control)[0]
+
+# localizar y codificar la cara de prueba
+lugar_cara_B = fr.face_locations(foto_prueba)[0]
+cara_codificada_B = fr.face_encodings(foto_prueba)[0]
+
+# mostrar rectángulos
+cv2.rectangle(foto_control, (lugar_cara_A[3], lugar_cara_A[0]),
+              (lugar_cara_A[1], lugar_cara_A[2]), (0, 255, 0), 2)
+cv2.rectangle(foto_prueba, (lugar_cara_B[3], lugar_cara_B[0]),
+              (lugar_cara_B[1], lugar_cara_B[2]), (0, 255, 0), 2)
+
+# realizar la comparación
+resultado = fr.compare_faces([cara_codificada_A], cara_codificada_B)
+
+# medir la distancia
+distancia = fr.face_distance([cara_codificada_A], cara_codificada_B)
+
+# mostrar el resultado
+cv2.putText(foto_prueba, f"{resultado}{distancia.round(2)}", (50, 50),
+            cv2.FONT_HERSHEY_DUPLEX, 1, (0, 255, 0), 2)
+
+# mostrar las imágenes
+cv2.imshow("Foto Control", foto_control)
+cv2.imshow("Foto Prueba", foto_prueba)
+
+# mantener el programa abierto
+cv2.waitKey(0)</code></pre>
+
+<h3>Registro de asistencia con cámara web</h3>
+<p>El segundo programa construye una base de datos a partir de las fotografías de una carpeta (el nombre de cada archivo corresponde al nombre del empleado), toma una imagen de la cámara web, busca la mejor coincidencia y, si la distancia es menor o igual a 0,6, dibuja el nombre sobre el rostro y registra la hora de ingreso en el archivo <code>registro.csv</code>.</p>
+<pre><code>import cv2
+import face_recognition as fr
+import os
+import numpy
+from datetime import datetime
+
+# crear la base de datos
+ruta = "Empleados"
+mis_imagenes = []
+nombres_empleados = []
+lista_empleados = os.listdir(ruta)
+
+for nombre in lista_empleados:
+    imagen_actual = cv2.imread(f"{ruta}/{nombre}")
+    mis_imagenes.append(imagen_actual)
+    nombres_empleados.append(os.path.splitext(nombre)[0])
+
+print(nombres_empleados)
+
+
+# codificar imágenes
+def codificar(imagenes):
+
+    # crear una lista nueva
+    lista_codificada = []
+
+    # pasar todas las imágenes a RGB
+    for imagen in imagenes:
+        imagen = cv2.cvtColor(imagen, cv2.COLOR_BGR2RGB)
+
+        # codificar
+        codificado = fr.face_encodings(imagen)[0]
+
+        # agregar a la lista
+        lista_codificada.append(codificado)
+
+    # devolver la lista codificada
+    return lista_codificada
+
+
+# registrar los ingresos
+def registrar_ingresos(persona):
+    f = open("registro.csv", "r+")
+    lista_datos = f.readlines()
+    nombres_registro = []
+    for linea in lista_datos:
+        ingreso = linea.split(",")
+        nombres_registro.append(ingreso[0])
+
+    if persona not in nombres_registro:
+        ahora = datetime.now()
+        string_ahora = ahora.strftime("%H:%M:%S")
+        f.writelines(f"\n{persona}, {string_ahora}")
+
+
+lista_empleados_codificada = codificar(mis_imagenes)
+
+# tomar una imagen de la cámara web
+captura = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+
+# leer la imagen de la cámara
+exito, imagen = captura.read()
+
+if not exito:
+    print("No se ha podido tomar la captura")
+else:
+
+    # reconocer la cara en la captura
+    cara_captura = fr.face_locations(imagen)
+
+    # codificar la cara capturada
+    cara_captura_codificada = fr.face_encodings(imagen, cara_captura)
+
+    # buscar coincidencias
+    for caracodif, caraubic in zip(cara_captura_codificada, cara_captura):
+        coincidencias = fr.compare_faces(lista_empleados_codificada, caracodif)
+        distancias = fr.face_distance(lista_empleados_codificada, caracodif)
+
+        print(distancias)
+
+        indice_coincidencia = numpy.argmin(distancias)
+
+        # mostrar coincidencias si las hay
+        if distancias[indice_coincidencia] &gt; 0.6:
+            print("No coincide con ninguno de nuestros empleados")
+        else:
+
+            # buscar el nombre del empleado encontrado
+            nombre = nombres_empleados[indice_coincidencia]
+
+            y1, x2, y2, x1 = caraubic
+            cv2.rectangle(imagen, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            cv2.rectangle(imagen, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
+            cv2.putText(imagen, nombre, (x1 + 6, y2 - 6),
+                        cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255), 2)
+
+            registrar_ingresos(nombre)
+
+            # mostrar la imagen obtenida
+            cv2.imshow("Imagen web", imagen)
+
+            # mantener la ventana abierta
+            cv2.waitKey(0)</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>Las imágenes faciales son datos personales sensibles. Un sistema real requiere el consentimiento de las personas registradas y el cumplimiento de la normativa de protección de datos vigente.</p>
+</div>
+
+<h2>Sitio web con Django</h2>
+<p>Django es un <i>framework</i> web de alto nivel para Python que permite desarrollar aplicaciones web de forma rápida, segura y escalable. El procedimiento inicial es el siguiente.</p>
+<ol class="lista">
+  <li><b>Crear y activar un entorno virtual</b> (ver el capítulo 11): <code>python -m venv venv</code>.</li>
+  <li><b>Instalar Django</b> en el entorno: <code>pip install django</code>. Esto permite crear aplicaciones web con funcionalidades completas.</li>
+  <li><b>Crear un directorio para el proyecto</b>: <code>mkdir src</code> y <code>cd src</code>. El nombre <code>src</code> es una abreviatura habitual de «source» (código fuente).</li>
+  <li><b>Crear el proyecto</b>: <code>django-admin startproject nombre_proyecto</code>, y luego ingresar a la carpeta con <code>cd nombre_proyecto</code>.</li>
+  <li><b>Iniciar el servidor de desarrollo</b>: <code>python manage.py runserver</code>. El sitio queda disponible en <code>http://127.0.0.1:8000/</code>; aún no tiene contenido, pero el sistema funciona.</li>
+  <li><b>Aplicar las migraciones iniciales</b>: <code>python manage.py migrate</code>. Las aplicaciones internas de Django (<code>auth</code>, <code>admin</code>, <code>sessions</code>) requieren tablas en la base de datos; este comando las crea.</li>
+  <li><b>Crear un usuario administrador</b>: <code>python manage.py createsuperuser</code>. Ese usuario puede iniciar sesión en el panel de administración (<code>/admin</code>) para gestionar usuarios y modelos.</li>
+</ol>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>La documentación oficial advierte que el servidor de desarrollo, ligero y escrito íntegramente en Python, está pensado solo para el desarrollo y no debe emplearse en un entorno de producción (Django Software Foundation, s. f.).</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Un videojuego se estructura alrededor de un bucle que procesa eventos, actualiza el estado y redibuja la pantalla.</li>
+  <li>Tkinter organiza una interfaz mediante paneles y widgets, y entrega el control a <code>mainloop()</code>.</li>
+  <li>Los asistentes de voz y el reconocimiento facial combinan módulos externos especializados.</li>
+  <li>Django proporciona un servidor de desarrollo, migraciones y un panel de administración listos para usar.</li>
+</ul>

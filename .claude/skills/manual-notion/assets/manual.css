@@ -1,0 +1,214 @@
+/*
+  manual.css — estilos del manual unificado (A4).
+  Derivado de guias-manuales/plantilla-{portada,indice,pagina,final}.html, que NO se modifican.
+  Cada plantilla se aísla con su propia clase (.hoja-portada, .hoja-pagina, .hoja-final) para que
+  no choquen. Si cambia el diseño de una plantilla, se vuelve a sincronizar aquí.
+  Las fuentes (@font-face) las inyecta scripts/ensamblar.py como base64.
+*/
+:root {
+  --azul-marino: #223367;
+  --rosa: #FF1563;
+  --medianoche: #0D1530;
+  --pizarra: #5B6478;
+  --niebla: #F2F4F8;
+  --blanco: #FFFFFF;
+  --bruma: #C9D0E6;
+  --linea-clara: #E3E7F0;
+
+  --fuente: "Manrope", Calibri, Arial, sans-serif;
+  --fuente-titulos: "Nunito", "Manrope", Calibri, Arial, sans-serif;
+  --tam: 10.5pt;
+  --interlineado: 1.65;
+  --sangria: 12.7mm;
+}
+
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #7d869c; }
+body {
+  font-family: var(--fuente);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+#flujo, #flujo-indice { display: none; }   /* los bloques se mueven a las hojas */
+
+/* ───────── Hoja base ───────── */
+.hoja {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  margin: 12mm auto;
+  overflow: hidden;
+  break-after: page;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
+}
+
+/* ───────── Portada (plantilla-portada) ───────── */
+.hoja-portada {
+  padding: 20mm 18mm 16mm;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  color: var(--texto);
+  background:
+    radial-gradient(120% 70% at 100% 0%, color-mix(in srgb, var(--fondo-2) 85%, transparent), transparent 62%),
+    var(--fondo);
+}
+.hoja-portada[data-tema="oscuro"] {
+  --fondo: var(--medianoche); --fondo-2: var(--azul-marino);
+  --texto: var(--blanco); --texto-2: var(--bruma);
+  --linea: rgba(201, 208, 230, .28); --flujo: var(--blanco);
+}
+.hoja-portada[data-tema="claro"] {
+  --fondo: var(--blanco); --fondo-2: var(--niebla);
+  --texto: var(--medianoche); --texto-2: var(--pizarra);
+  --linea: rgba(34, 51, 103, .22); --flujo: var(--azul-marino);
+}
+.hoja-portada .recurso {
+  position: absolute; z-index: 0;
+  bottom: -1.6mm; right: -13.6mm;     /* el dibujo termina en x=166, y=196 de 200: toca los bordes */
+  width: 80mm; height: 80mm;
+  pointer-events: none;
+}
+.hoja-portada .cabecera { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-start; }
+.hoja-portada .cabecera img { height: 15mm; width: auto; display: block; }
+.hoja-portada .etiqueta {
+  font-size: 8.5pt; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--texto-2); text-align: right; line-height: 1.6;
+}
+.hoja-portada .etiqueta b { color: var(--rosa); font-weight: 700; }
+.hoja-portada .centro { position: relative; z-index: 1; align-self: center; max-width: 150mm; }
+.hoja-portada .tipo {
+  display: inline-flex; align-items: center; gap: 4mm;
+  font-size: 10pt; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--rosa); margin-bottom: 9mm;
+}
+.hoja-portada .tipo::before { content: ""; width: 14mm; height: .8mm; background: var(--rosa); border-radius: 1mm; }
+.hoja-portada h1 {
+  font-family: var(--fuente-titulos); font-weight: 800;
+  font-size: 50pt; line-height: 1.04; letter-spacing: -.015em; text-wrap: balance;
+}
+.hoja-portada .subtitulo {
+  margin-top: 8mm; font-size: 14pt; line-height: 1.5; color: var(--texto-2);
+  max-width: 120mm; text-wrap: pretty;
+}
+.hoja-portada .pie { position: relative; z-index: 1; max-width: 80mm; padding-top: 7mm; border-top: .4mm solid var(--linea); }
+.hoja-portada .dato dt {
+  font-size: 7.5pt; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--texto-2); margin-bottom: 1.6mm;
+}
+.hoja-portada .dato dd { font-size: 10.5pt; font-weight: 500; line-height: 1.35; color: var(--texto); }
+
+/* ───────── Página interior e índice (plantilla-pagina / plantilla-indice) ───────── */
+.hoja-pagina {
+  padding: 25.4mm;                       /* márgenes APA de 1 in */
+  background: var(--blanco);
+  color: var(--medianoche);
+  font-size: var(--tam);
+  line-height: var(--interlineado);
+}
+.hoja-pagina .contenido { height: 246.2mm; overflow: hidden; }   /* 297 − 2 × 25,4 mm */
+.hoja-pagina .num {
+  position: absolute; top: 12.7mm; right: 25.4mm;
+  font-size: 10pt; color: var(--pizarra); font-variant-numeric: tabular-nums;
+}
+.hoja-pagina .pie { position: absolute; bottom: 12.7mm; left: 25.4mm; right: 25.4mm; display: flex; align-items: center; }
+.hoja-pagina .pie img { height: 7mm; width: auto; display: block; }
+
+.hoja-pagina p { text-align: left; margin-bottom: 3mm; }
+.hoja-pagina h1, .hoja-pagina h2, .hoja-pagina h3 {
+  font-family: var(--fuente-titulos); font-weight: 800; color: var(--azul-marino); line-height: 1.3;
+}
+.hoja-pagina h1 { font-size: 15pt; margin: 0 0 4mm; }
+.hoja-pagina h2 { font-size: 12.5pt; margin: 6mm 0 2.5mm; }
+.hoja-pagina h3 { font-size: 11.5pt; font-style: italic; margin: 4mm 0 2mm; }
+.hoja-pagina h1 .n, .hoja-pagina h2 .n { color: var(--rosa); margin-right: 2mm; }
+.hoja-pagina .contenido > :first-child { margin-top: 0; }
+
+.hoja-pagina blockquote.bloque { margin: 3mm 0 3mm var(--sangria); }
+.hoja-pagina blockquote.bloque p { margin-bottom: 0; }
+.hoja-pagina ul.lista, .hoja-pagina ol.lista { margin: 2mm 0 3mm; padding-left: 5mm; }
+.hoja-pagina ul.lista li, .hoja-pagina ol.lista li { margin-bottom: .8mm; }
+.hoja-pagina ul.lista li::marker { color: var(--rosa); }
+.hoja-pagina ol.lista li::marker { color: var(--azul-marino); font-weight: 700; }
+
+/* Focalizadores */
+.hoja-pagina .foco {
+  margin: 4mm 0; padding: 3.5mm 5mm 3.5mm 6mm;
+  background: var(--niebla); border-left: 1.4mm solid var(--azul-marino); border-radius: 0 2mm 2mm 0;
+}
+.hoja-pagina .foco p { line-height: 1.45; margin-bottom: 1.5mm; }
+.hoja-pagina .foco p:last-child { margin-bottom: 0; }
+.hoja-pagina .foco .et {
+  display: block; margin-bottom: 1mm;
+  font-family: var(--fuente-titulos); font-weight: 800;
+  font-size: 8.5pt; letter-spacing: .16em; text-transform: uppercase; color: var(--azul-marino);
+}
+.hoja-pagina .foco.importante { border-left-color: var(--rosa); }
+.hoja-pagina .foco.importante .et { color: var(--rosa); }
+.hoja-pagina .foco.consejo, .hoja-pagina .foco.ampliar { border-left-color: var(--pizarra); }
+.hoja-pagina .foco.consejo .et, .hoja-pagina .foco.ampliar .et { color: var(--pizarra); }
+
+/* Tablas APA 7 */
+.hoja-pagina .tabla, .hoja-pagina .figura { margin: 4mm 0; }
+.hoja-pagina .rotulo { line-height: 1.35; margin-bottom: 0; }
+.hoja-pagina .rotulo b { font-weight: 700; display: block; }
+.hoja-pagina .rotulo i { display: block; margin-bottom: 2mm; }
+.hoja-pagina table {
+  width: 100%; border-collapse: collapse; font-size: 9.5pt; line-height: 1.35;
+  border-top: .35mm solid var(--medianoche); border-bottom: .35mm solid var(--medianoche);
+}
+.hoja-pagina thead th { text-align: left; font-weight: 700; padding: 1.6mm 2mm; border-bottom: .35mm solid var(--medianoche); }
+.hoja-pagina tbody td { padding: 1.4mm 2mm; vertical-align: top; }
+.hoja-pagina th.n, .hoja-pagina td.n { text-align: right; font-variant-numeric: tabular-nums; }
+.hoja-pagina .nota { font-size: 9pt; line-height: 1.35; margin: 1.5mm 0 0; }
+
+/* Figuras APA 7 */
+.hoja-pagina .figura img {
+  display: block; max-width: 100%; max-height: 115mm; width: auto; height: auto;
+  object-fit: contain; border: .3mm solid var(--linea-clara);
+}
+
+/* Código */
+.hoja-pagina code { font-family: Consolas, "Courier New", monospace; font-size: .92em; background: var(--niebla); padding: 0 1mm; border-radius: 1mm; }
+.hoja-pagina pre {
+  margin: 3.5mm 0; padding: 3mm 4mm; background: var(--niebla); border-radius: 2mm;
+  font-family: Consolas, "Courier New", monospace; font-size: 8.8pt; line-height: 1.4; white-space: pre-wrap;
+}
+.hoja-pagina pre code { background: none; padding: 0; }
+
+/* Referencias APA 7: sangría francesa */
+.hoja-pagina .refs p { padding-left: var(--sangria); text-indent: calc(-1 * var(--sangria)); margin-bottom: 2.5mm; line-height: 1.4; }
+
+/* Índice (plantilla-indice) */
+.hoja-pagina .titulo-indice { font-size: 34pt; line-height: 1.05; letter-spacing: -.015em; margin: 6mm 0 12mm; }
+.hoja-pagina .indice { list-style: none; }
+.hoja-pagina .indice li { display: flex; align-items: baseline; gap: 3mm; line-height: 1.4; }
+.hoja-pagina .indice li > .t { flex: none; }
+.hoja-pagina .indice li > .p { flex: none; margin-left: auto; font-variant-numeric: tabular-nums; }
+.hoja-pagina .indice li > .guia { flex: 1; min-width: 8mm; border-bottom: .4mm dotted var(--pizarra); opacity: .6; transform: translateY(-1mm); }
+.hoja-pagina .indice .cap { margin-top: 5.5mm; font-family: var(--fuente-titulos); font-weight: 800; font-size: 13pt; color: var(--azul-marino); }
+.hoja-pagina .indice .cap.primero { margin-top: 0; }
+.hoja-pagina .indice .cap .n { flex: none; width: 11mm; color: var(--rosa); }
+.hoja-pagina .indice .cap .p { font-family: var(--fuente); font-weight: 700; font-size: 11pt; }
+.hoja-pagina .indice .sec { margin-top: 2.2mm; padding-left: 11mm; font-size: 10.5pt; font-weight: 500; }
+.hoja-pagina .indice .sec .n { flex: none; width: 10mm; color: var(--pizarra); font-weight: 400; }
+.hoja-pagina .indice .sec .p { color: var(--pizarra); }
+
+/* ───────── Página final (plantilla-final) ───────── */
+.hoja-final { display: grid; place-items: center; background: var(--blanco); }
+.hoja-final[data-tema="oscuro"] { background: var(--medianoche); }
+.hoja-final .fin { font-family: var(--fuente-titulos); font-weight: 800; font-size: 28pt; letter-spacing: -.01em; color: var(--azul-marino); }
+.hoja-final[data-tema="oscuro"] .fin { color: var(--blanco); }
+
+/* ───────── Pantalla ───────── */
+.barra { position: fixed; top: 10px; right: 10px; z-index: 10; font: 500 13px system-ui, sans-serif; }
+.barra button {
+  font: inherit; cursor: pointer; padding: 9px 14px; border-radius: 8px; border: 0;
+  background: var(--rosa); color: #fff;
+}
+.barra button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+@media print {
+  html { background: none; }
+  .hoja { margin: 0; box-shadow: none; }
+  .barra { display: none; }
+}

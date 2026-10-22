@@ -1,0 +1,629 @@
+<h1>Introducción</h1>
+
+<h2>Convenciones del documento</h2>
+<ul class="lista">
+  <li>Los procedimientos y comandos proceden de apuntes de curso (Vega, 2021) y de una hoja de referencia de uso frecuente (DevTalles, s. f.), ordenados según su dependencia conceptual y complementados con información verificada en fuentes oficiales.</li>
+  <li>Los comandos y fragmentos de código se presentan en bloques con fuente monoespaciada. Los términos entre signos <code>&lt; &gt;</code> son marcadores que deben sustituirse por valores reales (por ejemplo, <code>&lt;rama&gt;</code>).</li>
+  <li>Los procedimientos se redactan en infinitivo o en forma impersonal con «se».</li>
+  <li>Los recuadros identifican información de apoyo: <b>Nota</b> (aclaración), <b>Importante</b> (advertencia), <b>Consejo</b> (recomendación práctica) y <b>Para ampliar</b> (información complementaria verificada, ajena a los apuntes originales).</li>
+  <li>El nombre de la rama principal varía según el repositorio (<code>main</code> o <code>master</code>). Los ejemplos emplean <code>main</code>; debe sustituirse por el nombre vigente en cada proyecto.</li>
+</ul>
+
+<div class="foco">
+  <span class="et">Nota</span>
+  <p>Los ejemplos se ejecutan en una terminal Bash (Git Bash en Windows). Los comandos son equivalentes en otras terminales, salvo indicación contraria.</p>
+</div>
+
+<h1>Fundamentos del control de versiones</h1>
+
+<h2>Conceptos esenciales</h2>
+<p>Un <b>sistema de control de versiones</b> registra los cambios realizados sobre un conjunto de archivos a lo largo del tiempo, de modo que sea posible consultar versiones anteriores, comparar cambios y colaborar sin sobrescribir el trabajo de otras personas. <b>Git</b> es un sistema de control de versiones distribuido: cada copia del proyecto contiene el historial completo. <b>GitHub</b> es un servicio en línea que aloja repositorios Git y añade herramientas de colaboración, como las solicitudes de extracción y los <i>issues</i>.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 1</b><i>Vocabulario Esencial de Git y GitHub</i></p>
+  <table>
+    <thead><tr><th>Término</th><th>Definición</th></tr></thead>
+    <tbody>
+      <tr><td>Repositorio</td><td>Proyecto completo con todo su historial de cambios.</td></tr>
+      <tr><td>Commit</td><td>Instantánea guardada de los cambios en un momento dado.</td></tr>
+      <tr><td>Rama (<i>branch</i>)</td><td>Línea de trabajo paralela e independiente.</td></tr>
+      <tr><td>Remoto</td><td>Copia del repositorio alojada en un servidor, por ejemplo GitHub.</td></tr>
+      <tr><td><i>Origin</i></td><td>Nombre por defecto del remoto principal.</td></tr>
+      <tr><td>HEAD</td><td>Apuntador al commit o rama sobre el que se trabaja actualmente.</td></tr>
+      <tr><td><i>Stage</i></td><td>Área de preparación de los cambios que formarán parte del próximo commit.</td></tr>
+      <tr><td><i>Pull request</i></td><td>Propuesta para fusionar una rama, sometida a revisión.</td></tr>
+      <tr><td><i>Fork</i></td><td>Copia de un repositorio ajeno en la propia cuenta.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de DevTalles (s. f.).</p>
+</div>
+
+<h2>Estados y áreas de trabajo</h2>
+<p>Un archivo versionado puede hallarse en uno de tres estados: <i>modificado</i> (cambiado, pero no registrado), <i>preparado</i> (marcado para formar parte del próximo commit) o <i>confirmado</i> (almacenado de forma segura en la base de datos local). A estos estados corresponden tres áreas: el directorio de trabajo, el área de preparación (<i>staging area</i> o índice) y el directorio de Git (Chacon y Straub, 2014).</p>
+
+<div class="figura">
+  <p class="rotulo"><b>Figura 1</b><i>Flujo entre las Tres Áreas de Git</i></p>
+  <svg viewBox="0 0 560 150" role="img" aria-label="Directorio de trabajo, área de preparación y repositorio, con los comandos git add y git commit hacia la derecha, y git restore hacia la izquierda." style="display:block;width:100%;height:auto;border:.3mm solid #E3E7F0;background:#F2F4F8;border-radius:2mm">
+    <defs><marker id="f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#223367"/></marker></defs>
+    <g font-family="Manrope, Arial, sans-serif" text-anchor="middle">
+      <rect x="20" y="40" width="130" height="56" rx="8" fill="#FFFFFF" stroke="#223367" stroke-width="2"/>
+      <text x="85" y="64" font-size="13" font-weight="700" fill="#223367">Directorio</text>
+      <text x="85" y="82" font-size="13" font-weight="700" fill="#223367">de trabajo</text>
+      <rect x="215" y="40" width="130" height="56" rx="8" fill="#FFFFFF" stroke="#223367" stroke-width="2"/>
+      <text x="280" y="64" font-size="13" font-weight="700" fill="#223367">Área de</text>
+      <text x="280" y="82" font-size="13" font-weight="700" fill="#223367">preparación</text>
+      <rect x="410" y="40" width="130" height="56" rx="8" fill="#223367"/>
+      <text x="475" y="64" font-size="13" font-weight="700" fill="#FFFFFF">Repositorio</text>
+      <text x="475" y="82" font-size="13" font-weight="700" fill="#FFFFFF">(.git)</text>
+      <path d="M152 58 H211" stroke="#223367" stroke-width="2" marker-end="url(#f)"/>
+      <path d="M347 58 H406" stroke="#223367" stroke-width="2" marker-end="url(#f)"/>
+      <path d="M211 80 H152" stroke="#FF1563" stroke-width="2" marker-end="url(#f)"/>
+      <text x="181" y="50" font-size="11" fill="#0D1530">git add</text>
+      <text x="377" y="50" font-size="11" fill="#0D1530">git commit</text>
+      <text x="181" y="104" font-size="10" fill="#5B6478">git restore --staged</text>
+      <text x="280" y="130" font-size="11" fill="#5B6478">git restore &lt;archivo&gt; recupera el archivo desde el último commit</text>
+    </g>
+  </svg>
+  <p class="nota"><i>Nota.</i> Elaboración propia a partir de Chacon y Straub (2014).</p>
+</div>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>El área de preparación es un archivo, generalmente ubicado en el directorio de Git, que almacena la información de lo que formará parte del próximo commit; su nombre técnico es «índice» (Chacon y Straub, 2014).</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Git registra el historial del proyecto como una secuencia de commits.</li>
+  <li>Los cambios fluyen del directorio de trabajo al área de preparación y de allí al repositorio.</li>
+  <li>GitHub aloja repositorios y facilita la colaboración, pero Git funciona sin él.</li>
+</ul>
+
+<h1>Configuración inicial</h1>
+
+<h2>Identidad y editor</h2>
+<p>La configuración inicial se realiza una sola vez por equipo con el modificador <code>--global</code>. El nombre y el correo quedan asociados a todos los commits.</p>
+<pre><code>git config --global user.name "Nombre Apellido"
+git config --global user.email "correo@dominio.com"
+git config --global core.editor "code --wait"
+git config --global init.defaultBranch main</code></pre>
+<p>La última instrucción establece <code>main</code> como rama predeterminada de los repositorios nuevos, y la tercera configura Visual Studio Code como editor.</p>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>En los comandos deben emplearse comillas rectas ("), no tipográficas (“ ”). Las comillas tipográficas, frecuentes al copiar texto desde procesadores de texto o notas, provocan errores o valores incorrectos.</p>
+</div>
+
+<h2>Finales de línea y consulta de la configuración</h2>
+<p>Windows y macOS/Linux utilizan finales de línea distintos. El valor <code>core.autocrlf</code> permite normalizarlos: <code>true</code> en Windows e <code>input</code> en macOS y Linux.</p>
+<pre><code>git config --global core.autocrlf true      # Windows
+git config --global core.autocrlf input     # macOS / Linux</code></pre>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 2</b><i>Comandos de Consulta de la Configuración</i></p>
+  <table>
+    <thead><tr><th>Comando</th><th>Función</th></tr></thead>
+    <tbody>
+      <tr><td><code>git config --list</code></td><td>Muestra la configuración vigente.</td></tr>
+      <tr><td><code>git config --list --show-origin</code></td><td>Indica en qué archivo está definido cada valor.</td></tr>
+      <tr><td><code>git config --global -e</code></td><td>Abre el archivo de configuración global para editarlo.</td></tr>
+      <tr><td><code>git config -h</code></td><td>Lista las opciones disponibles.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de Vega (2021) y DevTalles (s. f.).</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>La identidad (<code>user.name</code> y <code>user.email</code>) se configura una vez por equipo.</li>
+  <li><code>--show-origin</code> permite localizar el archivo en que está definido cada valor.</li>
+  <li>El nombre de la rama predeterminada puede fijarse con <code>init.defaultBranch</code>.</li>
+</ul>
+
+<h1>Flujo básico de trabajo</h1>
+
+<h2>Creación del primer repositorio</h2>
+<p>El procedimiento parte de una carpeta de proyecto vacía:</p>
+<ol class="lista">
+  <li>Abrir la terminal y crear la carpeta del proyecto (<code>mkdir proyecto1</code>).</li>
+  <li>Ingresar a la carpeta (<code>cd proyecto1</code>) y comprobar la ubicación con <code>pwd</code>.</li>
+  <li>Inicializar el repositorio con <code>git init</code>.</li>
+  <li>Verificar que se creó la carpeta oculta <code>.git</code> con <code>ls -al</code>.</li>
+  <li>Crear un archivo de texto y guardarlo en la carpeta.</li>
+</ol>
+
+<h2>Registro de cambios</h2>
+<p>El ciclo básico consiste en comprobar el estado, preparar los cambios y confirmarlos con un mensaje descriptivo.</p>
+<pre><code>git status                       # estado de los archivos
+git add nombre_archivo.txt       # prepara un archivo
+git add .                        # prepara todos los cambios
+git commit -m "Mensaje"          # confirma lo preparado
+git commit -am "Mensaje"         # prepara y confirma archivos ya rastreados</code></pre>
+
+<div class="foco consejo">
+  <span class="et">Consejo</span>
+  <p>Si se ejecuta <code>git commit</code> sin el modificador <code>-m</code>, Git abre el editor configurado para redactar el mensaje. Si el editor es Vim, se guarda y se sale con <code>Esc</code> seguido de <code>:wq</code> (o <code>Shift + Z Z</code>).</p>
+</div>
+
+<h2>Eliminación de archivos</h2>
+<p>El comando <code>git rm nombre_archivo.txt</code> elimina el archivo del directorio de trabajo y lo retira del seguimiento. Con <code>git rm --cached nombre_archivo.txt</code> el archivo deja de rastrearse, pero se conserva en el disco, lo que resulta útil cuando se añadió por error un archivo que debía ignorarse.</p>
+
+<h2>Revisión del contenido y del historial</h2>
+<pre><code>cat nombre_archivo.txt           # muestra el contenido
+code nombre_archivo.txt          # abre el archivo en el editor
+git log nombre_archivo.txt       # historial del archivo
+git log --oneline                # historial compacto
+git log --stat                   # archivos modificados en cada commit</code></pre>
+
+<h2>Exclusión de archivos con .gitignore</h2>
+<p>El archivo <code>.gitignore</code> enumera los patrones de archivos que Git no debe rastrear. Se crea en la raíz del proyecto y se versiona como cualquier otro archivo.</p>
+<pre><code>node_modules/
+*.log
+dist/
+.env</code></pre>
+<p>Cada línea excluye, respectivamente, una carpeta completa, todos los archivos con una extensión, las carpetas de compilación y las variables de entorno.</p>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>Los secretos (contraseñas, claves de API, archivos <code>.env</code>) no deben subirse nunca a un repositorio. Si se añadió un archivo antes de incluirlo en <code>.gitignore</code>, debe retirarse del seguimiento con <code>git rm --cached</code> (DevTalles, s. f.).</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>El ciclo básico es <code>status</code> → <code>add</code> → <code>commit</code>.</li>
+  <li><code>git rm --cached</code> detiene el seguimiento sin borrar el archivo.</li>
+  <li><code>.gitignore</code> evita versionar archivos generados o confidenciales.</li>
+</ul>
+
+<h1>Inspección del historial</h1>
+
+<h2>Comparación de cambios</h2>
+<pre><code>git diff                         # cambios aún sin preparar
+git diff --staged                # cambios ya preparados
+git diff rama1..rama2            # compara dos ramas
+git diff &lt;commit_reciente&gt; &lt;commit_antiguo&gt;   # compara dos commits
+git show &lt;commit&gt;                # cambios introducidos por un commit
+git show &lt;commit&gt;:archivo        # archivo tal como estaba en ese commit</code></pre>
+
+<h2>Historial y autoría</h2>
+<pre><code>git log --oneline --graph --all  # historial gráfico de todas las ramas
+git log -p                       # historial con el diff de cada commit
+git log --author="nombre"        # commits de una persona
+git log -- &lt;archivo&gt;             # commits que tocaron un archivo
+git shortlog -sn                 # número de commits por persona
+git blame &lt;archivo&gt;              # autor y commit de cada línea
+git blame &lt;archivo&gt; -L35,50      # solo las líneas 35 a 50</code></pre>
+<p>La opción <code>git shortlog -sn --all</code> incluye las ramas no fusionadas, y <code>--no-merges</code> excluye los commits de fusión.</p>
+
+<h2>Búsqueda en archivos y en el historial</h2>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 3</b><i>Comandos de Búsqueda</i></p>
+  <table>
+    <thead><tr><th>Comando</th><th>Ámbito</th><th>Función</th></tr></thead>
+    <tbody>
+      <tr><td><code>git grep palabra</code></td><td>Archivos</td><td>Localiza los archivos que contienen la palabra.</td></tr>
+      <tr><td><code>git grep -n palabra</code></td><td>Archivos</td><td>Añade el número de línea.</td></tr>
+      <tr><td><code>git grep -c palabra</code></td><td>Archivos</td><td>Cuenta las coincidencias por archivo.</td></tr>
+      <tr><td><code>git log --grep="texto"</code></td><td>Commits</td><td>Busca en los mensajes de commit.</td></tr>
+      <tr><td><code>git log -S "palabra"</code></td><td>Commits</td><td>Encuentra los commits que añadieron o quitaron esa cadena.</td></tr>
+      <tr><td><code>git bisect start</code></td><td>Commits</td><td>Búsqueda binaria del commit que introdujo un error.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> <code>git grep</code> examina archivos; <code>git log</code>, el historial. Adaptado de Vega (2021) y DevTalles (s. f.).</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li><code>git diff</code> compara estados; <code>git show</code> inspecciona un commit.</li>
+  <li><code>git blame</code> y <code>git shortlog</code> atribuyen cambios a personas.</li>
+  <li><code>git grep</code> busca en archivos y <code>git log</code> en el historial.</li>
+</ul>
+
+<h1>Deshacer cambios y recuperar versiones</h1>
+
+<h2>Descartar cambios en archivos</h2>
+<pre><code>git restore &lt;archivo&gt;            # vuelve al último commit
+git restore --staged &lt;archivo&gt;   # saca el archivo del stage sin perder cambios
+git restore .                    # descarta todos los cambios sin guardar
+git checkout &lt;commit&gt; &lt;archivo&gt;  # muestra cómo era el archivo en ese commit
+git commit --amend -m "nuevo mensaje"   # corrige el último commit</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p><code>git restore .</code> descarta de forma irreversible los cambios no confirmados. Conviene revisar <code>git status</code> y <code>git diff</code> antes de ejecutarlo.</p>
+</div>
+
+<h2>Reset y revert</h2>
+<p>El comando <code>git reset</code> mueve la rama actual a otro commit; según el modificador, conserva o descarta el trabajo posterior. En cambio, <code>git revert</code> crea un commit nuevo que invierte los efectos de otro, por lo que es la opción segura cuando los commits ya se compartieron.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 4</b><i>Variantes de git reset</i></p>
+  <table>
+    <thead><tr><th>Comando</th><th>Efecto</th></tr></thead>
+    <tbody>
+      <tr><td><code>git reset --soft HEAD~1</code></td><td>Deshace el último commit y conserva los cambios en el stage.</td></tr>
+      <tr><td><code>git reset --mixed HEAD~1</code></td><td>Deshace el commit y deja los cambios sin preparar (comportamiento predeterminado).</td></tr>
+      <tr><td><code>git reset --hard &lt;commit&gt;</code></td><td>Regresa a ese commit y descarta todo lo posterior, incluido el stage.</td></tr>
+      <tr><td><code>git revert &lt;commit&gt;</code></td><td>Crea un commit que revierte otro; adecuado para repositorios compartidos.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de Vega (2021) y DevTalles (s. f.).</p>
+</div>
+
+<h2>Recuperación con reflog</h2>
+<p>El comando <code>git reflog</code> registra los movimientos de HEAD, incluso los commits que ya no son alcanzables desde ninguna rama. Permite volver al estado en que el proyecto funcionaba:</p>
+<pre><code>git reflog                       # lista el hash y la posición de HEAD
+git reset --soft &lt;hash&gt;          # vuelve conservando lo que hay en staging
+git reset --hard &lt;hash&gt;          # vuelve descartando todo, incluido el staging</code></pre>
+
+<h2>Limpieza de archivos sin seguimiento</h2>
+<pre><code>git clean --dry-run              # muestra qué se borraría
+git clean -f                     # borra los archivos listados
+git clean -fd                    # borra también carpetas</code></pre>
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>Los archivos eliminados con <code>git clean</code> no pueden recuperarse desde Git. Debe ejecutarse siempre primero con <code>--dry-run</code>.</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li><code>restore</code> descarta cambios en archivos; <code>reset</code> mueve la rama; <code>revert</code> añade un commit inverso.</li>
+  <li><code>--hard</code> y <code>clean</code> son destructivos: deben usarse con verificación previa.</li>
+  <li><code>reflog</code> permite recuperar commits aparentemente perdidos.</li>
+</ul>
+
+<h1>Ramas y fusión</h1>
+
+<h2>Gestión de ramas</h2>
+<p>Una rama permite desarrollar una funcionalidad o corregir un error sin alterar la línea principal. La práctica recomendada es una rama por funcionalidad o error, evitando trabajar directamente en la rama principal (DevTalles, s. f.).</p>
+<pre><code>git branch                       # lista las ramas (* indica la actual)
+git switch -c &lt;rama&gt;             # crea una rama y se mueve a ella
+git switch &lt;rama&gt;                # cambia de rama
+git checkout -b &lt;rama&gt;           # equivalente clásico de switch -c
+git merge &lt;rama&gt;                 # fusiona la rama indicada en la actual
+git branch -d &lt;rama&gt;             # elimina una rama ya fusionada
+git branch -D &lt;rama&gt;             # fuerza la eliminación
+git branch -m &lt;nuevo-nombre&gt;     # renombra la rama actual
+git show-branch --all            # historia de todas las ramas
+gitk                             # visualización gráfica</code></pre>
+
+<div class="foco">
+  <span class="et">Nota</span>
+  <p>Para fusionar, el procedimiento consiste en situarse en la rama que recibirá los cambios (<code>git switch main</code>) y ejecutar <code>git merge &lt;rama&gt;</code>.</p>
+</div>
+
+<h2>Resolución de conflictos de fusión</h2>
+<p>Cuando dos ramas modifican la misma línea, Git no puede decidir cuál conservar y marca el conflicto en el archivo:</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+versión de la rama actual
+=======
+versión de la rama entrante
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; otra-rama</code></pre>
+<ol class="lista">
+  <li>Editar el archivo y dejar el contenido final, eliminando los marcadores.</li>
+  <li>Marcar el conflicto como resuelto con <code>git add &lt;archivo&gt;</code>.</li>
+  <li>Cerrar la fusión con <code>git commit</code>.</li>
+  <li>Para cancelar el proceso: <code>git merge --abort</code>.</li>
+</ol>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 5</b><i>Opciones de Resolución de Conflictos en el Editor</i></p>
+  <table>
+    <thead><tr><th>Opción</th><th>Efecto</th></tr></thead>
+    <tbody>
+      <tr><td><i>Accept Current Change</i></td><td>Conserva la versión de la rama actual (HEAD) y descarta la entrante.</td></tr>
+      <tr><td><i>Accept Incoming Change</i></td><td>Acepta los cambios de la rama que se fusiona.</td></tr>
+      <tr><td><i>Accept Both Changes</i></td><td>Une ambas versiones; exige revisar que el resultado sea coherente.</td></tr>
+      <tr><td><i>Compare Changes</i></td><td>Abre una comparación visual para decidir línea por línea.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Opciones del editor Visual Studio Code. Adaptado de Vega (2021).</p>
+</div>
+
+<h2>Reorganización y selección de commits</h2>
+<pre><code>git rebase main                  # coloca los commits de la rama sobre main
+git rebase -i HEAD~3             # rebase interactivo: squash, reword, edit
+git cherry-pick &lt;commit&gt;         # trae un commit concreto a la rama actual</code></pre>
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>No debe aplicarse <code>rebase</code> a commits ya publicados en un remoto compartido, pues reescribe el historial y afecta a quienes trabajan sobre él (DevTalles, s. f.).</p>
+</div>
+
+<h2>Trabajo a medias: stash y worktree</h2>
+<p>El comando <code>git stash</code> guarda temporalmente los cambios en curso y deja el directorio limpio, de modo que pueda cambiarse de rama.</p>
+<pre><code>git stash                        # guarda los cambios en curso
+git stash list                   # lista los stashes
+git stash pop                    # recupera el último y lo elimina de la lista
+git stash apply                  # lo recupera y lo conserva
+git stash branch &lt;nueva_rama&gt;    # crea una rama a partir del stash
+git stash drop                   # elimina el último stash</code></pre>
+<p>Como alternativa, <code>git worktree add ../hotfix &lt;rama&gt;</code> abre otra rama en una carpeta distinta sin tocar el trabajo actual; se retira con <code>git worktree remove ../hotfix</code>.</p>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Las ramas aíslan el trabajo; <code>merge</code> lo integra.</li>
+  <li>Un conflicto se resuelve editando, preparando y confirmando.</li>
+  <li><code>stash</code> y <code>worktree</code> permiten cambiar de contexto sin perder trabajo.</li>
+</ul>
+
+<h1>Repositorios remotos y GitHub</h1>
+
+<h2>Conexión y sincronización</h2>
+<pre><code>git remote add origin &lt;url&gt;      # conecta el repositorio local con el remoto
+git remote -v                    # lista remotos (fetch y push)
+git push -u origin main          # sube la rama y la vincula (primera vez)
+git push                         # sube los commits
+git pull                         # descarga y fusiona cambios del remoto
+git pull --rebase                # descarga y reaplica los commits propios encima
+git fetch                        # descarga sin fusionar
+git clone &lt;url&gt;                  # descarga un repositorio con su historial
+git clone --depth 1 &lt;url&gt;        # clon superficial: solo el último commit</code></pre>
+<p>Si el repositorio remoto y el local se crearon por separado y tienen historiales sin relación, <code>git pull origin &lt;rama&gt; --allow-unrelated-histories</code> obliga a fusionarlos. Para consultar las ramas remotas se emplea <code>git branch -r</code>, y <code>git branch -a</code> muestra las locales y las remotas.</p>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>El nombre de la rama debe coincidir en el repositorio local y en GitHub. Los apuntes originales emplean <code>master</code>; en repositorios actuales lo habitual es <code>main</code>. Conviene verificar el nombre con <code>git branch</code> antes de ejecutar <code>push</code> o <code>pull</code>.</p>
+</div>
+
+<h2>Autenticación con claves SSH</h2>
+<p>Las claves SSH permiten comunicarse con GitHub sin introducir credenciales en cada operación. El procedimiento general es el siguiente:</p>
+<ol class="lista">
+  <li>Generar el par de claves (pública y privada) con <code>ssh-keygen</code>.</li>
+  <li>Iniciar el agente y agregar la clave privada (<code>eval "$(ssh-agent -s)"</code> y <code>ssh-add &lt;ruta_de_la_clave&gt;</code>).</li>
+  <li>Copiar el contenido de la <b>clave pública</b> (archivo <code>.pub</code>) y pegarlo en GitHub, en <i>Settings</i> → <i>SSH and GPG keys</i>.</li>
+  <li>Cambiar la dirección del remoto a la versión SSH: <code>git remote set-url origin &lt;direccion_SSH&gt;</code>.</li>
+  <li>Verificar con <code>git remote -v</code> y sincronizar con <code>git pull</code>.</li>
+</ol>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>GitHub recomienda generar la clave con el algoritmo Ed25519: <code>ssh-keygen -t ed25519 -C "correo@dominio.com"</code>. El comando <code>ssh-keygen -t rsa -b 4096 -C "correo@dominio.com"</code>, empleado en los apuntes, queda reservado para sistemas antiguos que no admiten Ed25519 (GitHub, s. f.-b). En ese caso la clave privada se denomina <code>id_rsa</code> y la pública <code>id_rsa.pub</code>.</p>
+</div>
+
+<p>Si la conexión por el puerto habitual falla (por ejemplo, por restricciones de red), puede configurarse GitHub sobre el puerto 443 añadiendo al archivo <code>~/.ssh/config</code>:</p>
+<pre><code>Host github.com
+  Hostname ssh.github.com
+  Port 443</code></pre>
+
+<h2>Publicación con GitHub Pages</h2>
+<p>GitHub Pages publica contenido estático (HTML, CSS y JavaScript) directamente desde un repositorio. El procedimiento es el siguiente:</p>
+<ol class="lista">
+  <li>Crear un repositorio en GitHub y clonarlo localmente.</li>
+  <li>Añadir un archivo <code>index.html</code>, confirmar los cambios y subirlos.</li>
+  <li>En el repositorio, abrir <i>Settings</i> → <i>Pages</i>, y en <i>Build and deployment</i> seleccionar <i>Source</i> → <i>Deploy from a branch</i>, elegir la rama y la carpeta (raíz o <code>/docs</code>) y guardar.</li>
+  <li>Acceder a la dirección publicada desde el navegador.</li>
+</ol>
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>Además de «Deploy from a branch», GitHub ofrece publicar mediante GitHub Actions, opción indicada cuando se utiliza un proceso de compilación distinto de Jekyll o no se desea una rama dedicada a los archivos compilados (GitHub, s. f.-a). Los apuntes originales mencionan el nombre <code>nombre_de_usuario.github.io</code> para el repositorio del sitio personal.</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li><code>push</code> envía commits al remoto; <code>pull</code> los trae y fusiona; <code>fetch</code> solo los descarga.</li>
+  <li>Las claves SSH evitan introducir credenciales en cada operación; solo se comparte la clave pública.</li>
+  <li>GitHub Pages publica sitios estáticos desde una rama.</li>
+</ul>
+
+<h1>Colaboración en GitHub</h1>
+
+<h2>Flujo de trabajo con ramas de funcionalidad</h2>
+<ol class="lista">
+  <li>Actualizar la rama principal con <code>git pull</code>.</li>
+  <li>Crear la rama: <code>git switch -c mi-funcionalidad</code>.</li>
+  <li>Trabajar y confirmar los cambios (<code>git commit -am "mensaje"</code>).</li>
+  <li>Subir la rama: <code>git push -u origin mi-funcionalidad</code>.</li>
+  <li>En GitHub, abrir un <i>pull request</i> con la rama principal como base y la rama creada como comparación.</li>
+  <li>Atender la revisión y las correcciones hasta obtener la aprobación.</li>
+  <li>Si no hay conflictos, fusionar el <i>pull request</i> (<i>Merge pull request</i>) y eliminar la rama.</li>
+  <li>Actualizar localmente: <code>git switch main</code> y <code>git pull</code>.</li>
+</ol>
+
+<h2>Contribución a proyectos ajenos</h2>
+<ol class="lista">
+  <li>Realizar un <i>fork</i>, que copia el repositorio a la cuenta propia.</li>
+  <li>Clonar el <i>fork</i>: <code>git clone &lt;url-de-tu-fork&gt;</code>.</li>
+  <li>Crear una rama, realizar los cambios y subirlos al <i>fork</i>.</li>
+  <li>Abrir un <i>pull request</i> hacia el repositorio original.</li>
+</ol>
+<p>Para mantener el <i>fork</i> actualizado se conecta el repositorio original como remoto <i>upstream</i>:</p>
+<pre><code>git remote add upstream &lt;url-original&gt;
+git fetch upstream
+git merge upstream/main
+git push origin main</code></pre>
+
+<h2>Referencias entre issues y commits</h2>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 6</b><i>Referencias a Issues y Personas en Mensajes de Commit</i></p>
+  <table>
+    <thead><tr><th>Sintaxis</th><th>Efecto</th></tr></thead>
+    <tbody>
+      <tr><td><code>fixes #12</code> o <code>closes #12</code></td><td>Cierra el <i>issue</i> 12 al fusionar.</td></tr>
+      <tr><td><code>#12</code></td><td>Enlaza el commit con el <i>issue</i>, sin cerrarlo.</td></tr>
+      <tr><td><code>@usuario</code></td><td>Menciona y notifica a una persona.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de DevTalles (s. f.).</p>
+</div>
+<p>El archivo <code>CODEOWNERS</code> asigna revisores automáticos a los <i>pull requests</i>, y un archivo <code>README.md</code> en un repositorio con el mismo nombre de la cuenta se muestra como portada del perfil (DevTalles, s. f.).</p>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>El flujo por ramas de funcionalidad aísla cada cambio y lo somete a revisión mediante un <i>pull request</i>.</li>
+  <li>El <i>fork</i> permite contribuir sin permisos de escritura en el repositorio original.</li>
+  <li>El remoto <i>upstream</i> mantiene el <i>fork</i> sincronizado.</li>
+</ul>
+
+<h1>Etiquetas (tags)</h1>
+
+<h2>Uso de etiquetas</h2>
+<p>Las etiquetas marcan un commit específico, habitualmente para señalar versiones publicadas. La etiqueta anotada es la recomendada, pues almacena autor, fecha y mensaje.</p>
+<pre><code>git tag                                   # lista las etiquetas
+git tag -a v1.0.0 -m "Versión 1.0.0"      # crea una etiqueta anotada
+git tag -a v0.9.0 &lt;id_del_commit&gt;         # etiqueta un commit anterior
+git show-ref --tags                       # etiquetas con su commit
+git push origin --tags                    # publica las etiquetas
+git tag -d v1.0.0                         # elimina una etiqueta local
+git push origin :refs/tags/v1.0.0         # elimina la etiqueta en el remoto</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Las etiquetas anotadas señalan versiones y se publican de forma explícita con <code>push --tags</code>.</li>
+  <li>Eliminar una etiqueta local no la elimina en el remoto.</li>
+</ul>
+
+<h1>Buenas prácticas y mensajes de commit</h1>
+
+<h2>Convención de mensajes</h2>
+<p>La especificación <i>Conventional Commits</i> propone una estructura para los mensajes: un tipo, un ámbito opcional entre paréntesis y una descripción breve, seguidos de un cuerpo y de notas al pie opcionales (Conventional Commits, s. f.).</p>
+<pre><code>tipo(ámbito): descripción breve
+
+cuerpo opcional
+
+nota al pie opcional</code></pre>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 7</b><i>Tipos de Commit de Uso Frecuente</i></p>
+  <table>
+    <thead><tr><th>Tipo</th><th>Uso común</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>feat</code></td><td>Nueva funcionalidad</td><td><code>feat(login): agregar validación de campos vacíos</code></td></tr>
+      <tr><td><code>fix</code></td><td>Corrección de errores</td><td><code>fix(ui): arreglar el centrado del botón de login</code></td></tr>
+      <tr><td><code>refactor</code></td><td>Cambio de código sin alterar la funcionalidad</td><td><code>refactor(form): simplificar función de inputs</code></td></tr>
+      <tr><td><code>style</code></td><td>Formato y estilo</td><td><code>style(inputs): aplicar padding uniforme</code></td></tr>
+      <tr><td><code>docs</code></td><td>Documentación</td><td><code>docs: actualizar README con sección de instalación</code></td></tr>
+      <tr><td><code>test</code></td><td>Pruebas</td><td><code>test: agregar test para login correcto</code></td></tr>
+      <tr><td><code>chore</code></td><td>Tareas varias (compilación, scripts, dependencias)</td><td><code>chore: actualizar dependencias del proyecto</code></td></tr>
+      <tr><td><code>perf</code></td><td>Mejoras de rendimiento</td><td><code>perf(render): optimizar carga del logo</code></td></tr>
+      <tr><td><code>build</code></td><td>Sistema de construcción</td><td><code>build: configurar PyInstaller para empaquetado</code></td></tr>
+      <tr><td><code>ci</code></td><td>Integración continua</td><td><code>ci: agregar workflow para GitHub Actions</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Tipos y ejemplos tomados de las notas del autor (Vega, 2021) y de DevTalles (s. f.).</p>
+</div>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>Según la especificación, <code>fix</code> corresponde a una versión de parche y <code>feat</code> a una versión menor en el versionado semántico; un cambio incompatible, indicado con <code>!</code> antes de los dos puntos o con la nota <code>BREAKING CHANGE:</code>, corresponde a una versión mayor (Conventional Commits, s. f.).</p>
+</div>
+
+<h2>Recomendaciones de uso</h2>
+<ul class="lista">
+  <li>Realizar commits pequeños y frecuentes, con mensajes claros redactados en modo imperativo.</li>
+  <li>Trabajar en una rama por funcionalidad o error; no hacerlo directamente en la rama principal.</li>
+  <li>Ejecutar <code>git pull</code> antes de comenzar para reducir conflictos.</li>
+  <li>Revisar <code>git diff</code> antes de cada commit.</li>
+  <li>Mantener un <code>README</code> y un <code>.gitignore</code> desde el inicio del proyecto.</li>
+</ul>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Un mensaje estructurado facilita la lectura del historial y la automatización de versiones.</li>
+  <li>Los commits pequeños, las ramas por tarea y la revisión previa reducen errores y conflictos.</li>
+</ul>
+
+<h1>Productividad: alias y GitHub CLI</h1>
+
+<h2>Alias</h2>
+<p>Un alias abrevia un comando largo. Pueden definirse en Git o en la terminal:</p>
+<pre><code>git config --global alias.st status
+git config --global alias.lg "log --oneline --graph --all"
+git config --global --list                # revisa alias y ajustes globales
+alias grafo="git log --all --graph --decorate --oneline"   # alias de la terminal</code></pre>
+<p>Con la primera línea, <code>git st</code> equivale a <code>git status</code>; con la segunda, <code>git lg</code> muestra el historial gráfico en una línea por commit. Entre los alias más habituales figuran <code>co</code> (<code>checkout</code>), <code>br</code> (<code>branch</code>) y <code>ci</code> (<code>commit</code>) (DevTalles, s. f.).</p>
+
+<h2>GitHub CLI</h2>
+<p>GitHub CLI (<code>gh</code>) permite realizar operaciones de GitHub sin abrir el navegador.</p>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 8</b><i>Comandos de GitHub CLI</i></p>
+  <table>
+    <thead><tr><th>Comando</th><th>Función</th></tr></thead>
+    <tbody>
+      <tr><td><code>gh auth login</code></td><td>Inicia sesión en GitHub desde la terminal.</td></tr>
+      <tr><td><code>gh repo create</code></td><td>Crea un repositorio.</td></tr>
+      <tr><td><code>gh repo clone usuario/repo</code></td><td>Clona un repositorio.</td></tr>
+      <tr><td><code>gh pr create</code></td><td>Abre un <i>pull request</i>.</td></tr>
+      <tr><td><code>gh pr list</code></td><td>Lista los <i>pull requests</i> abiertos.</td></tr>
+      <tr><td><code>gh pr checkout 12</code></td><td>Descarga el <i>pull request</i> 12 para probarlo localmente.</td></tr>
+      <tr><td><code>gh issue create</code></td><td>Crea un <i>issue</i>.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Tomado de DevTalles (s. f.).</p>
+</div>
+
+<h2>Atajos de teclado en github.com</h2>
+<ul class="lista">
+  <li><code>t</code>: buscador rápido de archivos del repositorio.</li>
+  <li><code>.</code>: abre el repositorio en el editor web (github.dev).</li>
+  <li><code>l</code>: salta a una línea específica de un archivo.</li>
+  <li><code>b</code>: muestra el <i>blame</i>.</li>
+  <li><code>y</code>: convierte la URL en un enlace permanente al commit.</li>
+  <li><code>?</code>: muestra todos los atajos disponibles.</li>
+</ul>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Los alias reducen la escritura de comandos largos.</li>
+  <li><code>gh</code> integra las operaciones de GitHub en el flujo de la terminal.</li>
+</ul>
+
+<h1>Markdown para documentación</h1>
+
+<h2>Sintaxis básica</h2>
+<p>Markdown es texto plano con símbolos sencillos que GitHub convierte en formato. Se emplea en el archivo <code>README.md</code>, que describe el proyecto y suele ser lo primero que consulta quien visita el repositorio.</p>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 9</b><i>Elementos Básicos de Markdown</i></p>
+  <table>
+    <thead><tr><th>Elemento</th><th>Sintaxis</th></tr></thead>
+    <tbody>
+      <tr><td>Títulos (seis niveles)</td><td><code># Título 1</code> … <code>###### Título 6</code></td></tr>
+      <tr><td>Negrita, cursiva y tachado</td><td><code>**negrita**</code>, <code>*cursiva*</code>, <code>~~tachado~~</code></td></tr>
+      <tr><td>Código en línea</td><td><code>`código`</code></td></tr>
+      <tr><td>Listas</td><td><code>- elemento</code> (viñetas), <code>1. elemento</code> (numerada), <code>- [ ] tarea</code> (casilla)</td></tr>
+      <tr><td>Enlaces e imágenes</td><td><code>[texto](https://url)</code>, <code>![alt](imagen.png)</code></td></tr>
+      <tr><td>Cita en bloque</td><td><code>&gt; texto citado</code></td></tr>
+      <tr><td>Línea horizontal</td><td><code>---</code></td></tr>
+      <tr><td>Emoji, mención y referencia</td><td><code>:rocket:</code>, <code>@usuario</code>, <code>#12</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de DevTalles (s. f.).</p>
+</div>
+
+<h2>Bloques de código, tablas y avisos</h2>
+<p>Tres comillas invertidas seguidas del nombre del lenguaje activan el resaltado de sintaxis. Las tablas se construyen con barras verticales y una fila de guiones que separa el encabezado; los dos puntos en esa fila (<code>:---</code>, <code>:--:</code>, <code>---:</code>) controlan la alineación. GitHub también admite avisos con las etiquetas <code>[!NOTE]</code>, <code>[!TIP]</code>, <code>[!IMPORTANT]</code>, <code>[!WARNING]</code> y <code>[!CAUTION]</code> dentro de una cita en bloque (DevTalles, s. f.).</p>
+<div class="foco consejo">
+  <span class="et">Consejo</span>
+  <p>Debe dejarse una línea en blanco entre párrafos; de lo contrario, se unen en uno solo. Para forzar un salto de línea sin nuevo párrafo se termina la línea con dos espacios. Conviene previsualizar el resultado antes de guardar.</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Markdown permite documentar proyectos con una sintaxis mínima.</li>
+  <li>El <code>README.md</code> es la portada del repositorio.</li>
+</ul>
+
+<h1 data-sin-numero>Glosario</h1>
+<div class="refs">
+  <p><b>Alias.</b> Abreviatura personalizada de un comando.</p>
+  <p><b>Área de preparación (<i>staging area</i>).</b> Zona donde se agrupan los cambios que formarán parte del próximo commit.</p>
+  <p><b>Commit.</b> Instantánea del proyecto guardada en el repositorio.</p>
+  <p><b>Conflicto de fusión.</b> Situación en que dos ramas modifican las mismas líneas y Git no puede combinarlas automáticamente.</p>
+  <p><b>Fork.</b> Copia de un repositorio ajeno en la propia cuenta de GitHub.</p>
+  <p><b>HEAD.</b> Apuntador al commit o rama de trabajo actual.</p>
+  <p><b>Origin.</b> Nombre por defecto del remoto principal.</p>
+  <p><b>Pull request.</b> Solicitud de fusión de una rama, sujeta a revisión.</p>
+  <p><b>Rama (<i>branch</i>).</b> Línea de trabajo paralela e independiente.</p>
+  <p><b>Remoto.</b> Copia del repositorio alojada en un servidor.</p>
+  <p><b>Stash.</b> Almacén temporal de cambios en curso.</p>
+  <p><b>Tag (etiqueta).</b> Marca asociada a un commit, usada para señalar versiones.</p>
+</div>
+
+<h1 data-sin-numero>Referencias</h1>
+<div class="refs">
+  <p>Chacon, S., &amp; Straub, B. (2014). <i>Pro Git</i> (2.ª ed.). Apress. https://git-scm.com/book/en/v2</p>
+  <p>Conventional Commits. (s. f.). <i>Conventional Commits 1.0.0</i>. https://www.conventionalcommits.org/en/v1.0.0/</p>
+  <p>DevTalles. (s. f.). <i>Git &amp; GitHub cheatsheet</i> [Hoja de referencia]. https://cursos.devtalles.com</p>
+  <p>GitHub. (s. f.-a). <i>Configuring a publishing source for your GitHub Pages site</i>. GitHub Docs. https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site</p>
+  <p>GitHub. (s. f.-b). <i>Generating a new SSH key and adding it to the ssh-agent</i>. GitHub Docs. https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent</p>
+  <p>Vega, F. (2021). <i>Curso de Git y GitHub</i> [Curso en línea]. Platzi.</p>
+</div>

@@ -1,0 +1,256 @@
+<h1>Lecturas y herramientas complementarias</h1>
+
+<h2>Web scraping</h2>
+<p>El <i>web scraping</i> es el proceso de extraer información de sitios web de forma automática mediante código. En lugar de copiar manualmente los datos de una página, un programa los obtiene y los organiza. Python es el lenguaje más empleado para esta tarea y cuenta con bibliotecas especializadas:</p>
+<ul class="lista">
+  <li><code>requests</code>: realiza peticiones HTTP.</li>
+  <li><code>BeautifulSoup</code>: analiza (<i>parsea</i>) el HTML.</li>
+  <li><code>lxml</code>: analizador rápido y potente.</li>
+  <li><code>Selenium</code>: interactúa con páginas dinámicas que usan JavaScript.</li>
+  <li><code>Scrapy</code>: <i>framework</i> especializado para extracciones a gran escala.</li>
+</ul>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+
+url = "https://example.com"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+# obtener todos los títulos &lt;h2&gt; de la página
+titulos = soup.find_all("h2")
+for titulo in titulos:
+    print(titulo.text)</code></pre>
+<p>Las bibliotecas externas se instalan con <code>pip install requests beautifulsoup4 lxml</code>.</p>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>Antes de extraer datos de un sitio conviene revisar sus términos de uso y su archivo <code>robots.txt</code>, y evitar saturarlo con peticiones.</p>
+</div>
+
+<h2>Análisis y visualización de datos</h2>
+<p>El análisis de datos en Python se apoya, principalmente, en tres bibliotecas:</p>
+<ul class="lista">
+  <li><b>NumPy</b> trabaja con números: permite manejar <i>arrays</i> y realizar operaciones matemáticas de forma rápida y eficiente.</li>
+  <li><b>Pandas</b> trabaja con datos tabulares: sirve para leer, limpiar, organizar y analizar datos como si se usara una hoja de cálculo.</li>
+  <li><b>Matplotlib</b> crea gráficos: permite visualizar los datos mediante gráficos de líneas, barras, tortas y otros.</li>
+</ul>
+<p>Las notas originales incluyen cuadernos de práctica en Google Colab para cada una de estas bibliotecas y para <i>machine learning</i>:</p>
+<ul class="lista">
+  <li>NumPy: <code>colab.research.google.com/drive/1vp7zrchG_pJF3uzEgbCjfb_piu43mJXS</code></li>
+  <li>Pandas: <code>colab.research.google.com/drive/1p1zylnSj4ep6uRuzefwu4RgRj2Dvb0dD</code></li>
+  <li>Matplotlib: <code>colab.research.google.com/drive/1vIYDD5xW5LEiAWNuxEAbjHK6oNgVfWsS</code></li>
+  <li>Machine learning: <code>colab.research.google.com/drive/1Lbx5LBtKHqt8oejYVcR_UFN64jLzRHnu</code></li>
+</ul>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>El <i>web scraping</i> automatiza la extracción de datos de páginas web con <code>requests</code> y <code>BeautifulSoup</code>.</li>
+  <li>NumPy, Pandas y Matplotlib forman la base del análisis y la visualización de datos.</li>
+</ul>
+
+<h1 data-sin-numero>Glosario</h1>
+<div class="refs">
+  <p><b>Atributo.</b> Dato o característica que pertenece a un objeto o a una clase.</p>
+  <p><b>Clase.</b> Plantilla que define los atributos y métodos de los objetos creados a partir de ella.</p>
+  <p><b>Clausura (<i>closure</i>).</b> Función interna que recuerda variables de un ámbito superior aunque este ya no exista.</p>
+  <p><b>Comprensión de listas.</b> Sintaxis breve para crear una lista a partir de otra secuencia.</p>
+  <p><b>Decorador.</b> Función que recibe otra función, le añade comportamiento y retorna una función distinta.</p>
+  <p><b>Diccionario.</b> Colección de pares clave: valor, con claves únicas.</p>
+  <p><b>Entorno virtual.</b> Entorno de Python aislado, con su propio conjunto de paquetes.</p>
+  <p><b>Excepción.</b> Error detectado durante la ejecución que puede capturarse con <code>try</code>/<code>except</code>.</p>
+  <p><b>Generador.</b> Función con <code>yield</code> que produce sus valores uno por uno y conserva su estado.</p>
+  <p><b>Herencia.</b> Mecanismo por el que una clase obtiene los atributos y métodos de otra.</p>
+  <p><b>Iterable.</b> Objeto que puede recorrerse en un ciclo, como una lista o una cadena.</p>
+  <p><b>Método.</b> Función definida dentro de una clase.</p>
+  <p><b>Módulo.</b> Archivo <code>.py</code> con código reutilizable.</p>
+  <p><b>Objeto (instancia).</b> Entidad concreta creada a partir de una clase.</p>
+  <p><b>Paquete.</b> Carpeta que agrupa módulos.</p>
+  <p><b>Polimorfismo.</b> Capacidad de clases distintas de responder al mismo método de maneras diferentes.</p>
+  <p><b>Tupla.</b> Secuencia ordenada e inmutable de elementos.</p>
+</div>
+
+<h1 data-sin-numero>Referencias</h1>
+<div class="refs">
+  <p>Django Software Foundation. (s. f.). <i>Writing your first Django app, part 1</i>. Django Documentation. https://docs.djangoproject.com/en/stable/intro/tutorial01/</p>
+  <p>Escuela Directa. (s. f.). <i>Python TOTAL</i> [Material de curso en línea]. Udemy.</p>
+  <p>Python Package Index. (s. f.). <i>SpeechRecognition</i>. https://pypi.org/project/SpeechRecognition/</p>
+  <p>Python Software Foundation. (s. f.-a). <i>Data structures</i>. En <i>The Python tutorial</i>. https://docs.python.org/3/tutorial/datastructures.html</p>
+  <p>Python Software Foundation. (s. f.-b). <i>Input and output</i>. En <i>The Python tutorial</i>. https://docs.python.org/3/tutorial/inputoutput.html</p>
+  <p>Python Software Foundation. (s. f.-c). <i>Python 3 documentation</i>. https://docs.python.org/3/</p>
+  <p>Python Software Foundation. (s. f.-d). <i>tkinter — Python interface to Tcl/Tk</i>. https://docs.python.org/3/library/tkinter.html</p>
+  <p>Python Software Foundation. (s. f.-e). <i>unittest — Unit testing framework</i>. https://docs.python.org/3/library/unittest.html</p>
+  <p>Python Software Foundation. (s. f.-f). <i>venv — Creation of virtual environments</i>. https://docs.python.org/3/library/venv.html</p>
+  <p>van Rossum, G., Warsaw, B., &amp; Coghlan, A. (2001). <i>PEP 8 – Style guide for Python code</i>. Python Enhancement Proposals. https://peps.python.org/pep-0008/</p>
+</div>
+
+<h1 data-anexo="A">Código completo del videojuego</h1>
+<p>El siguiente programa reúne todos los pasos del proyecto «Invasión Espacial» (capítulo 12) en su versión final.</p>
+<pre><code>import pygame
+import random
+import math
+from pygame import mixer
+import sys
+import os
+
+
+# Función para manejar rutas en modo script o ejecutable
+def ruta_absoluta(ruta_relativa):
+    base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, ruta_relativa)
+
+
+pygame.init()
+
+pantalla = pygame.display.set_mode((800, 600))
+
+# Título e icono
+icono = pygame.image.load(ruta_absoluta("logo_color.png"))
+pygame.display.set_caption("Invasión Lolera")
+pygame.display.set_icon(icono)
+
+# Agregar música
+mixer.music.load(ruta_absoluta("MusicaFondo.mp3"))
+mixer.music.set_volume(0.5)
+mixer.music.play(-1)
+
+# Jugador
+img_jugador = pygame.image.load(ruta_absoluta("mouse.png"))
+jugador_x = 368
+jugador_y = 500
+jugador_x_cambio = 0
+
+# Enemigos
+img_enemigo = []
+enemigo_x = []
+enemigo_y = []
+enemigo_x_cambio = []
+enemigo_y_cambio = []
+cantidad_enemigos = 7
+
+for e in range(cantidad_enemigos):
+    img_enemigo.append(pygame.image.load(ruta_absoluta("veneno.png")))
+    enemigo_x.append(random.randint(0, 736))
+    enemigo_y.append(random.randint(50, 200))
+    enemigo_x_cambio.append(1)
+    enemigo_y_cambio.append(50)
+
+# Balas
+balas = []
+img_bala = pygame.image.load(ruta_absoluta("bala.png"))
+bala_x = 0
+bala_y = 500
+bala_x_cambio = 1.5
+bala_y_cambio = 1.5
+bala_visible = False
+
+# Puntaje
+puntaje = 0
+fuente = pygame.font.Font(ruta_absoluta("freesansbold.ttf"), 32)
+texto_x = 10
+texto_y = 10
+
+# Texto final del juego
+fuente_final = pygame.font.Font(ruta_absoluta("freesansbold.ttf"), 40)
+
+
+def texto_final():
+    mi_fuente_final = fuente_final.render("GAME OVER", True, (255, 255, 255))
+    pantalla.blit(mi_fuente_final, (280, 250))
+
+
+def mostrar_puntaje(x, y):
+    texto = fuente.render(f"Puntaje: {puntaje}", True, (255, 255, 255))
+    pantalla.blit(texto, (x, y))
+
+
+def jugador(x, y):
+    pantalla.blit(img_jugador, (x, y))
+
+
+def enemigo(x, y, ene):
+    pantalla.blit(img_enemigo[ene], (x, y))
+
+
+def disparar_bala(x, y):
+    global bala_visible
+    bala_visible = True
+    pantalla.blit(img_bala, (x + 22, y + 10))
+
+
+fondo = pygame.image.load(ruta_absoluta("fondo.png"))
+
+
+def colision(x_1, y_1, x_2, y_2):
+    distancia = math.sqrt((x_2 - x_1) ** 2 + (y_2 - y_1) ** 2)
+    return distancia &lt; 27
+
+
+# Bucle del juego
+se_ejecuta = True
+
+while se_ejecuta:
+    pantalla.blit(fondo, (0, 0))
+
+    for evento in pygame.event.get():
+        if evento.type == pygame.QUIT:
+            se_ejecuta = False
+
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_LEFT:
+                jugador_x_cambio = -0.8
+            elif evento.key == pygame.K_RIGHT:
+                jugador_x_cambio = 0.8
+            elif evento.key == pygame.K_SPACE:
+                sonido_bala = mixer.Sound(ruta_absoluta("disparo.mp3"))
+                sonido_bala.play()
+                nueva_bala = {"x": jugador_x, "y": jugador_y, "velocidad": -2}
+                balas.append(nueva_bala)
+
+        if evento.type == pygame.KEYUP:
+            if evento.key in [pygame.K_LEFT, pygame.K_RIGHT]:
+                jugador_x_cambio = 0
+
+    jugador_x += jugador_x_cambio
+
+    if jugador_x &lt; 0:
+        jugador_x = 0
+    elif jugador_x &gt; 736:
+        jugador_x = 736
+
+    for e in range(cantidad_enemigos):
+        if enemigo_y[e] &gt; 440:
+            for k in range(cantidad_enemigos):
+                enemigo_y[k] = 1000
+            texto_final()
+            break
+
+        enemigo_x[e] += enemigo_x_cambio[e]
+
+        if enemigo_x[e] &lt; 0:
+            enemigo_x_cambio[e] = 1
+            enemigo_y[e] += enemigo_y_cambio[e]
+        elif enemigo_x[e] &gt; 736:
+            enemigo_x_cambio[e] = -1
+            enemigo_y[e] += enemigo_y_cambio[e]
+
+        for bala in balas:
+            if colision(enemigo_x[e], enemigo_y[e], bala["x"], bala["y"]):
+                sonido_choque = mixer.Sound(ruta_absoluta("Golpe.mp3"))
+                sonido_choque.play()
+                balas.remove(bala)
+                puntaje += 1
+                enemigo_x[e] = random.randint(0, 736)
+                enemigo_y[e] = random.randint(50, 200)
+                break
+
+        enemigo(enemigo_x[e], enemigo_y[e], e)
+
+    for bala in balas[:]:
+        bala["y"] += bala["velocidad"]
+        pantalla.blit(img_bala, (bala["x"] + 22, bala["y"] + 10))
+        if bala["y"] &lt; 0:
+            balas.remove(bala)
+
+    jugador(jugador_x, jugador_y)
+    mostrar_puntaje(texto_x, texto_y)
+    pygame.display.update()</code></pre>

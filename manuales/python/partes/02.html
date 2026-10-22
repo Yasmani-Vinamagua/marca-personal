@@ -1,0 +1,281 @@
+<h1>Estructuras de datos</h1>
+
+<h2>Panorama de las colecciones</h2>
+<p>Python ofrece cuatro colecciones integradas que almacenan varios valores en una sola variable: listas, tuplas, diccionarios y conjuntos. Se diferencian por tres propiedades: si pueden modificarse después de crearse (<i>mutabilidad</i>), si conservan un orden y si admiten elementos repetidos.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 8</b><i>Comparación de las Colecciones Integradas</i></p>
+  <table>
+    <thead><tr><th>Colección</th><th>Sintaxis</th><th>Mutable</th><th>Ordenada</th><th>Admite duplicados</th></tr></thead>
+    <tbody>
+      <tr><td>Lista</td><td><code>[1, 2, 3]</code></td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+      <tr><td>Tupla</td><td><code>(1, 2, 3)</code></td><td>No</td><td>Sí</td><td>Sí</td></tr>
+      <tr><td>Diccionario</td><td><code>{"a": 1}</code></td><td>Sí</td><td>Sí, por orden de inserción</td><td>Claves únicas; valores repetibles</td></tr>
+      <tr><td>Conjunto (<i>set</i>)</td><td><code>{1, 2, 3}</code></td><td>Sí</td><td>No</td><td>No</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Elaboración propia a partir de las notas del autor y de Python Software Foundation (s. f.-a).</p>
+</div>
+
+<h2>Listas</h2>
+<p>Una lista es una secuencia ordenada y mutable de objetos de cualquier tipo: cadenas, números, booleanos o incluso otras listas.</p>
+<pre><code>lista_1 = ["C", "C++", "Python", "Java"]
+
+print(lista_1[1:3])      # indexado con [inicio:fin:paso]
+&gt;&gt; ['C++', 'Python']
+
+print(len(lista_1))      # número de elementos
+&gt;&gt; 4
+
+print(lista_1 + lista_2) # concatenación
+&gt;&gt; ['C', 'C++', 'Python', 'Java', 'PHP', 'SQL', 'Visual Basic']</code></pre>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 9</b><i>Métodos Básicos de las Listas</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Función</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><code>append(x)</code></td><td>Agrega un elemento al final.</td><td><code>lista_1.append("R")</code></td></tr>
+      <tr><td><code>pop(i)</code></td><td>Elimina y devuelve el elemento de la posición <code>i</code> (por defecto, el último).</td><td><code>lista_1.pop(4)</code> → <code>'R'</code></td></tr>
+      <tr><td><code>sort()</code></td><td>Ordena la lista en el mismo objeto.</td><td><code>lista_3.sort()</code></td></tr>
+      <tr><td><code>reverse()</code></td><td>Invierte el orden de los elementos.</td><td><code>lista_4.reverse()</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>Los métodos que modifican la lista en su lugar, como <code>sort()</code>, <code>insert()</code> o <code>remove()</code>, devuelven <code>None</code>; por eso la expresión <code>lista = lista.sort()</code> es un error frecuente (Python Software Foundation, s. f.-a).</p>
+</div>
+
+<h3>Comprensión de listas</h3>
+<p>La comprensión de listas es una sintaxis breve para crear una lista nueva a partir de los valores de otra secuencia. Consiste en una expresión, una cláusula <code>for</code> y, de forma opcional, una condición <code>if</code>. La brevedad se logra a costa de una menor legibilidad cuando la expresión es compleja.</p>
+<pre><code>nueva_lista = [expresion for item in iterable if condicion]
+
+# Caso con else: la condición se coloca antes del for
+nueva_lista = [expresion if condicion else otra_expresion for item in iterable]
+
+nueva_lista = [num**2 for num in range(10) if num &lt; 5]
+print(nueva_lista)
+&gt;&gt; [0, 1, 4, 9, 16]</code></pre>
+
+<h2>Tuplas</h2>
+<p>Una tupla almacena varios elementos en una sola variable. Es ordenada, admite duplicados y es <b>inmutable</b>: sus elementos no pueden reasignarse una vez creada. Esa característica la hace más eficiente en memoria y la protege de modificaciones accidentales.</p>
+<pre><code>mi_tupla = (1, "dos", [3.33, "cuatro"], (5.0, 6))
+
+print(mi_tupla[3][0])    # indexado
+&gt;&gt; 5.0
+
+lista_1 = list(mi_tupla) # conversión (casting): ahora es mutable
+
+a, b, c, d = mi_tupla    # desempaquetado
+print(c)
+&gt;&gt; [3.33, 'cuatro']</code></pre>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>La inmutabilidad se refiere a la tupla, no a los objetos que contiene: una tupla puede incluir una lista, y esa lista sí puede modificarse (Python Software Foundation, s. f.-a).</p>
+</div>
+
+<h2>Diccionarios</h2>
+<p>Un diccionario almacena información en pares <i>clave: valor</i>. Se accede a cada valor por el nombre de su clave, no por un índice numérico. Es mutable, no admite claves repetidas y, a partir de Python 3.7, conserva el orden de inserción.</p>
+<pre><code>persona = {
+    "nombre": "Ana",
+    "edad": 25,
+    "ciudad": "Quito"
+}
+
+print(persona["nombre"])
+&gt;&gt; Ana
+
+print(persona.get("correo", "No definido"))   # evita errores si la clave no existe
+&gt;&gt; No definido</code></pre>
+<p>Las operaciones habituales son las siguientes:</p>
+<pre><code>persona["edad"] = 26                  # modificar
+persona["profesión"] = "Ingeniera"    # agregar
+del persona["ciudad"]                 # eliminar una clave
+persona.pop("edad")                   # eliminar y devolver el valor
+
+datos = {}                            # diccionario vacío
+persona = dict(nombre="Luis", edad=30)
+
+print(persona.keys())                 # dict_keys(['nombre', 'edad'])
+print(persona.values())               # dict_values(['Luis', 30])</code></pre>
+
+<h3>Recorrido de un diccionario</h3>
+<p>El método <code>items()</code> devuelve pares <code>(clave, valor)</code>, por lo que es la forma recomendada de recorrer un diccionario. Cuando el valor es una tupla, puede desempaquetarse en el mismo <code>for</code>.</p>
+<pre><code>for clave, valor in persona.items():
+    print(clave, ":", valor)
+
+usuarios = {
+    "yasmani": ("yasmani@gmail.com", "123456"),
+    "juan": ("juan@gmail.com", "123456"),
+}
+
+for usuario, (correo, clave) in usuarios.items():
+    print(usuario, correo, clave)
+&gt;&gt; yasmani yasmani@gmail.com 123456
+&gt;&gt; juan juan@gmail.com 123456</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>Los ejemplos con contraseñas en un diccionario son únicamente didácticos. En una aplicación real las contraseñas no se almacenan en texto plano.</p>
+</div>
+
+<h3>Comprensión de diccionarios y unión</h3>
+<pre><code>{clave: valor for valor in iterable if condicion}   # comprensión de diccionario
+
+dic_a | dic_b                                        # el símbolo | une un diccionario con otro</code></pre>
+<p>Los diccionarios son adecuados cuando se necesita acceso rápido por clave, estructuras del tipo «nombre → valor» o registros con campos nombrados, por ejemplo un alumno con nombre, edad y nota.</p>
+
+<h2>Conjuntos (sets)</h2>
+<p>Un conjunto es una colección mutable de elementos inmutables, sin orden y sin elementos repetidos (Python Software Foundation, s. f.-a). Se usa para eliminar duplicados y para operaciones de teoría de conjuntos. Un conjunto vacío se crea con <code>set()</code>, porque <code>{}</code> crea un diccionario.</p>
+<pre><code>mi_set_a = {1, 2, "tres"}
+mi_set_b = {3, "tres"}</code></pre>
+<p>Las tablas siguientes usan estos dos conjuntos como ejemplo.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 10</b><i>Métodos para Modificar un Conjunto</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Descripción</th><th>Ejemplo y resultado</th></tr></thead>
+    <tbody>
+      <tr><td><code>add(item)</code></td><td>Agrega un elemento.</td><td><code>mi_set_a.add(5)</code> → <code>{1, 2, 'tres', 5}</code></td></tr>
+      <tr><td><code>update(set)</code></td><td>Inserta los elementos de otro conjunto.</td><td><code>mi_set_a.update(mi_set_b)</code> → <code>{1, 2, 3, 'tres'}</code></td></tr>
+      <tr><td><code>discard(item)</code></td><td>Elimina un elemento; no falla si no existe.</td><td><code>mi_set_a.discard("tres")</code> → <code>{1, 2}</code></td></tr>
+      <tr><td><code>remove(item)</code></td><td>Elimina un elemento; lanza error si no existe.</td><td><code>mi_set_a.remove("tres")</code> → <code>{1, 2}</code></td></tr>
+      <tr><td><code>pop()</code></td><td>Elimina y devuelve un elemento arbitrario.</td><td><code>mi_set_a.pop()</code> → un elemento, por ejemplo <code>2</code></td></tr>
+      <tr><td><code>clear()</code></td><td>Elimina todos los elementos.</td><td><code>mi_set_a.clear()</code> → <code>set()</code></td></tr>
+      <tr><td><code>copy()</code></td><td>Devuelve una copia del conjunto.</td><td><code>mi_set_a.copy()</code> → <code>{1, 2, 'tres'}</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de una hoja de referencia del curso (Escuela Directa, s. f.).</p>
+</div>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 11</b><i>Operaciones entre Conjuntos</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Operador</th><th>Descripción</th><th>Resultado (A y B)</th></tr></thead>
+    <tbody>
+      <tr><td><code>union(B)</code></td><td><code>|</code></td><td>Combina A y B sin duplicados.</td><td><code>{1, 2, 3, 'tres'}</code></td></tr>
+      <tr><td><code>intersection(B)</code></td><td><code>&amp;</code></td><td>Elementos presentes en A y en B.</td><td><code>{'tres'}</code></td></tr>
+      <tr><td><code>difference(B)</code></td><td><code>-</code></td><td>Elementos que solo están en A.</td><td><code>{1, 2}</code></td></tr>
+      <tr><td><code>symmetric_difference(B)</code></td><td><code>^</code></td><td>Elementos de A y B, excepto los comunes.</td><td><code>{1, 2, 3}</code></td></tr>
+      <tr><td><code>isdisjoint(B)</code></td><td>—</td><td><code>True</code> si A y B no tienen elementos comunes.</td><td><code>False</code></td></tr>
+      <tr><td><code>issubset(B)</code></td><td>—</td><td><code>True</code> si todos los elementos de A están en B.</td><td><code>False</code></td></tr>
+      <tr><td><code>issuperset(B)</code></td><td>—</td><td><code>True</code> si A contiene todos los elementos de B.</td><td><code>False</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Las variantes <code>difference_update()</code>, <code>intersection_update()</code> y <code>symmetric_difference_update()</code> aplican la operación y actualizan el conjunto original. Adaptado de Escuela Directa (s. f.) y Python Software Foundation (s. f.-a).</p>
+</div>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Las listas son ordenadas y mutables; las tuplas, ordenadas e inmutables.</li>
+  <li>Los diccionarios asocian claves únicas con valores y se recorren con <code>items()</code>.</li>
+  <li>Los conjuntos no tienen orden ni duplicados y admiten operaciones de unión, intersección y diferencia.</li>
+  <li>La comprensión de listas y de diccionarios crea colecciones nuevas con una sintaxis compacta.</li>
+</ul>
+
+<h1>Control de flujo</h1>
+
+<h2>El bucle for</h2>
+<p>A diferencia de otros lenguajes, el bucle <code>for</code> de Python recorre los elementos de cualquier secuencia (cadenas, listas, tuplas, diccionarios, conjuntos, rangos) en el orden en que aparecen. La sintaxis es:</p>
+<pre><code>for item in iterable:
+    # bloque de código (la indentación es obligatoria)</code></pre>
+<p>En cada iteración, la variable <code>item</code> toma el valor de un elemento del iterable y puede usarse dentro del bloque.</p>
+<pre><code>frutas = ["manzana", "pera", "uva"]
+for fruta in frutas:
+    print(fruta)
+
+for i in range(5):            # del 0 al 4
+    print(i)
+
+for i in range(1, 10, 2):     # range(inicio, fin, paso): 1, 3, 5, 7, 9
+    print(i)
+
+colores = ["rojo", "verde", "azul"]
+for i, color in enumerate(colores):   # recorre con el índice
+    print(i, color)
+
+nombres = ["Ana", "Luis"]
+edades = [20, 25]
+for nombre, edad in zip(nombres, edades):   # recorre varias listas a la vez
+    print(f"{nombre} tiene {edad} años")
+
+for letra in "python":                # recorre una cadena
+    print(letra)</code></pre>
+
+<h2>El bucle while</h2>
+<p>El bucle <code>while</code> se parece más a un condicional <code>if</code> que a un <code>for</code>: repite un bloque mientras la condición sea verdadera y se detiene cuando se vuelve <code>False</code>. La condición se evalúa antes de cada iteración. Admite una cláusula <code>else</code>, que se ejecuta cuando la condición pasa a ser falsa.</p>
+<pre><code>contador = 1
+while contador &lt;= 5:
+    print("Repetición", contador)
+    contador += 1
+&gt;&gt; Repetición 1
+&gt;&gt; ...
+&gt;&gt; Repetición 5</code></pre>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p>Si la condición nunca se vuelve falsa, el bucle es infinito. Debe verificarse que alguna instrucción del bloque modifique las variables de la condición, como <code>contador += 1</code> en el ejemplo.</p>
+</div>
+
+<h2>Control de bucles: break, continue, pass y else</h2>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 12</b><i>Palabras Clave de Control de Flujo</i></p>
+  <table>
+    <thead><tr><th>Palabra clave</th><th>Efecto</th></tr></thead>
+    <tbody>
+      <tr><td><code>break</code></td><td>Sale del bucle antes de que termine de forma natural.</td></tr>
+      <tr><td><code>continue</code></td><td>Omite el resto de la iteración actual y pasa a la siguiente.</td></tr>
+      <tr><td><code>pass</code></td><td>No hace nada; sirve de relleno donde la sintaxis exige un bloque.</td></tr>
+      <tr><td><code>else</code></td><td>En un bucle, se ejecuta solo si el bucle terminó sin <code>break</code>.</td></tr>
+      <tr><td><code>return</code></td><td>Sale de una función y puede devolver un valor.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<pre><code># break: detiene el bucle
+while True:
+    texto = input("Escribe algo (salir para terminar): ")
+    if texto == "salir":
+        break
+    print("Dijiste:", texto)
+
+# continue: salta el valor 2
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)
+&gt;&gt; 0  1  3  4
+
+# pass: marcador de posición
+def funcion():
+    pass  # pendiente de implementar
+
+# else en un bucle: se ejecuta porque no hubo break
+for i in range(3):
+    print(i)
+else:
+    print("Todo bien, sin break")</code></pre>
+<p>El siguiente ejemplo combina varias de estas palabras clave:</p>
+<pre><code>while True:
+    dato = input("Escribe un número positivo: ")
+    if dato == "salir":
+        break
+    if not dato.isdigit():
+        print("Entrada no válida.")
+        continue
+    numero = int(dato)
+    if numero == 0:
+        pass  # aquí podría añadirse lógica en el futuro
+    print("Número recibido:", numero)</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li><code>for</code> recorre los elementos de un iterable; <code>while</code> repite mientras una condición sea verdadera.</li>
+  <li><code>break</code>, <code>continue</code> y <code>pass</code> controlan el comportamiento dentro de un bucle.</li>
+  <li>La cláusula <code>else</code> de un bucle solo se ejecuta si no hubo <code>break</code>.</li>
+</ul>

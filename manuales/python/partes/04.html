@@ -1,0 +1,463 @@
+<h1>Manejo de archivos</h1>
+
+<h2>Apertura, lectura y escritura</h2>
+<p>La función <code>open(archivo, modo)</code> abre un archivo y devuelve un objeto sobre el que pueden aplicarse métodos de lectura y escritura. El parámetro <i>modo</i> determina qué operaciones se permiten y qué ocurre con el contenido previo.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 15</b><i>Modos de Apertura de Archivos</i></p>
+  <table>
+    <thead><tr><th>Modo</th><th>Operaciones</th><th>Comportamiento</th></tr></thead>
+    <tbody>
+      <tr><td><code>"r"</code></td><td>Solo lectura (predeterminado)</td><td>Lanza un error si el archivo no existe.</td></tr>
+      <tr><td><code>"r+"</code></td><td>Lectura y escritura</td><td>Requiere que el archivo exista.</td></tr>
+      <tr><td><code>"w"</code></td><td>Solo escritura</td><td>Sobrescribe el archivo si existe; lo crea si no existe.</td></tr>
+      <tr><td><code>"w+"</code></td><td>Escritura y lectura</td><td>Sobrescribe el archivo si existe; lo crea si no existe.</td></tr>
+      <tr><td><code>"a"</code></td><td>Añadir contenido</td><td>Agrega al final; crea el archivo si no existe.</td></tr>
+      <tr><td><code>"a+"</code></td><td>Añadir y leer</td><td>Agrega al final; crea el archivo si no existe.</td></tr>
+      <tr><td><code>"x"</code></td><td>Creación exclusiva</td><td>Crea el archivo; lanza un error si ya existe.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor y de Python Software Foundation (s. f.-b).</p>
+</div>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 16</b><i>Métodos de los Objetos de Archivo</i></p>
+  <table>
+    <thead><tr><th>Método</th><th>Función</th></tr></thead>
+    <tbody>
+      <tr><td><code>read(bytes)</code></td><td>Devuelve el número de bytes indicado; sin argumento, devuelve el archivo completo.</td></tr>
+      <tr><td><code>readline(bytes)</code></td><td>Devuelve una línea del archivo, limitada por el tamaño indicado.</td></tr>
+      <tr><td><code>readlines(bytes)</code></td><td>Devuelve una lista con cada línea del archivo como elemento.</td></tr>
+      <tr><td><code>write(texto)</code></td><td>Escribe el texto indicado en el archivo.</td></tr>
+      <tr><td><code>writelines(lista)</code></td><td>Escribe el contenido de una lista de cadenas.</td></tr>
+      <tr><td><code>close()</code></td><td>Cierra el archivo; no puede leerse ni escribirse después.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<pre><code># Escritura (sobrescribe) y lectura
+archivo = open("archivo.txt", "w")
+archivo.write("hola mundo")
+archivo.close()
+
+archivo = open("archivo.txt", "r")
+print(archivo.read())
+archivo.close()
+
+# Añadir contenido al final
+archivo = open("archivo.txt", "a")
+archivo.write("hola mundo")
+archivo.close()</code></pre>
+
+<div class="foco ampliar">
+  <span class="et">Para ampliar</span>
+  <p>La documentación oficial recomienda emplear la palabra clave <code>with</code> al trabajar con archivos: el archivo se cierra correctamente al terminar el bloque, incluso si se produce una excepción. Sin ella, una escritura puede no llegar completa al disco si no se invoca <code>close()</code> (Python Software Foundation, s. f.-b).</p>
+</div>
+
+<pre><code>with open("./ruta/del/archivo.txt", "r", encoding="utf-8") as f:
+    contenido = f.read()</code></pre>
+<p>El argumento <code>encoding="utf-8"</code> permite que Python soporte los caracteres del español, como la «ñ» y las letras con tilde. Resulta conveniente indicarlo de forma explícita para que el programa se comporte igual en distintos sistemas operativos.</p>
+
+<h2>Rutas con pathlib</h2>
+<p>La clase <code>Path</code> del módulo <code>pathlib</code> construye rutas de archivos y carpetas de forma independiente del sistema operativo.</p>
+<pre><code>from pathlib import Path
+
+base = Path.home()                       # carpeta personal del usuario
+ruta = Path(base, "Loja", "sucre.txt")
+print(ruta)
+&gt;&gt; C:\Users\usuario\Loja\sucre.txt</code></pre>
+
+<h2>Los módulos os y shutil</h2>
+<p>El módulo <code>os</code> permite interactuar con el sistema operativo. El módulo <code>shutil</code> ofrece operaciones de alto nivel sobre archivos y carpetas completas, y resulta útil cuando <code>os</code> es insuficiente.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 17</b><i>Funciones Frecuentes del Módulo os</i></p>
+  <table>
+    <thead><tr><th>Función</th><th>Descripción</th></tr></thead>
+    <tbody>
+      <tr><td><code>os.getcwd()</code></td><td>Devuelve el directorio de trabajo actual.</td></tr>
+      <tr><td><code>os.chdir(ruta)</code></td><td>Cambia el directorio de trabajo.</td></tr>
+      <tr><td><code>os.listdir(ruta)</code></td><td>Lista los archivos y carpetas de un directorio.</td></tr>
+      <tr><td><code>os.mkdir(nombre)</code></td><td>Crea una carpeta.</td></tr>
+      <tr><td><code>os.makedirs(ruta)</code></td><td>Crea directorios anidados.</td></tr>
+      <tr><td><code>os.remove(archivo)</code></td><td>Elimina un archivo.</td></tr>
+      <tr><td><code>os.rmdir(carpeta)</code></td><td>Elimina una carpeta vacía.</td></tr>
+      <tr><td><code>os.rename(origen, destino)</code></td><td>Cambia el nombre de un archivo o carpeta, o lo mueve.</td></tr>
+      <tr><td><code>os.path.exists(ruta)</code></td><td>Verifica si una ruta existe.</td></tr>
+      <tr><td><code>os.path.isfile(ruta)</code></td><td>Verifica si la ruta es un archivo.</td></tr>
+      <tr><td><code>os.path.isdir(ruta)</code></td><td>Verifica si la ruta es un directorio.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 18</b><i>Funciones Principales del Módulo shutil</i></p>
+  <table>
+    <thead><tr><th>Función</th><th>Descripción</th></tr></thead>
+    <tbody>
+      <tr><td><code>shutil.copy(src, dst)</code></td><td>Copia un archivo a otro lugar.</td></tr>
+      <tr><td><code>shutil.copy2(src, dst)</code></td><td>Igual que <code>copy</code>, pero conserva los metadatos (fecha, permisos).</td></tr>
+      <tr><td><code>shutil.copytree(src, dst)</code></td><td>Copia un directorio completo de forma recursiva.</td></tr>
+      <tr><td><code>shutil.move(src, dst)</code></td><td>Mueve un archivo o directorio.</td></tr>
+      <tr><td><code>shutil.rmtree(ruta)</code></td><td>Elimina un directorio y todo su contenido.</td></tr>
+      <tr><td><code>shutil.disk_usage(ruta)</code></td><td>Devuelve el espacio total, usado y libre del disco.</td></tr>
+      <tr><td><code>shutil.make_archive(nombre, "zip", carpeta)</code></td><td>Comprime una carpeta en un archivo.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<div class="foco importante">
+  <span class="et">Importante</span>
+  <p><code>shutil.rmtree()</code> y <code>os.remove()</code> eliminan de forma definitiva, sin pasar por la papelera. Conviene verificar la ruta antes de ejecutarlos.</p>
+</div>
+
+<h2>Compresión con zipfile</h2>
+<p>El módulo <code>zipfile</code> permite crear, leer, escribir y extraer archivos ZIP.</p>
+<pre><code>import zipfile
+
+# Crear un archivo ZIP y agregarle un archivo existente
+with zipfile.ZipFile("archivo_comprimido.zip", "w") as zipf:
+    zipf.write("documento.txt")
+
+# Extraer todo el contenido
+with zipfile.ZipFile("archivo_comprimido.zip", "r") as zipf:
+    zipf.extractall("carpeta_destino")
+
+# Listar el contenido
+with zipfile.ZipFile("archivo_comprimido.zip", "r") as zipf:
+    print(zipf.namelist())</code></pre>
+<p>Con <code>shutil</code>, la compresión de una carpeta se reduce a una instrucción:</p>
+<pre><code>import shutil
+
+shutil.copy("archivo.txt", "copia.txt")
+shutil.move("archivo.txt", "carpeta_destino/archivo.txt")
+shutil.copytree("carpeta_origen", "carpeta_copia")
+shutil.make_archive("backup", "zip", "carpeta_a_comprimir")</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>El modo de apertura determina si se lee, se escribe, se añade o se crea un archivo.</li>
+  <li><code>with open(...)</code> garantiza el cierre del archivo; conviene indicar <code>encoding="utf-8"</code>.</li>
+  <li><code>pathlib</code>, <code>os</code> y <code>shutil</code> gestionan rutas, carpetas, copias y compresión.</li>
+</ul>
+
+<h1>Manejo de errores y calidad del código</h1>
+
+<h2>Excepciones: try, except, else y finally</h2>
+<p>El manejo de excepciones permite controlar situaciones inesperadas durante la ejecución, de modo que el programa no se detenga abruptamente. Sirve para que el programa no se cierre cuando el usuario comete un error (por ejemplo, al escribir letras donde se pedía un número), para mostrar un mensaje claro y para continuar de forma controlada.</p>
+<pre><code>try:
+    # código que podría fallar
+except:
+    # código si falla
+else:
+    # código si no hubo error
+finally:
+    # código que siempre se ejecuta</code></pre>
+<ul class="lista">
+  <li><b><code>try</code></b>: contiene el código que se espera pueda lanzar un error.</li>
+  <li><b><code>except</code></b>: gestiona el error; si ocurre dentro del bloque <code>try</code>, se interrumpe su ejecución y se ejecuta lo definido en <code>except</code>.</li>
+  <li><b><code>else</code></b>: se ejecuta solo si no se lanzó ninguna excepción en el <code>try</code>.</li>
+  <li><b><code>finally</code></b>: se ejecuta siempre, se haya lanzado o no una excepción.</li>
+</ul>
+<pre><code>try:
+    numero = int(input("Ingrese un número: "))
+except ValueError:
+    print("Eso no es un número válido.")
+else:
+    print(f"¡Ingresaste correctamente el número {numero}!")
+finally:
+    print("Fin de la operación.")</code></pre>
+<p>Si el usuario escribe un número válido, se muestra el número y «Fin de la operación». Si escribe un texto no numérico, se muestra el aviso de error y también «Fin de la operación».</p>
+
+<div class="foco consejo">
+  <span class="et">Consejo</span>
+  <p>Es preferible capturar el tipo de excepción concreto (<code>except ValueError:</code>) que usar un <code>except:</code> genérico, porque este último también oculta errores inesperados.</p>
+</div>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 19</b><i>Excepciones Frecuentes</i></p>
+  <table>
+    <thead><tr><th>Excepción</th><th>Se produce cuando…</th></tr></thead>
+    <tbody>
+      <tr><td><code>ValueError</code></td><td>una función recibe un valor de tipo correcto pero inadecuado, por ejemplo <code>int("abc")</code>.</td></tr>
+      <tr><td><code>KeyError</code></td><td>se consulta una clave que no existe en un diccionario.</td></tr>
+      <tr><td><code>IndexError</code></td><td>se accede a una posición fuera del rango de una secuencia.</td></tr>
+      <tr><td><code>FileNotFoundError</code></td><td>se intenta abrir un archivo que no existe.</td></tr>
+      <tr><td><code>ZeroDivisionError</code></td><td>se divide entre cero.</td></tr>
+      <tr><td><code>ImportError</code></td><td>falla la importación de un módulo.</td></tr>
+      <tr><td><code>KeyboardInterrupt</code></td><td>el usuario interrumpe el programa desde el teclado.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Las notas originales enumeran estas excepciones junto con <code>SyntaxError</code>, que corresponde a un error de sintaxis detectado antes de la ejecución.</p>
+</div>
+
+<h2>Sentencias assert</h2>
+<p>La sentencia <code>assert</code> verifica una condición durante la ejecución y, si es falsa, lanza un error con un mensaje. Su estructura es <code>assert condición, mensaje de error</code>. El método <code>.isnumeric()</code> de las cadenas devuelve <code>True</code> si el texto está formado por números, por lo que resulta útil para validar entradas.</p>
+<pre><code>entrada = "25"
+assert entrada.isnumeric(), "Debe ingresarse un número"</code></pre>
+
+<h2>Depuración</h2>
+<p>El depurador permite detener el programa y observar su estado. En Visual Studio Code, el procedimiento es el siguiente:</p>
+<ol class="lista">
+  <li>Abrir la vista <i>Ejecución y depuración</i> y seleccionar <i>Python file</i>.</li>
+  <li>Colocar un punto de interrupción (círculo rojo) en la línea donde debe detenerse el programa.</li>
+  <li>Con el botón de pausa se detiene la ejecución en el punto deseado.</li>
+  <li>Con la opción de depurar paso a paso se avanza línea por línea.</li>
+  <li>Con la opción de depurar paso a paso por instrucciones se ingresa al origen del código para revisarlo.</li>
+</ol>
+
+<h2>Análisis estático con pylint</h2>
+<p><code>pylint</code> es una herramienta que analiza el código Python de forma automática: busca errores de sintaxis, malas prácticas (nombres poco claros, funciones sin documentar), incumplimientos de las normas de estilo PEP 8 (nombres significativos, espacios, un máximo de 79 caracteres por línea) y código no utilizado. Además, asigna al archivo una puntuación de 0 a 10. Se instala una sola vez y luego se ejecuta sobre el archivo:</p>
+<pre><code>pip install pylint
+pylint ejercicio_ejemplo.py</code></pre>
+
+<h2>Pruebas automáticas con unittest</h2>
+<p>El módulo <code>unittest</code> viene incluido en Python y permite crear pruebas automáticas que comprueban el funcionamiento correcto de funciones, clases y métodos. Está inspirado en JUnit y su unidad básica es el <i>caso de prueba</i>, que verifica una respuesta específica ante un conjunto de entradas (Python Software Foundation, s. f.-e). El procedimiento es:</p>
+<ol class="lista">
+  <li>Importar el módulo: <code>import unittest</code>.</li>
+  <li>Crear una clase de prueba que herede de <code>unittest.TestCase</code>.</li>
+  <li>Definir métodos cuyo nombre comience con <code>test_</code>; esa convención indica al ejecutor qué métodos son pruebas.</li>
+  <li>Ejecutar las pruebas con <code>unittest.main()</code>.</li>
+</ol>
+<pre><code>import unittest
+
+
+def sumar(a, b):
+    return a + b
+
+
+class TestSumar(unittest.TestCase):
+    def test_suma_correcta(self):
+        self.assertEqual(sumar(2, 3), 5)
+
+
+if __name__ == "__main__":
+    unittest.main()</code></pre>
+<p>Al ejecutar el archivo, la salida indica <code>OK</code> si las pruebas pasan o señala la prueba que falló y el motivo.</p>
+
+<h2>Tipado y verificación con mypy</h2>
+<p>Los lenguajes de programación se clasifican según su sistema de tipos en estático, dinámico, débil y fuerte. Python es de tipado dinámico, pero desde la versión 3.6 permite <b>anotar</b> los tipos de las variables, lo que facilita la lectura y la detección de errores:</p>
+<pre><code>a: int = 5
+b: str = "hola"
+c: bool = True
+
+from typing import Dict, List, Tuple
+
+numeros: List[int] = [1, 2, 3]
+persona: Dict[str, int] = {"edad": 25}
+punto: Tuple[int, int] = (3, 4)</code></pre>
+<p>Las anotaciones no se verifican al ejecutar el programa. Para comprobarlas se utiliza <code>mypy</code>, un módulo que muestra en consola los errores de tipos y que se complementa con el módulo <code>typing</code>:</p>
+<pre><code>pip install mypy
+mypy nombre_archivo.py --check-untyped-defs</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li><code>try</code>/<code>except</code>/<code>else</code>/<code>finally</code> controlan los errores en tiempo de ejecución.</li>
+  <li><code>assert</code>, el depurador y <code>pylint</code> ayudan a detectar problemas durante el desarrollo.</li>
+  <li><code>unittest</code> automatiza las pruebas y <code>mypy</code> verifica las anotaciones de tipos.</li>
+</ul>
+
+<h1>Módulos, paquetes y entornos virtuales</h1>
+
+<h2>Módulos y paquetes</h2>
+<p>Un <b>módulo</b> es cualquier archivo <code>.py</code> que contiene funciones, clases o variables reutilizables. Un <b>paquete</b> es una carpeta que agrupa módulos y, tradicionalmente, un archivo <code>__init__.py</code>. Desde Python 3.3 este archivo ya no es obligatorio, aunque sigue considerándose una buena práctica. Un módulo es, en esencia, código escrito por otra persona (o por uno mismo) que ahorra tiempo y puede implementarse en otros programas.</p>
+<pre><code># archivo: saludos.py
+def hola(nombre):
+    return f"Hola, {nombre}!"
+
+# archivo: main.py
+import saludos
+
+print(saludos.hola("Yasmani"))</code></pre>
+<pre><code>mi_proyecto/
+├── calculadora/
+│   ├── __init__.py
+│   ├── suma.py
+│   └── resta.py
+└── app.py
+
+# app.py
+from calculadora.suma import sumar
+print(sumar(3, 4))</code></pre>
+
+<h2>Entornos virtuales con venv</h2>
+<p>Un entorno virtual es un entorno de Python aislado y ligero, con su propio conjunto de paquetes; evita conflictos entre las dependencias de distintos proyectos. Suele ubicarse en una carpeta denominada <code>venv</code> o <code>.venv</code> dentro del proyecto, no debe incluirse en el control de versiones y puede eliminarse y recrearse en cualquier momento (Python Software Foundation, s. f.-f).</p>
+<pre><code>python -m venv venv           # crear el entorno llamado "venv"
+deactivate                    # salir del entorno virtual</code></pre>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 20</b><i>Comandos para Activar un Entorno Virtual</i></p>
+  <table>
+    <thead><tr><th>Terminal</th><th>Comando</th></tr></thead>
+    <tbody>
+      <tr><td>Windows, PowerShell</td><td><code>.\venv\Scripts\Activate.ps1</code></td></tr>
+      <tr><td>Windows, CMD</td><td><code>.\venv\Scripts\activate.bat</code></td></tr>
+      <tr><td>Git Bash en Windows</td><td><code>source venv/Scripts/activate</code></td></tr>
+      <tr><td>macOS y Linux (bash, zsh)</td><td><code>source venv/bin/activate</code></td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor y de Python Software Foundation (s. f.-f).</p>
+</div>
+
+<p>Cuando el entorno está activo, el <i>prompt</i> muestra su nombre entre paréntesis, por ejemplo <code>(venv) C:\proyecto&gt;</code>.</p>
+
+<div class="foco consejo">
+  <span class="et">Consejo</span>
+  <p>Si PowerShell muestra el error «no puede ejecutarse el script», se resuelve ejecutando primero <code>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code> y repitiendo la activación. Para abreviar el comando de activación, puede definirse un alias, por ejemplo <code>alias avenv=".\venv\Scripts\activate"</code> en Git Bash.</p>
+</div>
+
+<h2>Instalación de dependencias con pip</h2>
+<ol class="lista">
+  <li>Activar el entorno virtual.</li>
+  <li><code>pip freeze</code>: muestra los módulos instalados con sus versiones.</li>
+  <li><code>pip install pandas</code>: instala un módulo (en el ejemplo, <code>pandas</code>).</li>
+  <li><code>pip freeze &gt; requirements.txt</code>: guarda las dependencias con sus versiones, para compartirlas, por ejemplo, en GitHub.</li>
+  <li><code>cat requirements.txt</code>: muestra el contenido del archivo.</li>
+  <li><code>pip install -r requirements.txt</code>: instala las dependencias guardadas (lo ejecuta la persona que recibe el proyecto).</li>
+</ol>
+
+<h2>Anaconda</h2>
+<p>Anaconda es una distribución especializada en ciencia de datos; no se recomienda para otros campos de desarrollo. El procedimiento básico es:</p>
+<ol class="lista">
+  <li>Instalar Anaconda y ejecutar <i>Anaconda Navigator</i>.</li>
+  <li>En <i>Environments</i>, seleccionar <i>Create</i>, asignar un nombre y elegir el lenguaje.</li>
+  <li>En <i>Install</i>, seleccionar <i>All</i> y actualizar el índice (<i>Update Index</i>).</li>
+  <li>Buscar el paquete (por ejemplo, <code>pandas</code>), seleccionarlo y pulsar <i>Apply</i>.</li>
+</ol>
+
+<h2>Inicio de un proyecto nuevo</h2>
+<p>La secuencia de trabajo propuesta en las notas combina Git, un entorno virtual y la verificación de tipos:</p>
+<ol class="lista">
+  <li>Crear la carpeta del proyecto e ingresar a ella.</li>
+  <li>Inicializar el repositorio: <code>git init</code>.</li>
+  <li>Crear el entorno virtual: <code>python -m venv venv</code>.</li>
+  <li>Crear el archivo <code>.gitignore</code> y escribir en él <code>venv/</code>.</li>
+  <li>Activar el entorno virtual.</li>
+  <li>Instalar las herramientas necesarias, por ejemplo <code>pip install mypy</code>.</li>
+  <li>Crear el archivo <code>.py</code> y comenzar a trabajar.</li>
+  <li>Ejecutar el código con <code>python nombre_archivo.py</code> y revisar los tipos con <code>mypy nombre_archivo.py --check-untyped-defs</code>.</li>
+</ol>
+
+<h2>Módulos de la biblioteca estándar</h2>
+<h3>collections</h3>
+<p>El módulo <code>collections</code> ofrece tipos de datos especializados que amplían las colecciones estándar.</p>
+<pre><code>from collections import namedtuple, deque, Counter, defaultdict
+
+# namedtuple: tupla con campos nombrados
+Persona = namedtuple("Persona", ["nombre", "edad"])
+p = Persona(nombre="Yasmani", edad=30)
+print(p.nombre)      # Yasmani
+
+# deque: lista optimizada para insertar y eliminar en ambos extremos
+cola = deque(["a", "b", "c"])
+cola.append("d")         # agrega al final
+cola.appendleft("z")     # agrega al inicio
+cola.pop()               # elimina del final
+cola.popleft()           # elimina del inicio
+
+# Counter: cuenta la repetición de cada elemento
+contador = Counter("abracadabra")
+print(contador.most_common(2))   # [('a', 5), ('b', 2)]
+
+# defaultdict: diccionario con valor por defecto
+dic = defaultdict(int)
+dic["manzanas"] += 1
+print(dic["peras"])      # 0 (no lanza error)</code></pre>
+
+<h3>datetime</h3>
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 21</b><i>Clases y Funciones Comunes del Módulo datetime</i></p>
+  <table>
+    <thead><tr><th>Clase o función</th><th>Descripción</th></tr></thead>
+    <tbody>
+      <tr><td><code>datetime.datetime.now()</code></td><td>Devuelve la fecha y la hora actuales.</td></tr>
+      <tr><td><code>datetime.date.today()</code></td><td>Devuelve solo la fecha actual.</td></tr>
+      <tr><td><code>datetime.datetime.strptime()</code></td><td>Convierte una cadena en un objeto <code>datetime</code>.</td></tr>
+      <tr><td><code>datetime.datetime.strftime()</code></td><td>Convierte un objeto <code>datetime</code> en una cadena.</td></tr>
+      <tr><td><code>datetime.timedelta</code></td><td>Permite operar con diferencias de tiempo (días, horas, etc.).</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+<pre><code>import datetime
+
+mi_tiempo = datetime.datetime.now()
+mi_dia = datetime.date.today()
+print(mi_dia.year, mi_dia.month, mi_dia.day)</code></pre>
+<p>Para trabajar con zonas horarias, las notas utilizan el paquete externo <code>pytz</code> (<code>pip install pytz</code>), que se importa junto con <code>from datetime import datetime</code>.</p>
+
+<h3>time y timeit</h3>
+<p>Para medir el tiempo de ejecución se usan las funciones <code>time()</code> o <code>perf_counter()</code> del módulo <code>time</code>; la segunda es más precisa en intervalos pequeños. El módulo <code>timeit</code> mide con gran precisión pequeños fragmentos de código al minimizar las interferencias del sistema.</p>
+<pre><code>import time
+
+inicio = time.perf_counter()
+time.sleep(2)                       # simula una función que tarda 2 segundos
+fin = time.perf_counter()
+print(f"Tiempo de ejecución: {fin - inicio:.4f} segundos")
+
+import timeit
+
+tiempo = timeit.timeit(stmt='"-".join(str(n) for n in range(100))', number=1000)
+print(f"Tiempo de ejecución: {tiempo:.6f} segundos")</code></pre>
+<p>El parámetro <code>stmt</code> es el código que se ejecuta, escrito como cadena, y <code>number</code> es la cantidad de repeticiones para obtener un promedio más preciso.</p>
+
+<h3>math</h3>
+<pre><code>import math
+
+print(math.pi)            # 3.141592653589793
+print(math.e)             # 2.718281828459045
+print(math.sqrt(16))      # 4.0
+print(math.pow(2, 3))     # 8.0
+print(math.log(100, 10))  # 2.0
+print(math.sin(math.pi / 2))  # 1.0
+print(math.floor(4.7))    # 4
+print(math.ceil(4.2))     # 5
+print(math.fabs(-5))      # 5.0
+print(math.factorial(5))  # 120</code></pre>
+
+<h3>re (expresiones regulares)</h3>
+<p>El módulo <code>re</code> permite trabajar con expresiones regulares, que son patrones para buscar, validar o extraer texto.</p>
+
+<div class="tabla">
+  <p class="rotulo"><b>Tabla 22</b><i>Símbolos Comunes de las Expresiones Regulares</i></p>
+  <table>
+    <thead><tr><th>Símbolo</th><th>Significado</th></tr></thead>
+    <tbody>
+      <tr><td><code>\d</code></td><td>Un dígito (0-9).</td></tr>
+      <tr><td><code>\w</code></td><td>Un carácter alfanumérico (letra, número o guion bajo).</td></tr>
+      <tr><td><code>.</code></td><td>Cualquier carácter excepto el salto de línea.</td></tr>
+      <tr><td><code>*</code>, <code>+</code>, <code>?</code></td><td>Cero o más, uno o más, cero o uno.</td></tr>
+      <tr><td><code>{n}</code></td><td>Exactamente <i>n</i> repeticiones.</td></tr>
+      <tr><td><code>^</code>, <code>$</code></td><td>Inicio y fin de línea.</td></tr>
+    </tbody>
+  </table>
+  <p class="nota"><i>Nota.</i> Adaptado de las notas del autor.</p>
+</div>
+
+<pre><code>import re
+
+texto = "Mi número es 0991234567 y mi correo es ejemplo@email.com"
+
+resultado = re.search(r"\d{10}", texto)             # buscar un número de celular
+print(resultado.group())
+&gt;&gt; 0991234567
+
+correo_valido = re.match(r"\w+@\w+\.\w+", "ejemplo@email.com")
+print(correo_valido is not None)                    # validar un formato
+&gt;&gt; True
+
+print(re.findall(r"\d+", texto))                    # todas las coincidencias
+&gt;&gt; ['0991234567']
+
+print(re.sub(r"\d{10}", "XXXXXXXXXX", texto))       # reemplazar patrones
+&gt;&gt; Mi número es XXXXXXXXXX y mi correo es ejemplo@email.com</code></pre>
+
+<h2>Síntesis</h2>
+<ul class="lista">
+  <li>Un módulo es un archivo <code>.py</code>; un paquete es una carpeta de módulos.</li>
+  <li>Los entornos virtuales aíslan las dependencias de cada proyecto, y <code>requirements.txt</code> permite reproducirlas.</li>
+  <li>La biblioteca estándar incluye módulos para colecciones, fechas, tiempo, matemáticas y expresiones regulares.</li>
+</ul>
