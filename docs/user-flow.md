@@ -86,7 +86,7 @@ Curioso o colega:       #recursos → #proyectos → #contacto
 
 - Contacto accesible desde el menú, el hero y al final de cada detalle de proyecto.
 - Redes fijas a la derecha (escritorio) y en el pie de todas las páginas.
-- El patrón de líneas de flujo se usa solo en Sobre mí y Contacto, nunca en el hero.
+- El patrón de líneas de flujo se usa en Inicio (a la derecha del texto), Sobre mí (a la derecha del bloque de presentación) y Contacto (detrás del texto, a la izquierda del formulario).
 - Cover flow: sin autoplay, con flechas visibles, teclado y deslizamiento. Carga de imágenes solo cercanas a la activa.
 - Respetar `prefers-reduced-motion` (también en el desplazamiento suave).
 - Stack por proyecto en lugar de franja de logos.
