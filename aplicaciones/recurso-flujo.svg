@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Recurso gráfico: líneas de flujo">
+  <title>Recurso gráfico: líneas de flujo (derivado de la entrada y la rama del símbolo)</title>
+  <g fill="none" stroke-linecap="round" stroke-width="12">
+    <path d="M30 10 L96 110" stroke="#223367" opacity=".55"/>
+    <path d="M62 10 L128 110" stroke="#223367" opacity=".35"/>
+    <path d="M94 10 L160 110" stroke="#223367" opacity=".2"/>
+    <path d="M96 110 L150 56" stroke="#FF1563"/>
+    <path d="M96 110 L96 190" stroke="#223367" opacity=".55"/>
+  </g>
+</svg>

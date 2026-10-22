@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0d1530; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Nunito", "Segoe UI", sans-serif; color: #223367; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      .dark { background: #0d1530; color: #fff; }
+      .light { background: #f2f4f8; color: #223367; }
+      .sym { display: block; height: 100%; width: auto; overflow: visible; }
+      .sym path { fill: none; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+      .sym .s-ent, .sym .s-tal { stroke: var(--a); }
+      .sym .s-ram { stroke: var(--b); }
+      .name { font-weight: 600; white-space: nowrap; }
+      .center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+
+      /* escena 1 */
+      #lockup { display: flex; flex-direction: column; align-items: center; gap: 56px; }
+      #hero { height: 600px; }
+      #wm { height: 0; overflow: hidden; }
+      #wm .name { font-size: 88px; color: #fff; display: block; line-height: 110px; }
+
+      /* escena 2 */
+      #variants { position: absolute; left: 90px; right: 90px; top: 320px; display: flex; flex-wrap: wrap; gap: 36px; }
+      .vcard { width: 432px; height: 600px; border-radius: 28px; display: flex; align-items: center; justify-content: center; }
+      .vcard .sym { height: 270px; }
+      .vc-white { background: #fff; }
+      .vc-dark { background: #0d1530; }
+      .vc-navy { background: #223367; }
+      #lockups { position: absolute; left: 90px; right: 90px; top: 320px; height: 1260px; }
+      .lk { position: absolute; border-radius: 28px; display: flex; align-items: center; justify-content: center; }
+      #lk-h { left: 0; top: 0; width: 900px; height: 280px; background: #fff; gap: 26px; }
+      #lk-h .sym { height: 130px; }
+      #lk-h .name { font-size: 50px; color: #223367; }
+      #lk-v { left: 0; top: 320px; width: 900px; height: 600px; background: #0d1530; flex-direction: column; gap: 36px; }
+      #lk-v .sym { height: 230px; }
+      #lk-v .name { font-size: 56px; color: #fff; }
+      #lk-a { left: 0; top: 960px; width: 300px; height: 300px; background: transparent; }
+      #lk-a .circle { width: 280px; height: 280px; border-radius: 50%; background: #0d1530; display: flex; align-items: center; justify-content: center; }
+      #lk-a .circle .sym { height: 170px; }
+      #lk-f { left: 340px; top: 960px; width: 560px; height: 300px; background: #dfe3ec; flex-direction: column; align-items: flex-start; justify-content: flex-end; overflow: hidden; }
+      #tab { margin-left: 30px; height: 84px; width: 330px; background: #fff; border-radius: 20px 20px 0 0; display: flex; align-items: center; gap: 18px; padding-left: 24px; font-size: 24px; color: #5b6478; }
+      #tab .sym { height: 38px; }
+      #fav-url { width: 100%; height: 110px; background: #fff; display: flex; align-items: center; padding-left: 36px; font-size: 24px; color: #5b6478; }
+
+      /* aplicaciones */
+      #li { position: absolute; left: 90px; top: 560px; width: 900px; height: 820px; background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px rgba(13,21,48,.18); }
+      #li-banner { position: absolute; left: 0; top: 0; width: 100%; height: 260px; background: #223367; overflow: hidden; }
+      #li-banner svg { position: absolute; right: 30px; top: -30px; width: 400px; height: 400px; }
+      #li-av { position: absolute; left: 60px; top: 160px; width: 200px; height: 200px; border-radius: 50%; background: #0d1530; border: 8px solid #fff; display: flex; align-items: center; justify-content: center; }
+      #li-av .sym { height: 112px; }
+      #li-name { position: absolute; left: 60px; top: 400px; font-weight: 800; font-size: 56px; color: #223367; }
+      #li-role { position: absolute; left: 60px; top: 478px; font-size: 30px; color: #5b6478; }
+      .bar { position: absolute; height: 18px; border-radius: 9px; background: #e3e7f0; }
+      #li-bar-pink { position: absolute; left: 60px; top: 560px; width: 80px; height: 8px; border-radius: 4px; background: #ff1563; }
+
+      #bc-back { position: absolute; left: 190px; top: 1080px; width: 760px; height: 440px; border-radius: 18px; background: #223367; display: flex; align-items: center; justify-content: center; box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+      #bc-back .sym { height: 220px; }
+      #bc-front { position: absolute; left: 130px; top: 620px; width: 760px; height: 440px; border-radius: 18px; background: #fff; box-shadow: 0 30px 80px rgba(0,0,0,.45); color: #223367; }
+      #bc-front .sym { position: absolute; left: 56px; top: 56px; height: 120px; }
+      #bc-front .name { position: absolute; left: 56px; bottom: 120px; font-size: 52px; color: #223367; font-weight: 700; }
+      #bc-front .bcpink { position: absolute; left: 56px; bottom: 88px; width: 72px; height: 6px; border-radius: 3px; background: #ff1563; }
+      #bc-front .bcline { position: absolute; left: 56px; bottom: 44px; font-size: 22px; color: #5b6478; }
+
+      #web { position: absolute; left: 90px; top: 360px; width: 900px; height: 1200px; background: #fff; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 80px rgba(13,21,48,.18); }
+      #web-top { position: absolute; left: 0; top: 0; width: 100%; height: 60px; background: #e3e7f0; display: flex; align-items: center; gap: 12px; padding-left: 28px; }
+      #web-top i { width: 16px; height: 16px; border-radius: 50%; background: #c3c9d8; display: block; }
+      #web-nav { position: absolute; left: 60px; top: 100px; right: 60px; height: 90px; display: flex; align-items: center; justify-content: space-between; }
+      #web-nav .lk { position: static; display: flex; gap: 18px; align-items: center; height: 70px; }
+      #web-nav .sym { height: 62px; }
+      #web-nav .name { font-size: 32px; color: #223367; }
+      .navlink { display: flex; flex-direction: column; gap: 10px; }
+      .navlink span { width: 56px; height: 8px; border-radius: 4px; background: #c3c9d8; display: block; }
+      #web-h { position: absolute; left: 60px; top: 290px; font-weight: 800; font-size: 90px; line-height: 1.05; color: #223367; }
+      #web-h .hl { position: relative; z-index: 1; }
+      #web-hl { position: absolute; left: 60px; top: 480px; width: 560px; height: 30px; background: #ff1563; border-radius: 6px; z-index: 0; opacity: .9; }
+      #web-p { position: absolute; left: 60px; top: 580px; width: 640px; }
+      #web-btn { position: absolute; left: 60px; top: 660px; width: 220px; height: 22px; border-radius: 11px; background: #223367; }
+      #web-flow { position: absolute; left: 260px; top: 740px; width: 420px; height: 420px; }
+
+      /* cierre */
+      #end-flow { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+      #end-lockup { display: flex; flex-direction: column; align-items: center; gap: 52px; }
+      #end-lockup .sym { height: 320px; }
+      #end-lockup .name { font-size: 88px; color: #fff; }
+      #end-bar { position: absolute; left: 50%; top: 1290px; width: 120px; margin-left: -60px; height: 8px; border-radius: 4px; background: #ff1563; }
+
+      #wipe { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: #ff1563; z-index: 50; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1080" data-height="1920">
+
+      <section id="s1" class="clip dark" data-start="0" data-duration="6" data-track-index="0">
+        <div class="center"><div id="lockup"><div id="hero"><span data-sym="neg"></span></div><div id="wm"><span class="name">Yasmani Viñamagua</span></div></div></div>
+      </section>
+
+      <section id="s2" class="clip light" data-start="6" data-duration="7" data-track-index="0">
+        <div id="variants">
+          <div class="vcard vc-white"><span data-sym="color"></span></div>
+          <div class="vcard vc-dark"><span data-sym="neg"></span></div>
+          <div class="vcard vc-white"><span data-sym="ink"></span></div>
+          <div class="vcard vc-navy"><span data-sym="inkw"></span></div>
+        </div>
+        <div id="lockups">
+          <div id="lk-h" class="lk"><span data-sym="color"></span><span class="name">Yasmani Viñamagua</span></div>
+          <div id="lk-v" class="lk"><span data-sym="neg"></span><span class="name">Yasmani Viñamagua</span></div>
+          <div id="lk-a" class="lk"><div class="circle"><span data-sym="neg"></span></div></div>
+          <div id="lk-f" class="lk"><div id="tab"><span data-sym="color"></span><span>Yasmani Viñamagua</span></div><div id="fav-url">yasmani.example</div></div>
+        </div>
+      </section>
+
+      <section id="s3" class="clip light" data-start="13" data-duration="4.5" data-track-index="0">
+        <div id="li">
+          <div id="li-banner"><svg id="li-flow" viewBox="0 0 200 200"><g fill="none" stroke-linecap="round" stroke-width="12"><path d="M30 10 L96 110" stroke="#fff" opacity=".30"/><path d="M62 10 L128 110" stroke="#fff" opacity=".18"/><path d="M94 10 L160 110" stroke="#fff" opacity=".10"/><path d="M96 110 L150 56" stroke="#ff1563"/></g></svg></div>
+          <div id="li-av"><span data-sym="neg"></span></div>
+          <div id="li-name">Yasmani Viñamagua</div>
+          <div id="li-role">Datos de ejemplo</div>
+          <div id="li-bar-pink"></div>
+          <div class="bar" style="left:60px;top:620px;width:620px"></div>
+          <div class="bar" style="left:60px;top:660px;width:460px"></div>
+        </div>
+      </section>
+
+      <section id="s4" class="clip dark" data-start="17.5" data-duration="4" data-track-index="0">
+        <div id="bc-back"><span data-sym="neg"></span></div>
+        <div id="bc-front"><span data-sym="color"></span><div class="name">Yasmani Viñamagua</div><div class="bcpink"></div><div class="bcline">Datos de contacto de ejemplo</div></div>
+      </section>
+
+      <section id="s5" class="clip light" data-start="21.5" data-duration="4.5" data-track-index="0">
+        <div id="web">
+          <div id="web-top"><i></i><i></i><i></i></div>
+          <div id="web-nav"><div class="lk"><span data-sym="color"></span><span class="name">Yasmani Viñamagua</span></div><div class="navlink"><span></span><span></span><span></span></div></div>
+          <div id="web-hl"></div>
+          <div id="web-h"><span class="hl">Procesos que</span><br /><span class="hl">fluyen solos.</span></div>
+          <div class="bar" id="web-p"></div>
+          <div id="web-btn"></div>
+          <svg id="web-flow" viewBox="0 0 200 200"><g fill="none" stroke-linecap="round" stroke-width="12"><path d="M30 10 L96 110" stroke="#223367" opacity=".30"/><path d="M62 10 L128 110" stroke="#223367" opacity=".18"/><path d="M94 10 L160 110" stroke="#223367" opacity=".10"/><path d="M96 110 L150 56" stroke="#ff1563"/><path d="M96 110 L96 190" stroke="#223367" opacity=".30"/></g></svg>
+        </div>
+      </section>
+
+      <section id="s6" class="clip dark" data-start="26" data-duration="4" data-track-index="0">
+        <svg id="end-flow" viewBox="0 0 1080 1920"><g fill="none" stroke-linecap="round" stroke-width="12"><path d="M760 -20 L1040 420" stroke="#fff" opacity=".10"/><path d="M900 -20 L1180 420" stroke="#fff" opacity=".07"/><path d="M-100 1500 L90 1800" stroke="#fff" opacity=".10"/></g></svg>
+        <div class="center"><div id="end-lockup"><span data-sym="neg"></span><span class="name">Yasmani Viñamagua</span></div></div>
+        <div id="end-bar"></div>
+      </section>
+
+      <div id="wipe"></div>
+    </div>
+
+    <script>
+      var COLORS = {
+        color: ["#223367", "#ff1563"],
+        neg: ["#ffffff", "#ff1563"],
+        ink: ["#111111", "#111111"],
+        inkw: ["#ffffff", "#ffffff"],
+      };
+      document.querySelectorAll("[data-sym]").forEach(function (el) {
+        var c = COLORS[el.getAttribute("data-sym")];
+        el.outerHTML =
+          '<svg class="sym" viewBox="7 -2 76 100" style="--a:' + c[0] + ";--b:" + c[1] + '">' +
+          '<path class="s-ram" pathLength="1" stroke-dasharray="1 1" d="M46 56 L71.46 30.54"/>' +
+          '<path class="s-ent" pathLength="1" stroke-dasharray="1 1" d="M19 9.23 L46 56"/>' +
+          '<path class="s-tal" pathLength="1" stroke-dasharray="1 1" d="M46 56 L46 88"/></svg>';
+      });
+
+      var tl = gsap.timeline({ paused: true });
+
+      // Escena 1 (0–6)
+      var hero = "#hero ";
+      tl.fromTo(hero + ".s-ent", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, 0.4);
+      tl.fromTo(hero + ".s-tal", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 1.2);
+      tl.fromTo(hero + ".s-ram", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power3.out" }, 1.75);
+      tl.fromTo("#hero", { scale: 0.96 }, { scale: 1, duration: 2.2, ease: "sine.out" }, 0.4);
+      tl.to("#hero", { height: 340, duration: 0.9, ease: "power3.inOut" }, 2.9);
+      tl.to("#wm", { height: 110, duration: 0.9, ease: "power3.inOut" }, 2.9);
+      tl.to("#lockup", { opacity: 0, duration: 0.3 }, 5.7);
+
+      // Escena 2 (6–13)
+      tl.fromTo(".vcard", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.18, ease: "power3.out" }, 6.5);
+      tl.fromTo("#variants .s-ent", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, stagger: 0.18 }, 6.7);
+      tl.fromTo("#variants .s-tal", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.35, stagger: 0.18 }, 7.1);
+      tl.fromTo("#variants .s-ram", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, stagger: 0.18 }, 7.35);
+      tl.to("#variants", { opacity: 0, y: -40, duration: 0.5, ease: "power2.in" }, 9.6);
+      tl.set("#lockups", { opacity: 0 }, 6);
+      tl.set("#lockups", { opacity: 1 }, 10.05);
+      tl.fromTo(".lk", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.16, ease: "power3.out" }, 10.1);
+      tl.to("#lockups", { opacity: 0, duration: 0.3 }, 12.7);
+
+      // Escena 3a LinkedIn (13–17.5)
+      tl.fromTo("#li", { opacity: 0, y: 70, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out" }, 13.3);
+      tl.fromTo("#li-flow", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 13.9);
+      tl.fromTo("#li-av", { scale: 0 }, { scale: 1, duration: 0.6, ease: "back.out(1.6)" }, 14.2);
+      tl.fromTo("#li-name,#li-role,#li-bar-pink", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, stagger: 0.12 }, 14.6);
+      tl.fromTo("#li .bar", { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.1 }, 15.0);
+
+      // Escena 3b Tarjeta (17.5–21.5)
+      tl.fromTo("#bc-back", { opacity: 0, x: 120, rotation: 0 }, { opacity: 1, x: 0, rotation: 6, duration: 0.8, ease: "power3.out" }, 17.9);
+      tl.fromTo("#bc-front", { opacity: 0, x: -120, rotation: 0 }, { opacity: 1, x: 0, rotation: -5, duration: 0.8, ease: "power3.out" }, 18.2);
+      tl.fromTo("#bc-front .s-ent", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5 }, 18.7);
+      tl.fromTo("#bc-front .s-tal", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.35 }, 19.1);
+      tl.fromTo("#bc-front .s-ram", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4 }, 19.35);
+      tl.to("#bc-front", { rotation: -2, y: -14, duration: 2, ease: "sine.inOut" }, 19.4);
+
+      // Escena 3c Web (21.5–26)
+      tl.fromTo("#web", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 21.8);
+      tl.fromTo("#web-nav", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 22.4);
+      tl.fromTo("#web-h .hl", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.18 }, 22.7);
+      tl.fromTo("#web-hl", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "power3.inOut" }, 23.4);
+      tl.fromTo("#web-p,#web-btn", { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.12 }, 23.7);
+      tl.fromTo("#web-flow", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 23.3);
+
+      // Cierre (26–30)
+      tl.fromTo("#end-lockup", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power3.out" }, 26.4);
+      tl.fromTo("#end-lockup .s-ent", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7 }, 26.4);
+      tl.fromTo("#end-lockup .s-tal", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.45 }, 26.9);
+      tl.fromTo("#end-lockup .s-ram", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5 }, 27.25);
+      tl.fromTo("#end-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 27.9);
+      tl.fromTo("#end-flow", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 26.8);
+      tl.to("#end-lockup,#end-bar", { opacity: 0, duration: 0.6 }, 29.4);
+
+      // Cortinilla rosa
+      gsap.set("#wipe", { xPercent: -101 });
+      [6, 13, 17.5, 21.5, 26].forEach(function (t) {
+        tl.fromTo("#wipe", { xPercent: -101 }, { xPercent: 0, duration: 0.35, ease: "power3.in" }, t - 0.35);
+        tl.to("#wipe", { xPercent: 101, duration: 0.4, ease: "power3.out" }, t);
+      });
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

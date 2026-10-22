@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -6 124 116" role="img" aria-label="Construcción del símbolo">
+  <title>Construcción del símbolo: retícula de 4 unidades, trazo de 12 (3u), ejes a 60° y 45°</title>
+  <rect x="-6" y="-6" width="124" height="116" fill="#fff"/>
+  <g stroke="#DDE2EE" stroke-width=".3" fill="none"><path d="M0 0V104" /><path d="M4 0V104" /><path d="M8 0V104" /><path d="M12 0V104" /><path d="M16 0V104" /><path d="M20 0V104" /><path d="M24 0V104" /><path d="M28 0V104" /><path d="M32 0V104" /><path d="M36 0V104" /><path d="M40 0V104" /><path d="M44 0V104" /><path d="M48 0V104" /><path d="M52 0V104" /><path d="M56 0V104" /><path d="M60 0V104" /><path d="M64 0V104" /><path d="M68 0V104" /><path d="M72 0V104" /><path d="M76 0V104" /><path d="M80 0V104" /><path d="M84 0V104" /><path d="M88 0V104" /><path d="M92 0V104" /><path d="M96 0V104" /><path d="M100 0V104" /><path d="M0 0 H100" /><path d="M0 4 H100" /><path d="M0 8 H100" /><path d="M0 12 H100" /><path d="M0 16 H100" /><path d="M0 20 H100" /><path d="M0 24 H100" /><path d="M0 28 H100" /><path d="M0 32 H100" /><path d="M0 36 H100" /><path d="M0 40 H100" /><path d="M0 44 H100" /><path d="M0 48 H100" /><path d="M0 52 H100" /><path d="M0 56 H100" /><path d="M0 60 H100" /><path d="M0 64 H100" /><path d="M0 68 H100" /><path d="M0 72 H100" /><path d="M0 76 H100" /><path d="M0 80 H100" /><path d="M0 84 H100" /><path d="M0 88 H100" /><path d="M0 92 H100" /><path d="M0 96 H100" /><path d="M0 100 H100" /><path d="M0 104 H100" /></g>
+  <path d="M41.76 51.76 L54.49 39.03 L67.21 26.30 L68.12 25.56 L69.16 25.00 L70.29 24.66 L71.46 24.54 L72.63 24.66 L73.75 25.00 L74.79 25.56 L75.70 26.30 L76.44 27.21 L77.00 28.25 L77.34 29.37 L77.46 30.54 L77.34 31.71 L77.00 32.84 L76.44 33.88 L75.70 34.79 L62.97 47.51 L50.24 60.24 L49.33 60.99 L48.30 61.54 L47.17 61.88 L46.00 62.00 L44.83 61.88 L43.70 61.54 L42.67 60.99 L41.76 60.24 L41.01 59.33 L40.46 58.30 L40.12 57.17 L40.00 56.00 L40.12 54.83 L40.46 53.70 L41.01 52.67Z" fill="#FF1563" opacity=".28"/>
+  <path d="M24.20 6.23 L37.70 29.62 L51.20 53.00 L51.68 54.07 L51.95 55.22 L51.99 56.39 L51.80 57.55 L51.38 58.65 L50.76 59.65 L49.96 60.51 L49.00 61.20 L47.93 61.68 L46.78 61.95 L45.61 61.99 L44.45 61.80 L43.35 61.38 L42.35 60.76 L41.49 59.96 L40.80 59.00 L27.30 35.62 L13.80 12.23 L13.32 11.16 L13.05 10.02 L13.01 8.84 L13.20 7.68 L13.62 6.58 L14.24 5.58 L15.04 4.72 L16.00 4.04 L17.07 3.55 L18.22 3.29 L19.39 3.25 L20.55 3.44 L21.65 3.85 L22.65 4.47 L23.51 5.28Z M52.00 56.00 L52.00 72.00 L52.00 88.00 L51.88 89.17 L51.54 90.30 L50.99 91.33 L50.24 92.24 L49.33 92.99 L48.30 93.54 L47.17 93.88 L46.00 94.00 L44.83 93.88 L43.70 93.54 L42.67 92.99 L41.76 92.24 L41.01 91.33 L40.46 90.30 L40.12 89.17 L40.00 88.00 L40.00 72.00 L40.00 56.00 L40.12 54.83 L40.46 53.70 L41.01 52.67 L41.76 51.76 L42.67 51.01 L43.70 50.46 L44.83 50.12 L46.00 50.00 L47.17 50.12 L48.30 50.46 L49.33 51.01 L50.24 51.76 L50.99 52.67 L51.54 53.70 L51.88 54.83Z" fill="#223367" opacity=".28"/>
+  <g fill="none" stroke="#223367" stroke-width=".7" stroke-dasharray="2 1.5">
+    <path d="M19.00 9.23 L46 56 L46 88"/>
+    <path d="M46 56 L71.46 30.54" stroke="#FF1563"/>
+  </g>
+  <g fill="none" stroke="#5B6478" stroke-width=".5">
+    <path d="M35.00 36.95 A22 22 0 0 0 24.00 56.00"/><path d="M72.00 56.00 A26 26 0 0 0 64.38 37.62"/>
+    <path d="M16 56 H80" stroke-dasharray="1 1.2"/>
+  </g>
+  <circle cx="46" cy="56" r="1.4" fill="#0D1530"/>
+  <g font-family="Arial, sans-serif" font-size="3.6" fill="#0D1530">
+    <text x="15" y="51">60°</text>
+    <text x="73" y="52">45°</text>
+    <text x="49" y="60" font-weight="700">J</text>
+    <text x="15.0" y="1.2" fill="#223367">entrada · 54</text>
+    <text x="75.5" y="29.5" fill="#FF1563" font-weight="700">rama · 36</text>
+    <text x="54" y="80" fill="#223367">tallo · 32</text>
+    <text x="54" y="84.4" fill="#5B6478" font-size="3">trazo 12 = 3u</text>
+  </g>
+  <g stroke="#5B6478" stroke-width=".4" fill="none"><path d="M40 96 H52"/><path d="M40 94.8 V97.2"/><path d="M52 94.8 V97.2"/></g>
+  <text x="46" y="101" font-family="Arial, sans-serif" font-size="3.2" fill="#5B6478" text-anchor="middle">12 (3u)</text>
+</svg>

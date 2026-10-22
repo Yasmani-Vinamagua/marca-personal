@@ -1,0 +1,9 @@
+{
+  "_nota": "Creado por /yas-design (ajuste v1.1, 2026-10-21). La marca vive en la raíz del proyecto, no en .yas/brand/.",
+  "manualPath": "manual/manual-identidad.md",
+  "manualHtmlPath": "manual/manual-identidad.html",
+  "specPath": "marca-spec.md",
+  "palettePath": "paleta/paleta.md",
+  "logoDir": "logo/",
+  "applicationsDir": "aplicaciones/"
+}

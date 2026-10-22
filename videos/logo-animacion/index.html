@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0d1530; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Nunito", "Segoe UI", sans-serif; color: #223367; }
+      .clip { position: absolute; inset: 0; overflow: hidden; }
+      .dark { background: #0d1530; color: #fff; }
+      .light { background: #f2f4f8; color: #223367; }
+      .sym { display: block; height: 100%; width: auto; overflow: visible; }
+      .sym path { fill: none; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+      .sym .s-ent, .sym .s-tal { stroke: var(--a); }
+      .sym .s-ram { stroke: var(--b); }
+      .label { font-family: "Nunito", "Segoe UI", sans-serif; font-weight: 500; font-size: 26px; letter-spacing: 0.14em; text-transform: uppercase; }
+      .dark .label { color: #b8c0d4; }
+      .light .label { color: #5b6478; }
+      .title { position: absolute; left: 120px; top: 84px; font-weight: 800; font-size: 72px; letter-spacing: -0.01em; }
+      .title-bar { position: absolute; left: 120px; top: 178px; width: 96px; height: 8px; border-radius: 4px; background: #ff1563; }
+      .name { font-weight: 600; white-space: nowrap; }
+      .center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+
+      /* escena 1 */
+      #lockup { display: flex; align-items: center; gap: 56px; }
+      #hero { height: 520px; }
+      #wm { width: 0; overflow: hidden; }
+      #wm .name { font-size: 96px; color: #fff; display: block; width: 880px; }
+
+      /* escena 2 */
+      #variants { position: absolute; left: 120px; right: 120px; top: 300px; display: flex; gap: 40px; }
+      .vcard { flex: 1; height: 520px; border-radius: 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 44px; }
+      .vcard .sym { height: 260px; }
+      .vcard .label { font-size: 22px; }
+      .vc-white { background: #fff; } .vc-white .label { color: #5b6478; }
+      .vc-dark { background: #0d1530; } .vc-dark .label { color: #b8c0d4; }
+      .vc-navy { background: #223367; } .vc-navy .label { color: #d6dbea; }
+      #lockups { position: absolute; left: 120px; right: 120px; top: 270px; height: 640px; }
+      .lk { position: absolute; border-radius: 28px; display: flex; align-items: center; justify-content: center; }
+      #lk-h { left: 0; top: 0; width: 1000px; height: 300px; background: #fff; gap: 28px; }
+      #lk-h .sym { height: 150px; }
+      #lk-h .name { font-size: 58px; color: #223367; }
+      #lk-v { right: 0; top: 0; width: 640px; height: 640px; background: #0d1530; flex-direction: column; gap: 36px; }
+      #lk-v .sym { height: 240px; }
+      #lk-v .name { font-size: 54px; color: #fff; }
+      #lk-a { left: 0; top: 340px; width: 300px; height: 300px; background: transparent; }
+      #lk-a .circle { width: 280px; height: 280px; border-radius: 50%; background: #0d1530; display: flex; align-items: center; justify-content: center; }
+      #lk-a .circle .sym { height: 170px; }
+      #lk-f { left: 340px; top: 340px; width: 660px; height: 300px; background: #dfe3ec; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 0 0 0 0; overflow: hidden; }
+      #tab { margin-left: 40px; height: 88px; width: 340px; background: #fff; border-radius: 20px 20px 0 0; display: flex; align-items: center; gap: 20px; padding-left: 26px; font-family: "Nunito", sans-serif; font-size: 24px; color: #5b6478; }
+      #tab .sym { height: 40px; }
+      #fav-url { width: 100%; height: 110px; background: #fff; display: flex; align-items: center; padding-left: 40px; font-family: "Nunito", sans-serif; font-size: 24px; color: #5b6478; }
+      .caption { position: absolute; font-family: "Nunito", sans-serif; font-size: 22px; letter-spacing: 0.14em; text-transform: uppercase; color: #5b6478; }
+
+      /* aplicaciones */
+      .stage { position: absolute; inset: 0; }
+      #li { position: absolute; left: 360px; top: 250px; width: 1200px; height: 700px; background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px rgba(13,21,48,.18); }
+      #li-banner { position: absolute; left: 0; top: 0; width: 100%; height: 250px; background: #223367; overflow: hidden; }
+      #li-banner svg { position: absolute; right: 60px; top: -20px; width: 420px; height: 420px; }
+      #li-av { position: absolute; left: 70px; top: 150px; width: 210px; height: 210px; border-radius: 50%; background: #0d1530; border: 8px solid #fff; display: flex; align-items: center; justify-content: center; }
+      #li-av .sym { height: 120px; }
+      #li-name { position: absolute; left: 70px; top: 390px; font-weight: 800; font-size: 52px; color: #223367; }
+      #li-role { position: absolute; left: 70px; top: 462px; font-family: "Nunito", sans-serif; font-size: 28px; color: #5b6478; }
+      .bar { position: absolute; height: 18px; border-radius: 9px; background: #e3e7f0; }
+      #li-bar-pink { position: absolute; left: 70px; top: 530px; width: 80px; height: 8px; border-radius: 4px; background: #ff1563; }
+
+      #bc-back { position: absolute; left: 900px; top: 380px; width: 760px; height: 440px; border-radius: 18px; background: #223367; display: flex; align-items: center; justify-content: center; box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+      #bc-back .sym { height: 220px; }
+      #bc-front { position: absolute; left: 330px; top: 300px; width: 760px; height: 440px; border-radius: 18px; background: #fff; box-shadow: 0 30px 80px rgba(0,0,0,.45); color: #223367; }
+      #bc-front .sym { position: absolute; left: 56px; top: 56px; height: 120px; }
+      #bc-front .name { position: absolute; left: 56px; bottom: 120px; font-size: 52px; color: #223367; font-weight: 700; }
+      #bc-front .bcpink { position: absolute; left: 56px; bottom: 88px; width: 72px; height: 6px; border-radius: 3px; background: #ff1563; }
+      #bc-front .bcline { position: absolute; left: 56px; bottom: 44px; font-family: "Nunito", sans-serif; font-size: 22px; color: #5b6478; }
+
+      #web { position: absolute; left: 260px; top: 240px; width: 1400px; height: 740px; background: #fff; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 80px rgba(13,21,48,.18); }
+      #web-top { position: absolute; left: 0; top: 0; width: 100%; height: 60px; background: #e3e7f0; display: flex; align-items: center; gap: 12px; padding-left: 28px; }
+      #web-top i { width: 16px; height: 16px; border-radius: 50%; background: #c3c9d8; display: block; }
+      #web-nav { position: absolute; left: 70px; top: 100px; right: 70px; height: 90px; display: flex; align-items: center; justify-content: space-between; }
+      #web-nav .lk { position: static; display: flex; gap: 18px; align-items: center; height: 70px; }
+      #web-nav .sym { height: 62px; }
+      #web-nav .name { font-size: 30px; color: #223367; }
+      .navlink { display: flex; gap: 34px; }
+      .navlink span { width: 90px; height: 14px; border-radius: 7px; background: #e3e7f0; display: block; }
+      #web-h { position: absolute; left: 70px; top: 280px; font-weight: 800; font-size: 92px; line-height: 1.05; color: #223367; }
+      #web-h .hl { position: relative; z-index: 1; }
+      #web-hl { position: absolute; left: 70px; top: 480px; width: 570px; height: 30px; background: #ff1563; border-radius: 6px; z-index: 0; opacity: .9; }
+      #web-p { position: absolute; left: 70px; top: 560px; width: 620px; }
+      #web-btn { position: absolute; left: 70px; top: 640px; width: 220px; height: 22px; border-radius: 11px; background: #223367; }
+      #web-flow { position: absolute; right: 70px; top: 220px; width: 420px; height: 420px; }
+
+      /* cierre */
+      #end-flow { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+      #end-lockup { display: flex; align-items: center; gap: 44px; }
+      #end-lockup .sym { height: 230px; }
+      #end-lockup .name { font-size: 96px; color: #fff; }
+      #end-bar { position: absolute; left: 50%; top: 700px; width: 120px; margin-left: -60px; height: 8px; border-radius: 4px; background: #ff1563; }
+
+      #wipe { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: #ff1563; z-index: 50; }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-j7pz" id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+
+      <!-- 1 · El símbolo (0–6) -->
+      <section data-hf-id="hf-utda" id="s1" class="clip dark" data-start="0" data-duration="6" data-track-index="0">
+        <div data-hf-id="hf-0oij" class="center"><div data-hf-id="hf-mlav" id="lockup"><div data-hf-id="hf-y3p5" id="hero"><span data-hf-id="hf-en0x" data-sym="neg"></span></div><div data-hf-id="hf-0bt9" id="wm"><span data-hf-id="hf-yht4" class="name">Yasmani Viñamagua</span></div></div></div>
+      </section>
+
+      <!-- 2 · Variantes (6–13) -->
+      <section data-hf-id="hf-0xru" id="s2" class="clip light" data-start="6" data-duration="7" data-track-index="0">
+        <div data-hf-id="hf-na2j" id="variants">
+          <div data-hf-id="hf-85nh" class="vcard vc-white"><span data-hf-id="hf-c4wu" data-sym="color"></span></div>
+          <div data-hf-id="hf-pgg2" class="vcard vc-dark"><span data-hf-id="hf-3xc5" data-sym="neg"></span></div>
+          <div data-hf-id="hf-bbn5" class="vcard vc-white"><span data-hf-id="hf-dbdn" data-sym="ink"></span></div>
+          <div data-hf-id="hf-03de" class="vcard vc-navy"><span data-hf-id="hf-3tlq" data-sym="inkw"></span></div>
+        </div>
+        <div data-hf-id="hf-wn4e" id="lockups">
+          <div data-hf-id="hf-g4l9" id="lk-h" class="lk"><span data-hf-id="hf-lfpe" data-sym="color"></span><span data-hf-id="hf-r6ao" class="name">Yasmani Viñamagua</span></div>
+          <div data-hf-id="hf-d57n" id="lk-v" class="lk"><span data-hf-id="hf-5498" data-sym="neg"></span><span data-hf-id="hf-pzdl" class="name">Yasmani Viñamagua</span></div>
+          <div data-hf-id="hf-6sj0" id="lk-a" class="lk"><div data-hf-id="hf-xmwk" class="circle"><span data-hf-id="hf-4py7" data-sym="neg"></span></div></div>
+          <div data-hf-id="hf-ua0j" id="lk-f" class="lk"><div data-hf-id="hf-k1hu" id="tab"><span data-hf-id="hf-lu0f" data-sym="color"></span><span data-hf-id="hf-422j">Yasmani Viñamagua</span></div><div data-hf-id="hf-tflg" id="fav-url">yasmani.example</div></div>
+        </div>
+              </section>
+
+      <!-- 3a · LinkedIn (13–17.5) -->
+      <section data-hf-id="hf-eldz" id="s3" class="clip light" data-start="13" data-duration="4.5" data-track-index="0">
+        <div data-hf-id="hf-engg" id="li">
+          <div data-hf-id="hf-9r3v" id="li-banner"><svg data-hf-id="hf-2nth" id="li-flow" viewBox="0 0 200 200"><g data-hf-id="hf-91n8" fill="none" stroke-linecap="round" stroke-width="12"><path data-hf-id="hf-92xt" d="M30 10 L96 110" stroke="#fff" opacity=".30"/><path data-hf-id="hf-5weq" d="M62 10 L128 110" stroke="#fff" opacity=".18"/><path data-hf-id="hf-igox" d="M94 10 L160 110" stroke="#fff" opacity=".10"/><path data-hf-id="hf-8kj3" class="li-branch" d="M96 110 L150 56" stroke="#ff1563"/></g></svg></div>
+          <div data-hf-id="hf-005g" id="li-av"><span data-hf-id="hf-5wva" data-sym="neg"></span></div>
+          <div data-hf-id="hf-hdu8" id="li-name">Yasmani Viñamagua</div>
+          <div data-hf-id="hf-vtt9" id="li-role">Datos de ejemplo</div>
+          <div data-hf-id="hf-vitp" id="li-bar-pink"></div>
+          <div data-hf-id="hf-uyby" class="bar" style="left:70px;top:580px;width:700px"></div>
+          <div data-hf-id="hf-zzvr" class="bar" style="left:70px;top:620px;width:520px"></div>
+        </div>
+      </section>
+
+      <!-- 3b · Tarjeta (17.5–21.5) -->
+      <section data-hf-id="hf-0gco" id="s4" class="clip dark" data-start="17.5" data-duration="4" data-track-index="0">
+        <div data-hf-id="hf-rjxg" id="bc-back"><span data-hf-id="hf-5ik9" data-sym="neg"></span></div>
+        <div data-hf-id="hf-6fxy" id="bc-front"><span data-hf-id="hf-m8bg" data-sym="color"></span><div data-hf-id="hf-sxdn" class="name">Yasmani Viñamagua</div><div data-hf-id="hf-v6t1" class="bcpink"></div><div data-hf-id="hf-66fz" class="bcline">Datos de contacto de ejemplo</div></div>
+      </section>
+
+      <!-- 3c · Sitio web (21.5–26) -->
+      <section data-hf-id="hf-hill" id="s5" class="clip light" data-start="21.5" data-duration="4.5" data-track-index="0">
+        <div data-hf-id="hf-0ijp" id="web">
+          <div data-hf-id="hf-etuj" id="web-top"><i data-hf-id="hf-wt6k"></i><i data-hf-id="hf-zeb8"></i><i data-hf-id="hf-y7e5"></i></div>
+          <div data-hf-id="hf-lghh" id="web-nav"><div data-hf-id="hf-5rh3" class="lk"><span data-hf-id="hf-mmmh" data-sym="color"></span><span data-hf-id="hf-qdom" class="name">Yasmani Viñamagua</span></div><div data-hf-id="hf-anbn" class="navlink"><span data-hf-id="hf-uckh"></span><span data-hf-id="hf-l73p"></span><span data-hf-id="hf-me0s"></span></div></div>
+          <div data-hf-id="hf-g8u6" id="web-hl"></div>
+          <div data-hf-id="hf-nnt2" id="web-h"><span data-hf-id="hf-g0em" class="hl">Procesos que</span><br data-hf-id="hf-x5px" /><span data-hf-id="hf-1v44" class="hl">fluyen solos.</span></div>
+          <div data-hf-id="hf-5o0w" class="bar" id="web-p" style="height:18px"></div>
+          <div data-hf-id="hf-rlsu" id="web-btn"></div>
+          <svg data-hf-id="hf-nbis" id="web-flow" viewBox="0 0 200 200"><g data-hf-id="hf-j9gs" fill="none" stroke-linecap="round" stroke-width="12"><path data-hf-id="hf-i6zq" d="M30 10 L96 110" stroke="#223367" opacity=".30"/><path data-hf-id="hf-0zuz" d="M62 10 L128 110" stroke="#223367" opacity=".18"/><path data-hf-id="hf-m2x2" d="M94 10 L160 110" stroke="#223367" opacity=".10"/><path data-hf-id="hf-hu44" d="M96 110 L150 56" stroke="#ff1563"/><path data-hf-id="hf-7zwx" d="M96 110 L96 190" stroke="#223367" opacity=".30"/></g></svg>
+        </div>
+      </section>
+
+      <!-- 4 · Cierre (26–30) -->
+      <section data-hf-id="hf-mv0j" id="s6" class="clip dark" data-start="26" data-duration="4" data-track-index="0">
+        <svg data-hf-id="hf-2amw" id="end-flow" viewBox="0 0 1920 1080"><g data-hf-id="hf-i2jp" fill="none" stroke-linecap="round" stroke-width="12"><path data-hf-id="hf-935s" class="ef" d="M1500 -20 L1760 380" stroke="#fff" opacity=".10"/><path data-hf-id="hf-xldv" class="ef" d="M1640 -20 L1900 380" stroke="#fff" opacity=".07"/><path data-hf-id="hf-f650" class="ef" d="M-100 700 L60 960" stroke="#fff" opacity=".10"/></g></svg>
+        <div data-hf-id="hf-rdqz" class="center"><div data-hf-id="hf-u2tv" id="end-lockup"><span data-hf-id="hf-6phc" data-sym="neg"></span><span data-hf-id="hf-p6rj" class="name">Yasmani Viñamagua</span></div></div>
+        <div data-hf-id="hf-ssy4" id="end-bar"></div>
+      </section>
+
+      <div data-hf-id="hf-omfg" id="wipe"></div>
+    </div>
+
+    <script>
+      // Símbolo como trazos (geometría del manual: entrada 60°, tallo vertical, rama 45°, trazo 12, J=(46,56))
+      var COLORS = {
+        color: ["#223367", "#ff1563"],
+        neg: ["#ffffff", "#ff1563"],
+        ink: ["#111111", "#111111"],
+        inkw: ["#ffffff", "#ffffff"],
+      };
+      document.querySelectorAll("[data-sym]").forEach(function (el) {
+        var c = COLORS[el.getAttribute("data-sym")];
+        el.outerHTML =
+          '<svg class="sym" viewBox="7 -2 76 100" style="--a:' + c[0] + ";--b:" + c[1] + '">' +
+          '<path class="s-ram" pathLength="1" stroke-dasharray="1 1" d="M46 56 L71.46 30.54"/>' +
+          '<path class="s-ent" pathLength="1" stroke-dasharray="1 1" d="M19 9.23 L46 56"/>' +
+          '<path class="s-tal" pathLength="1" stroke-dasharray="1 1" d="M46 56 L46 88"/></svg>';
+      });
+
+      var tl = gsap.timeline({ paused: true });
+
+      // ===== Escena 1 (0–6) =====
+      var hero = "#hero ";
+      tl.fromTo(hero + ".s-ent", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, 0.4);
+      tl.fromTo(hero + ".s-tal", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 1.2);
+      tl.fromTo(hero + ".s-ram", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power3.out" }, 1.75);
+      tl.set(hero + "path", { opacity: 1 }, 0);
+      tl.fromTo("#hero", { scale: 0.96 }, { scale: 1, duration: 2.2, ease: "sine.out" }, 0.4);
+      tl.to("#hero", { height: 230, duration: 0.9, ease: "power3.inOut" }, 2.9);
+      tl.to("#wm", { width: 880, duration: 0.9, ease: "power3.inOut" }, 2.9);
+      tl.to("#lockup", { opacity: 0, duration: 0.3 }, 5.7);
+
+      // ===== Escena 2 (6–13) =====
+      tl.fromTo(".vcard", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.18, ease: "power3.out" }, 6.5);
+      tl.fromTo("#variants .s-ent", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, stagger: 0.18 }, 6.7);
+      tl.fromTo("#variants .s-tal", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.35, stagger: 0.18 }, 7.1);
+      tl.fromTo("#variants .s-ram", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, stagger: 0.18 }, 7.35);
+      tl.to("#variants", { opacity: 0, y: -40, duration: 0.5, ease: "power2.in" }, 9.6);
+      tl.fromTo(".lk", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.16, ease: "power3.out" }, 10.1);
+            tl.to("#lockups", { opacity: 0, duration: 0.3 }, 12.7);
+      tl.set("#lockups", { opacity: 0 }, 6);
+      tl.set("#lockups", { opacity: 1 }, 10.05);
+
+      // ===== Escena 3a LinkedIn (13–17.5) =====
+      tl.fromTo("#li", { opacity: 0, y: 70, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out" }, 13.3);
+      tl.fromTo("#li-flow", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 13.9);
+      tl.fromTo("#li-av", { scale: 0 }, { scale: 1, duration: 0.6, ease: "back.out(1.6)" }, 14.2);
+      tl.fromTo("#li-name,#li-role,#li-bar-pink", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, stagger: 0.12 }, 14.6);
+      tl.fromTo("#li .bar", { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.1 }, 15.0);
+
+      // ===== Escena 3b Tarjeta (17.5–21.5) =====
+      tl.fromTo("#bc-back", { opacity: 0, x: 120, rotation: 0 }, { opacity: 1, x: 0, rotation: 6, duration: 0.8, ease: "power3.out" }, 17.9);
+      tl.fromTo("#bc-front", { opacity: 0, x: -120, rotation: 0 }, { opacity: 1, x: 0, rotation: -5, duration: 0.8, ease: "power3.out" }, 18.2);
+      tl.fromTo("#bc-front .s-ent", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5 }, 18.7);
+      tl.fromTo("#bc-front .s-tal", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.35 }, 19.1);
+      tl.fromTo("#bc-front .s-ram", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4 }, 19.35);
+      tl.to("#bc-front", { rotation: -2, y: -14, duration: 2, ease: "sine.inOut" }, 19.4);
+
+      // ===== Escena 3c Web (21.5–26) =====
+      tl.fromTo("#web", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 21.8);
+      tl.fromTo("#web-nav", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 22.4);
+      tl.fromTo("#web-h .hl", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.18 }, 22.7);
+      tl.fromTo("#web-hl", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.7, ease: "power3.inOut" }, 23.4);
+      tl.fromTo("#web-p,#web-btn", { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.12 }, 23.7);
+      tl.fromTo("#web-flow", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 23.3);
+
+      // ===== Cierre (26–30) =====
+      tl.fromTo("#end-lockup", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power3.out" }, 26.4);
+      tl.fromTo("#end-lockup .s-ent", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7 }, 26.4);
+      tl.fromTo("#end-lockup .s-tal", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.45 }, 26.9);
+      tl.fromTo("#end-lockup .s-ram", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5 }, 27.25);
+      tl.fromTo("#end-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 27.9);
+      tl.fromTo("#end-flow", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 26.8);
+      tl.to("#end-lockup,#end-bar", { opacity: 0, duration: 0.6 }, 29.4);
+
+      // ===== Cortinilla rosa en cada cambio de escena =====
+      gsap.set("#wipe", { xPercent: -101 });
+      [6, 13, 17.5, 21.5, 26].forEach(function (t) {
+        tl.fromTo("#wipe", { xPercent: -101 }, { xPercent: 0, duration: 0.35, ease: "power3.in" }, t - 0.35);
+        tl.to("#wipe", { xPercent: 101, duration: 0.4, ease: "power3.out" }, t);
+      });
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

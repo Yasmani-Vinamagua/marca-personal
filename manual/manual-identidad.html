@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual de identidad — Yasmani Viñamagua</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#223367; --rosa:#FF1563; --mid:#0D1530; --slate:#5B6478; --fog:#F2F4F8; --white:#fff; --line:#E3E7F0; --mist:#C9D0E6;
+  --f-title:'Nunito','Segoe UI',system-ui,sans-serif; --f-text:'Manrope','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fog);color:var(--mid);font:400 16px/1.6 var(--f-text)}
+img{display:block;max-width:100%}
+a{color:var(--navy)}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+nav.side{position:sticky;top:0;height:100vh;background:var(--mid);color:#fff;padding:24px 20px;overflow:auto}
+nav.side img{width:190px;margin-bottom:22px}
+nav.side ol{list-style:none;margin:0;padding:0;counter-reset:n}
+nav.side li{counter-increment:n}
+nav.side a{display:block;color:var(--fog);text-decoration:none;font:500 14px/1.3 var(--f-text);padding:7px 10px;border-radius:8px}
+nav.side a::before{content:counter(n,decimal-leading-zero) "  ";color:var(--rosa);font-weight:700}
+nav.side a:hover{background:rgba(255,255,255,.08);color:#fff}
+main{padding:0 0 60px}
+section{padding:56px 6vw;background:#fff;border-bottom:1px solid var(--line)}
+section:nth-of-type(even){background:var(--fog)}
+section.cover{background:var(--mid);color:#fff;min-height:min(70vh,560px);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+section.cover .flow{position:absolute;right:3%;top:-6%;height:60%}
+section.cover .lk{width:min(520px,70%);margin-bottom:34px;position:relative}
+section.cover h1{font:800 clamp(30px,5vw,52px)/1.05 var(--f-title);margin:0 0 10px;position:relative}
+section.cover p{max-width:520px;color:var(--fog);position:relative;margin:0}
+section.cover .bar{width:56px;height:6px;border-radius:6px;background:var(--rosa);margin:0 0 16px;position:relative}
+.num{font:800 14px var(--f-title);color:var(--rosa);letter-spacing:.14em;text-transform:uppercase}
+h2{font:800 clamp(26px,3.4vw,38px)/1.1 var(--f-title);color:var(--navy);margin:4px 0 6px}
+h2::after{content:"";display:block;width:44px;height:5px;border-radius:5px;background:var(--rosa);margin-top:10px}
+h3{font:700 20px/1.3 var(--f-title);color:var(--navy);margin:30px 0 8px}
+p{margin:8px 0}
+.lead{font-size:18px;max-width:760px}
+.why{color:var(--slate);font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0;background:#fff}
+th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px;font-weight:700}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+code{background:var(--fog);padding:1px 6px;border-radius:5px;font-size:13px}
+.box{background:var(--fog);border-left:5px solid var(--rosa);padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0}
+section:nth-of-type(even) .box{background:#fff}
+.stage{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.stage.dark{background:var(--mid);border-color:var(--mid)}
+.cols{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;font-size:13px;color:var(--slate)}
+.tile.dark{background:var(--mid);border-color:var(--mid);color:var(--fog)}
+.tile .t{font:700 14px var(--f-title);color:var(--navy)}
+.tile.dark .t{color:#fff}
+.tile img{max-height:90px;width:auto}
+.tile .wide{height:auto;max-height:70px}
+.sw{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:16px 0}
+.sw div{border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.sw i{display:block;height:92px}
+.sw span{display:block;padding:10px 12px;font-size:13px;line-height:1.5}
+.sw b{font:700 15px var(--f-title);color:var(--navy);display:block}
+.bad{position:relative}
+.bad::after{content:"✕";position:absolute;top:8px;right:10px;color:var(--rosa);font:800 20px var(--f-title)}
+.bad .demo{height:100px;display:flex;align-items:center;justify-content:center;width:100%}
+.bad .demo img{height:84px;width:auto}
+.bar{width:38px;height:4px;border-radius:4px;background:var(--rosa)}
+.type-spec{display:grid;gap:12px}
+.type-row{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding:10px 0}
+.type-row small{color:var(--slate);font-size:12px;line-height:1.35}
+.t1{font:800 40px/1.2 var(--f-title);color:var(--navy)}
+.t2{font:700 28px/1.3 var(--f-title);color:var(--navy)}
+.t3{font:600 20px/1.4 var(--f-title);color:var(--navy)}
+.tp{font:400 16px/1.6 var(--f-text)}
+.ts{font:500 14px/1.6 var(--f-text);color:var(--slate)}
+.tl{font:500 13px/1.4 var(--f-text);letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.apps img{width:100%;border-radius:12px;border:1px solid var(--line)}
+.small{font-size:13px;color:var(--slate)}
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  nav.side{position:static;height:auto}
+  .type-row{grid-template-columns:1fr}
+}
+@media print{
+  .layout{display:block}
+  nav.side{display:none}
+  section{break-after:page;padding:28px 0;background:#fff!important}
+  section.cover{background:var(--mid)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="side" aria-label="Secciones">
+  <img src="../logo/logo-horizontal-negativo.svg" alt="Yasmani Viñamagua">
+  <ol>
+    <li><a href="#introduccion">Introducción</a></li>
+    <li><a href="#logotipo">El logotipo</a></li>
+    <li><a href="#construccion">Construcción</a></li>
+    <li><a href="#versiones">Versiones</a></li>
+    <li><a href="#respeto">Área de respeto y tamaño mínimo</a></li>
+    <li><a href="#usos">Usos incorrectos</a></li>
+    <li><a href="#color">Color</a></li>
+    <li><a href="#tipografia">Tipografía</a></li>
+    <li><a href="#aplicaciones">Aplicaciones</a></li>
+    <li><a href="#recursos">Estructura gráfica y recursos</a></li>
+    <li><a href="#entregables">Entregables y contacto</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section class="cover">
+  <img class="flow" src="../aplicaciones/recurso-flujo-oscuro.svg" alt="">
+  <img class="lk" src="../logo/logo-vertical-negativo.svg" alt="Yasmani Viñamagua" style="width:200px;border-radius:6px">
+  <div class="bar"></div>
+  <h1>Manual de identidad visual</h1>
+  <p>Yasmani Viñamagua · Marca personal de ingeniería y automatización · Versión 1.1 · 2026-10-21</p>
+</section>
+
+<section id="introduccion">
+  <div class="num">01</div>
+  <h2>Introducción</h2>
+  <p class="lead">Yasmani Viñamagua es un ingeniero que se posiciona en <b>innovación y automatización de procesos mediante el uso de la tecnología</b>. Este manual reúne las reglas para usar su marca de forma coherente.</p>
+  <div class="cols">
+    <div class="tile"><span class="t">Valores</span>Responsabilidad · Honestidad · Lealtad</div>
+    <div class="tile"><span class="t">Personalidad</span>Innovadora y tecnológica · Confiable y sobria</div>
+    <div class="tile"><span class="t">Público</span>Clientes y empresas (principal) · Empleadores y reclutadores</div>
+  </div>
+  <div class="box"><b>Concepto.</b> Dos flujos que confluyen en uno, con una rama que abre una nueva vía. La <b>entrada</b> es el flujo que llega, el <b>tallo</b> el proceso que continúa y la <b>rama</b> (rosa) la derivación: automatización e innovación.</div>
+  <p><b>Nombre.</b> Se escribe siempre <b>"Yasmani Viñamagua"</b>, con ñ y con mayúscula inicial en ambas palabras. El título profesional no va delante del nombre y el logotipo no lleva descriptor.</p>
+  <p><b>Línea de apoyo.</b> «Automatización de procesos con tecnología». Va siempre <b>fuera del logotipo</b>, en Manrope Medium (Niebla sobre Medianoche, 16,34; Pizarra sobre Niebla, 5,39). Se usa en el banner de LinkedIn y en la portada web; en tarjeta y firma no es obligatoria.</p>
+  <p class="why"><b>Origen.</b> Rediseño de la marca personal "AY" (2023). Se conservaron el trazo monolínea con terminales redondeados y la paleta azul marino y rosa; el símbolo pasa a ser una Y, coherente con el nombre público.</p>
+</section>
+
+<section id="logotipo">
+  <div class="num">02</div>
+  <h2>El logotipo</h2>
+  <div class="stage"><img src="../logo/logo-horizontal-color.svg" alt="Lockup horizontal" style="width:min(520px,100%)"></div>
+  <h3>Anatomía</h3>
+  <table>
+    <tr><th>Parte</th><th>Descripción</th></tr>
+    <tr><td><b>Símbolo</b></td><td>Una Y asimétrica: <b>entrada</b> (brazo largo, azul), <b>tallo</b> (azul) y <b>rama</b> (rosa, por debajo de la entrada).</td></tr>
+    <tr><td><b>Nombre</b></td><td>"Yasmani Viñamagua" en Nunito SemiBold 600 a 44 u, convertido a trazados con las curvas de la fuente (sin <code>&lt;text&gt;</code>).</td></tr>
+    <tr><td><b>Lockup</b></td><td>Símbolo y nombre combinados, en versión horizontal (símbolo al 78 % de su tamaño, nombre centrado respecto al símbolo) o vertical.</td></tr>
+  </table>
+  <div class="box"><b>Regla de capas.</b> La rama rosa va siempre <b>por debajo</b> de la entrada azul: en la unión, el azul se superpone al rosa.</div>
+</section>
+
+<section id="construccion">
+  <div class="num">03</div>
+  <h2>Construcción</h2>
+  <div class="cols" style="grid-template-columns:minmax(0,420px) 1fr;align-items:start">
+    <div class="stage" style="padding:12px"><img src="../logo/construccion.svg" alt="Diagrama de construcción del símbolo"></div>
+    <table>
+      <tr><th>Parámetro</th><th>Valor</th></tr>
+      <tr><td>Lienzo</td><td>100 × 100</td></tr>
+      <tr><td>Unidad <code>u</code></td><td>4</td></tr>
+      <tr><td>Grosor de trazo</td><td>12 = 3u, terminales redondos (radio 6)</td></tr>
+      <tr><td>Punto de unión <b>J</b></td><td>(46, 56)</td></tr>
+      <tr><td><b>Entrada</b></td><td>60° sobre la horizontal, arriba a la izquierda; longitud 54</td></tr>
+      <tr><td><b>Rama</b></td><td>45° arriba a la derecha; longitud 36</td></tr>
+      <tr><td><b>Tallo</b></td><td>Vertical hacia abajo; longitud 32</td></tr>
+    </table>
+  </div>
+  <p class="why"><b>Archivo (v1.1):</b> el símbolo son dos contornos con arcos exactos (entrada y tallo en uno, rama en otro) con esta misma geometría; el nombre usa las curvas de Nunito, con cada letra en la posición de v1.0. El maestro es <code>logo/logo-master.svg</code>, con los grupos <code>simbolo</code> y <code>nombre</code>. El diagrama <code>construccion.svg</code> se mantiene.</p>
+</section>
+
+<section id="versiones">
+  <div class="num">04</div>
+  <h2>Versiones</h2>
+  <div class="cols">
+    <div class="tile"><img class="wide" src="../logo/logo-horizontal-color.svg" alt="Lockup horizontal en color"><span class="t">Horizontal · color</span>Fondos claros. Cabeceras, firma, web.</div>
+    <div class="tile dark"><img class="wide" src="../logo/logo-horizontal-negativo.svg" alt="Lockup horizontal negativo"><span class="t">Horizontal · negativo</span>Fondo Medianoche incluido.</div>
+    <div class="tile"><img src="../logo/logo-vertical-color.svg" alt="Lockup vertical en color"><span class="t">Vertical · color</span>Portadas y formatos cuadrados.</div>
+    <div class="tile dark"><img src="../logo/logo-vertical-negativo.svg" alt="Lockup vertical negativo"><span class="t">Vertical · negativo</span>Fondo Medianoche incluido.</div>
+    <div class="tile"><img src="../logo/logo-1tinta-negro.svg" alt="Símbolo en una tinta negra"><span class="t">Una tinta negra</span>Sellos, prensa, grabado, bordado, vinilo.</div>
+    <div class="tile dark"><img src="../logo/logo-1tinta-blanco.svg" alt="Símbolo en una tinta blanca"><span class="t">Una tinta blanca</span>Fondos oscuros en una tinta.</div>
+    <div class="tile"><img src="../logo/logo-color.svg" alt="Símbolo en color"><span class="t">Símbolo en color</span>Iconos y avatar.</div>
+    <div class="tile"><img src="../logo/icono-avatar.svg" alt="Avatar circular"><span class="t">Avatar</span>LinkedIn y redes.</div>
+    <div class="tile"><img src="../logo/icono-favicon.svg" alt="Favicon con trazo reforzado" style="max-height:64px"><span class="t">Favicon (trazo reforzado)</span>Tamaños de 32 px o menos.</div>
+  </div>
+  <p class="why">Los lockups tienen cuatro variantes: <code>color</code>, <code>negativo</code>, <code>1tinta-negro</code> y <code>1tinta-blanco</code>. Hay copias en PNG de 1600 px en <code>logo/png/</code> y el maestro <code>logo/logo-master.svg</code>. Los nombres de archivo conservan el patrón <code>logo-horizontal-*</code> y <code>logo-vertical-*</code> (una por versión de color), <code>icono-avatar.svg</code> e <code>icono-favicon.svg</code>.</p>
+</section>
+
+<section id="respeto">
+  <div class="num">05</div>
+  <h2>Área de respeto y tamaño mínimo</h2>
+  <p class="lead"><b>Área de respeto:</b> el 25 % de la altura del símbolo, tal como aparece en cada versión, por todos los lados. Los lockups ya la incluyen en su <code>viewBox</code> (en el horizontal, con el símbolo al 78 %, equivale a ≈ 17,7 u).</p>
+  <h3>Tamaño mínimo</h3>
+  <table>
+    <tr><th>Versión</th><th>Pantalla (probado)</th><th>Impresión (provisional, sin prueba física)</th></tr>
+    <tr><td>Símbolo solo</td><td>24 px de alto</td><td>6 mm de alto</td></tr>
+    <tr><td>Favicon reforzado</td><td>16 px</td><td>—</td></tr>
+    <tr><td>Lockup horizontal</td><td>120 px de ancho</td><td>30 mm de ancho</td></tr>
+    <tr><td>Lockup vertical</td><td>110 px de ancho</td><td>28 mm de ancho</td></tr>
+  </table>
+  <div class="stage" style="gap:36px">
+    <img src="../logo/logo-color.svg" alt="Símbolo a 96 px de alto" height="96">
+    <img src="../logo/logo-color.svg" alt="Símbolo a 48 px de alto" height="48">
+    <img src="../logo/logo-color.svg" alt="Símbolo a 24 px de alto" height="24">
+    <img src="../logo/icono-favicon.svg" alt="Favicon a 16 px de alto" height="16">
+  </div>
+  <p class="why">Probado en pantalla (render de Chrome a 1×): símbolo a 32, 24, 20, 16 y 12 px; lockup horizontal a 160, 140, 120, 100 y 90 px (a 100 px se lee con reservas); lockup vertical a 130, 110, 100, 90 y 80 px. Los valores de impresión son provisionales hasta imprimir una prueba. Por debajo de esos tamaños se usa el símbolo solo o el favicon reforzado.</p>
+</section>
+
+<section id="usos">
+  <div class="num">06</div>
+  <h2>Usos incorrectos</h2>
+  <div class="cols">
+    <div class="tile bad"><div class="demo"><img src="../logo/logo-color.svg" alt="Logo deformado (uso incorrecto)" style="transform:scaleX(1.7)"></div><span class="t">No deformar</span>Ni estirar ni comprimir.</div>
+    <div class="tile bad"><div class="demo"><img src="../logo/logo-color.svg" alt="Logo girado (uso incorrecto)" style="transform:rotate(35deg)"></div><span class="t">No girar ni espejar</span></div>
+    <div class="tile bad"><div class="demo"><img src="../logo/logo-color.svg" alt="Logo con colores cambiados (uso incorrecto)" style="filter:hue-rotate(110deg) saturate(1.6)"></div><span class="t">No cambiar los colores</span>Ni usar colores fuera de la paleta.</div>
+    <div class="tile bad"><div class="demo"><img src="../logo/logo-color.svg" alt="Logo con sombra (uso incorrecto)" style="filter:drop-shadow(5px 6px 4px rgba(0,0,0,.5))"></div><span class="t">No añadir sombras ni efectos</span></div>
+    <div class="tile bad" style="background:var(--navy);color:var(--fog)"><div class="demo"><img src="../logo/logo-color.svg" alt="Logo en color sobre azul (uso incorrecto)"></div><span class="t" style="color:#fff">No usar la versión en color sobre azul</span>Usar el negativo.</div>
+    <div class="tile bad"><div class="demo"><img src="../logo/logo-horizontal-color.svg" alt="Nombre con color cambiado (uso incorrecto)" style="height:auto;width:70%;filter:drop-shadow(0 0 0 #FF1563) hue-rotate(40deg)"></div><span class="t">No cambiar el nombre ni su color</span></div>
+  </div>
+  <ol>
+    <li>No poner la <b>rama rosa por encima</b> de la entrada azul.</li>
+    <li>No separar el símbolo y el nombre en un lockup oficial ni cambiar su distancia.</li>
+    <li>No cambiar la tipografía del nombre ni reescribirlo con otro formato.</li>
+    <li>No añadir descriptor, título ni contornos de color. La línea de apoyo va fuera del logotipo.</li>
+    <li>No usar Línea ni Bruma como color de texto, ni el recurso de flujo mayor que el 60 % de la altura de la pieza.</li>
+    <li>No usarlo sobre fondos de bajo contraste.</li>
+  </ol>
+</section>
+
+<section id="color">
+  <div class="num">07</div>
+  <h2>Color</h2>
+  <div class="sw">
+    <div><i style="background:#223367"></i><span><b>Azul marino</b>Principal<br><code>#223367</code><br>RGB 34 / 51 / 103<br>CMYK 67 / 50 / 0 / 60<br>Pantone ≈ 2767 C o 281 C</span></div>
+    <div><i style="background:#FF1563"></i><span><b>Rosa</b>Acento firma<br><code>#FF1563</code><br>RGB 255 / 21 / 99<br>CMYK 0 / 92 / 61 / 0<br>Pantone ≈ 192 C o 1925 C</span></div>
+    <div><i style="background:#0D1530"></i><span><b>Medianoche</b>Fondos oscuros<br><code>#0D1530</code><br>RGB 13 / 21 / 48<br>CMYK 73 / 56 / 0 / 81<br>Pantone ≈ 2767 C o negro 6 C</span></div>
+    <div><i style="background:#5B6478"></i><span><b>Pizarra</b>Texto secundario<br><code>#5B6478</code><br>RGB 91 / 100 / 120<br>CMYK 24 / 17 / 0 / 53<br>Pantone ≈ 431 C</span></div>
+    <div><i style="background:#F2F4F8"></i><span><b>Niebla</b>Fondos claros<br><code>#F2F4F8</code><br>RGB 242 / 244 / 248<br>CMYK 2 / 2 / 0 / 3<br>Pantone ≈ Cool Gray 1 C</span></div>
+    <div><i style="background:#FFFFFF"></i><span><b>Blanco</b>Fondo y negativo<br><code>#FFFFFF</code></span></div>
+    <div><i style="background:#E3E7F0"></i><span><b>Línea</b>Divisores y bordes finos (solo decorativo)<br><code>#E3E7F0</code><br>RGB 227 / 231 / 240<br>CMYK 5 / 4 / 0 / 6<br>Pantone: pendiente de definir</span></div>
+    <div><i style="background:#C9D0E6"></i><span><b>Bruma</b>Tonos del recurso y trazos de apoyo (solo decorativo)<br><code>#C9D0E6</code><br>RGB 201 / 208 / 230<br>CMYK 13 / 10 / 0 / 10<br>Pantone: pendiente de definir</span></div>
+  </div>
+  <p class="small">CMYK de azul marino y rosa: valores del manual anterior; el resto, conversión matemática (no perfil ICC). <b>Línea y Bruma</b> se añadieron en v1.1 (ya se usaban sin declarar); son solo de pantalla y decorativos: no se usan para texto ni bordes de componentes. Detalle y contrastes en <code>paleta/paleta.md</code>. <b>Pantone: aproximación no verificada</b>; confirmar con guía física (Solid Uncoated para papel natural).</p>
+  <h3>Justificación</h3>
+  <p><b>Azul marino</b>: seriedad y confianza (responsabilidad, honestidad); es el ancla de la marca. <b>Rosa</b>: acento firma de la innovación; ocupa un hueco en un sector dominado por azul, rojo y naranja. <i>Esta lectura del sector viene de conocimiento general y no está verificada con los manuales de otras marcas.</i> <b>Sin naranja</b>: se eliminó para no caer en el naranja habitual del software de automatización y simplificar la paleta.</p>
+  <h3>Contraste (WCAG 2.x, calculado)</h3>
+  <table>
+    <tr><th>Combinación</th><th>Ratio</th><th>Uso permitido</th></tr>
+    <tr><td>Azul marino sobre blanco</td><td>12,09</td><td>Texto y logo</td></tr>
+    <tr><td>Azul marino sobre Niebla</td><td>10,98</td><td>Texto y logo</td></tr>
+    <tr><td>Blanco sobre azul marino</td><td>12,09</td><td>Texto y logo en negativo</td></tr>
+    <tr><td>Blanco sobre Medianoche</td><td>17,99</td><td>Texto y logo en negativo</td></tr>
+    <tr><td>Rosa sobre Medianoche</td><td>4,75</td><td>Texto normal y acentos</td></tr>
+    <tr><td>Pizarra sobre blanco</td><td>5,93</td><td>Texto secundario</td></tr>
+    <tr><td>Pizarra sobre Niebla</td><td>5,39</td><td>Texto secundario</td></tr>
+    <tr><td>Niebla sobre Medianoche</td><td>16,34</td><td>Texto sobre fondo oscuro, línea de apoyo</td></tr>
+    <tr><td>Rosa sobre blanco</td><td><b>3,79</b></td><td><b>Solo gráficos y texto grande</b></td></tr>
+    <tr><td>Blanco sobre rosa</td><td><b>3,79</b></td><td><b>Solo texto grande</b></td></tr>
+    <tr><td>Rosa sobre Niebla</td><td><b>3,44</b></td><td><b>Solo gráficos y texto grande</b></td></tr>
+    <tr><td>Rosa sobre azul marino</td><td><b>3,19</b></td><td><b>Solo gráficos grandes</b></td></tr>
+    <tr><td>Pizarra sobre Medianoche</td><td><b>3,03</b></td><td><b>No para texto normal; solo gráficos o texto grande</b></td></tr>
+    <tr><td>Línea sobre blanco / Niebla · Bruma sobre blanco / Niebla</td><td>1,24 / 1,12 · 1,54 / 1,40</td><td><b>Solo decorativo</b></td></tr>
+  </table>
+  <h3>Proporción de uso</h3>
+  <div style="display:flex;height:36px;border-radius:10px;overflow:hidden;border:1px solid var(--line)">
+    <div style="flex:60;background:#F2F4F8;font:700 12px/36px var(--f-text);padding-left:10px">60 % neutros</div>
+    <div style="flex:30;background:#223367;color:#fff;font:700 12px/36px var(--f-text);padding-left:10px">30 % azul marino</div>
+    <div style="flex:10;background:#FF1563;color:#fff;font:700 11px/36px var(--f-text);padding-left:6px">10 %</div>
+  </div>
+  <div class="box"><b>Degradado (opcional, recurso gráfico).</b> De <code>#223367</code> al 31 % a <code>#FF1563</code> al 91 %, horizontal. Solo en fondos y barras, siempre con un color sólido de reserva. <b>No se usa en el logotipo.</b></div>
+</section>
+
+<section id="tipografia">
+  <div class="num">08</div>
+  <h2>Tipografía</h2>
+  <p class="lead"><b>Nunito</b> para títulos y nombre (terminales redondos, como el símbolo) y <b>Manrope</b> para texto (neutra, legible y precisa).</p>
+  <div class="type-spec">
+    <div class="type-row"><small>Título 1<br>Nunito 800 · 40/48</small><div class="t1">Automatización con precisión</div></div>
+    <div class="type-row"><small>Título 2<br>Nunito 700 · 28/36</small><div class="t2">Procesos que fluyen</div></div>
+    <div class="type-row"><small>Subtítulo<br>Nunito 600 · 20/28</small><div class="t3">Ingeniería, redes y tecnología</div></div>
+    <div class="type-row"><small>Párrafo<br>Manrope 400 · 16/26</small><div class="tp">Diseño de procesos con honestidad técnica y responsabilidad en cada decisión.</div></div>
+    <div class="type-row"><small>Texto secundario<br>Manrope 500 · 14/22</small><div class="ts">Información de apoyo, notas y pies de figura.</div></div>
+    <div class="type-row"><small>Etiqueta<br>Manrope 500 · 13/18</small><div class="tl">Memoria técnica</div></div>
+  </div>
+  <p class="why"><b>Licencia:</b> ambas fuentes están en Google Fonts con licencia abierta (SIL OFL); verificar en cada ficha antes del uso comercial. <b>Alternativa:</b> "Segoe UI", system-ui, sans-serif. <b>Reglas:</b> máximo dos familias y cuatro pesos por documento; no estirar ni aplicar efectos al texto del logotipo.</p>
+</section>
+
+<section id="aplicaciones">
+  <div class="num">09</div>
+  <h2>Aplicaciones</h2>
+  <p class="lead">LinkedIn, tarjeta de visita, firma de correo, portada de memoria técnica, documento interior, presentación y sitio web. Los textos y datos son de ejemplo. La línea de apoyo aparece en el banner de LinkedIn y en la portada web.</p>
+  <div class="apps"><img src="../aplicaciones/aplicaciones-previa.png" alt="Vista general de las siete aplicaciones de la marca: banner y avatar de LinkedIn, tarjeta, firma de correo, portada y documento de memoria técnica, presentación y sitio web"></div>
+  <p class="why">Composiciones completas en <a href="../aplicaciones/aplicaciones.html">aplicaciones/aplicaciones.html</a>.</p>
+</section>
+
+<section id="recursos">
+  <div class="num">10</div>
+  <h2>Estructura gráfica y recursos</h2>
+  <div class="cols">
+    <div class="tile"><img src="../aplicaciones/recurso-flujo.svg" alt="Líneas de flujo sobre fondo claro" style="max-height:170px"><span class="t">Líneas de flujo · fondo claro</span></div>
+    <div class="tile dark"><img src="../aplicaciones/recurso-flujo-oscuro.svg" alt="Líneas de flujo sobre fondo oscuro" style="max-height:170px"><span class="t">Líneas de flujo · fondo oscuro</span></div>
+  </div>
+  <p>Derivan de la geometría del símbolo: <b>líneas a 60° que convergen</b> (tonos de azul o blanco con transparencia, o Bruma) y una <b>rama rosa a 45°</b>.</p>
+  <div class="box"><b>Reglas (medibles desde v1.1).</b> Un solo recurso por pieza, anclado a una esquina, de como máximo el <b>60 % de la altura de la pieza</b>, siempre dentro de la paleta, y sin tocar texto ni el área de respeto del logotipo.</div>
+  <h3>Elementos de apoyo</h3>
+  <div class="stage" style="justify-content:flex-start;gap:30px">
+    <div><div class="bar"></div><p class="small">Barra rosa corta: firma (3 a 5 px, terminales redondos).</p></div>
+    <div><span style="background:linear-gradient(transparent 62%,rgba(255,21,99,.35) 62%);font:800 20px var(--f-title);color:var(--navy)">responsabilidad</span><p class="small">Resaltado rosa: nunca texto en rosa sobre blanco.</p></div>
+  </div>
+</section>
+
+<section id="entregables">
+  <div class="num">11</div>
+  <h2>Entregables y contacto</h2>
+  <table>
+    <tr><th>Carpeta</th><th>Contenido</th></tr>
+    <tr><td><code>logo/</code></td><td>SVG de todas las versiones, <code>logo-master.svg</code> y <code>construccion.svg</code></td></tr>
+    <tr><td><code>logo/png/</code></td><td>PNG de 1600 px de ancho</td></tr>
+    <tr><td><code>aplicaciones/</code></td><td>Composiciones de ejemplo y recursos gráficos</td></tr>
+    <tr><td><code>manual/</code></td><td>Este manual (Markdown y HTML)</td></tr>
+    <tr><td><code>paleta/</code></td><td><code>paleta.md</code>: colores, tintes y contrastes</td></tr>
+    <tr><td><code>marca-spec.md</code></td><td>Decisiones y justificaciones por fase</td></tr>
+  </table>
+  <h3>Pendientes y limitaciones</h3>
+  <ul>
+    <li><b>Verificar Pantone</b> con guía física y probar los mínimos de impresión (provisionales) con una prueba real, incluida la rama fina a tamaños pequeños.</li>
+    <li><b>Búsqueda de anterioridades</b> en propiedad intelectual antes de registrar la marca (la diferenciación frente a otras marcas sigue sin verificar).</li>
+    <li><b>Kerning:</b> se conservan los ajustes manuales de v1.0 en "Ya" y "Vi"; revisar al ampliar.</li>
+    <li><b>Archivos:</b> las curvas son arcos exactos y curvas cuadráticas de la fuente; para producción profesional conviene abrirlos y revisarlos en Illustrator o Figma.</li>
+    <li><b>Aplicaciones:</b> son composiciones HTML, no plantillas editables de Word ni PowerPoint.</li>
+    <li><b>Datos de contacto:</b> pendientes de completar.</li>
+  </ul>
+  <h3>Registro de cambios</h3>
+  <table>
+    <tr><th>Versión</th><th>Fecha</th><th>Cambios</th></tr>
+    <tr><td>1.1</td><td>2026-10-21</td><td>Ajuste a partir de la auditoría: símbolo y nombre en curvas (misma geometría), maestro <code>logo-master.svg</code>, lockup horizontal con el símbolo al 78 %, mínimo horizontal de 120 px, mínimos de impresión provisionales, tintes Línea y Bruma y contrastes añadidos, línea de apoyo «Automatización de procesos con tecnología», regla medible del recurso de flujo (60 % de la altura) y textos alternativos.</td></tr>
+    <tr><td>1.0</td><td>2026-10-16</td><td>Primera versión del rediseño: símbolo Y (entrada + rama), paleta sin naranja, Nunito + Manrope, versiones, aplicaciones y manual.</td></tr>
+  </table>
+</section>
+
+</main>
+</div>
+</body>
+</html>

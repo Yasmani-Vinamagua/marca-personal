@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "yas-audit": {
+      "source": "Yasmani-Vinamagua/yas-design-system",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/yas-audit/SKILL.md",
+      "computedHash": "36281523177298b15b7aea93e129f36b07991396ddc153845c9dd159047fc7e0"
+    },
+    "yas-core": {
+      "source": "Yasmani-Vinamagua/yas-design-system",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/yas-core/SKILL.md",
+      "computedHash": "832e6ae7d8101b44d789c4acebb971a2b52501db5e207cbc01a7707bb778b315"
+    },
+    "yas-design": {
+      "source": "Yasmani-Vinamagua/yas-design-system",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/yas-design/SKILL.md",
+      "computedHash": "6dbcbb995133a4e0f29930c44fb48a45c71cb42e410c1a27403d47974ddef19f"
+    },
+    "yas-figma": {
+      "source": "Yasmani-Vinamagua/yas-design-system",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/yas-figma/SKILL.md",
+      "computedHash": "d2f618f730039471eb7cc106975ee8362c1d0a1d38d4b8c96e5e484e07fdd728"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" width="1040" height="600" font-family="Arial, Helvetica, sans-serif">
+  <title>Bocetos — concepto Y que confluye (YV)</title>
+  <rect width="520" height="300" fill="#fff"/>
+  <style>
+    .s{fill:none;stroke:#000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round}
+    .t{fill:none;stroke:#000;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+    .f{fill:#000}
+    .l{font-size:9px;fill:#444}
+    .c{fill:none;stroke:#ddd;stroke-width:1}
+  </style>
+
+  <!-- 1. Y recta -->
+  <g transform="translate(10,10)">
+    <rect class="c" width="120" height="130"/>
+    <g transform="translate(10,5)"><path class="s" d="M18 14 L50 54 L82 14 M50 54 L50 88"/></g>
+    <text class="l" x="6" y="124">1 · Y recta</text>
+  </g>
+
+  <!-- 2. Y recta con nodo -->
+  <g transform="translate(140,10)">
+    <rect class="c" width="120" height="130"/>
+    <g transform="translate(10,5)"><path class="s" d="M18 14 L50 54 L82 14 M50 54 L50 76"/><circle class="f" cx="50" cy="88" r="8"/></g>
+    <text class="l" x="6" y="124">2 · Y con nodo</text>
+  </g>
+
+  <!-- 3. Confluencia curva -->
+  <g transform="translate(270,10)">
+    <rect class="c" width="120" height="130"/>
+    <g transform="translate(10,5)"><path class="s" d="M18 14 C18 46 50 40 50 64 L50 88 M82 14 C82 46 50 40 50 64"/></g>
+    <text class="l" x="6" y="124">3 · Confluencia curva</text>
+  </g>
+
+  <!-- 4. Asimétrica (entrada y rama) -->
+  <g transform="translate(400,10)">
+    <rect class="c" width="110" height="130"/>
+    <g transform="translate(5,5)"><path class="s" d="M16 10 L46 54 L46 88 M88 30 L46 54"/></g>
+    <text class="l" x="6" y="124">4 · Entrada + rama</text>
+  </g>
+
+  <!-- 5. Y con tilde (ñ) -->
+  <g transform="translate(10,150)">
+    <rect class="c" width="120" height="140"/>
+    <g transform="translate(10,12)"><path class="s" d="M18 22 L50 62 L82 22 M50 62 L50 96"/>
+      <path class="t" d="M58 6 q6 -8 12 0 t12 0"/></g>
+    <text class="l" x="6" y="134">5 · Y + tilde ñ</text>
+  </g>
+
+  <!-- 6. Y que termina en V (cola en gancho) -->
+  <g transform="translate(140,150)">
+    <rect class="c" width="120" height="140"/>
+    <g transform="translate(10,8)"><path class="s" d="M18 18 L50 58 L82 18 M50 58 L50 74 L34 98 M50 74 L66 98"/></g>
+    <text class="l" x="6" y="134">6 · Tallo bifurcado (YV)</text>
+  </g>
+
+  <!-- 7. Y de flujo continuo (una sola línea) -->
+  <g transform="translate(270,150)">
+    <rect class="c" width="120" height="140"/>
+    <g transform="translate(10,8)"><path class="s" d="M16 20 L44 56 L84 14 M44 56 L44 94"/><circle class="f" cx="84" cy="14" r="0"/></g>
+    <text class="l" x="6" y="134">7 · Brazos desiguales</text>
+  </g>
+
+  <!-- 8. Avatar: Y en círculo -->
+  <g transform="translate(400,150)">
+    <rect class="c" width="110" height="140"/>
+    <g transform="translate(5,8)">
+      <circle cx="50" cy="52" r="46" class="t"/>
+      <path class="s" d="M32 30 L50 54 L68 30 M50 54 L50 72" style="stroke-width:8"/>
+    </g>
+    <text class="l" x="6" y="134">8 · Avatar con círculo</text>
+  </g>
+</svg>

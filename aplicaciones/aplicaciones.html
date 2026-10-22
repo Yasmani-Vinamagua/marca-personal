@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aplicaciones — Yasmani Viñamagua</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#223367; --rosa:#FF1563; --mid:#0D1530; --slate:#5B6478; --fog:#F2F4F8; --white:#fff; --line:#E3E7F0; --mist:#C9D0E6;
+  --f-title:'Nunito','Segoe UI',system-ui,sans-serif; --f-text:'Manrope','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fog);font-family:var(--f-text);color:var(--mid)}
+.wrap{max-width:1240px;margin:0 auto;padding:24px 20px 40px}
+h1{font:800 28px/1.2 var(--f-title);color:var(--navy);margin:0 0 4px}
+.sub{color:var(--slate);margin:0 0 24px;font-size:14px}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.full{grid-column:1/-1}
+.card{background:#fff;border-radius:10px;padding:16px;box-shadow:0 1px 2px rgba(13,21,48,.08)}
+.card h2{font:700 15px/1.3 var(--f-title);color:var(--navy);margin:0 0 10px}
+.card .why{font-size:12.5px;color:var(--slate);margin:10px 0 0;line-height:1.5}
+.stage{display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+img{display:block}
+
+/* 1 LinkedIn */
+.banner{width:100%;aspect-ratio:1584/396;background:var(--mid);position:relative;overflow:hidden;border-radius:6px;container-type:inline-size}
+.banner .bl{position:absolute;left:6%;top:50%;transform:translateY(-50%);width:46%}
+.banner .bl img{width:100%}
+.claim{font:500 2.1cqw/1.3 var(--f-text);color:var(--fog);margin:1.6cqw 0 0 3.5%}
+.banner .flow{position:absolute;right:-1%;top:-10%;height:62%}
+.avatar-row{display:flex;gap:18px;align-items:center;margin-top:12px}
+
+/* 2 Tarjeta */
+.cards{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.bc{width:315px;height:175px;border-radius:6px;position:relative;overflow:hidden;box-shadow:0 6px 18px rgba(13,21,48,.18)}
+.bc.front{background:var(--mid)}
+.bc.front img.sym{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:70px}
+.bc.back{background:#fff;padding:18px 20px;display:flex;flex-direction:column;justify-content:space-between}
+.bc.back img.lk{width:150px}
+.bc.back .data{font-size:10px;line-height:1.6;color:var(--mid)}
+.bc.back .data b{font:700 12px var(--f-title);color:var(--navy);display:block;margin-bottom:2px}
+.bc.back .bar{width:28px;height:3px;border-radius:3px;background:var(--rosa);margin:6px 0 8px}
+
+/* 3 firma */
+.sig{background:#fff;border:1px solid var(--line);border-radius:8px;padding:18px;font-size:13px}
+.sig .row{display:flex;gap:14px;align-items:center}
+.sig .sep{width:3px;align-self:stretch;border-radius:3px;background:var(--rosa)}
+.sig .nm{font:800 16px var(--f-title);color:var(--navy)}
+.sig .rl{color:var(--slate);font-size:12.5px;margin:2px 0 6px}
+.sig .ct{font-size:12px;line-height:1.55}
+
+/* 4 portada memoria */
+.a4{width:300px;aspect-ratio:210/297;background:var(--mid);position:relative;overflow:hidden;border-radius:3px;box-shadow:0 6px 18px rgba(13,21,48,.25);color:#fff}
+.a4 .flow{position:absolute;right:-8%;top:-4%;width:52%}
+.a4 .tt{position:absolute;left:11%;top:40%;right:11%}
+.a4 .tt small{font:700 11px var(--f-text);letter-spacing:.22em;text-transform:uppercase;color:var(--fog)}
+.a4 .tt h3{font:800 34px/1.05 var(--f-title);margin:8px 0 10px}
+.a4 .tt .bar{width:42px;height:5px;border-radius:5px;background:var(--rosa);margin:0 0 12px}
+.a4 .tt p{font-size:11.5px;line-height:1.55;color:var(--fog);margin:0}
+.a4 .ft{position:absolute;left:11%;bottom:6%;width:50%}
+
+/* 5 documento */
+.doc{width:300px;aspect-ratio:210/297;background:#fff;position:relative;border-radius:3px;box-shadow:0 6px 18px rgba(13,21,48,.18);padding:22px 22px 18px;display:flex;flex-direction:column}
+.doc .hd{display:flex;justify-content:space-between;align-items:center;padding-bottom:8px;border-bottom:2px solid var(--navy)}
+.doc .hd img{height:26px}
+.doc .hd span{font:700 7.5px var(--f-text);letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.doc h4{font:800 15px var(--f-title);color:var(--navy);margin:14px 0 4px}
+.doc h4::after{content:"";display:block;width:26px;height:3px;border-radius:3px;background:var(--rosa);margin-top:4px}
+.doc p{font-size:8.2px;line-height:1.55;margin:6px 0;color:var(--mid)}
+.doc table{width:100%;border-collapse:collapse;font-size:7.6px;margin-top:6px}
+.doc th{background:var(--navy);color:#fff;text-align:left;padding:4px 6px;font-weight:700}
+.doc td{padding:4px 6px;border-bottom:1px solid var(--line)}
+.doc .fo{margin-top:auto;display:flex;justify-content:space-between;font-size:7px;color:var(--slate);border-top:1px solid var(--line);padding-top:6px}
+
+/* 6 presentacion */
+.slides{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.sl{aspect-ratio:16/9;position:relative;overflow:hidden;border-radius:4px;box-shadow:0 4px 14px rgba(13,21,48,.18)}
+.sl.dark{background:var(--mid);color:#fff}
+.sl.dark .flow{position:absolute;right:2%;top:-8%;height:60%}
+.sl .lk{position:absolute;left:7%;bottom:9%;width:36%}
+.sl h5{font:800 21px/1.05 var(--f-title);margin:0;position:absolute;left:7%;top:24%;width:52%}
+.sl h5::after{content:"";display:block;width:34px;height:5px;border-radius:5px;background:var(--rosa);margin-top:8px}
+.sl.light{background:#fff}
+.sl.light .top{position:absolute;left:0;right:0;top:0;height:7px;background:var(--navy)}
+.sl.light .top i{position:absolute;right:0;top:0;height:7px;width:22%;background:var(--rosa)}
+.sl.light h5{color:var(--navy);top:12%;font-size:17px;width:80%}
+.sl.light ul{position:absolute;left:7%;top:42%;margin:0;padding:0 0 0 14px;font-size:11.5px;line-height:1.7;width:60%}
+.sl.light ul li::marker{color:var(--rosa)}
+.sl.light .fig{position:absolute;right:7%;bottom:12%;width:24%}
+.sl.light .pg{position:absolute;right:7%;top:12%;font:700 8px var(--f-text);color:var(--slate)}
+
+/* 7 web */
+.browser{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+.browser .bar{height:24px;background:var(--fog);display:flex;align-items:center;gap:6px;padding:0 10px}
+.browser .bar i{width:8px;height:8px;border-radius:50%;background:var(--mist)}
+.browser .bar b{margin-left:10px;flex:1;height:14px;border-radius:7px;background:#fff;font:500 8.5px/14px var(--f-text);color:var(--slate);padding:0 8px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 22px}
+.nav img{height:34px}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font:600 12.5px var(--f-text);color:var(--navy)}
+.hero{background:var(--fog);padding:34px 22px 40px;position:relative;overflow:hidden}
+.hero h6{font:800 34px/1.08 var(--f-title);color:var(--navy);margin:0;max-width:62%}
+.hero h6 em{font-style:normal;background:linear-gradient(transparent 62%,rgba(255,21,99,.35) 62%)}
+.hero p{max-width:50%;font-size:13.5px;line-height:1.6;color:var(--mid);margin:12px 0 18px}
+.hero .btn{display:inline-block;background:var(--navy);color:#fff;font:700 13px var(--f-text);padding:11px 20px;border-radius:999px}
+.hero .btn.o{background:transparent;color:var(--navy);border:2px solid var(--navy);margin-left:8px}
+.hero .flow{position:absolute;right:2%;top:-4%;height:60%}
+.hero .claim{margin:0 0 10px;font:500 14px/1.3 var(--f-text);color:var(--slate)}
+.note{font-size:12px;color:var(--slate);margin-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Aplicaciones de la marca · Yasmani Viñamagua</h1>
+  <p class="sub">Composiciones de ejemplo con la paleta y tipografía oficiales (Nunito + Manrope). Los textos y datos de contacto son <b>de ejemplo</b>.</p>
+
+  <div class="grid">
+
+    <div class="card full">
+      <h2>1 · LinkedIn: banner y avatar</h2>
+      <div class="banner">
+        <img class="flow" src="recurso-flujo-oscuro.svg" alt="">
+        <div class="bl"><img src="../logo/logo-horizontal-negativo.svg" alt="Yasmani Viñamagua"><p class="claim">Automatización de procesos con tecnología</p></div>
+      </div>
+      <div class="avatar-row">
+        <img src="../logo/icono-avatar.svg" width="96" alt="Avatar">
+        <img src="../logo/icono-avatar.svg" width="48" alt="Avatar pequeño">
+        <img src="../logo/icono-avatar.svg" width="32" alt="Avatar mínimo">
+        <p class="why" style="margin:0">Banner 1584 × 396 px sobre Medianoche con el lockup negativo, la línea de apoyo fuera del logotipo (Manrope Medium, Niebla, contraste 16,34) y el recurso de líneas de flujo reducido al 62 % de la altura. El avatar circular usa el símbolo en negativo con la rama rosa.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>2 · Tarjeta de visita (90 × 50 mm)</h2>
+      <div class="cards">
+        <div class="bc front stage"><img class="sym" src="../logo/logo-negativo.svg" alt=""></div>
+        <div class="bc back">
+          <img class="lk" src="../logo/logo-horizontal-color.svg" alt="Yasmani Viñamagua">
+          <div class="data"><div class="bar"></div><b>[Cargo]</b>[correo@dominio.com]<br>[+00 000 000 0000]<br>[Ciudad, País]</div>
+        </div>
+      </div>
+      <p class="why">Frente oscuro con el símbolo; dorso claro con el lockup horizontal. La barra rosa corta hace de firma y se repite en todo el sistema.</p>
+    </div>
+
+    <div class="card">
+      <h2>3 · Firma de correo</h2>
+      <div class="sig">
+        <div class="row">
+          <img src="../logo/logo-color.svg" height="62" alt="">
+          <div class="sep"></div>
+          <div>
+            <div class="nm">Yasmani Viñamagua</div>
+            <div class="rl">[Cargo] · [Empresa]</div>
+            <div class="ct">[correo@dominio.com] · [+00 000 000 0000]<br>[sitio-web.com]</div>
+          </div>
+        </div>
+      </div>
+      <p class="why">Símbolo a 62 px de alto (por encima del mínimo de 24 px), separador rosa y datos en Manrope. Sin título académico delante del nombre.</p>
+    </div>
+
+    <div class="card">
+      <h2>4 · Portada de memoria técnica (A4)</h2>
+      <div class="stage">
+        <div class="a4">
+          <img class="flow" src="recurso-flujo-oscuro.svg" alt="">
+          <div class="tt"><small>Memoria técnica</small><h3>Diseño de la red GPON</h3><div class="bar"></div><p>Proyecto de ejemplo: urbanización "Ciudad Victoria". Documento descriptivo del diseño y sus criterios técnicos.</p></div>
+          <img class="ft" src="../logo/logo-horizontal-negativo.svg" alt="Yasmani Viñamagua">
+        </div>
+      </div>
+      <p class="why">Sustituye los triángulos decorativos de la plantilla anterior por el recurso de líneas de flujo. Fondo Medianoche y acento rosa único.</p>
+    </div>
+
+    <div class="card">
+      <h2>5 · Documento interior con marca visible (A4)</h2>
+      <div class="stage">
+        <div class="doc">
+          <div class="hd"><img src="../logo/logo-horizontal-color.svg" alt="Yasmani Viñamagua"><span>Memoria técnica</span></div>
+          <h4>1. Objeto</h4>
+          <p>El presente documento describe el diseño de la red de acceso, los criterios de dimensionamiento y la normativa aplicable al proyecto.</p>
+          <h4>2. Ubicación y antecedentes</h4>
+          <p>El proyecto se localiza en el sector indicado y comprende las manzanas que se resumen en la tabla.</p>
+          <table><tr><th>Manzana</th><th>Lotes</th></tr><tr><td>Manzana 01</td><td>24</td></tr><tr><td>Manzana 02</td><td>18</td></tr><tr><td>Total</td><td><b>42</b></td></tr></table>
+          <div class="fo"><span>Yasmani Viñamagua</span><span>2</span></div>
+        </div>
+      </div>
+      <p class="why">Resuelve un fallo del análisis anterior: el documento Word llevaba la marca casi invisible. Aquí hay logo en cabecera, títulos con acento rosa y tabla navy.</p>
+    </div>
+
+    <div class="card full">
+      <h2>6 · Presentación (16:9)</h2>
+      <div class="slides">
+        <div class="sl dark">
+          <img class="flow" src="recurso-flujo-oscuro.svg" alt="">
+          <h5>Automatización de procesos con tecnología</h5>
+          <img class="lk" src="../logo/logo-horizontal-negativo.svg" alt="Yasmani Viñamagua">
+        </div>
+        <div class="sl light">
+          <div class="top"><i></i></div>
+          <span class="pg">02</span>
+          <h5>Del flujo manual al proceso automático</h5>
+          <ul><li>Mapear el proceso actual</li><li>Identificar tareas repetibles</li><li>Automatizar y medir resultados</li></ul>
+          <img class="fig" src="recurso-flujo.svg" alt="">
+        </div>
+      </div>
+      <p class="why">Portada oscura y diapositiva de contenido clara: poco texto, títulos en Nunito, viñetas rosa y la franja superior navy + rosa.</p>
+    </div>
+
+    <div class="card full">
+      <h2>7 · Sitio web (cabecera y portada)</h2>
+      <div class="browser">
+        <div class="bar"><i></i><i></i><i></i><b>yasmani-vinamagua.example</b></div>
+        <div class="nav"><img src="../logo/logo-horizontal-color.svg" alt="Yasmani Viñamagua"><ul><li>Servicios</li><li>Proyectos</li><li>Sobre mí</li><li>Contacto</li></ul></div>
+        <div class="hero">
+          <img class="flow" src="recurso-flujo.svg" alt="">
+          <p class="claim">Automatización de procesos con tecnología</p>
+          <h6>Procesos que funcionan mejor, con <em>responsabilidad</em>.</h6>
+          <p>Ingeniería, redes y tecnología aplicadas a que los procesos funcionen mejor, con honestidad en cada decisión.</p>
+          <span class="btn">Hablemos</span><span class="btn o">Ver proyectos</span>
+        </div>
+      </div>
+      <p class="why">La línea de apoyo va sobre el titular (Pizarra sobre Niebla, contraste 5,39); el resaltado rosa bajo "responsabilidad" aplica el rosa como acento sin usarlo en texto. Los botones son navy con texto blanco (contraste 12,09).</p>
+    </div>
+
+  </div>
+  <p class="note"><b>Recurso gráfico propio:</b> las <em>líneas de flujo</em> (archivos <code>recurso-flujo.svg</code> y <code>recurso-flujo-oscuro.svg</code>) derivan de la entrada y la rama del símbolo: líneas a 60° que convergen y una rama rosa a 45°. <b>Regla medible (v1.1):</b> un solo recurso por pieza, anclado a una esquina, de como máximo el 60 % de la altura de la pieza, sin tocar texto ni el área de respeto del logotipo.</p>
+</div>
+</body>
+</html>
