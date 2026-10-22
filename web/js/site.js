@@ -19,6 +19,8 @@
     initFlow();
     initFilters();
     initTabs();
+    initMenu();
+    initTips();
     initTitles();
     initProcess();
     initReveal();
@@ -39,6 +41,32 @@
       paint();
     });
     paint();
+  }
+
+  /* Móvil: hamburguesa que abre y cierra el menú; Esc, clic fuera o elegir un enlace lo cierran */
+  function initMenu() {
+    var nav = document.querySelector(".nav");
+    if (!nav) return;
+    nav.id = nav.id || "nav-principal";
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "nav-toggle";
+    btn.setAttribute("aria-controls", nav.id);
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Abrir menú");
+    btn.innerHTML = "<span></span><span></span><span></span>";
+    nav.parentNode.insertBefore(btn, nav);
+    function set(open, focusBtn) {
+      nav.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      btn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      if (!open && focusBtn) btn.focus();
+    }
+    btn.addEventListener("click", function () { set(!nav.classList.contains("is-open")); });
+    nav.addEventListener("click", function (e) { if (e.target.closest("a")) set(false); });
+    document.addEventListener("click", function (e) { if (nav.classList.contains("is-open") && !nav.contains(e.target) && !btn.contains(e.target)) set(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && nav.classList.contains("is-open")) set(false, true); });
+    window.addEventListener("resize", function () { if (window.innerWidth > 900) set(false); });
   }
 
   /* El enlace de la sección visible toma el color de acento */
@@ -174,6 +202,20 @@
     new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { en.target.classList.toggle("is-run", en.isIntersecting); });
     }, { rootMargin: "0px 0px -20% 0px", threshold: 0 }).observe(el);
+  }
+
+  /* Tooltips: Esc los cierra sin mover el foco (WCAG 1.4.13); vuelven al salir del control */
+  function initTips() {
+    var sel = ".soc, .foot-ic, .theme-btn, .flow-ctrl button";
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      [].slice.call(document.querySelectorAll(sel)).filter(function (el) { return el.matches(":hover, :focus"); }).forEach(function (el) {
+        el.classList.add("tip-off");
+        function on() { el.classList.remove("tip-off"); el.removeEventListener("mouseleave", on); el.removeEventListener("blur", on); }
+        el.addEventListener("mouseleave", on);
+        el.addEventListener("blur", on);
+      });
+    });
   }
 
   function initReveal() {
